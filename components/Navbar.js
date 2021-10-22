@@ -75,7 +75,7 @@ const Navbar = (props) => {
           {/* <ThemeToggleButton /> */}
 
           <Box ml={2} zIndex={99}>
-            <Button colorScheme="green">¡Inscribite!</Button>
+            <Button colorScheme="brand">¡Inscribite!</Button>
           </Box>
         </Box>
       </Container>
