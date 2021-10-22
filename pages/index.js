@@ -16,7 +16,7 @@ const Home = () => {
       justifyContent="space-between"
       direction={["row", "column", "row", "row"]}
     >
-      <Flex direction="column" zIndex={99}>
+      <Flex direction="column" zIndex={2}>
         <span>
           <Heading
             as="h1"
@@ -32,7 +32,7 @@ const Home = () => {
         </span>
         <Text m="5px 0 0 20px">Este texto no significa nada!</Text>
       </Flex>
-      <Box ml={["-30%", 0, "-30%", "-30%"]} mt={[0, "-35%", 0, 0]}>
+      <Box ml={["-30%", 0, "-30%", "-30%"]} mt={[0, "-25%", 0, 0]}>
         <NoSSR>
           <ParticleImage
             src={"/images/cs-logo.png"}
