@@ -17,16 +17,25 @@ const Home = () => {
       direction={["row", "column", "row", "row"]}
     >
       <Flex direction="column" zIndex={99}>
-        <Heading as="h1" size="4xl">
-          HACKATHON <br />
-          CS
-        </Heading>
+        <span>
+          <Heading
+            as="h1"
+            size="4xl"
+            color={useColorModeValue("#f0e7db", "#101012")}
+            textShadow="-2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff"
+          >
+            HACKATHON
+          </Heading>
+          <Heading as="h1" size="4xl" color={useColorModeValue("white")}>
+            CS
+          </Heading>
+        </span>
         <Text m="5px 0 0 20px">Este texto no significa nada!</Text>
       </Flex>
       <Box ml={["-30%", 0, "-30%", "-30%"]} mt={[0, "-35%", 0, 0]}>
         <NoSSR>
           <ParticleImage
-            src={"/cs-logo.png"}
+            src={"/images/cs-logo.png"}
             scale={0.5}
             entropy={40}
             maxParticles={4200}

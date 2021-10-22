@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Box, Container } from "@chakra-ui/react";
+import Navbar from "../Navbar";
 
 const Main = ({ children, router }) => {
   return (
@@ -13,6 +14,7 @@ const Main = ({ children, router }) => {
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Hackathon - CS" />
       </Head>
+      <Navbar />
       <Container maxW="container.lg" pt={14}>
         {children}
       </Container>
