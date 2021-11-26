@@ -19,6 +19,7 @@ const Section = ({
   headingOffset = 0,
   ...extendedProps
 }) => {
+  const bg = useColorModeValue("#f0e7db", "#101012");
   return (
     <StyledDiv
       initial={{ y: 10, opacity: 0 }}
@@ -36,7 +37,7 @@ const Section = ({
           mb="2"
           maxWidth="fit-content"
           size="xl"
-          bg={useColorModeValue("#f0e7db", "#101012")}
+          bg={bg}
           color="brand.300"
           width="auto"
         >

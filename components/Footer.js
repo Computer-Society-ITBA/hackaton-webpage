@@ -15,7 +15,11 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} Computer Society ITBA. Todos los
         derechos reservados.
       </Text>
-      <a href="https://juanoriana-eta.vercel.app" target="_blank">
+      <a
+        href="https://juanoriana-eta.vercel.app"
+        rel="noreferrer"
+        target="_blank"
+      >
         <Image
           src={chickenImage}
           width={5}
