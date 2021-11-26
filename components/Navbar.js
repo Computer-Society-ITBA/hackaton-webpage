@@ -54,7 +54,7 @@ const Navbar = (props) => {
       w="100%"
       bg={useColorModeValue("#f0e7db", "#101012")}
       style={{ backdropFilter: "blur(10px)" }}
-      zIndex={1}
+      zIndex={99}
       {...props}
     >
       <Container
@@ -74,7 +74,7 @@ const Navbar = (props) => {
         <Box flex={1} align="right">
           {/* <ThemeToggleButton /> */}
 
-          <Box ml={2} zIndex={99}>
+          <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <Button colorScheme="brand">¡Inscribite!</Button>
           </Box>
         </Box>
