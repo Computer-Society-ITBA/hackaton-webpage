@@ -82,7 +82,8 @@ const Home = () => {
       <Section
         border="2px"
         borderColor="brand.600"
-        px={20}
+        mt={(0, 0, 0, 10)}
+        px={(20, 10)}
         py={10}
         rounded={30}
         headingOffset={-16}
