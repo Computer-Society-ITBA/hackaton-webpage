@@ -3,12 +3,19 @@ import { Text, Flex, Image, useColorModeValue } from "@chakra-ui/react";
 const Footer = () => {
   const chickenImage = `/images/chicken${useColorModeValue("", "-dark")}.png`;
   return (
-    <Flex justifyContent="center" opacity={0.6} fontSize="sm" mt="10">
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      opacity={0.6}
+      fontSize="sm"
+      mt="10"
+      flexDirection={["column", "column", "row"]}
+    >
       <Text>
         &copy; {new Date().getFullYear()} Computer Society ITBA. Todos los
         derechos reservados.
       </Text>
-      <a href="https://juanoriana.vercel.app" target="_blank">
+      <a href="https://juanoriana-eta.vercel.app" target="_blank">
         <Image
           src={chickenImage}
           width={5}
