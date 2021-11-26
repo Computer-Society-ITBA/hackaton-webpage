@@ -43,9 +43,9 @@ const Home = () => {
             size="xl"
             color={useColorModeValue("white")}
           >
-            by Computer Society
+            por Computer Society
           </Heading>
-          <Text m="5px 0 0 20px">Este texto no significa nada!</Text>
+          {/* <Text m="5px 0 0 20px">Este texto no significa nada!</Text> */}
         </Flex>
         <Box ml={[0, 0, "-20%", "-20%"]} mt={[0, "-20%", 0, 0]}>
           <NoSSR>
