@@ -25,7 +25,7 @@ const Footer = () => {
           width={5}
           height={5}
           alt="Juan Oriana"
-          ml={2}
+          ml={(2, 0)}
           _hover={{ transform: "rotate(20deg)" }}
         />
       </a>
