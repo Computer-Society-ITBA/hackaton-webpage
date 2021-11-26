@@ -4,15 +4,9 @@ import {
   Container,
   Box,
   Link,
-  Stack,
+  Button,
   Heading,
   Flex,
-  Menu,
-  MenuItem,
-  MenuList,
-  MenuButton,
-  MenuDivider,
-  IconButton,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -77,51 +71,11 @@ const Navbar = (props) => {
           </Heading>
         </Flex>
 
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          display={{ base: "none", md: "flex" }}
-          width={{ base: "full", md: "auto" }}
-          alignItems="center"
-          flexGrow={1}
-          mt={{ base: 4, md: 0 }}
-        >
-          <LinkItem
-            target="_blank"
-            href="https://github.com/csitba/hackaton-webpage"
-            path={path}
-            display="inline-flex"
-            alignItems="center"
-            style={{ gap: 4 }}
-            pl={2}
-          >
-            <IoLogoGithub />
-            Source
-          </LinkItem>
-        </Stack>
-
         <Box flex={1} align="right">
           {/* <ThemeToggleButton /> */}
 
-          <Box ml={2} display={{ base: "inline-block", md: "none" }}>
-            <Menu>
-              <MenuButton
-                as={IconButton}
-                icon={<HamburgerIcon />}
-                variant="outline"
-                aria-label="Options"
-              />
-              <MenuList>
-                <NextLink href="/" passHref>
-                  <MenuItem as={Link}>Home</MenuItem>
-                </NextLink>
-                <MenuDivider />
-                <MenuItem
-                  as={Link}
-                  href="https://github.com/csitba/hackaton-webpage"
-                  icon={<IoLogoGithub />}
-                ></MenuItem>
-              </MenuList>
-            </Menu>
+          <Box ml={2} zIndex={99}>
+            <Button colorScheme="brand">¡Inscribite!</Button>
           </Box>
         </Box>
       </Container>

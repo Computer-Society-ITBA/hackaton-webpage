@@ -23,12 +23,12 @@ const Logo = () => {
     <Link href="/">
       <a>
         <LogoBox>
-          <Image src={csImage} width={20} height={20} alt="logo" />
+          <Image src={csImage} width={30} height={30} alt="logo" />
           <Heading
             color={useColorModeValue("gray.800", "whiteAlpha.900")}
-            size="md"
+            size="lg"
           >
-            HACKATHON
+            HackIT-BA!
           </Heading>
         </LogoBox>
       </a>
