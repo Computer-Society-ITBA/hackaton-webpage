@@ -15,6 +15,7 @@ import useWindowSize from "@rooks/use-window-size";
 import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
 import TrackUnit from "../components/TrackUnit";
+import SponsorLogo from "../components/SponsorLogo";
 
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
@@ -166,7 +167,31 @@ const Home = () => {
         border="2px"
         borderColor="brand.600"
       >
-        Imagenes
+        <Flex alignItems="center" justifyContent="space-evenly" flexWrap="wrap">
+          <SponsorLogo
+            link="https://auth0.com/"
+            logo="/images/logos/auth0.png"
+            name="Auth0"
+            height="auto"
+            width={300}
+          />
+          <SponsorLogo
+            link="https://www.extrimian.com/"
+            logo="/images/logos/extrimian.svg"
+            name="Extrimian"
+            width={300}
+          />
+          <SponsorLogo
+            link="https://poap.xyz/"
+            logo="/images/logos/poap.png"
+            name="POAP"
+          />
+          <SponsorLogo
+            link="https://2pi.network/"
+            logo="/images/logos/2pi.png"
+            name="2pi"
+          />
+        </Flex>
       </Section>
     </Flex>
   );
