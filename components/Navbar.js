@@ -75,7 +75,11 @@ const Navbar = (props) => {
           {/* <ThemeToggleButton /> */}
 
           <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
-            <Button colorScheme="brand" href="https://bit.ly/hackit-ba">¡Inscribite!</Button>
+            <NextLink href="https://bit.ly/hackit-ba" passHref>
+              <a target="_blank" rel="noreferrer">
+                <Button colorScheme="brand">¡Inscribite!</Button>
+              </a>
+            </NextLink>
           </Box>
         </Box>
       </Container>

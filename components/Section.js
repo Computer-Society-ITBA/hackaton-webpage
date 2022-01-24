@@ -31,12 +31,12 @@ const Section = ({
       {heading && (
         <Heading
           as="h2"
-          mt={headingOffset}
+          mt="-20"
           ml="5"
           px="4"
-          mb="2"
+          mb="4"
           maxWidth="fit-content"
-          size="xl"
+          size="2xl"
           bg={bg}
           color="brand.300"
           width="auto"

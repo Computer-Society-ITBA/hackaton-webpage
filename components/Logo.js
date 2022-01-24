@@ -20,7 +20,7 @@ const Logo = () => {
   const csImage = `/images/cs-logo-white.png`;
 
   return (
-    <Link href="/">
+    <Link href="/" passHref={true}>
       <a>
         <LogoBox>
           <Image src={csImage} width={30} height={30} alt="logo" />
