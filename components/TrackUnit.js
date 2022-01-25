@@ -1,4 +1,10 @@
-import { Flex, Text, Img, Heading } from "@chakra-ui/react";
+import { Flex, Text, Img, Heading,  Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverCloseButton} from "@chakra-ui/react";
+import {InfoOutlineIcon} from "@chakra-ui/icons";
 
 const TrackUnit = ({ title, content, image }) => {
   return (
@@ -12,22 +18,24 @@ const TrackUnit = ({ title, content, image }) => {
       >
         {title}
       </Heading>
-      <Img
-        src={image}
-        width={32}
-        height={32}
-        mt={6}
-        mb={3}
-        alt={title}
-        ml={(2, 0)}
-        _hover={{
-          transform: "scale(1.1)",
-          transition: "ease-in-out 0.1s",
-        }}
-      />
-      <Text fontSize="16" textAlign="center">
-        {content}
-      </Text>
+        <Popover trigger='hover'>
+            <PopoverTrigger>
+                <Img
+                    src={image}
+                    width={32}
+                    height={32}
+                    mt={6}
+                    mb={3}
+                    alt={title}
+                    ml={(2, 0)}
+                />
+            </PopoverTrigger>
+            <PopoverContent  bg='white' color='black'>
+                <PopoverCloseButton />
+                <PopoverHeader textAlign="center" fontWeight="bold"><InfoOutlineIcon></InfoOutlineIcon> {title}</PopoverHeader>
+                <PopoverBody fontSize="16" textAlign="center">{content}</PopoverBody>
+            </PopoverContent>
+        </Popover>
     </Flex>
   );
 };
