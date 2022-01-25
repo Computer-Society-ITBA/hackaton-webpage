@@ -196,13 +196,14 @@ const Home = () => {
             logo="/images/logos/auth0.png"
             name="Auth0"
             height="auto"
-            width={300}
+            width={400}
           />
           <SponsorLogo
-            link="https://www.extrimian.com/"
-            logo="/images/logos/extrimian.svg"
-            name="Extrimian"
-            width={300}
+            link="https://2pi.network/"
+            logo="/images/logos/2pi.png"
+            name="2pi"
+            width={200}
+            height="auto"
           />
           <SponsorLogo
             link="https://poap.xyz/"
@@ -210,9 +211,23 @@ const Home = () => {
             name="POAP"
           />
           <SponsorLogo
-            link="https://2pi.network/"
-            logo="/images/logos/2pi.png"
-            name="2pi"
+            link="https://exactly.finance/"
+            logo="/images/logos/exactly.svg"
+            name="Exactly Finance"
+            width={300}
+          />
+          <SponsorLogo
+            link="https://vercel.com/"
+            logo="/images/logos/vercel.png"
+            name="Vercel"
+            height="auto"
+            width={300}
+          />
+          <SponsorLogo
+            link="https://www.extrimian.com/"
+            logo="/images/logos/extrimian.svg"
+            name="Extrimian"
+            width={300}
           />
         </Flex>
       </Section>
