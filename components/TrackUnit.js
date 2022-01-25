@@ -3,7 +3,13 @@ import { Flex, Text, Img, Heading } from "@chakra-ui/react";
 const TrackUnit = ({ title, content, image }) => {
   return (
     <Flex direction="column" alignItems="center" my={2} maxW={200}>
-      <Heading as="h4" fontSize="20" textAlign="center" height={10}>
+      <Heading
+        as="h4"
+        fontSize="20"
+        textAlign="center"
+        height={10}
+        color="brand.200"
+      >
         {title}
       </Heading>
       <Img

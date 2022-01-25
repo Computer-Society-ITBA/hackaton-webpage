@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Heading,
   Flex,
@@ -16,12 +16,15 @@ import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
 import TrackUnit from "../components/TrackUnit";
 import SponsorLogo from "../components/SponsorLogo";
+import { speakers } from "../common/data/speakers";
+import SpeakerProfile from "../components/SpeakerProfile";
 
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
   const { innerWidth, innerHeight } = useWindowSize();
+  const [currentIndex, setCurrentIndex] = useState(0);
   const cyberImage = "/images/cyber-security.png";
   const cryptoImage = "/images/cryptocurrency.png";
   const robotImage = "/images/robot.png";
@@ -155,7 +158,27 @@ const Home = () => {
         border="2px"
         borderColor="brand.600"
       >
-        Imagenes
+        <Flex flexDirection="column" alignItems="center">
+          <Flex alignItems="center" my={3}>
+            {speakers.map((speaker, idx) => (
+              <Img
+                src={
+                  idx === currentIndex
+                    ? "images/spyware.png"
+                    : "/images/circle.png"
+                }
+                alt={speaker.name}
+                boxSize={idx === currentIndex ? 8 : 6}
+                mx={5}
+                cursor="pointer"
+                _hover={{ transform: "scale(1.1)" }}
+                _active={{ transform: "scale(0.9)" }}
+                onClick={() => setCurrentIndex(idx)}
+              />
+            ))}
+          </Flex>
+          <SpeakerProfile speaker={speakers[currentIndex]} />
+        </Flex>
       </Section>
       <Section
         heading={"Sponsors"}
