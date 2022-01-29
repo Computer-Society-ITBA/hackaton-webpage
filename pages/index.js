@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Heading,
   Flex,
@@ -6,6 +6,7 @@ import {
   Text,
   useColorModeValue,
   useBreakpointValue,
+  Img,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -13,18 +14,29 @@ import NoSSR from "../components/NoSSR";
 import useWindowSize from "@rooks/use-window-size";
 import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
+import TrackUnit from "../components/TrackUnit";
+import SponsorLogo from "../components/SponsorLogo";
+import { speakers } from "../common/data/speakers";
+import SpeakerProfile from "../components/SpeakerProfile";
 
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
   const { innerWidth, innerHeight } = useWindowSize();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const cyberImage = "/images/cyber-security.png";
+  const cryptoImage = "/images/cryptocurrency.png";
+  const robotImage = "/images/robot.png";
+
   return (
     <Flex direction="column">
       <Flex
         alignItems="center"
         justifyContent="space-between"
         direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
+        mb={20}
+        mt={10}
       >
         <Flex direction="column" zIndex={2}>
           <Heading
@@ -86,16 +98,15 @@ const Home = () => {
         px={(20, 10)}
         py={10}
         rounded={30}
-        headingOffset={-16}
         heading="Que es?"
       >
-        <Paragraph fontSize="18">
-          <Text as="span" fontWeight="700" fontSize="20" color="brand.200">
+        <Paragraph fontSize="24">
+          <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
             HackIT-BA
           </Text>{" "}
           es un evento anual que se realiza en el ITBA, en el que 15-25 equipos
           de 3 personas viven{" "}
-          <Text as="span" fontWeight="700" fontSize="20" color="brand.200">
+          <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
             36 horas
           </Text>{" "}
           de pura intensidad, programando un proyecto práctico que pueda mejorar
@@ -103,6 +114,146 @@ const Home = () => {
           ideas innovadoras y únicas. Aprender, crear y programar es uno de los
           mantras de la competencia.
         </Paragraph>
+      </Section>
+      <Section
+        heading={"Tracks"}
+        mt={(0, 0, 0, 10)}
+        px={(20, 10)}
+        py={10}
+        rounded={30}
+        headingOffset={-16}
+        border="2px"
+        borderColor="brand.600"
+      >
+        <Flex alignItems="center" justifyContent="space-evenly" flexWrap="wrap">
+          <TrackUnit
+            title="Inclusión Financiera"
+            image={cryptoImage}
+            content="Aplicar nuevas tecnologías a actividades financieras o bursátiles
+          y poder ofrecerle los servicios financieros a la mayor cantidad de
+          personas"
+          />
+          <TrackUnit
+            title="Ciberseguridad y Privacidad"
+            image={cyberImage}
+            content="Aplicar nuevas tecnologías a actividades financieras o bursátiles
+          y poder ofrecerle los servicios financieros a la mayor cantidad de
+          personas"
+          />
+          <TrackUnit
+            title="Productividad y Automatización"
+            image={robotImage}
+            content="Crear formas innovadoras para evitar hackeos, ataques de phishing,
+            suplantación de identidad y más problemáticas del ciberespacio"
+          />
+        </Flex>
+      </Section>
+      <Section
+        heading={"Jurado"}
+        mt={(0, 0, 0, 10)}
+        px={(20, 10)}
+        py={10}
+        rounded={30}
+        headingOffset={-16}
+        border="2px"
+        borderColor="brand.600"
+      >
+        <Flex flexDirection="column" alignItems="center">
+          <Flex alignItems="center" my={3}>
+            {speakers.map((speaker, idx) => (
+              <Img
+                key={idx}
+                src={
+                  idx === currentIndex
+                    ? "images/spyware.png"
+                    : "/images/circle.png"
+                }
+                alt={speaker.name}
+                boxSize={idx === currentIndex ? 8 : 6}
+                mx={5}
+                cursor="pointer"
+                _hover={{ transform: "scale(1.1)" }}
+                _active={{ transform: "scale(0.9)" }}
+                onClick={() => setCurrentIndex(idx)}
+              />
+            ))}
+          </Flex>
+          <SpeakerProfile speaker={speakers[currentIndex]} />
+        </Flex>
+      </Section>
+      <Section
+        heading={"Sponsors"}
+        mt={(0, 0, 0, 10)}
+        px={(20, 10)}
+        py={10}
+        rounded={30}
+        headingOffset={-16}
+        border="2px"
+        borderColor="brand.600"
+      >
+        <Flex
+          alignItems="center"
+          justifyContent="space-evenly"
+          flexWrap="wrap"
+          pt={8}
+        >
+          <SponsorLogo
+            link="https://auth0.com/"
+            logo="/images/logos/auth0.png"
+            name="Auth0"
+            height="auto"
+            width={300}
+          />
+          <SponsorLogo
+            link="https://2pi.network/"
+            logo="/images/logos/2pi.png"
+            name="2pi"
+            width={[140, 180]}
+            height="auto"
+            style={{ my: [4, 0] }}
+          />
+          <SponsorLogo
+            link="https://openzeppelin.com/"
+            logo="/images/logos/openzeppelin.png"
+            name="OpenZeppelin"
+            height="auto"
+            width={["auto", 300]}
+            style={{ my: [4, 0] }}
+          />
+          <SponsorLogo
+            link="https://poap.xyz/"
+            logo="/images/logos/poap.png"
+            name="POAP"
+            height={160}
+            style={{ my: [4, 0] }}
+          />
+          <SponsorLogo
+            link="https://www.flowics.com/"
+            logo="/images/logos/flowics.svg"
+            name="Flowics"
+            height={200}
+            style={{ mb: [-10, 0] }}
+          />
+          <SponsorLogo
+            link="https://exactly.finance/"
+            logo="/images/logos/exactly.svg"
+            name="Exactly Finance"
+            width={250}
+          />
+          <SponsorLogo
+            link="https://vercel.com/"
+            logo="/images/logos/vercel.png"
+            name="Vercel"
+            height="auto"
+            width={200}
+          />
+          <SponsorLogo
+            link="https://www.extrimian.com/"
+            logo="/images/logos/extrimian.svg"
+            name="Extrimian"
+            width={200}
+          />
+        </Flex>
       </Section>
     </Flex>
   );
