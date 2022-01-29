@@ -13,9 +13,9 @@ const SpeakerProfile = ({ speaker }) => {
           borderRadius="full"
           fit="cover"
         />
-        <Flex flexDirection="column" color="brand.200" ml={5}>
+        <Flex flexDirection="column" color="brand.300" ml={5}>
           <Heading as="h3">{speaker.name}</Heading>
-          <Heading as="h4" fontSize={22}>
+          <Heading as="h4" fontSize={22} color="brand.200">
             {speaker.title}
           </Heading>
         </Flex>

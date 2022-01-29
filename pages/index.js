@@ -190,7 +190,12 @@ const Home = () => {
         border="2px"
         borderColor="brand.600"
       >
-        <Flex alignItems="center" justifyContent="space-evenly" flexWrap="wrap">
+        <Flex
+          alignItems="center"
+          justifyContent="space-evenly"
+          flexWrap="wrap"
+          pt={8}
+        >
           <SponsorLogo
             link="https://auth0.com/"
             logo="/images/logos/auth0.png"
@@ -202,30 +207,32 @@ const Home = () => {
             link="https://2pi.network/"
             logo="/images/logos/2pi.png"
             name="2pi"
-            width={180}
+            width={[140, 180]}
             height="auto"
+            style={{ my: [4, 0] }}
           />
           <SponsorLogo
             link="https://openzeppelin.com/"
             logo="/images/logos/openzeppelin.png"
             name="OpenZeppelin"
             height="auto"
-            width={300}
+            width={["auto", 300]}
+            style={{ my: [4, 0] }}
           />
           <SponsorLogo
             link="https://poap.xyz/"
             logo="/images/logos/poap.png"
             name="POAP"
             height={160}
+            style={{ my: [4, 0] }}
           />
-
           <SponsorLogo
             link="https://www.flowics.com/"
             logo="/images/logos/flowics.svg"
             name="Flowics"
             height={200}
+            style={{ mb: [-10, 0] }}
           />
-
           <SponsorLogo
             link="https://exactly.finance/"
             logo="/images/logos/exactly.svg"

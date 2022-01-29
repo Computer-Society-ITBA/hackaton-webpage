@@ -1,9 +1,9 @@
 import { Img, Box } from "@chakra-ui/react";
 import Link from "next/dist/client/link";
 
-const SponsorLogo = ({ link, logo, name, width, height }) => {
+const SponsorLogo = ({ link, logo, name, width, height, style }) => {
   return (
-    <Box mx={8}>
+    <Box mx={8} {...style}>
       <Link href={link} passHref>
         <a target="_blank">
           <Img
