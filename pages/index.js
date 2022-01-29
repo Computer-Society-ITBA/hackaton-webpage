@@ -162,6 +162,7 @@ const Home = () => {
           <Flex alignItems="center" my={3}>
             {speakers.map((speaker, idx) => (
               <Img
+                key={idx}
                 src={
                   idx === currentIndex
                     ? "images/spyware.png"

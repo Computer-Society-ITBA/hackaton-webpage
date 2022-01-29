@@ -8,7 +8,6 @@ const SponsorLogo = ({ link, logo, name, width, height, style }) => {
         <a target="_blank">
           <Img
             src={logo}
-            height={48}
             alt={name}
             width={width ? width : "auto"}
             height={height ? height : 40}
