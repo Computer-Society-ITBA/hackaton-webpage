@@ -196,38 +196,54 @@ const Home = () => {
             logo="/images/logos/auth0.png"
             name="Auth0"
             height="auto"
-            width={400}
+            width={300}
           />
           <SponsorLogo
             link="https://2pi.network/"
             logo="/images/logos/2pi.png"
             name="2pi"
-            width={200}
+            width={180}
             height="auto"
+          />
+          <SponsorLogo
+            link="https://openzeppelin.com/"
+            logo="/images/logos/openzeppelin.png"
+            name="OpenZeppelin"
+            height="auto"
+            width={300}
           />
           <SponsorLogo
             link="https://poap.xyz/"
             logo="/images/logos/poap.png"
             name="POAP"
+            height={160}
           />
+
+          <SponsorLogo
+            link="https://www.flowics.com/"
+            logo="/images/logos/flowics.svg"
+            name="Flowics"
+            height={200}
+          />
+
           <SponsorLogo
             link="https://exactly.finance/"
             logo="/images/logos/exactly.svg"
             name="Exactly Finance"
-            width={300}
+            width={250}
           />
           <SponsorLogo
             link="https://vercel.com/"
             logo="/images/logos/vercel.png"
             name="Vercel"
             height="auto"
-            width={300}
+            width={200}
           />
           <SponsorLogo
             link="https://www.extrimian.com/"
             logo="/images/logos/extrimian.svg"
             name="Extrimian"
-            width={300}
+            width={200}
           />
         </Flex>
       </Section>
