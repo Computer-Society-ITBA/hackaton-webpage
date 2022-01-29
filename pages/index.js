@@ -136,15 +136,12 @@ const Home = () => {
           <TrackUnit
             title="Ciberseguridad y Privacidad"
             image={cyberImage}
-            content="Aplicar nuevas tecnologías a actividades financieras o bursátiles
-          y poder ofrecerle los servicios financieros a la mayor cantidad de
-          personas"
+            content="Crear formas innovadoras para evitar hackeos, ataques de phishing, suplantación de identidad y más problemáticas del ciberespacio"
           />
           <TrackUnit
             title="Productividad y Automatización"
             image={robotImage}
-            content="Crear formas innovadoras para evitar hackeos, ataques de phishing,
-            suplantación de identidad y más problemáticas del ciberespacio"
+            content="Solución a un problema de automatización, construcción de herramientas para aumentar la productividad personal, etc"
           />
         </Flex>
       </Section>
