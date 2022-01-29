@@ -222,7 +222,7 @@ const Home = () => {
           />
           <SponsorLogo
             link="https://poap.xyz/"
-            logo="/images/logos/poap.png"
+            logo="https://poap.gallery/icons/poap_dark.png"
             name="POAP"
             height={160}
             style={{ my: [4, 0] }}
