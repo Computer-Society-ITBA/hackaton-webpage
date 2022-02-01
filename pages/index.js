@@ -218,62 +218,62 @@ const Home = () => {
             logo="/images/logos/auth0.png"
             name="Auth0"
             height="auto"
-            width={300}
+            width={350}
           />
           <SponsorLogo
             link="https://2pi.network/"
             logo="/images/logos/2pi.png"
             name="2pi"
-            width={[140, 180]}
+            width={[120, 150]}
             height="auto"
-            style={{ my: [4, 0] }}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://openzeppelin.com/"
             logo="/images/logos/openzeppelin.png"
             name="OpenZeppelin"
             height="auto"
-            width={["auto", 300]}
-            style={{ my: [4, 0] }}
+            width={["auto", 250]}
+            style={{ my: [2, 0] }}
           />
           <SponsorLogo
             link="https://poap.xyz/"
             logo="https://poap.gallery/icons/poap_dark.png"
             name="POAP"
-            height={160}
-            style={{ my: [4, 0] }}
-          />
-          <SponsorLogo
-            link="https://www.flowics.com/"
-            logo="/images/logos/flowics.svg"
-            name="Flowics"
-            height={200}
-            style={{ mb: [-10, 0] }}
+            height={130}
+            style={{ my: [2, 0] }}
           />
           <SponsorLogo
             link="https://exactly.finance/"
             logo="/images/logos/exactly.svg"
             name="Exactly Finance"
-            width={250}
+            width={200}
+          />
+          <SponsorLogo
+              link="https://www.flowics.com/"
+              logo="/images/logos/flowics.svg"
+              name="Flowics"
+              height={150}
+              style={{ mb: [-10, 0]}}
           />
           <SponsorLogo
             link="https://vercel.com/"
             logo="/images/logos/vercel.png"
             name="Vercel"
             height="auto"
-            width={200}
+            width={100}
           />
           <SponsorLogo
             link="https://www.extrimian.com/"
             logo="/images/logos/extrimian.svg"
             name="Extrimian"
-            width={200}
+            width={120}
           />
           <SponsorLogo
             link="https://daffy.org/"
             logo="/images/logos/daffy.svg"
             name="Daffy"
-            width={170}
+            width={100}
             height="auto"
           />
         </Flex>
