@@ -57,7 +57,7 @@ const Home = () => {
           >
             por Computer Society
           </Heading>
-          { <Text m="5px 0 0 10px"> 1, 2 y 3 de abril | Buenos Aires, Argentina & Online </Text> }
+          { <Text m="5px 0 0 0">36hs de hacking | 1, 2 y 3 de abril | Buenos Aires</Text> }
         </Flex>
         <Box ml={[0, 0, "-20%", "-20%"]} mt={[0, "-20%", 0, 0]}>
           <NoSSR>
@@ -131,7 +131,7 @@ const Home = () => {
           {" "}<Text as="span" fontWeight="700" fontSize="28" color="brand.200">
           <Link href="https://bit.ly/hackit-ba">bit.ly/hackit-ba</Link>
         </Text> {" "} y luego de que cierren las inscripciones te vamos a confirmar tu prescencia.
-          Cada equipo debe elegir 1 categoría para desarrollar proyectos informáticos que solucionen un problema en Inclusión Financiera, Ciberseguridad y Privacidad  o Productividad y Automatización.
+          Cada equipo debe elegir 1 categoría para desarrollar un proyecto informático que solucione un problema en Inclusión Financiera, Ciberseguridad y Privacidad  o Productividad y Automatización.
         </Paragraph>
       </Section>
       <Section
@@ -199,7 +199,7 @@ const Home = () => {
           <SponsorLogo
             link="https://auth0.com/"
             logo="/images/logos/auth0.png"
-            name="Auth0"
+            name="auth0"
             height="auto"
             width={350}
           />
@@ -236,7 +236,7 @@ const Home = () => {
               link="https://www.flowics.com/"
               logo="/images/logos/flowics.svg"
               name="Flowics"
-              height={180}
+              width={220}
           />
           <SponsorLogo
             link="https://vercel.com/"

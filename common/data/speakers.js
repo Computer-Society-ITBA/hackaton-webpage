@@ -10,16 +10,16 @@ export const speakers = [
   },
   {
     name: "Santiago Siri",
-    title: "Founder de Democracy Earth Foundation",
+    title: "Founder de Proof of Humanity & UBI",
     twitter: "santisiri",
     brand: "Democracy Earth",
-    img: "https://www.tedxpuravida.org/wp-content/uploads/2017/01/santiago-siri-200x200.jpg",
+    img: "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/03/17315.jpg?7.1.4",
     description:
         'Democracy Earth una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of "Hacktivismo", publicado en 2015 por Random House.',
   },
   {
     name: "Esteban Ordano",
-    title: "Founder & Advisor",
+    title: "Founder & Advisor de Decentraland",
     twitter: "eordano",
     brand: "Decentraland",
     img: "https://pbs.twimg.com/profile_images/1488553916962902017/jdKn5Oe7_400x400.jpg",
