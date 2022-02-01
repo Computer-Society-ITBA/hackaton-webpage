@@ -234,14 +234,14 @@ const Home = () => {
             name="OpenZeppelin"
             height="auto"
             width={["auto", 250]}
-            style={{ my: [2, 0] }}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://poap.xyz/"
             logo="https://poap.gallery/icons/poap_dark.png"
             name="POAP"
             height={130}
-            style={{ my: [2, 0] }}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://exactly.finance/"
@@ -254,7 +254,8 @@ const Home = () => {
               logo="/images/logos/flowics.svg"
               name="Flowics"
               height={150}
-              style={{ mb: [-10, 0]}}
+              style={{ my: [5, 0] }}
+
           />
           <SponsorLogo
             link="https://vercel.com/"
