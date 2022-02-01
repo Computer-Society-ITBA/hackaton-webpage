@@ -23,7 +23,7 @@ const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
-  const { innerWidth, innerHeight } = useWindowSize();
+  const { innerWidth } = useWindowSize();
   const [currentIndex, setCurrentIndex] = useState(0);
   const cyberImage = "/images/cyber-security.png";
   const cryptoImage = "/images/cryptocurrency.png";
@@ -72,7 +72,7 @@ const Home = () => {
               maxParticles={4200}
               width={useBreakpointValue({
                 base: 350,
-                sm: 350,
+                sm: 400,
                 md: 1000,
                 lg: 1000,
               })}
@@ -86,7 +86,7 @@ const Home = () => {
               mouseTouchForce={motionForce}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
-              style={{ pointerEvents: "none" }}
+              style={{ pointerEvents: innerWidth < 800 ? "none" : "auto" }}
             />
           </NoSSR>
         </Box>
