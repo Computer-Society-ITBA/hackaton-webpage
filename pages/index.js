@@ -83,8 +83,8 @@ const Home = () => {
                 md: 600,
                 lg: 600,
               })}
-              mouseMoveForce={motionForce}
-              mouseTouchForce={motionForce}
+              mouseMoveForce={undefined}
+              mouseTouchForce={undefined}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
             />
@@ -249,6 +249,13 @@ const Home = () => {
             logo="/images/logos/extrimian.svg"
             name="Extrimian"
             width={200}
+          />
+          <SponsorLogo
+            link="https://daffy.org/"
+            logo="/images/logos/daffy.svg"
+            name="Daffy"
+            width={170}
+            height="auto"
           />
         </Flex>
       </Section>
