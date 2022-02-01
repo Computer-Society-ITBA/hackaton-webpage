@@ -18,6 +18,17 @@ export const speakers = [
     title: "Co-founder & CEO de Exactly Finance",
     img: "https://miro.medium.com/fit/c/262/262/1*Sm7jkT5APmJC0bu4t_ZS6w.jpeg",
     description:
-      "Gabriel es fundador y ex-CEO de Properati, una startup inmobiliaria con presencia en Argentina y en la región que le vendió años atrás a OLX. Es licenciado en Economía de la UBA, trabajó en el Banco Central de Argentina (BCRA) y en Tilton Capital. Actualmente está emprendiendo en web3 con Exactly Finance, un protocolo de inversión que permite obtener renta fija en DeFi",
+      "Actualmente Gabriel es CEO y Co-Fundador de Exactly Finance, un protocolo DeFi que busca crear una solucion de renta fija que luego permita conectarse con el mundo financiero tradicional para lograr un mercado de crédito global y descentralizado. \n" +
+        "\n" +
+        "Previamente CEO y Co-Fundador de Properati, una plataforma transaccional de Real Estate en Latam que fue adquirida por OLX Group en 2018. \n" +
+        "Gabriel es economista por la UBA y trabajo en Tilton Capital y el BCRA entre otras empresas.",
   },
+  {
+    name: "Santiago Siri",
+    title: "Founder de Democracy Earth Foundation",
+    img: "https://www.tedxpuravida.org/wp-content/uploads/2017/01/santiago-siri-200x200.jpg",
+    description:
+        "Democracy Earth una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of \"Hacktivismo\", publicado en 2015 por Random House.",
+  },
+
 ];
