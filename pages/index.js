@@ -83,8 +83,8 @@ const Home = () => {
                 md: 600,
                 lg: 600,
               })}
-              mouseMoveForce={undefined}
-              mouseTouchForce={undefined}
+              mouseMoveForce={motionForce}
+              mouseTouchForce={motionForce}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
             />
