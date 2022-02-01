@@ -236,7 +236,7 @@ const Home = () => {
               link="https://www.flowics.com/"
               logo="/images/logos/flowics.svg"
               name="Flowics"
-              width={220}
+              width={200}
           />
           <SponsorLogo
             link="https://vercel.com/"
