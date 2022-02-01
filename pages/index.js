@@ -7,6 +7,7 @@ import {
   useColorModeValue,
   useBreakpointValue,
   Img,
+  Link,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -57,7 +58,7 @@ const Home = () => {
           >
             por Computer Society
           </Heading>
-          {/* <Text m="5px 0 0 20px">Este texto no significa nada!</Text> */}
+          { <Text m="5px 0 0 10px"> 1, 2 y 3 de abril | Buenos Aires, Argentina & Online  </Text> }
         </Flex>
         <Box ml={[0, 0, "-20%", "-20%"]} mt={[0, "-20%", 0, 0]}>
           <NoSSR>
@@ -83,8 +84,8 @@ const Home = () => {
                 md: 600,
                 lg: 600,
               })}
-              mouseMoveForce={motionForce}
-              mouseTouchForce={motionForce}
+              mouseMoveForce={undefined}
+              mouseTouchForce={undefined}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
             />
@@ -104,7 +105,7 @@ const Home = () => {
           <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
             HackIT-BA
           </Text>{" "}
-          es un evento anual que se realiza en el ITBA, en el que 15-25 equipos
+          es un evento anual que se realiza en el ITBA, en el que 25 equipos
           de 3 personas viven{" "}
           <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
             36 horas
@@ -113,6 +114,24 @@ const Home = () => {
           la calidad de vida de sus pares en la Argentina y en el mundo, con
           ideas innovadoras y únicas. Aprender, crear y programar es uno de los
           mantras de la competencia.
+        </Paragraph>
+      </Section>
+      <Section
+          border="2px"
+          borderColor="brand.600"
+          mt={(0, 0, 0, 10)}
+          px={(20, 10)}
+          py={10}
+          rounded={30}
+          heading="Cómo funciona?"
+      >
+        <Paragraph fontSize="24">
+          La competencia se va a desarrollar prescencialmente en el ITBA Sede Distrito Financiero y a través de Discord.
+          Para aplicar simplemente tenés que entrar al link
+          {" "}<Text as="span" fontWeight="700" fontSize="28" color="brand.200">
+            <Link href="https://bit.ly/hackit-ba">bit.ly/hackit-ba</Link>
+          </Text> {" "} y luego de que cierren las inscripciones te vamos a confirmar tu prescencia.
+          Cada equipo debe elegir 1 categoría para desarrollar proyectos informáticos que solucionen un problema en Inclusión Financiera, Ciberseguridad y Privacidad  o Productividad y Automatización.
         </Paragraph>
       </Section>
       <Section
@@ -199,62 +218,63 @@ const Home = () => {
             logo="/images/logos/auth0.png"
             name="Auth0"
             height="auto"
-            width={300}
+            width={350}
           />
           <SponsorLogo
             link="https://2pi.network/"
             logo="/images/logos/2pi.png"
             name="2pi"
-            width={[140, 180]}
+            width={[120, 150]}
             height="auto"
-            style={{ my: [4, 0] }}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://openzeppelin.com/"
             logo="/images/logos/openzeppelin.png"
             name="OpenZeppelin"
             height="auto"
-            width={["auto", 300]}
-            style={{ my: [4, 0] }}
+            width={["auto", 250]}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://poap.xyz/"
             logo="https://poap.gallery/icons/poap_dark.png"
             name="POAP"
-            height={160}
-            style={{ my: [4, 0] }}
-          />
-          <SponsorLogo
-            link="https://www.flowics.com/"
-            logo="/images/logos/flowics.svg"
-            name="Flowics"
-            height={200}
-            style={{ mb: [-10, 0] }}
+            height={130}
+            style={{ my: [5, 0] }}
           />
           <SponsorLogo
             link="https://exactly.finance/"
             logo="/images/logos/exactly.svg"
             name="Exactly Finance"
-            width={250}
+            width={200}
+          />
+          <SponsorLogo
+              link="https://www.flowics.com/"
+              logo="/images/logos/flowics.svg"
+              name="Flowics"
+              height={150}
+              style={{ my: [5, 0] }}
+
           />
           <SponsorLogo
             link="https://vercel.com/"
             logo="/images/logos/vercel.png"
             name="Vercel"
             height="auto"
-            width={200}
+            width={100}
           />
           <SponsorLogo
             link="https://www.extrimian.com/"
             logo="/images/logos/extrimian.svg"
             name="Extrimian"
-            width={200}
+            width={120}
           />
           <SponsorLogo
             link="https://daffy.org/"
             logo="/images/logos/daffy.svg"
             name="Daffy"
-            width={170}
+            width={100}
             height="auto"
           />
         </Flex>
