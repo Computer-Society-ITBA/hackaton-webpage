@@ -11,14 +11,14 @@ const SpeakerProfile = ({ speaker }) => {
         pb="40px"
         px="12px"
         textAlign="center"
-        width="300px"
+        width="250px"
         minHeight="300px"
         mt="75px"
         mx="4px"
       >
         <Image
           src={speaker.img}
-          boxSize={125}
+          boxSize={100}
           alt={speaker.name}
           borderRadius="full"
           fit="cover"
