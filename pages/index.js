@@ -250,6 +250,13 @@ const Home = () => {
             name="Extrimian"
             width={200}
           />
+          <SponsorLogo
+            link="https://daffy.org/"
+            logo="/images/logos/daffy.svg"
+            name="Daffy"
+            width={170}
+            height="auto"
+          />
         </Flex>
       </Section>
     </Flex>
