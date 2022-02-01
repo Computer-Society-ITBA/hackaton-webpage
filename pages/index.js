@@ -24,7 +24,6 @@ const motionForce = (x, y) => {
 };
 const Home = () => {
   const { innerWidth } = useWindowSize();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const cyberImage = "/images/cyber-security.png";
   const cryptoImage = "/images/cryptocurrency.png";
   const robotImage = "/images/robot.png";
@@ -155,27 +154,10 @@ const Home = () => {
         border="2px"
         borderColor="brand.600"
       >
-        <Flex flexDirection="column" alignItems="center">
-          <Flex alignItems="center" my={3}>
-            {speakers.map((speaker, idx) => (
-              <Img
-                key={idx}
-                src={
-                  idx === currentIndex
-                    ? "images/spyware.png"
-                    : "/images/circle.png"
-                }
-                alt={speaker.name}
-                boxSize={idx === currentIndex ? 8 : 6}
-                mx={5}
-                cursor="pointer"
-                _hover={{ transform: "scale(1.1)" }}
-                _active={{ transform: "scale(0.9)" }}
-                onClick={() => setCurrentIndex(idx)}
-              />
-            ))}
-          </Flex>
-          <SpeakerProfile speaker={speakers[currentIndex]} />
+        <Flex my={3} flexWrap="wrap" justifyContent="space-evenly">
+          {speakers.map((speaker, idx) => (
+            <SpeakerProfile key={idx} speaker={speaker} />
+          ))}
         </Flex>
       </Section>
       <Section
