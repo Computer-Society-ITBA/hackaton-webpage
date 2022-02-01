@@ -28,7 +28,7 @@ export const speakers = [
     title: "Founder de Democracy Earth Foundation",
     img: "https://www.tedxpuravida.org/wp-content/uploads/2017/01/santiago-siri-200x200.jpg",
     description:
-        "Fundador de Democracy Earth Foundation, una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of \"Hacktivismo\", publicado en 2015 por Random House.",
+        "Democracy Earth una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of \"Hacktivismo\", publicado en 2015 por Random House.",
   },
 
 ];
