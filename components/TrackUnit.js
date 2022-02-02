@@ -1,13 +1,8 @@
-import {
-  Flex,
-  Text,
-  Img,
-  Heading
-} from "@chakra-ui/react";
+import { Flex, Text, Img, Heading } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 const Card = styled.div`
-  background-color: rgba(58,62,68, .4);
+  background-color: rgba(58, 62, 68, 0.4);
   border-radius: 32px;
   padding: 40px 32px;
   width: 300px;
@@ -17,15 +12,8 @@ const Card = styled.div`
 
 const TrackUnit = ({ title, content, image }) => {
   return (
-    <Flex direction="column" alignItems="center" mt={"30px"}>
-      <Img
-        position="absolute"
-        mt="-42px"
-        src={image}
-        width={93}
-        height={93}
-        
-      />
+    <Flex direction="column" alignItems="center" mt={"30px"} mx={2}>
+      <Img position="absolute" mt="-42px" src={image} width={93} height={93} />
       <Card>
         <Heading
           mt="40px"
@@ -39,7 +27,14 @@ const TrackUnit = ({ title, content, image }) => {
         >
           {title}
         </Heading>
-        <Text color="#FAFBFC" fontSize={"14px"} lineHeight={"24px"} textAlign={"center"}>{content}</Text>
+        <Text
+          color="#FAFBFC"
+          fontSize={"14px"}
+          lineHeight={"24px"}
+          textAlign={"center"}
+        >
+          {content}
+        </Text>
       </Card>
     </Flex>
   );

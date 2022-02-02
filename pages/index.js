@@ -24,20 +24,20 @@ import styled from "@emotion/styled";
 import NextLink from "next/link";
 
 const Subtitle = styled(Text)`
-  font-size: 14px; 
-  text-transform: uppercase; 
-  color: #B1B7C2;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #b1b7c2;
 `;
 
 const Separator = styled.span`
-  border-left: 1px solid #B1B7C2;
+  border-left: 1px solid #b1b7c2;
   margin-left: 16px;
   margin-right: 16px;
 `;
 
 const PrimaryButton = styled(Button)`
-  font-size: 14px; 
-  border-radius: 8px; 
+  font-size: 14px;
+  border-radius: 8px;
   font-weight: 500;
   border-width: 1px;
   transition: all 0.3s ease;
@@ -46,7 +46,7 @@ const PrimaryButton = styled(Button)`
   padding: 16px 24px;
 
   svg path {
-    fill: #1E212A;
+    fill: #1e212a;
     transition: all 0.3s ease;
   }
 
@@ -80,14 +80,19 @@ const Home = () => {
         height={400}
       >
         <Grid width="500px" gap="16px" zIndex={2}>
-          <Subtitle m="5px 0 0 0">1, 2 y 3 de abril<Separator/>Buenos Aires<Separator/>36hs de hacking</Subtitle> 
+          <Subtitle m="5px 0 0 0">
+            1, 2 y 3 de abril
+            <Separator />
+            Buenos Aires
+            <Separator />
+            36hs de hacking
+          </Subtitle>
           <Heading
-            isTruncated
             as="h1"
             mt={[20, 20, 0, 0]}
             color="#FAFBFC"
             fontWeight={700}
-            fontSize="74px"
+            fontSize={[48, 48, 72]}
           >
             HackIT-BA!
           </Heading>
@@ -102,9 +107,19 @@ const Home = () => {
           </Heading>
           <NextLink href="https://bit.ly/hackit-ba" passHref>
             <a target="_blank" rel="noreferrer">
-              <PrimaryButton colorScheme="brand">Inscribite 
-                <svg style={{marginLeft: 8}} width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.39205 11.2102L11.6932 5.90909L6.39205 0.607954L5.36932 1.625L8.92045 5.17045H0V6.64773H8.92045L5.36932 10.1989L6.39205 11.2102Z" fill="#1E212A"/>
+              <PrimaryButton colorScheme="brand">
+                Inscribite
+                <svg
+                  style={{ marginLeft: 8 }}
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.39205 11.2102L11.6932 5.90909L6.39205 0.607954L5.36932 1.625L8.92045 5.17045H0V6.64773H8.92045L5.36932 10.1989L6.39205 11.2102Z"
+                    fill="#1E212A"
+                  />
                 </svg>
               </PrimaryButton>
             </a>
@@ -179,12 +194,19 @@ const Home = () => {
         mb="60px"
       >
         <Paragraph fontSize="18" lineHeight="32px">
-          La competencia se va a desarrollar prescencialmente en el ITBA Sede Distrito Financiero y a través de Discord.
-          Para aplicar simplemente tenés que entrar al link
-          {" "}<Text as="span" fontWeight="700" fontSize="18" color="brand.400">
-          <Link color="brand.200" href="https://bit.ly/hackit-ba">bit.ly/hackit-ba</Link>
-        </Text> {" "} y luego de que cierren las inscripciones te vamos a confirmar tu prescencia.
-          Cada equipo debe elegir 1 categoría para desarrollar un proyecto informático que solucione un problema en Inclusión Financiera, Ciberseguridad y Privacidad  o Productividad y Automatización.
+          La competencia se va a desarrollar prescencialmente en el ITBA Sede
+          Distrito Financiero y a través de Discord. Para aplicar simplemente
+          tenés que entrar al link{" "}
+          <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
+            <Link color="brand.200" href="https://bit.ly/hackit-ba">
+              bit.ly/hackit-ba
+            </Link>
+          </Text>{" "}
+          y luego de que cierren las inscripciones te vamos a confirmar tu
+          prescencia. Cada equipo debe elegir 1 categoría para desarrollar un
+          proyecto informático que solucione un problema en Inclusión
+          Financiera, Ciberseguridad y Privacidad o Productividad y
+          Automatización.
         </Paragraph>
       </Section>
       <Section
@@ -204,7 +226,11 @@ const Home = () => {
         borderBottom={0}
         mb="60px"
       >
-        <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap">
+        <Flex
+          alignItems="center"
+          justifyContent={["center", "center", "space-evenly"]}
+          flexWrap="wrap"
+        >
           <TrackUnit
             title="Inclusión Financiera"
             image={cryptoImage}
@@ -241,7 +267,13 @@ const Home = () => {
         borderBottom={0}
         mb="60px"
       >
-        <Grid my={3} gridTemplateColumns="1fr 1fr" gap="47px" flexWrap="wrap" justifyContent="space-between">
+        <Grid
+          my={3}
+          gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}
+          gap="47px"
+          flexWrap="wrap"
+          justifyContent="space-between"
+        >
           {speakers.map((speaker, idx) => (
             <SpeakerProfile key={idx} speaker={speaker} />
           ))}
@@ -305,10 +337,10 @@ const Home = () => {
             width={250}
           />
           <SponsorLogo
-              link="https://www.flowics.com/"
-              logo="/images/logos/flowics.svg"
-              name="Flowics"
-              width={200}
+            link="https://www.flowics.com/"
+            logo="/images/logos/flowics.svg"
+            name="Flowics"
+            width={200}
           />
           <SponsorLogo
             link="https://vercel.com/"

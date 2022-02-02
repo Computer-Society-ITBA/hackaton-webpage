@@ -3,7 +3,7 @@ import { Flex, Text, Heading, Image, Link, Grid } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 const Card = styled.div`
-  background-color: rgba(58,62,68, .4);
+  background-color: rgba(58, 62, 68, 0.4);
   border-radius: 32px;
   width: 100%;
   max-width: 100%;
@@ -62,10 +62,9 @@ const SpeakerProfile = ({ speaker }) => {
             >
               @{speaker.twitter}
             </Link>
-          </Flex> 
+          </Flex>
         </Flex>
       </SpeakerContent>
-
     </Card>
   );
 };
