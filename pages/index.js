@@ -359,6 +359,41 @@ const Home = () => {
           />
         </Flex>
       </Section>
+      <Section
+          border="1px"
+          borderColor="brand.600"
+          mt={(0, 0, 0, 10)}
+          px="60px"
+          py="60px"
+          rounded={32}
+          heading="Que es Computer Society ITBA?"
+          mb="60px"
+      >
+        <Paragraph fontSize="18" lineHeight="32px">
+          Somos una sociedad técnica formada
+          por alumnos y exalumnos del ITBA, dedicada a inspirar
+          y educar en diversas áreas de tecnología mayormente relacionadas con la informática.
+          Formamos una sub-rama académica de IEEE Computer Society, una de las redes más grandes que conectan profesionales en todo el mundo.
+          Podés visitar nuestra página <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
+            <Link color="brand.200" href="https://csitba.web.app">
+              csitba.web.app
+            </Link> y seguirnos en
+            <Link   color="brand.200" href="https://twitter.com/ieeecsitba">
+            <a target="_blank" rel="noreferrer">
+              {" "} twitter
+            </a>
+            </Link> e
+            <Link  color="brand.200" href="https://instagram.com/computer.society.itba/">
+              <a target="_blank" rel="noreferrer">
+                {" "} instagram.
+              </a>
+            </Link>
+
+          </Text>
+
+        </Paragraph>
+      </Section>
+
     </Flex>
   );
 };
