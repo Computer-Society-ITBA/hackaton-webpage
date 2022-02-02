@@ -78,8 +78,9 @@ const Home = () => {
         mt="150px"
         mb="200px"
         height={400}
+        direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
       >
-        <Grid width="500px" gap="16px" zIndex={2}>
+        <Flex zIndex={2} direction="column">
           <Subtitle m="5px 0 0 0">
             1, 2 y 3 de abril
             <Separator />
@@ -89,20 +90,14 @@ const Home = () => {
           </Subtitle>
           <Heading
             as="h1"
-            mt={[20, 20, 0, 0]}
             color="#FAFBFC"
             fontWeight={700}
             fontSize={[48, 48, 72]}
+            my={["10px", "10px", 0]}
           >
             HackIT-BA!
           </Heading>
-          <Heading
-            isTruncated
-            as="h1"
-            size="md"
-            color="#FAFBFC"
-            fontWeight={"normal"}
-          >
+          <Heading as="h1" size="md" color="#FAFBFC" fontWeight={"normal"}>
             por Computer Society
           </Heading>
           <NextLink href="https://bit.ly/hackit-ba" passHref>
@@ -124,30 +119,30 @@ const Home = () => {
               </PrimaryButton>
             </a>
           </NextLink>
-        </Grid>
-        <Box position="absolute" mt="19" ml="370px">
+        </Flex>
+        <Box>
           <NoSSR>
             <ParticleImage
               src={"/images/cs-logo.png"}
               scale={useBreakpointValue({
-                base: 0.15,
-                sm: 0.15,
-                md: 0.35,
-                lg: 0.35,
+                base: 0.2,
+                sm: 0.25,
+                md: 0.4,
+                lg: 0.4,
               })}
-              entropy={40}
-              maxParticles={4200}
+              entropy={innerWidth < 800 ? 20 : 40}
+              maxParticles={innerWidth < 800 ? 2000 : 4200}
               width={useBreakpointValue({
-                base: 150,
-                sm: 200,
-                md: 800,
-                lg: 800,
+                base: 300,
+                sm: 300,
+                md: 500,
+                lg: 500,
               })}
               height={useBreakpointValue({
-                base: 150,
-                sm: 150,
-                md: 400,
-                lg: 400,
+                base: 300,
+                sm: 300,
+                md: 500,
+                lg: 500,
               })}
               mouseMoveForce={motionForce}
               mouseTouchForce={motionForce}
@@ -161,7 +156,7 @@ const Home = () => {
       <Section
         border="1px"
         borderColor="brand.600"
-        mt={(0, 0, 0, 0)}
+        mt={[-10, -10, 0]}
         px="60px"
         py="60px"
         rounded={32}
