@@ -2,6 +2,7 @@ export const speakers = [
   {
     name: "Matías Woloski",
     brand: "Auth0 | Co-founder & CTO",
+    link: "https://auth0.com/",
     title: "Co-founder & CTO",
     twitter: "woloski",
     img: "https://www.endeavor.org.ar/wp-content/uploads/2019/02/Auth0-e1621389968909.jpg",
@@ -10,7 +11,8 @@ export const speakers = [
   },
   {
     name: "Santiago Siri",
-    brand: "Democracy Earth | Founder",
+    brand: "Proof of Humanity & UBI | Founder",
+    link: "https://www.proofofhumanity.id/",
     title: "Founder",
     twitter: "santisiri",
     img: "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/03/17315.jpg?7.1.4",
@@ -20,13 +22,15 @@ export const speakers = [
   {
     name: "Esteban Ordano",
     brand: "Decentraland | Founder & Advisor",
+    link: "https://decentraland.org/",
     title: "Founder & Advisor",
     twitter: "eordano",
     img: "https://pbs.twimg.com/profile_images/1488553916962902017/jdKn5Oe7_400x400.jpg",
   },
   {
     name: "Mariano Mayer",
-    brand: "Newtopia | Co-Founder",
+    brand: "Newtopia VC| Investor",
+    link: "https://newtopia.vc/",
     title: "Co-Founder",
     twitter: "gugamayer",
     img: "https://www.produccion.gob.ar/wp-content/uploads/2017/07/Mariano-Mayer-1.jpg",
@@ -36,6 +40,7 @@ export const speakers = [
   {
     name: "Gabriel Gruber",
     brand: "Exactly Finance | Co-founder & CEO",
+    link: "https://exactly.finance/",
     title: "Co-founder & CEO",
     twitter: "GabrielGruber",
     img: "https://miro.medium.com/fit/c/262/262/1*Sm7jkT5APmJC0bu4t_ZS6w.jpeg",
@@ -48,6 +53,7 @@ export const speakers = [
   {
     name: "Santiago Valles",
     brand: "ITBA | Director ",
+    link: "https://www.itba.edu.ar/",
     title: "Director de Ingeniería Informática",
     twitter: "srvalles",
     img: "https://www.itba.edu.ar/wp-content/uploads/2021/08/Santiago-Valles-Ing-Informatica-2-scaled-e1627354686346.jpg",

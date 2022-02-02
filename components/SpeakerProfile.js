@@ -42,7 +42,7 @@ const SpeakerProfile = ({ speaker }) => {
               letterSpacing={1}
               fontWeight={"500"}
             >
-              {speaker.brand}
+              <a href={speaker.link}>{speaker.brand}</a>
             </Heading>
           </div>
 
