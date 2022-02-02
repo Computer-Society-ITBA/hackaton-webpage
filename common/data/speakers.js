@@ -45,4 +45,11 @@ export const speakers = [
       "Previamente CEO y Co-Fundador de Properati, una plataforma transaccional de Real Estate en Latam que fue adquirida por OLX Group en 2018. \n" +
       "Gabriel es economista por la UBA y trabajo en Tilton Capital y el BCRA entre otras empresas.",
   },
+  {
+    name: "Santiago Valles",
+    brand: "ITBA | Director ",
+    title: "Director de Ingeniería Informática",
+    twitter: "srvalles",
+    img: "https://www.itba.edu.ar/wp-content/uploads/2021/08/Santiago-Valles-Ing-Informatica-2-scaled-e1627354686346.jpg",
+    }
 ];
