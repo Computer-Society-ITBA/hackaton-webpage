@@ -148,7 +148,7 @@ const Home = () => {
               mouseTouchForce={motionForce}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
-              style={{ pointerEvents: innerWidth < 800 ? "none" : "auto" }}
+              style={{ pointerEvents: innerWidth < 800 ? "none" : "auto", display: innerWidth < 800 ? "none": "flex" }}
             />
           </NoSSR>
         </Box>
