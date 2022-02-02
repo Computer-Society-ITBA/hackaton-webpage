@@ -26,7 +26,7 @@ const Main = ({ children, router }) => {
           property="og:description"
           content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."
         />
-        <meta property="og:image" content="images/fyler.jpeg" />
+        <meta property="og:image" content="images/flyer.jpeg" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://hackitba.vercel.app/" />
@@ -38,7 +38,7 @@ const Main = ({ children, router }) => {
           property="twitter:description"
           content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."
         />
-        <meta property="twitter:image" content="images/fyler.jpeg" />
+        <meta property="twitter:image" content="images/flyer.jpeg" />
       </Head>
       <Navbar />
       <Container maxW="container.lg" pt={14}>
