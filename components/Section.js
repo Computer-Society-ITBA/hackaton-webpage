@@ -19,7 +19,7 @@ const Section = ({
   headingOffset = 0,
   ...extendedProps
 }) => {
-  const bg = useColorModeValue("#f0e7db", "#101012");
+  const bg = useColorModeValue("#1E212A", "#1E212A");
   return (
     <StyledDiv
       initial={{ y: 10, opacity: 0 }}
@@ -31,15 +31,20 @@ const Section = ({
       {heading && (
         <Heading
           as="h2"
-          mt="-20"
-          ml="5"
           px="4"
-          mb="4"
+          textTransform="uppercase"
           maxWidth="fit-content"
-          size="2xl"
+          margin="0 auto"
+          left="0"
+          right="0"
+          marginTop={headingOffset || -74}
+          fontSize="24px"
+          textAlign="center"
           bg={bg}
           color="brand.300"
           width="auto"
+          position="absolute"
+          fontWeight="500"
         >
           {heading}
         </Heading>

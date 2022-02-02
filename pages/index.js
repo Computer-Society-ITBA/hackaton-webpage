@@ -6,8 +6,9 @@ import {
   Text,
   useColorModeValue,
   useBreakpointValue,
-  Img,
+  Button,
   Link,
+  Grid,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -19,69 +20,119 @@ import TrackUnit from "../components/TrackUnit";
 import SponsorLogo from "../components/SponsorLogo";
 import { speakers } from "../common/data/speakers";
 import SpeakerProfile from "../components/SpeakerProfile";
+import styled from "@emotion/styled";
+import NextLink from "next/link";
+
+const Subtitle = styled(Text)`
+  font-size: 14px; 
+  text-transform: uppercase; 
+  color: #B1B7C2;
+`;
+
+const Separator = styled.span`
+  border-left: 1px solid #B1B7C2;
+  margin-left: 16px;
+  margin-right: 16px;
+`;
+
+const PrimaryButton = styled(Button)`
+  font-size: 14px; 
+  border-radius: 8px; 
+  font-weight: 500;
+  border-width: 1px;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+  height: 48px;
+  padding: 16px 24px;
+
+  svg path {
+    fill: #1E212A;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background-color: transparent;
+    color: #2fe0b5;
+    border: 1px solid #2fe0b5;
+
+    svg path {
+      fill: #2fe0b5;
+    }
+  }
+`;
 
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
   const { innerWidth } = useWindowSize();
-  const cyberImage = "/images/cyber-security.png";
-  const cryptoImage = "/images/cryptocurrency.png";
-  const robotImage = "/images/robot.png";
+  const cyberImage = "/images/cyber-security.svg";
+  const cryptoImage = "/images/cryptocurrency.svg";
+  const robotImage = "/images/robot.svg";
 
   return (
     <Flex direction="column">
       <Flex
         alignItems="center"
         justifyContent="space-between"
-        direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
-        mb={20}
-        mt={10}
+        mt="150px"
+        mb="200px"
+        height={400}
       >
-        <Flex direction="column" zIndex={2}>
+        <Grid width="500px" gap="16px" zIndex={2}>
+          <Subtitle m="5px 0 0 0">1, 2 y 3 de abril<Separator/>Buenos Aires<Separator/>36hs de hacking</Subtitle> 
           <Heading
             isTruncated
             as="h1"
-            size="4xl"
             mt={[20, 20, 0, 0]}
-            color={useColorModeValue("#f0e7db", "#101012")}
-            textShadow="-1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff, 1.5px 1.5px 0 #fff"
+            color="#FAFBFC"
+            fontWeight={700}
+            fontSize="74px"
           >
             HackIT-BA!
           </Heading>
           <Heading
             isTruncated
             as="h1"
-            size="xl"
-            color={useColorModeValue("white")}
+            size="md"
+            color="#FAFBFC"
+            fontWeight={"normal"}
           >
             por Computer Society
           </Heading>
-          { <Text m="5px 0 0 0">36hs de hacking | 1, 2 y 3 de abril | Buenos Aires</Text> }
-        </Flex>
-        <Box ml={[0, 0, "-20%", "-20%"]} mt={[0, "-20%", 0, 0]}>
+          <NextLink href="https://bit.ly/hackit-ba" passHref>
+            <a target="_blank" rel="noreferrer">
+              <PrimaryButton colorScheme="brand">Inscribite 
+                <svg style={{marginLeft: 8}} width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.39205 11.2102L11.6932 5.90909L6.39205 0.607954L5.36932 1.625L8.92045 5.17045H0V6.64773H8.92045L5.36932 10.1989L6.39205 11.2102Z" fill="#1E212A"/>
+                </svg>
+              </PrimaryButton>
+            </a>
+          </NextLink>
+        </Grid>
+        <Box position="absolute" mt="19" ml="370px">
           <NoSSR>
             <ParticleImage
               src={"/images/cs-logo.png"}
               scale={useBreakpointValue({
-                base: 0.3,
-                sm: 0.3,
-                md: 0.5,
-                lg: 0.5,
+                base: 0.15,
+                sm: 0.15,
+                md: 0.35,
+                lg: 0.35,
               })}
               entropy={40}
               maxParticles={4200}
               width={useBreakpointValue({
-                base: 350,
-                sm: 400,
-                md: 1000,
-                lg: 1000,
+                base: 150,
+                sm: 200,
+                md: 800,
+                lg: 800,
               })}
               height={useBreakpointValue({
-                base: 350,
-                sm: 350,
-                md: 600,
-                lg: 600,
+                base: 150,
+                sm: 150,
+                md: 400,
+                lg: 400,
               })}
               mouseMoveForce={motionForce}
               mouseTouchForce={motionForce}
@@ -93,21 +144,22 @@ const Home = () => {
         </Box>
       </Flex>
       <Section
-        border="2px"
+        border="1px"
         borderColor="brand.600"
         mt={(0, 0, 0, 0)}
-        px={(20, 10)}
-        py={10}
-        rounded={30}
-        heading="Que es?"
+        px="60px"
+        py="60px"
+        rounded={32}
+        heading="Qué es?"
+        mb="60px"
       >
-        <Paragraph fontSize="24">
-          <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
+        <Paragraph fontSize="18" lineHeight="32px">
+          <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             HackIT-BA
           </Text>{" "}
           es un evento anual que se realiza en el ITBA, en el que 15-25 equipos
           de 3 personas viven{" "}
-          <Text as="span" fontWeight="700" fontSize="28" color="brand.200">
+          <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             36 horas
           </Text>{" "}
           de pura intensidad, programando un proyecto práctico que pueda mejorar
@@ -117,19 +169,20 @@ const Home = () => {
         </Paragraph>
       </Section>
       <Section
-          border="2px"
-          borderColor="brand.600"
-          mt={(0, 0, 0, 10)}
-          px={(20, 10)}
-          py={10}
-          rounded={30}
-          heading="Cómo funciona?"
+        border="1px"
+        borderColor="brand.600"
+        mt={(0, 0, 0, 10)}
+        px="60px"
+        py="60px"
+        rounded={32}
+        heading="Cómo funciona?"
+        mb="60px"
       >
-        <Paragraph fontSize="24">
+        <Paragraph fontSize="18" lineHeight="32px">
           La competencia se va a desarrollar prescencialmente en el ITBA Sede Distrito Financiero y a través de Discord.
           Para aplicar simplemente tenés que entrar al link
-          {" "}<Text as="span" fontWeight="700" fontSize="28" color="brand.200">
-          <Link href="https://bit.ly/hackit-ba">bit.ly/hackit-ba</Link>
+          {" "}<Text as="span" fontWeight="700" fontSize="18" color="brand.400">
+          <Link color="brand.200" href="https://bit.ly/hackit-ba">bit.ly/hackit-ba</Link>
         </Text> {" "} y luego de que cierren las inscripciones te vamos a confirmar tu prescencia.
           Cada equipo debe elegir 1 categoría para desarrollar un proyecto informático que solucione un problema en Inclusión Financiera, Ciberseguridad y Privacidad  o Productividad y Automatización.
         </Paragraph>
@@ -137,14 +190,21 @@ const Home = () => {
       <Section
         heading={"Tracks"}
         mt={(0, 0, 0, 10)}
-        px={(20, 10)}
-        py={10}
-        rounded={30}
-        headingOffset={-16}
-        border="2px"
+        marginTop="60px"
+        px="60px"
+        py="60px"
+        pl="0"
+        pr="0"
+        headingOffset={-100}
+        rounded={0}
+        border="1px"
         borderColor="brand.600"
+        borderLeft={0}
+        borderRight={0}
+        borderBottom={0}
+        mb="60px"
       >
-        <Flex alignItems="center" justifyContent="space-evenly" flexWrap="wrap">
+        <Flex alignItems="center" justifyContent="space-between" flexWrap="wrap">
           <TrackUnit
             title="Inclusión Financiera"
             image={cryptoImage}
@@ -167,28 +227,40 @@ const Home = () => {
       <Section
         heading={"Jurado"}
         mt={(0, 0, 0, 10)}
-        px={(20, 10)}
-        py={10}
-        rounded={30}
-        headingOffset={-16}
-        border="2px"
+        marginTop="60px"
+        px="60px"
+        py="60px"
+        pl="0"
+        pr="0"
+        headingOffset={-100}
+        rounded={0}
+        border="1px"
         borderColor="brand.600"
+        borderLeft={0}
+        borderRight={0}
+        borderBottom={0}
+        mb="60px"
       >
-        <Flex my={3} flexWrap="wrap" justifyContent="space-evenly">
+        <Grid my={3} gridTemplateColumns="1fr 1fr" gap="47px" flexWrap="wrap" justifyContent="space-between">
           {speakers.map((speaker, idx) => (
             <SpeakerProfile key={idx} speaker={speaker} />
           ))}
-        </Flex>
+        </Grid>
       </Section>
       <Section
         heading={"Sponsors"}
+        marginTop="60px"
         mt={(0, 0, 0, 10)}
-        px={(20, 10)}
-        py={10}
-        rounded={30}
-        headingOffset={-16}
-        border="2px"
+        px="60px"
+        py="60px"
+        headingOffset={-100}
+        rounded={0}
+        border="1px"
         borderColor="brand.600"
+        borderLeft={0}
+        borderRight={0}
+        borderBottom={0}
+        mb="60px"
       >
         <Flex
           alignItems="center"

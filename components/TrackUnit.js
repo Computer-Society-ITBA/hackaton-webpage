@@ -2,64 +2,45 @@ import {
   Flex,
   Text,
   Img,
-  Heading,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverCloseButton,
+  Heading
 } from "@chakra-ui/react";
-import { InfoOutlineIcon } from "@chakra-ui/icons";
+import styled from "@emotion/styled";
+
+const Card = styled.div`
+  background-color: rgba(58,62,68, .4);
+  border-radius: 32px;
+  padding: 40px 32px;
+  width: 300px;
+  max-width: 300px;
+  height: 300px;
+`;
 
 const TrackUnit = ({ title, content, image }) => {
   return (
-    <Flex direction="column" alignItems="center" my={2} maxW={200}>
-      <Heading
-        as="h4"
-        fontSize="20"
-        textAlign="center"
-        height={10}
-        color="brand.200"
-      >
-        {title}
-      </Heading>
-      <Popover trigger="click">
-        <PopoverTrigger>
-          <Img
-            src={image}
-            width={32}
-            height={32}
-            mt={6}
-            mb={3}
-            alt={title}
-            ml={(2, 0)}
-            cursor="pointer"
-            _hover={{ transform: "scale(1.1)", transition: "ease-in-out 0.2s" }}
-          />
-        </PopoverTrigger>
-        <PopoverContent
-          bg="black"
-          color="brand.300"
-          borderColor="brand.300"
-          borderWidth={3}
-          borderRadius={20}
-          width={400}
+    <Flex direction="column" alignItems="center" mt={"30px"}>
+      <Img
+        position="absolute"
+        mt="-42px"
+        src={image}
+        width={93}
+        height={93}
+        
+      />
+      <Card>
+        <Heading
+          mt="40px"
+          as="h4"
+          fontSize="20"
+          textAlign="center"
+          fontWeight={500}
+          color="#2FD5E0"
+          textTransform={"uppercase"}
+          mb="15px"
         >
-          <PopoverHeader
-            textAlign="center"
-            fontWeight="bold"
-            borderColor="brand.300"
-          >
-            <Text>{title}</Text>
-            <PopoverCloseButton />
-          </PopoverHeader>
-
-          <PopoverBody fontSize="16" textAlign="center">
-            {content}
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
+          {title}
+        </Heading>
+        <Text color="#FAFBFC" fontSize={"14px"} lineHeight={"24px"} textAlign={"center"}>{content}</Text>
+      </Card>
     </Flex>
   );
 };

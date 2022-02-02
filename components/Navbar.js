@@ -9,9 +9,25 @@ import {
   Flex,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
-// import ThemeToggleButton from "./ThemeToggleButton";
-import { IoLogoGithub } from "react-icons/io5";
+
+import styled from "@emotion/styled";
+
+const PrimaryButton = styled(Button)`
+  font-size: 14px; 
+  border-radius: 8px; 
+  font-weight: 500;
+  border-width: 1px;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  height: 32px;
+
+  &:hover {
+    background-color: transparent;
+    color: #2fe0b5;
+    border: 1px solid #2fe0b5;
+  }
+`;
+
 
 const LinkItem = ({ href, path, target, children, ...props }) => {
   const active = path === href;
@@ -52,8 +68,10 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("#f0e7db", "#101012")}
+      bg={useColorModeValue("#1E212A", "#1E212A")}
       style={{ backdropFilter: "blur(10px)" }}
+      borderBottom="1px solid #676C74"
+      height="64px"
       zIndex={99}
       {...props}
     >
@@ -61,6 +79,7 @@ const Navbar = (props) => {
         display="flex"
         p={2}
         maxW="container.lg"
+        h="100%"
         wrap="wrap"
         align="center"
         justify="space-between"
@@ -71,13 +90,13 @@ const Navbar = (props) => {
           </Heading>
         </Flex>
 
-        <Box flex={1} align="right">
+        <Box align="right" alignItems="center" marginLeft="auto" display="flex">
           {/* <ThemeToggleButton /> */}
 
           <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
-                <Button colorScheme="brand">¡Inscribite!</Button>
+                <PrimaryButton colorScheme="brand">Inscribite</PrimaryButton>
               </a>
             </NextLink>
           </Box>
