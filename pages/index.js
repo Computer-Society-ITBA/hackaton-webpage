@@ -167,7 +167,7 @@ const Home = () => {
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             HackIT-BA
           </Text>{" "}
-          es un evento anual que se realiza en el ITBA, en el que 15-25 equipos
+          es un evento anual que se realiza en el ITBA y online, en el que 15-25 equipos
           de 3 personas viven{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             36 horas
@@ -190,7 +190,7 @@ const Home = () => {
       >
         <Paragraph fontSize="18" lineHeight="32px">
           La competencia se va a desarrollar prescencialmente en el ITBA Sede
-          Distrito Financiero y a través de Discord. Para aplicar simplemente
+          Distrito Financiero y virtualmente a través de Discord. Para aplicar simplemente
           tenés que entrar al link{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             <Link color="brand.200" href="https://bit.ly/hackit-ba">
