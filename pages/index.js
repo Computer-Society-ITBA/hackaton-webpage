@@ -167,7 +167,7 @@ const Home = () => {
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             HackIT-BA
           </Text>{" "}
-          es un evento anual que se realiza en el ITBA y online, en el que 15-25 equipos
+          es una hackathon anual que se realiza en el ITBA y  también online, en el que 15-25 equipos
           de 3 personas viven{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             36 horas
