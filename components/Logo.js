@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Heading, useColorModeValue } from "@chakra-ui/react";
+import { Heading, Img } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 const LogoBox = styled.span`
@@ -11,6 +10,8 @@ const LogoBox = styled.span`
   height: 30px;
   line-height: 20px;
   padding: 10px;
+  display: flex;
+  cursor: pointer;
   &:hover img {
     transform: rotate(20deg);
   }
@@ -21,17 +22,18 @@ const Logo = () => {
 
   return (
     <Link href="/" passHref={true}>
-      <a>
-        <LogoBox>
-          <Image src={csImage} width={30} height={30} alt="logo" />
-          <Heading
-            color={useColorModeValue("gray.800", "whiteAlpha.900")}
-            size="lg"
-          >
-            HackIT-BA!
-          </Heading>
-        </LogoBox>
-      </a>
+      <LogoBox>
+        <Img src={csImage} width={30} height={30} alt="logo" />
+        <Heading
+          letterSpacing={0}
+          marginLeft="13px"
+          color="#A5ABB6"
+          size="md"
+          fontWeight={500}
+        >
+          HackIT-BA!
+        </Heading>
+      </LogoBox>
     </Link>
   );
 };
