@@ -51,6 +51,14 @@ export const speakers = [
       "Gabriel es economista por la UBA y trabajo en Tilton Capital y el BCRA entre otras empresas.",
   },
   {
+    name: "Agustina Fainguersch",
+    brand: "Meta| Directora Regional",
+    link: "https://about.facebook.com/ltam/meta/",
+    title: "Co-founder & CEO",
+    twitter: "agusfagus",
+    img: "https://hackitba.vercel.app/images/agus_wolox.jpeg",
+ },
+  {
     name: "Santiago Valles",
     brand: "ITBA | Director ",
     link: "https://www.itba.edu.ar/",
