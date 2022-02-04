@@ -52,7 +52,7 @@ export const speakers = [
   },
   {
     name: "Agustina Fainguersch",
-    brand: "Meta| Directora Regional",
+    brand: "Meta | Directora Regional",
     link: "https://about.facebook.com/ltam/meta/",
     title: "Co-founder & CEO",
     twitter: "agusfagus",

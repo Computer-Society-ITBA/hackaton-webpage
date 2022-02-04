@@ -198,7 +198,7 @@ const Home = () => {
             </Link>
           </Text>{" "}
           y luego de que cierren las inscripciones te vamos a confirmar tu
-          prescencia. Cada equipo debe elegir 1 categoría para desarrollar un
+          presencia. Cada equipo debe elegir 1 categoría para desarrollar un
           proyecto informático que solucione un problema en Inclusión
           Financiera, Ciberseguridad y Privacidad o Productividad y
           Automatización.
