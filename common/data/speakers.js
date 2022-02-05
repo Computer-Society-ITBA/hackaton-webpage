@@ -65,5 +65,13 @@ export const speakers = [
     title: "Director de Ingeniería Informática",
     twitter: "srvalles",
     img: "https://www.itba.edu.ar/wp-content/uploads/2021/08/Santiago-Valles-Ing-Informatica-2-scaled-e1627354686346.jpg",
+  },
+  {
+    name: "Gabriela Macagni",
+    brand: "Matterscale Ventures | Partner",
+    link: "https://matterscale.com",
+    title: "Partner",
+    twitter: "gabrielamacagni",
+    img: "https://100klatam.org/wp-content/uploads/2020/02/tum__0059_GABRIELA.MACAGNI@GMAIL.COM_2019-06-18T20_29_30.494Z_Gabriela_0434.jpg-e1570735399107.png"
   }
 ];
