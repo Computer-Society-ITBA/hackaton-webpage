@@ -341,7 +341,7 @@ const Home = () => {
         fontSize={"32px"}
       >
         <Section
-          heading={"Black"}
+          heading={"Platinum"}
           marginTop="60px"
           mt={(0, 0, 0, 10)}
           px="60px"
@@ -381,7 +381,7 @@ const Home = () => {
         </Section>
 
         <Section
-          heading={"Platinum"}
+          heading={"Black"}
           marginTop="60px"
           mt={(0, 0, 0, 10)}
           px="60px"
@@ -407,21 +407,28 @@ const Home = () => {
               logo="/images/logos/openzeppelin.png"
               name="OpenZeppelin"
               height="auto"
-              width={["auto", 250]}
+              width={["auto", 180]}
               style={{ my: [5, 0] }}
             />
             <SponsorLogo
               link="https://poap.xyz/"
               logo="https://poap.gallery/icons/poap_dark.png"
               name="POAP"
-              height={130}
+              height={100}
               style={{ my: [5, 0] }}
             />
             <SponsorLogo
               link="https://exactly.finance/"
               logo="/images/logos/exactly.svg"
               name="Exactly Finance"
-              width={250}
+              width={160}
+            />
+            <SponsorLogo
+                link="https://www.flowics.com/"
+                logo="/images/logos/flowics.svg"
+                name="Flowics"
+                height="auto"
+                width={150}
             />
           </Flex>
         </Section>
@@ -448,13 +455,7 @@ const Home = () => {
             flexWrap="wrap"
             pt={0}
           >
-            <SponsorLogo
-              link="https://www.flowics.com/"
-              logo="/images/logos/flowics.svg"
-              name="Flowics"
-              height="auto"
-              width={150}
-            />
+
             <SponsorLogo
               link="https://vercel.com/"
               logo="/images/logos/vercel.png"
