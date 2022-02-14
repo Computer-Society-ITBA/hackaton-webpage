@@ -35,13 +35,24 @@ const Separator = styled.span`
   margin-right: 16px;
 `;
 
+const Badge = styled.span`
+  color: #2F323A;
+  background-color: #BDC4CF;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 5px 6px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 8px;
+`;
+
 const PrimaryButton = styled(Button)`
   font-size: 14px;
   border-radius: 8px;
   font-weight: 500;
   border-width: 1px;
   transition: all 0.3s ease;
-  margin-top: 16px;
+  margin-top: 40px;
   height: 48px;
   padding: 16px 24px;
 
@@ -81,24 +92,30 @@ const Home = () => {
         direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
       >
         <Flex zIndex={2} direction="column">
-          <Subtitle m="5px 0 0 0">
-            1, 2 y 3 de abril
-            <Separator />
-            Buenos Aires
-            <Separator />
-            36hs de hacking
+          <Subtitle m="5px 0 6px 0" style={{ color: "#2FE0B5", display: "flex", alignItems: "center", fontSize: "16px" }}>
+            <svg style={{ marginRight: 12}} width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M3 6.5C3 5.39543 3.89543 4.5 5 4.5H19C20.1046 4.5 21 5.39543 21 6.5V20.5C21 21.6046 20.1046 22.5 19 22.5H5C3.89543 22.5 3 21.6046 3 20.5V6.5Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M16 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M3 10.5H21" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg> 1, 2 y 3 de abril
+            <Separator style={{ height: 26 }} />
+            <svg style={{ marginRight: 12}} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" clipRule="evenodd" d="M17.5 8.83337C17.5 14.6667 10 19.6667 10 19.6667C10 19.6667 2.5 14.6667 2.5 8.83337C2.5 4.69124 5.85786 1.33337 10 1.33337C14.1421 1.33337 17.5 4.69124 17.5 8.83337V8.83337Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path fillRule="evenodd" clipRule="evenodd" d="M10 11.3334C11.3807 11.3334 12.5 10.2141 12.5 8.83337C12.5 7.45266 11.3807 6.33337 10 6.33337C8.61929 6.33337 7.5 7.45266 7.5 8.83337C7.5 10.2141 8.61929 11.3334 10 11.3334Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>BA ONSITE & DISCORD ONLINE
           </Subtitle>
           <Heading
             as="h1"
             color="#FAFBFC"
             fontWeight={700}
-            fontSize={[48, 48, 72]}
+            fontSize={[48, 48, 84]}
             my={["10px", "10px", 0]}
           >
             HackIT-BA!
           </Heading>
-          <Heading as="h1" size="md" color="#FAFBFC" fontWeight={"normal"}>
-            por Computer Society
+          <Heading as="h1" size="md" color="#BDC4CF" fontWeight={"normal"}>
+            <Badge>36hs de hacking</Badge> por Computer Society
           </Heading>
           <NextLink href="https://bit.ly/hackit-ba" passHref>
             <a target="_blank" rel="noreferrer">
@@ -205,9 +222,43 @@ const Home = () => {
         </Paragraph>
       </Section>
       <Section
+          border="1px"
+          borderColor="brand.600"
+          mt={(0, 0, 0, 10)}
+          px="60px"
+          py="60px"
+          rounded={32}
+          heading="Que es Computer Society ITBA?"
+          mb="60px"
+      >
+        <Paragraph fontSize="18" lineHeight="32px">
+          Somos una sociedad técnica formada
+          por alumnos y exalumnos del ITBA, dedicada a inspirar
+          y educar en diversas áreas de tecnología mayormente relacionadas con la informática.
+          Formamos una sub-rama académica de IEEE Computer Society, una de las redes más grandes que conectan profesionales en todo el mundo.
+          Podés visitar nuestra página <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
+            <Link color="brand.200" href="https://csitba.web.app">
+              csitba.web.app
+            </Link> y seguirnos en
+            <Link   color="brand.200" href="https://twitter.com/ieeecsitba">
+            <a target="_blank" rel="noreferrer">
+              {" "} twitter
+            </a>
+            </Link> e
+            <Link  color="brand.200" href="https://instagram.com/computer.society.itba/">
+              <a target="_blank" rel="noreferrer">
+                {" "} instagram.
+              </a>
+            </Link>
+
+          </Text>
+
+        </Paragraph>
+      </Section>
+      <Section
         heading={"Tracks"}
         mt={(0, 0, 0, 10)}
-        marginTop="60px"
+        marginTop="80px"
         px="60px"
         py="60px"
         pl="0"
@@ -247,8 +298,8 @@ const Home = () => {
       </Section>
       <Section
         heading={"Jurado"}
-        mt={(0, 0, 0, 10)}
-        marginTop="60px"
+        mt={(0, 0, 0, 20)}
+        marginTop="30px"
         px="60px"
         py="60px"
         pl="0"
@@ -275,125 +326,160 @@ const Home = () => {
         </Grid>
       </Section>
       <Section
-        heading={"Sponsors"}
+        heading={"Gracias a Nuestros Sponsors!"}
+        textTransform={"normal"}
         marginTop="60px"
-        mt={(0, 0, 0, 10)}
-        px="60px"
-        py="60px"
+        mt={(0, 0, 0, 20)}
+        px="0px"
+        py="0px"
         headingOffset={-100}
         rounded={0}
-        border="1px"
-        borderColor="brand.600"
         borderLeft={0}
         borderRight={0}
         borderBottom={0}
         mb="60px"
+        fontSize={"32px"}
       >
-        <Flex
-          alignItems="center"
-          justifyContent="space-evenly"
-          flexWrap="wrap"
-          pt={8}
-        >
-          <SponsorLogo
-            link="https://auth0.com/"
-            logo="/images/logos/auth0.png"
-            name="auth0"
-            height="auto"
-            width={350}
-          />
-          <SponsorLogo
-            link="https://2pi.network/"
-            logo="/images/logos/2pi.png"
-            name="2pi"
-            width={[120, 150]}
-            height="auto"
-            style={{ my: [5, 0] }}
-          />
-          <SponsorLogo
-            link="https://openzeppelin.com/"
-            logo="/images/logos/openzeppelin.png"
-            name="OpenZeppelin"
-            height="auto"
-            width={["auto", 250]}
-            style={{ my: [5, 0] }}
-          />
-          <SponsorLogo
-            link="https://poap.xyz/"
-            logo="https://poap.gallery/icons/poap_dark.png"
-            name="POAP"
-            height={130}
-            style={{ my: [5, 0] }}
-          />
-          <SponsorLogo
-            link="https://exactly.finance/"
-            logo="/images/logos/exactly.svg"
-            name="Exactly Finance"
-            width={250}
-          />
-          <SponsorLogo
-            link="https://www.flowics.com/"
-            logo="/images/logos/flowics.svg"
-            name="Flowics"
-            width={200}
-          />
-          <SponsorLogo
-            link="https://vercel.com/"
-            logo="/images/logos/vercel.png"
-            name="Vercel"
-            height="auto"
-            width={100}
-          />
-          <SponsorLogo
-            link="https://www.extrimian.com/"
-            logo="/images/logos/extrimian.svg"
-            name="Extrimian"
-            width={120}
-          />
-          <SponsorLogo
-            link="https://daffy.org/"
-            logo="/images/logos/daffy.svg"
-            name="Daffy"
-            width={100}
-            height="auto"
-          />
-        </Flex>
-      </Section>
-      <Section
-          border="1px"
-          borderColor="brand.600"
+        <Section
+          heading={"Platinum"}
+          marginTop="60px"
           mt={(0, 0, 0, 10)}
           px="60px"
           py="60px"
-          rounded={32}
-          heading="Que es Computer Society ITBA?"
+          headingOffset={-100}
+          rounded={0}
+          border="1px"
+          borderColor="#E9ECF3"
+          borderLeft={0}
+          borderRight={0}
+          borderBottom={0}
           mb="60px"
-      >
-        <Paragraph fontSize="18" lineHeight="32px">
-          Somos una sociedad técnica formada
-          por alumnos y exalumnos del ITBA, dedicada a inspirar
-          y educar en diversas áreas de tecnología mayormente relacionadas con la informática.
-          Formamos una sub-rama académica de IEEE Computer Society, una de las redes más grandes que conectan profesionales en todo el mundo.
-          Podés visitar nuestra página <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
-            <Link color="brand.200" href="https://csitba.web.app">
-              csitba.web.app
-            </Link> y seguirnos en
-            <Link   color="brand.200" href="https://twitter.com/ieeecsitba">
-            <a target="_blank" rel="noreferrer">
-              {" "} twitter
-            </a>
-            </Link> e
-            <Link  color="brand.200" href="https://instagram.com/computer.society.itba/">
-              <a target="_blank" rel="noreferrer">
-                {" "} instagram.
-              </a>
-            </Link>
+          isSubtitle={true}
+        >
+          <Flex
+            alignItems="center"
+            justifyContent="space-evenly"
+            flexWrap="wrap"
+            pt={0}
+          >
+            <SponsorLogo
+              link="https://auth0.com/"
+              logo="/images/logos/auth0.png"
+              name="auth0"
+              height="auto"
+              width={217}
+            />
+            <SponsorLogo
+              link="https://2pi.network/"
+              logo="/images/logos/2pi.png"
+              name="2pi"
+              width={115}
+              height="auto"
+              style={{ my: [5, 0] }}
+            />
+          </Flex>
+        </Section>
 
-          </Text>
+        <Section
+          heading={"Black"}
+          marginTop="60px"
+          mt={(0, 0, 0, 10)}
+          px="60px"
+          py="60px"
+          headingOffset={-100}
+          rounded={0}
+          border="1px"
+          borderColor="#E9ECF3"
+          borderLeft={0}
+          borderRight={0}
+          borderBottom={0}
+          mb="60px"
+          isSubtitle={true}
+        >
+          <Flex
+            alignItems="center"
+            justifyContent="space-evenly"
+            flexWrap="wrap"
+            pt={0}
+          >
+            <SponsorLogo
+              link="https://openzeppelin.com/"
+              logo="/images/logos/openzeppelin.png"
+              name="OpenZeppelin"
+              height="auto"
+              width={["auto", 180]}
+              style={{ my: [5, 0] }}
+            />
+            <SponsorLogo
+              link="https://poap.xyz/"
+              logo="https://poap.gallery/icons/poap_dark.png"
+              name="POAP"
+              height={100}
+              style={{ my: [5, 0] }}
+            />
+            <SponsorLogo
+              link="https://exactly.finance/"
+              logo="/images/logos/exactly.svg"
+              name="Exactly Finance"
+              width={160}
+            />
+            <SponsorLogo
+                link="https://www.flowics.com/"
+                logo="/images/logos/flowics.svg"
+                name="Flowics"
+                height="auto"
+                width={150}
+            />
+          </Flex>
+        </Section>
 
-        </Paragraph>
+        <Section
+          heading={"standard"}
+          marginTop="60px"
+          mt={(0, 0, 0, 10)}
+          px="60px"
+          py="60px"
+          headingOffset={-100}
+          rounded={0}
+          border="1px"
+          borderColor="#E9ECF3"
+          borderLeft={0}
+          borderRight={0}
+          borderBottom={0}
+          mb="60px"
+          isSubtitle={true}
+        >
+          <Flex
+            alignItems="center"
+            justifyContent="space-evenly"
+            flexWrap="wrap"
+            pt={0}
+          >
+
+            <SponsorLogo
+              link="https://vercel.com/"
+              logo="/images/logos/vercel.png"
+              name="Vercel"
+              height="auto"
+              width={150}
+            />
+            <SponsorLogo
+              link="https://www.extrimian.com/"
+              logo="/images/logos/extrimian.svg"
+              name="Extrimian"
+              height="auto"
+              width={170}
+            />
+            <SponsorLogo
+              link="https://daffy.org/"
+              logo="/images/logos/daffy.svg"
+              name="Daffy"
+              width={130}
+              height="auto"
+            />
+          </Flex>
+        </Section>
       </Section>
-
     </Flex>
   );
 };

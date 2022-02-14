@@ -17,6 +17,9 @@ const Section = ({
   delay = 0,
   heading,
   headingOffset = 0,
+  textTransform = "uppercase", 
+  fontSize = "24px",
+  isSubtitle = false,
   ...extendedProps
 }) => {
   const bg = useColorModeValue("#1E212A", "#1E212A");
@@ -32,19 +35,19 @@ const Section = ({
         <Heading
           as="h2"
           px="4"
-          textTransform="uppercase"
+          textTransform={textTransform}
           maxWidth="fit-content"
           margin="0 auto"
           left="0"
           right="0"
           marginTop={headingOffset || -74}
-          fontSize="24px"
+          fontSize={ isSubtitle ? "20px" : fontSize }
           textAlign="center"
           bg={bg}
-          color="brand.300"
+          color={ isSubtitle ? "#E9ECF3" : "brand.300" }
           width="auto"
           position="absolute"
-          fontWeight="500"
+          fontWeight={ isSubtitle ? "normal" : "500" }
         >
           {heading}
         </Heading>
