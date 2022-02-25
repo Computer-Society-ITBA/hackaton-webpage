@@ -370,6 +370,13 @@ const Home = () => {
               width={217}
             />
             <SponsorLogo
+                link="https://www.extrimian.com/"
+                logo="/images/logos/extrimian.svg"
+                name="Extrimian"
+                height="auto"
+                width={170}
+            />
+            <SponsorLogo
               link="https://2pi.network/"
               logo="/images/logos/2pi.png"
               name="2pi"
@@ -462,13 +469,6 @@ const Home = () => {
               name="Vercel"
               height="auto"
               width={150}
-            />
-            <SponsorLogo
-              link="https://www.extrimian.com/"
-              logo="/images/logos/extrimian.svg"
-              name="Extrimian"
-              height="auto"
-              width={170}
             />
             <SponsorLogo
               link="https://daffy.org/"
