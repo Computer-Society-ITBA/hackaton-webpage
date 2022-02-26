@@ -374,7 +374,7 @@ const Home = () => {
                 logo="/images/logos/extrimian.svg"
                 name="Extrimian"
                 height="auto"
-                width={170}
+                width={200}
             />
             <SponsorLogo
               link="https://2pi.network/"
@@ -409,6 +409,13 @@ const Home = () => {
             flexWrap="wrap"
             pt={0}
           >
+            <SponsorLogo
+                link="https://ethereum.org"
+                logo="/images/logos/ethereum-foundation.png"
+                name="ethereum"
+                height="auto"
+                width={217}
+            />
             <SponsorLogo
               link="https://openzeppelin.com/"
               logo="/images/logos/openzeppelin.png"
