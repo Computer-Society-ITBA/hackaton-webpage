@@ -15,7 +15,7 @@ export const speakers = [
     link: "https://www.proofofhumanity.id/",
     title: "Founder",
     twitter: "santisiri",
-    img: "https://hackitba.vercel.app/images/santi_siri.webp",
+    img: "https://hackitba.vercel.app/images/ssiri.jpg",
     description:
       'Democracy Earth una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of "Hacktivismo", publicado en 2015 por Random House.',
   },
