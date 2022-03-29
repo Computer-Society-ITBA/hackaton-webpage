@@ -43,7 +43,7 @@ export const speakers = [
     link: "https://exactly.finance/",
     title: "Co-founder & CTO",
     twitter: "lucaslain",
-    img:"https://media-exp1.licdn.com/dms/image/C4E03AQHRfIpInRw8aA/profile-displayphoto-shrink_200_200/0/1619188751921?e=1654128000&v=beta&t=yz0YVjTR62cThcaplQHlzPSZ-i3CpXpns-zjFOSCvkE",
+    img:"https://hackitba.vercel.app/images/lucas.jpg",
     description: "Sr Software Engineer at Compass ($COMP) and at Squarespace ($SQSP) + Co-Founder & CTO at WeHostels (sold to Student Universe in 2014) and at Confronte (sold to Clarin in 2009), Bachelor in Software Engineer at UADE"},
   {
     name: "Agustina Fainguersch",
