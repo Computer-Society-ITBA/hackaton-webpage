@@ -93,13 +93,13 @@ const Navbar = (props) => {
         <Box align="right" alignItems="center" marginLeft="auto" display="flex">
           {/* <ThemeToggleButton /> */}
 
-          <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
+          {/* <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
                 <PrimaryButton colorScheme="brand">Inscribite</PrimaryButton>
               </a>
             </NextLink>
-          </Box>
+          </Box> */}
         </Box>
       </Container>
     </Box>
