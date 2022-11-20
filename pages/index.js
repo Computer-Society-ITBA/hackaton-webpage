@@ -207,7 +207,8 @@ const Home = () => {
       >
         <Paragraph fontSize="18" lineHeight="32px">
           La competencia se va a desarrollar prescencialmente en el ITBA Sede
-          Rectorado. 
+          Rectorado. En ella, cada equipo debera elegir una de las 2 categorías a confirmar para 
+          desarrollar durante el evento. 
           {/* Para aplicar simplemente
           tenés que entrar al link{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
