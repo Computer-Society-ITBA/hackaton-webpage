@@ -1,7 +1,9 @@
 import { Text, Flex, Image, useColorModeValue } from "@chakra-ui/react";
+import { useState, useEffect } from 'react';
 
 const Footer = () => {
   const chickenImage = `/images/chicken${useColorModeValue("", "-dark")}.png`;
+  const currentYear = new Date().getFullYear();
   return (
     <Flex
       justifyContent="center"
@@ -12,7 +14,7 @@ const Footer = () => {
       flexDirection={["column", "column", "row"]}
     >
       <Text>
-        &copy; {new Date().getFullYear()} Computer Society ITBA. Todos los
+        &copy; {currentYear} Computer Society ITBA. Todos los
         derechos reservados.
       </Text>
       <a

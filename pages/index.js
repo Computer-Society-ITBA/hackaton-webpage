@@ -13,7 +13,7 @@ import {
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
 import NoSSR from "../components/NoSSR";
-import useWindowSize from "@rooks/use-window-size";
+import {useWindowSize} from "rooks";
 import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
 import TrackUnit from "../components/TrackUnit";
@@ -98,7 +98,7 @@ const Home = () => {
               <path d="M16 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M8 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M3 10.5H21" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg> 1, 2 y 3 de abril
+            </svg> 31 de Marzo, 1 y 2 de Abril
             <Separator style={{ height: 26 }} />
             <svg style={{ marginRight: 12}} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M17.5 8.83337C17.5 14.6667 10 19.6667 10 19.6667C10 19.6667 2.5 14.6667 2.5 8.83337C2.5 4.69124 5.85786 1.33337 10 1.33337C14.1421 1.33337 17.5 4.69124 17.5 8.83337V8.83337Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -162,7 +162,7 @@ const Home = () => {
                 lg: 500,
               })}
               mouseMoveForce={motionForce}
-              mouseTouchForce={motionForce}
+              touchMoveForce={motionForce}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
               style={{ pointerEvents: innerWidth < 800 ? "none" : "auto" }}
@@ -243,18 +243,12 @@ const Home = () => {
               csitba.web.app
             </Link> y seguirnos en
             <Link   color="brand.200" href="https://twitter.com/ieeecsitba">
-            <a target="_blank" rel="noreferrer">
               {" "} twitter
-            </a>
             </Link> e
             <Link  color="brand.200" href="https://instagram.com/computer.society.itba/">
-              <a target="_blank" rel="noreferrer">
-                {" "} instagram.
-              </a>
+              {" "} instagram.
             </Link>
-
           </Text>
-
         </Paragraph>
       </Section>
       {/* 
