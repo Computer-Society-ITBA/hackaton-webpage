@@ -1,6 +1,3 @@
 module.exports = {
-  reactStrictMode: true,
-  experimental: {
-    runtime: 'nodejs'
-  }
+  reactStrictMode: true
 }
