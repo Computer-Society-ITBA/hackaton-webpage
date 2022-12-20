@@ -13,7 +13,7 @@ import {
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
 import NoSSR from "../components/NoSSR";
-import useWindowSize from "@rooks/use-window-size";
+import {useWindowSize} from "rooks";
 import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
 import TrackUnit from "../components/TrackUnit";
@@ -98,12 +98,12 @@ const Home = () => {
               <path d="M16 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M8 2.5V6.5" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M3 10.5H21" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg> 1, 2 y 3 de abril
+            </svg> 31 de Marzo, 1 y 2 de Abril
             <Separator style={{ height: 26 }} />
             <svg style={{ marginRight: 12}} width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" clipRule="evenodd" d="M17.5 8.83337C17.5 14.6667 10 19.6667 10 19.6667C10 19.6667 2.5 14.6667 2.5 8.83337C2.5 4.69124 5.85786 1.33337 10 1.33337C14.1421 1.33337 17.5 4.69124 17.5 8.83337V8.83337Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path fillRule="evenodd" clipRule="evenodd" d="M10 11.3334C11.3807 11.3334 12.5 10.2141 12.5 8.83337C12.5 7.45266 11.3807 6.33337 10 6.33337C8.61929 6.33337 7.5 7.45266 7.5 8.83337C7.5 10.2141 8.61929 11.3334 10 11.3334Z" stroke="#2FE0B5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>BA ONSITE & DISCORD ONLINE
+            </svg>BA ONSITE
           </Subtitle>
           <Heading
             as="h1"
@@ -115,9 +115,9 @@ const Home = () => {
             HackIT-BA!
           </Heading>
           <Heading as="h1" size="md" color="#BDC4CF" fontWeight={"normal"}>
-            <Badge>36hs de hacking</Badge> por Computer Society
+            <Badge>48hs de hacking</Badge> por Computer Society
           </Heading>
-          <NextLink href="https://bit.ly/hackit-ba" passHref>
+          {/* <NextLink href="https://bit.ly/hackit-ba" passHref>
             <a target="_blank" rel="noreferrer">
               <PrimaryButton colorScheme="brand">
                 Inscribite
@@ -135,7 +135,7 @@ const Home = () => {
                 </svg>
               </PrimaryButton>
             </a>
-          </NextLink>
+          </NextLink> */}
         </Flex>
         <Box>
           <NoSSR>
@@ -162,7 +162,7 @@ const Home = () => {
                 lg: 500,
               })}
               mouseMoveForce={motionForce}
-              mouseTouchForce={motionForce}
+              touchMoveForce={motionForce}
               particleOptions={CustomParticleOptions}
               backgroundColor={"none"}
               style={{ pointerEvents: innerWidth < 800 ? "none" : "auto" }}
@@ -184,10 +184,10 @@ const Home = () => {
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             HackIT-BA
           </Text>{" "}
-          es una hackathon anual que se realiza en el ITBA y  también online, en el que 15-25 equipos
-          de 3 personas viven{" "}
+          es una hackathon anual que se realiza en el ITBA, en el que 25 equipos
+          de 4 personas viven{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
-            36 horas
+            48 horas
           </Text>{" "}
           de pura intensidad, programando un proyecto práctico que pueda mejorar
           la calidad de vida de sus pares en la Argentina y en el mundo, con
@@ -207,7 +207,9 @@ const Home = () => {
       >
         <Paragraph fontSize="18" lineHeight="32px">
           La competencia se va a desarrollar prescencialmente en el ITBA Sede
-          Distrito Financiero y virtualmente a través de Discord. Para aplicar simplemente
+          Rectorado. En ella, cada equipo debera elegir una de las 2 categorías a confirmar para 
+          desarrollar durante el evento. 
+          {/* Para aplicar simplemente
           tenés que entrar al link{" "}
           <Text as="span" fontWeight="700" fontSize="18" color="brand.400">
             <Link color="brand.200" href="https://bit.ly/hackit-ba">
@@ -218,7 +220,7 @@ const Home = () => {
           presencia. Cada equipo debe elegir 1 categoría para desarrollar un
           proyecto informático que solucione un problema en Inclusión
           Financiera, Ciberseguridad y Privacidad o Productividad y
-          Automatización.
+          Automatización. */}
         </Paragraph>
       </Section>
       <Section
@@ -241,20 +243,15 @@ const Home = () => {
               csitba.web.app
             </Link> y seguirnos en
             <Link   color="brand.200" href="https://twitter.com/ieeecsitba">
-            <a target="_blank" rel="noreferrer">
               {" "} twitter
-            </a>
             </Link> e
             <Link  color="brand.200" href="https://instagram.com/computer.society.itba/">
-              <a target="_blank" rel="noreferrer">
-                {" "} instagram.
-              </a>
+              {" "} instagram.
             </Link>
-
           </Text>
-
         </Paragraph>
       </Section>
+      {/* 
       <Section
         heading={"Tracks"}
         mt={(0, 0, 0, 10)}
@@ -272,6 +269,7 @@ const Home = () => {
         borderBottom={0}
         mb="60px"
       >
+    
         <Flex
           alignItems="center"
           justifyContent={["center", "center", "space-evenly"]}
@@ -295,7 +293,8 @@ const Home = () => {
             content="Solución a un problema de automatización, construcción de herramientas para aumentar la productividad personal, etc"
           />
         </Flex>
-      </Section>
+      </Section> 
+      
       <Section
         heading={"Jurado"}
         mt={(0, 0, 0, 20)}
@@ -487,6 +486,7 @@ const Home = () => {
           </Flex>
         </Section>
       </Section>
+  */}
     </Flex>
   );
 };

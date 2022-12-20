@@ -7,7 +7,7 @@ const CustomParticleOptions: ParticleOptions = {
     // Make a particle for this pixel if blue > 50 (range 0-255)
     return pixel.r > 10;
   },
-  color: ({ x, y, image }) => "#55faa2",
+  color: () => "#55faa2",
 };
 
 export default CustomParticleOptions;

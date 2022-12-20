@@ -15,7 +15,7 @@ export const speakers = [
     link: "https://www.proofofhumanity.id/",
     title: "Founder",
     twitter: "santisiri",
-    img: "https://resizer.iproimg.com/unsafe/880x/filters:format(webp)/https://assets.iproup.com/assets/jpg/2021/03/17315.jpg?7.1.4",
+    img: "https://hackitba.vercel.app/images/ssiri.jpg",
     description:
       'Democracy Earth una organización non-profit incubada por Y Combinator, cuyo objetivo es construir un sistema de Ingreso Universal Básico en Ethereum, con el lanzamiento del protocolo Proof of Humanity. Autor of "Hacktivismo", publicado en 2015 por Random House.',
   },
@@ -38,18 +38,13 @@ export const speakers = [
       " Mariano es co-Founder y socio principal de Newtopia, una inversora ángel que tiene como objetivo convertirse en uno de los principales motores dentro del ecosistema emprendedor latinoamericano. También implementó  políticas publicas en el gobierno de la ciudad y la nación para apoyar a emprendedores, venture capitals, aceleradoras e incubadoras, por más de 100MM USD.",
   },
   {
-    name: "Gabriel Gruber",
-    brand: "Exactly Finance | Co-founder & CEO",
+    name: "Lucas Lain",
+    brand: "Exactly Finance | Co-founder & CTO",
     link: "https://exactly.finance/",
-    title: "Co-founder & CEO",
-    twitter: "GabrielGruber",
-    img: "https://miro.medium.com/fit/c/262/262/1*Sm7jkT5APmJC0bu4t_ZS6w.jpeg",
-    description:
-      "Actualmente Gabriel es CEO y Co-Fundador de Exactly Finance, un protocolo DeFi que busca crear una solucion de renta fija que luego permita conectarse con el mundo financiero tradicional para lograr un mercado de crédito global y descentralizado. \n" +
-      "\n" +
-      "Previamente CEO y Co-Fundador de Properati, una plataforma transaccional de Real Estate en Latam que fue adquirida por OLX Group en 2018. \n" +
-      "Gabriel es economista por la UBA y trabajo en Tilton Capital y el BCRA entre otras empresas.",
-  },
+    title: "Co-founder & CTO",
+    twitter: "lucaslain",
+    img:"https://hackitba.vercel.app/images/lucas.jpg",
+    description: "Sr Software Engineer at Compass ($COMP) and at Squarespace ($SQSP) + Co-Founder & CTO at WeHostels (sold to Student Universe in 2014) and at Confronte (sold to Clarin in 2009), Bachelor in Software Engineer at UADE"},
   {
     name: "Agustina Fainguersch",
     brand: "Meta | Directora Regional",
