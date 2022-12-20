@@ -76,6 +76,7 @@ const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
+  
   const { innerWidth } = useWindowSize();
   const cyberImage = "/images/cyber-security.svg";
   const cryptoImage = "/images/cryptocurrency.svg";
@@ -146,7 +147,7 @@ const Home = () => {
                 sm: 0.25,
                 md: 0.4,
                 lg: 0.4,
-              })}
+              }, {ssr: false, fallback: 'base'})}
               entropy={innerWidth < 800 ? 20 : 40}
               maxParticles={innerWidth < 800 ? 2000 : 4200}
               width={useBreakpointValue({
@@ -154,13 +155,13 @@ const Home = () => {
                 sm: 300,
                 md: 500,
                 lg: 500,
-              })}
+              }, {ssr: false, fallback: 'base'})}
               height={useBreakpointValue({
                 base: 300,
                 sm: 300,
                 md: 500,
                 lg: 500,
-              })}
+              }, {ssr: false, fallback: 'base'})}
               mouseMoveForce={motionForce}
               touchMoveForce={motionForce}
               particleOptions={CustomParticleOptions}
