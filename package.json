@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -14,6 +14,8 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@typescript-eslint/parser": "^5.47.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.4.1",
     "framer-motion": "^7.10.2",
     "next": "^12.1.2",
     "react": "^18.2.0",
