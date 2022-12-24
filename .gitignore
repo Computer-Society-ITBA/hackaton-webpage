@@ -37,4 +37,4 @@ yarn-error.log*
 .idea
 
 #firebase admin credentials
-hackitba-admin-config.json
+.env 
