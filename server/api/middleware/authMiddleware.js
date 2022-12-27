@@ -62,7 +62,8 @@ function authMiddleware (req, res, next) {
     auth.verifyIdToken(strings[1])
         .then((decodedToken)=>{
             const uid = decodedToken.uid
-            console.log(uid)
+            // console.log(uid)
+            req.decodedToken = decodedToken
             next()
         })
         .catch((err)=>{
