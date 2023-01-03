@@ -21,8 +21,20 @@ async function getUser(uid){
             role:           (user.customClaims?user.customClaims:{}).role
             }
     }catch(err){
-        return error(1,err)
+        return error(err.code,err.message)
     }
 }
-
-module.exports = {getUser}
+async function changePassword(uid, newPassword){
+    if(!uid || !newPassword){
+        return error(2,"Missing uid or new password")
+    }
+    try{
+        const user = await adminAuth.updateUser(uid,{
+            password:newPassword
+        })
+        return {uid:user.uid, passwordHash: user.passwordHash}
+    }catch(err){
+        return error(err.code,err.message)
+    }
+}
+module.exports = {getUser, changePassword}
