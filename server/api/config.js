@@ -17,7 +17,7 @@ const serviceAccount = {
 const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-const admin_auth = app.auth()
+const adminAuth = app.auth()
 
 const {initializeApp} = require('firebase/app')
 const { getAuth , signInWithEmailAndPassword} = require ("firebase/auth");
@@ -31,6 +31,6 @@ const firebaseConfig = {
     measurementId:      process.env.CLIENT_MEASUREMENT_ID
 };
 initializeApp(firebaseConfig);
-const client_auth = getAuth()
+const clientAuth = getAuth()
 
-module.exports = {admin_auth, client_auth}
+module.exports = {adminAuth, clientAuth}

@@ -1,4 +1,4 @@
-const {admin_auth}= require('../config')
+const {adminAuth}= require('../config')
 const {error} = require('../util')
 
 async function authMiddleware (req, res, next) {
@@ -15,8 +15,8 @@ async function authMiddleware (req, res, next) {
 
     //Debe ser un IdToken, no otro
     try{
-        const decodedToken = await admin_auth.verifyIdToken(strings[1])
-        req.decodedToken = decodedToken
+        const decodedToken = await adminAuth.verifyIdToken(strings[1])
+        res.locals.userInfo = decodedToken
         next()
     }catch(err){
         console.log(err)

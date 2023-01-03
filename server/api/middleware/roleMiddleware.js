@@ -4,7 +4,7 @@ const {error} = require('../util')
 //ya que este pasa el uid (asi no tenemos que verificar el token otra vez)
 function roleMiddleware(allowed){
     return (req, res, next)=>{
-        const decodedToken = req.decodedToken
+        const decodedToken = res.locals.userInfo
         if(decodedToken && allowed.includes(decodedToken.role)){
             next()
         }else{
