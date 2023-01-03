@@ -40,12 +40,12 @@ router.put('/:userId/password',authMiddleware,async(req,res)=>{
         return
     }
     if(uid!==res.locals.userInfo.uid){
-        res.status(401).send(error(2,"Password can be change only by the account owner"))
+        res.status(403).send(error(2,"Password can be changed only by the account owner"))
         return
     }
     const ans = await changePassword(uid,password)
     if(ans.error){
-        res.status(404).send(ans)
+        res.status(400).send(ans)
         return
     }
     res.status(200).send(ans)
