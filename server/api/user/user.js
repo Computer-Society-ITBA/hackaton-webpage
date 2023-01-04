@@ -38,8 +38,8 @@ router.put('/:userId/password',async(req,res)=>{
 //TODO: agregar middleware de auth cuando se haya mergeado con el de cambiar contraseña
 router.put('/:userId/qualified', roleMiddleware([ROLE_ADMIN]),async(req, res)=>{
     const qualifiedValue = req.body.qualified
-    if(!qualifiedValue){
-        res.status(204).send(error(1,"Missing qualified body field"))
+    if(qualifiedValue===undefined){ // no hacer !qualified porque si mandan false entra
+        res.status(400).send(error(1,"Missing qualified body field"))
         return 
     }
     const ans = await editQualification(res.locals.userInfo.uid,qualifiedValue)
@@ -58,7 +58,8 @@ router.post('/:userId/members',roleMiddleware([ROLE_USER]), async (req, res)=> {
         return
     }
     if(!full_name || !dni || !email){
-        res.status(204).send(error(1, "Missing member information"))
+        res.status(400).json(error(1, "Missing member information"))
+        console.log()
         return 
     }
     const ans = await addMember(res.locals.userInfo.uid, dni, email, full_name)
@@ -76,8 +77,8 @@ router.patch('/:userId/members/:memberId',roleMiddleware([ROLE_USER]), async (re
         res.status(401).send(error(2,"Members can be changed only by the team account"))
         return
     }
-    if(!full_name || !dni || !email){
-        res.status(204).send(error(1, "Missing member information"))
+    if(!full_name && !dni && !email){//damos error solo si no pasa info de algun campo
+        res.status(400).send(error(1, "Missing member information"))
         return 
     }
     const ans = await editMember(uid, memberId, dni, email, full_name)
@@ -104,7 +105,7 @@ router.delete('/:userId/members/:memberId', roleMiddleware([ROLE_USER]), async(r
 router.get('/:userId/members',async(req, res)=>{
     const uid = req.params.userId
     if(uid===res.locals.userInfo.uid){
-        const ans = getMembers(uid)
+        const ans = await getMembers(uid)
         if(ans.error){
             res.status(400).send(ans)
             return
@@ -113,7 +114,7 @@ router.get('/:userId/members',async(req, res)=>{
         return
     }
     roleMiddleware([ROLE_ADMIN, ROLE_JURY, ROLE_MENTOR])(req, res, async()=>{
-        const ans = getMembers(uid)
+        const ans = await getMembers(uid)
         if(ans.error){
             res.status(400).send(ans)
             return
