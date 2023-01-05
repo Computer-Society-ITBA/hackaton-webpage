@@ -7,7 +7,6 @@ const authMiddleware = require('./middleware/authMiddleware')
 
 // /api endpoints
 router.use('/users',authMiddleware,user) //el middleware aca es para testear
-
 //TODO: Delete
 router.use('/test/config',test_config)
 router.use('/test/role',test_role_middleware)
