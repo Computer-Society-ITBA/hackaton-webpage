@@ -30,7 +30,7 @@ router.get('/login', async (req, res) => {
 
 })
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
     const { password, ...user } = req.body
