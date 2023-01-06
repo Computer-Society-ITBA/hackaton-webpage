@@ -4,7 +4,9 @@ const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY } = require('../middl
 const { getUser, getUsers, changePassword } = require('./auth_util')
 const { error } = require('../util')
 const { auth } = require('firebase-admin')
-const { adminAuth } = require('../config')
+const { adminAuth, clientAuth } = require('../config')
+const { signInWithEmailAndPassword } = require("firebase/auth");
+
 
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
@@ -16,13 +18,15 @@ router.get('/hello', (req, res) => {
 router.get('/login', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
-    const ans = (await getUsers())
-    if (ans.error) {
-        res.status(404).send({ 'result': ans })
-        return
+    try {
+        const { password, ...user } = req.body
+        await clientAuth.signInWithEmailAndPassword()
+        const token = await clientAuth.currentUser.getIdToken()
+        res.status(200).send({ token: token })
+    } catch (err) {
+        console.log(err)
+        res.status(401).send(error(3, "Error getting the token"))
     }
-    res.status(200).send({ 'users': ans })
-    return //hacer send no hace que se deje de ejecutar 
 
 })
 
@@ -40,7 +44,7 @@ router.post('/register', async (req, res) => {
         email: user.email,
         password: password,
     })
-    //res.status(200).send({ 'users': await getUser(createdUser.uid) })
+    res.status(200).send({ 'users': await getUser(createdUser.uid) })
     return //hacer send no hace que se deje de ejecutar 
 
 })
