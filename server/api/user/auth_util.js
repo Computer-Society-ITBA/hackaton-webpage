@@ -1,7 +1,7 @@
 //Funciones utiles de users que interactuan con la api de firebase auth
 const {adminAuth} = require('../config')
 const {error} = require('../util')
-
+const {getUserInfo} = require('./firestore_util')
 
 //No paso toda la informacion que nos da firebase para poder controlarlo nosotros
 //Puede ser que nos pase cosas que no queremos mostrarle al usuario final 
@@ -11,6 +11,10 @@ async function getUser(uid){
     }
     try{
         const user = await adminAuth.getUser(uid)
+        const userInfo = await getUserInfo(uid) //esto es raro porque mezcla un poco de funcionalidad, despues lo puedo mejorar
+        if(userInfo.error){
+            throw error //para que vaya abajo 
+        }
         //lo del final es para no tener errores por si no tiene los claims 
         return {
             displayName:    user.displayName,
@@ -18,7 +22,8 @@ async function getUser(uid){
             phoneNumber:    user.phoneNumber,
             photoURL:       user.photoURL,
             uid:            user.uid,
-            role:           (user.customClaims?user.customClaims:{}).role
+            role:           user.customClaims?.role,
+            qualified:      userInfo.data?.qualified
             }
     }catch(err){
         return error(err.code,err.message)
