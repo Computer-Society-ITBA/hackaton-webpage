@@ -4,7 +4,6 @@ const user = require('./user/user')
 const test_config = require('./test/test_config')
 const test_role_middleware = require('./test/test_role')
 
-
 // /api endpoints
 router.use('/users',user) //el middleware aca es para testear
 
