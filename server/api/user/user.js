@@ -5,8 +5,11 @@ const {getUser, changePassword} = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const {error} = require('../util')
-const {addMember, editMember, deleteMember, getMembers, editQualification} = require('./firestore_util')
+const {addMember, editMember, deleteMember, getMembers, editQualification, saveDocument} = require('./firestore_util')
 const {schema} = require('./schema')
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
+
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
 router.get('/hello',(req,res)=>{
@@ -115,4 +118,21 @@ router.get('/:userId/members',authMiddleware,async(req, res)=>{
         res.status(200).send(ans)
     })
 })
+
+router.post('/:userId/:memberId/documents',authMiddleware, upload.single('file'), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No se encontro un archivo.');
+    }
+    const response = await saveDocument(req.params.userId, req.params.memberId, req.file)
+    if(response.error) {
+        res.status(400).send(response);
+        return 
+    }
+    res.status(200).send(response);
+    return
+})
+
+
+
+
 module.exports = router
