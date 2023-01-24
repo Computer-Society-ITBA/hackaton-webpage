@@ -119,7 +119,7 @@ router.get('/:userId/members',authMiddleware,async(req, res)=>{
     })
 })
 
-router.post('/:userId/:memberId/documents',authMiddleware, upload.single('file'), async (req, res) => {
+router.post('/:userId/members/:memberId/documents',authMiddleware, upload.single('file'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No se encontro un archivo.');
     }
