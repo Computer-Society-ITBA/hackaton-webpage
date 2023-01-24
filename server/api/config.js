@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { getFirestore } = require("firebase/firestore")
+const {getStorage, ref} = require("firebase/storage")
 const admin = require("firebase-admin");
 //por favor, si alguien encuentra una manera mas linda de hacer esto cambielo
 //no queria hacer path relativo 
@@ -34,4 +35,5 @@ const firebaseConfig = {
 const clientApp = initializeApp(firebaseConfig);
 const clientAuth = getAuth()
 const db = getFirestore(clientApp)
-module.exports = {adminAuth, clientAuth, db}
+const storage = getStorage(clientApp)
+module.exports = {adminAuth, clientAuth, db, storage, ref}

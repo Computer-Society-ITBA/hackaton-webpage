@@ -5,8 +5,14 @@ const {getUser, changePassword} = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const {error} = require('../util')
+const {db, storage, ref} = require('../config')
+const {uploadBytes, getDownloadURL} = require('firebase/storage')
+const {addDoc, collection} = require('firebase/firestore')
 const {addMember, editMember, deleteMember, getMembers, editQualification} = require('./firestore_util')
 const {schema} = require('./schema')
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
+
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
 router.get('/hello',(req,res)=>{
@@ -115,4 +121,39 @@ router.get('/:userId/members',authMiddleware,async(req, res)=>{
         res.status(200).send(ans)
     })
 })
+
+router.post('/:userId/documents',upload.single('file'),async (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No se encontro un archivo.');
+    }
+    //TODO: handle response
+    const response = await saveDocument("1", "2", req.file)
+    res.status(200).send(response);
+    return
+})
+
+//TODO: move this to firebase utils?
+const saveDocument = async (userId, memberId, file) => {
+    console.log(file);
+    try {
+        const pdfRef = ref(storage, `documents/${file.originalname}`)
+        uploadBytes(pdfRef, file.buffer).then(
+            async snapshot => {
+                const downloadUrl = await getDownloadURL(snapshot.ref)
+                const ans = addDoc(collection(db, "users", userId, "members",memberId, "documents"),
+                {
+                    url: downloadUrl,
+                    name: file.originalname
+                })
+
+                console.log('file Uploaded!')
+        })
+    }
+    catch (err) {
+        console.log(err)
+    }
+    // return 'ok'
+}
+
+
 module.exports = router
