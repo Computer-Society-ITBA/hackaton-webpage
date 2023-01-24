@@ -22,6 +22,10 @@ import { speakers } from "../common/data/speakers";
 import SpeakerProfile from "../components/SpeakerProfile";
 import styled from "@emotion/styled";
 import NextLink from "next/link";
+import Particles from "react-tsparticles";
+import particlesConfig from "../config/configParticles";
+import { loadFull } from "tsparticles";
+import { useCallback } from "react";
 
 const Subtitle = styled(Text)`
   font-size: 14px;
@@ -82,8 +86,22 @@ const Home = () => {
   const cryptoImage = "/images/cryptocurrency.svg";
   const robotImage = "/images/robot.svg";
 
+  const particlesInit = useCallback(async engine => {
+      console.log(engine);
+      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+      // starting from v2 you can add only the features you need reducing the bundle size
+      await loadFull(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async container => {
+      await console.log(container);
+  }, []);
   return (
     <Flex direction="column">
+        <Particles id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded} options={particlesConfig} />
       <Flex
         alignItems="center"
         justifyContent="space-between"

@@ -29,36 +29,37 @@ const PrimaryButton = styled(Button)`
 `;
 
 
-const LinkItem = ({ href, path, target, children, ...props }) => {
-  const active = path === href;
-  const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
-  if (target !== "_blank") {
-    return (
-      <NextLink href={href} passHref>
-        <Link
-          p={2}
-          bg={active ? "grassTeal" : undefined}
-          color={active ? "#202023" : inactiveColor}
-          {...props}
-        >
-          {children}
-        </Link>
-      </NextLink>
-    );
-  }
-  return (
-    <Link
-      p={2}
-      bg={active ? "grassTeal" : undefined}
-      color={active ? "#202023" : inactiveColor}
-      href={href}
-      target="_blank"
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-};
+//No se usa 
+// const LinkItem = ({ href, path, target, children, ...props }) => {
+//   const active = path === href;
+//   const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
+//   if (target !== "_blank") {
+//     return (
+//       <NextLink href={href} passHref>
+//         <Link
+//           p={2}
+//           bg={active ? "grassTeal" : undefined}
+//           color={active ? "#202023" : inactiveColor}
+//           {...props}
+//         >
+//           {children}
+//         </Link>
+//       </NextLink>
+//     );
+//   }
+//   return (
+//     <Link
+//       p={2}
+//       bg={active ? "grassTeal" : undefined}
+//       color={active ? "#202023" : inactiveColor}
+//       href={href}
+//       target="_blank"
+//       {...props}
+//     >
+//       {children}
+//     </Link>
+//   );
+// };
 
 const Navbar = (props) => {
   const { path } = props;
@@ -68,7 +69,7 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("#1E212A", "#1E212A")}
+      // bg={useColorModeValue("#1C1C1C", "#1C1C1C")} sin esto es transparente (tipo vidrio), no se si lo queremos asi 
       style={{ backdropFilter: "blur(10px)" }}
       borderBottom="1px solid #676C74"
       height="64px"
@@ -91,15 +92,15 @@ const Navbar = (props) => {
         </Flex>
 
         <Box align="right" alignItems="center" marginLeft="auto" display="flex">
-          {/* <ThemeToggleButton /> */}
+          {/* { <ThemeToggleButton />} */}
 
-          {/* <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
+          { <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
                 <PrimaryButton colorScheme="brand">Inscribite</PrimaryButton>
               </a>
             </NextLink>
-          </Box> */}
+          </Box> }
         </Box>
       </Container>
     </Box>
