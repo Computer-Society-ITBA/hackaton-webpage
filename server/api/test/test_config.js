@@ -18,7 +18,9 @@ router.get('/get_test_token',async (req,res)=>{
         res.status(200).send({token:token})
     }catch(err){
         console.log(err)
-        res.status(401).send(error(3,"Error getting the token"))
+        //Aca no se si preferimos dar el error que nos da firebase, que es mas descriptivo, o poner nuestro propio mensaje
+        //asi no exponemos a firebase
+        res.status(401).send(error(err.code,err.message))
     }
 })
 router.get('/get_uid',authMiddleware,(req,res)=>{

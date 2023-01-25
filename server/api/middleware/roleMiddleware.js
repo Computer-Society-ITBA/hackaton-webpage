@@ -8,8 +8,7 @@ function roleMiddleware(allowed){
         if(decodedToken && allowed.includes(decodedToken.role)){
             next()
         }else{
-            res.status(403).send(error(4,"Missing or insufficient permission"))
-            return 
+            return res.status(403).send(error(4,"Missing or insufficient permission")) 
         }
     }
 }

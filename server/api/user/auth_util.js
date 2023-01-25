@@ -1,8 +1,7 @@
 //Funciones utiles de users que interactuan con la api de firebase auth
-const { json } = require("express");
-const { adminAuth } = require("../config");
-const { error } = require("../util");
-const { use } = require("./user");
+const { adminAuth } = require('../config')
+const { error } = require('../util')
+const { getUserInfo } = require('./firestore_util')
 
 function userToJson(user) { // formato que estaba previamente definido en getUser
     return {
@@ -21,17 +20,29 @@ async function getUser(uid) {
         return undefined;
     }
     try {
-        const user = await adminAuth.getUser(uid);
-        //lo del final es para no tener errores por si no tiene los claims
-        return userToJson(user);
+        const user = await adminAuth.getUser(uid)
+        const userInfo = await getUserInfo(uid) //esto es raro porque mezcla un poco de funcionalidad, despues lo puedo mejorar
+        if (userInfo.error) {
+            throw error //para que vaya abajo 
+        }
+        //lo del final es para no tener errores por si no tiene los claims 
+        return {
+            displayName: user.displayName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            photoURL: user.photoURL,
+            uid: user.uid,
+            role: user.customClaims?.role,
+            qualified: userInfo.data?.qualified
+        }
     } catch (err) {
-        return error(err.code, err.message);
+        return error(err.code, err.message)
     }
 }
 
 async function getUsers() {
     try {
-        const users = (await adminAuth.listUsers()).users.map((user)=>{
+        const users = (await adminAuth.listUsers()).users.map((user) => {
             return userToJson(user)
         })
         return users;
