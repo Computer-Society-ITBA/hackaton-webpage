@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY, ROLE_USER } = require('../middleware/roleMiddleware')
-const { getUser, changePassword } = require('./auth_util')
+const { getUser, getUsers, changePassword } = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
-const { db, storage, ref } = require('../config')
+const { db, storage, ref, signInWithEmailAndPassword, clientAuth, adminAuth } = require('../config')
 const { uploadBytes, getDownloadURL } = require('firebase/storage')
 const { addDoc, collection } = require('firebase/firestore')
 const { addMember, editMember, deleteMember, getMembers, editQualification } = require('./firestore_util')
@@ -17,15 +17,15 @@ const upload = multer({ storage: multer.memoryStorage() });
 // /user endpoints
 
 router.get('/hello', (req, res) => {
-    res.status(200).send({ message: 'Hello User2!' })
+    res.status(200).send({ message: 'Hello User2!' })  // Funciona sin token
 })
 
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
     try {
         const { password, ...user } = req.body
-        await clientAuth.signInWithEmailAndPassword()
+        await signInWithEmailAndPassword(clientAuth, user.email, password)
         const token = await clientAuth.currentUser.getIdToken()
         res.status(200).send({ token: token })
     } catch (err) {
@@ -34,6 +34,7 @@ router.get('/login', async (req, res) => {
     }
 
 })
+
 
 router.post('/', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
