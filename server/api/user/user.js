@@ -8,7 +8,7 @@ const { error } = require('../util')
 const { db, storage, ref, signInWithEmailAndPassword, clientAuth, adminAuth, createUserWithEmailAndPassword } = require('../config')
 const { uploadBytes, getDownloadURL } = require('firebase/storage')
 const { addDoc, collection } = require('firebase/firestore')
-const { addMember, editMember, deleteMember, getMembers, editQualification } = require('./firestore_util')
+const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument } = require('./firestore_util')
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -180,38 +180,18 @@ router.get('/:userId/members', authMiddleware, async (req, res) => {
     })
 })
 
-router.post('/:userId/documents', upload.single('file'), async (req, res) => {
+router.post('/:userId/members/:memberId/documents',authMiddleware, upload.single('file'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No se encontro un archivo.');
     }
-    //TODO: handle response
-    const response = await saveDocument("1", "2", req.file)
+    const response = await saveDocument(req.params.userId, req.params.memberId, req.file)
+    if(response.error) {
+        res.status(400).send(response);
+        return 
+    }
+
     res.status(200).send(response);
     return
 })
-
-//TODO: move this to firebase utils?
-const saveDocument = async (userId, memberId, file) => {
-    console.log(file);
-    try {
-        const pdfRef = ref(storage, `documents/${file.originalname}`)
-        uploadBytes(pdfRef, file.buffer).then(
-            async snapshot => {
-                const downloadUrl = await getDownloadURL(snapshot.ref)
-                const ans = addDoc(collection(db, "users", userId, "members", memberId, "documents"),
-                    {
-                        url: downloadUrl,
-                        name: file.originalname
-                    })
-
-                console.log('file Uploaded!')
-            })
-    }
-    catch (err) {
-        console.log(err)
-    }
-    // return 'ok'
-}
-
 
 module.exports = router

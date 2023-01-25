@@ -1,9 +1,11 @@
 const { doc, setDoc, updateDoc, deleteDoc, getDocs, collection, addDoc, getDoc} = require("firebase/firestore") 
 const {error} = require('../util')
-const {db} = require('../config')
+const {db, storage} = require('../config')
+const {uploadBytes, getDownloadURL, ref} = require('firebase/storage')
 
 const USER_COLLECTION = 'users'
 const MEMBERS_COLLECTION = 'members'
+const DOCUMENTS_COLLECTION = 'documents'
 
 //si doc se usa con varios argumentos, la logica creo que es: [collection, document, collection, document, ...]
 async function addMember(uid, memberDNI, memberEmail, memberFullName){
@@ -74,4 +76,24 @@ async function getUserInfo(uid){
     }
 }
 
-module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo}
+ async function saveDocument(userId, memberId, file) {
+    try {
+        const pdfRef = ref(storage, `documents/${userId}/${memberId}/${file.originalname}`)
+        return uploadBytes(pdfRef, file.buffer).then(
+            async snapshot => {
+                const downloadUrl =  await getDownloadURL(snapshot.ref)
+                const fileData = {
+                    url: downloadUrl,
+                    name: file.originalname,
+                    verified: false
+                }
+                await addDoc(collection(db, USER_COLLECTION, userId, MEMBERS_COLLECTION,memberId, DOCUMENTS_COLLECTION),fileData)
+                return fileData
+        })
+    }
+    catch (err) {
+        return error(err.code, err.message)
+    }
+}
+
+module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument}
