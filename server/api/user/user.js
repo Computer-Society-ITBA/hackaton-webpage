@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY, ROLE_USER } = require('../middleware/roleMiddleware')
-const { getUser, getUsers, changePassword } = require('./auth_util')
+const { getUser, getUsers, changePassword, userToJson } = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
-const { db, storage, ref, signInWithEmailAndPassword, clientAuth, adminAuth } = require('../config')
+const { db, storage, ref, signInWithEmailAndPassword, clientAuth, adminAuth, createUserWithEmailAndPassword } = require('../config')
 const { uploadBytes, getDownloadURL } = require('firebase/storage')
 const { addDoc, collection } = require('firebase/firestore')
 const { addMember, editMember, deleteMember, getMembers, editQualification } = require('./firestore_util')
@@ -23,14 +23,20 @@ router.get('/hello', (req, res) => {
 router.post('/login', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
+
+    const { email, password } = req.body
     try {
-        const { password, ...user } = req.body
-        await signInWithEmailAndPassword(clientAuth, user.email, password)
+        await schema.validateAsync({ email: email, password: password })
+    } catch (err) {
+        return res.status(400).send(error(1, "Missing email or password"))
+    }
+    try {
+        await signInWithEmailAndPassword(clientAuth, email, password)
         const token = await clientAuth.currentUser.getIdToken()
         res.status(200).send({ token: token })
     } catch (err) {
         console.log(err)
-        res.status(401).send(error(3, "Error getting the token"))
+        res.status(401).send(error(3, "Incorrect email or password"))
     }
 
 })
@@ -39,18 +45,21 @@ router.post('/login', async (req, res) => {
 router.post('/', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
-    const { password, ...user } = req.body
-    const users = (await getUsers())
-    if (users.some((elem) => elem.email === user.email)) {
-        res.status(400).send({ 'result': 'User already exists' })
-        return
+    const { email, password } = req.body
+    try {
+        await schema.validateAsync({ email: email, password: password })
+
+    } catch (err) {
+        return res.status(400).send(error(1, "Missing email or password"))
+    }
+    try {
+        const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
+        res.status(200).send({ email: createdUser.user.email, uid: createdUser.user.uid })
+    }
+    catch (err) {
+        res.status(400).send({ 'result': 'User already exists or password invalid' })
     }
 
-    const createdUser = await adminAuth.createUser({
-        email: user.email,
-        password: password,
-    })
-    res.status(200).send({ 'users': await getUser(createdUser.uid) })
     return //hacer send no hace que se deje de ejecutar 
 
 })

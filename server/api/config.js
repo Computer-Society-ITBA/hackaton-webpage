@@ -21,8 +21,9 @@ const app = admin.initializeApp({
 });
 const adminAuth = app.auth()
 
+
 const { initializeApp } = require('firebase/app')
-const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
+const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
 const firebaseConfig = {
   apiKey: process.env.CLIENT_API_KEY,
   authDomain: process.env.CLIENT_AUTH_DOMAIN,
@@ -32,8 +33,8 @@ const firebaseConfig = {
   appId: process.env.CLIENT_APP_ID,
   measurementId: process.env.CLIENT_MEASUREMENT_ID
 };
-const clientApp = initializeApp(firebaseConfig);
+const clientApp = initializeApp(firebaseConfig)
 const clientAuth = getAuth(clientApp)
 const db = getFirestore(clientApp)
 const storage = getStorage(clientApp)
-module.exports = { adminAuth, clientAuth, db, storage, ref, signInWithEmailAndPassword }
+module.exports = { adminAuth, clientAuth, db, storage, ref, signInWithEmailAndPassword, createUserWithEmailAndPassword }

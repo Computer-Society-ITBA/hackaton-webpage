@@ -64,4 +64,4 @@ async function changePassword(uid, newPassword) {
         return error(err.code, err.message);
     }
 }
-module.exports = { getUser, getUsers, changePassword };
+module.exports = { getUser, getUsers, changePassword, userToJson };
