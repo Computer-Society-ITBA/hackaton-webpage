@@ -78,7 +78,7 @@ async function getUserInfo(uid){
 
  async function saveDocument(userId, memberId, file) {
     try {
-        const pdfRef = ref(storage, `documents/${file.originalname}`)
+        const pdfRef = ref(storage, `documents/${userId}/${memberId}/${file.originalname}`)
         return uploadBytes(pdfRef, file.buffer).then(
             async snapshot => {
                 const downloadUrl =  await getDownloadURL(snapshot.ref)
