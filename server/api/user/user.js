@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
 
 })
 
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, roleMiddleware([ROLE_ADMIN]), async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
     const ans = (await getUsers())
