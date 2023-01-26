@@ -103,7 +103,7 @@ const Home = () => {
             init={particlesInit}
             loaded={particlesLoaded} options={particlesConfig}/> 
           {/* TODO: alinear bien */}
-      <Img position = "absolute" m='auto' left='0' right='0' top ='0' bottom='0' src={csImage} height="40%" alt="logo"/>
+      <Img position = "absolute" m='auto' left='0' right='0' top ='0' bottom='0' src={csImage} height="30%" alt="logo"/>
       </Flex>
     </Flex>
   )
