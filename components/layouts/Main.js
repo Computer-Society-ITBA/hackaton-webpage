@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
@@ -25,8 +25,9 @@ const Main = ({ children, router }) => {
           <meta property="twitter:description" content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."/>
           <meta property="twitter:image" content="https://hackitba.vercel.app/images/flyer.jpeg"/>
         </Head>
-      <Navbar />
-      <Container maxW="container.lg" pt={14}>
+        <Navbar />
+        {/* No se como hacer para que deje bien el espacio con el position fixex de navbar, por ahora dejo el padding */}
+        <Container maxW="full" pt={16}>
         {children}
       </Container>
       <Footer />

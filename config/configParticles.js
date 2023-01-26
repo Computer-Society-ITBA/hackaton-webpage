@@ -66,14 +66,14 @@ const particlesConfig = {
       "detect_on": "canvas",
       "events": {
         "onhover": {
-          "enable": true,
+          "enable": false,
           "mode": "grab"
         },
         "onclick": {
-          "enable": true,
+          "enable": false,
           "mode": "push"
         },
-        "resize": true
+        "resize": false
       },
       "modes": {
         "grab": {
@@ -101,6 +101,8 @@ const particlesConfig = {
         }
       }
     },
-    "retina_detect": true
+    "retina_detect": true,
+    "fullScreen": { "enable": false },
+    // Cambiar esto si queremos que esten siempre en el fondo
 }
 export default particlesConfig

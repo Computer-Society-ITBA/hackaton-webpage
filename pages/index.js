@@ -9,6 +9,8 @@ import {
   Button,
   Link,
   Grid,
+  Container,
+  Img,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -80,6 +82,33 @@ const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 const Home = () => {
+  const particlesInit = useCallback(async engine => {
+      console.log(engine);
+      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
+      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
+      // starting from v2 you can add only the features you need reducing the bundle size
+      await loadFull(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async container => {
+      await console.log(container);
+  }, []);
+  const csImage = `/images/cs_logo.svg`;
+  return (
+    <Flex direction="column">
+      {/* Por que no funciona en Chrome!!! Aguante Safari */}
+      {/* <Flex width={'100%'} height='80vh'> */}
+      <Flex width={'100%'}>
+      <Particles id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded} options={particlesConfig}/> 
+          {/* TODO: alinear bien */}
+      <Img position = "absolute" m='auto' left='0' right='0' top ='0' bottom='0' src={csImage} height="40%" alt="logo"/>
+      </Flex>
+    </Flex>
+  )
+}
+const HomeOld = () => {
   
   const { innerWidth } = useWindowSize();
   const cyberImage = "/images/cyber-security.svg";
