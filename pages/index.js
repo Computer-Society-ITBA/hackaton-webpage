@@ -12,6 +12,10 @@ import {
   Container,
   Img,
   VStack,
+  Divider,
+  StackDivider,
+  Spacer,
+  HStack,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -26,6 +30,8 @@ import SpeakerProfile from "../components/SpeakerProfile";
 import styled from "@emotion/styled";
 import NextLink from "next/link";
 import ParticlesLogo from "../components/ParticlesLogo"
+import CategoryLogo from "../components/CategoryLogo";
+import Head from "next/head";
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -78,15 +84,38 @@ const PrimaryButton = styled(Button)`
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
-const Home = () => {
-  const csImage = `/images/cs_logo.svg`;
+const GeneralInfo = () => {
   return (
-    <Flex direction="column">
+    <VStack spacing={4} paddingX='5%' w='full'>
+        <Heading as='h1' display='inline' color='orange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
+        <Divider variant="thick"></Divider>
+        <Text textAlign='center'>
+        <Text as="span" color="CSgreen">HackITBA</Text> es una hackathon organizada por y para estudiantes, donde, en grupos de 4 personas, deben generar un MVP en 36 horas de competencia intensiva.
+        </Text>
+        <Text textAlign='center'>
+        La competencia tiene como meta promover soluciones creativas a problemas actuales en un ambiente desafiante y cooperativo.
+        </Text>
+        <Divider variant="thick"></Divider>
+      </VStack>
+  )
+}
+const Categories = ()=>{
+  return(
+    <HStack paddingX='10%' w='full' justify='center' spacing='20%'>
+      {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
+      <CategoryLogo names={["Economía y", "Descentralización"]} imgSrc='/images/economia.svg'/>
+      <CategoryLogo names={["Automatización","Inteligente"]} imgSrc='/images/automatizacion.svg'/>
+    </HStack>
+  )
+}
+const Home = () => {
+  return (
+    <VStack spacing='2%'>
       <ParticlesLogo/>
-      <Heading>
-        Out
-      </Heading>
-    </Flex>
+      <GeneralInfo/>
+      <Categories/>
+    </VStack>
+    
   )
 }
 const HomeOld = () => {

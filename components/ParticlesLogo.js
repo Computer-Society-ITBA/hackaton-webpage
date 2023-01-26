@@ -3,6 +3,7 @@ import {
     Flex,
     Box,
     Img,
+    VStack,
   } from "@chakra-ui/react";
 import Particles from "react-tsparticles";
 import particlesConfig from "../config/configParticles";
@@ -24,16 +25,21 @@ const ParticlesLogo = (props) =>{
     const csImage = `/images/cs_logo.svg`;
     return (
         <Flex>
-      <Particles id="tsparticles"
+            <Box position='absolute' left={0} right={0} top={0} bottom={0} pt={16}>
+                <Particles id="tsparticles"
             init={particlesInit}
             loaded={particlesLoaded} options={particlesConfig}/> 
-      <Box direction="column" m='auto' marginTop={'12em'} paddingX='10%' position="absolute" left={0} right={0} top={0} bottom={0}>
-          <Img src={csImage}  height="35%" alt="logo"/>
-          <Box textAlign={'end'}>
+            </Box>
+      {/* No poner 99 porque si no pasa al Navbar */}
+      <VStack height='80vh' width='100vw' direction='column' zIndex={90} spacing="2px" justify={'center'} >
+        <Box height='30%'>
+            <Img src={csImage} m='auto' height='100%' alt="logo" />
+        </Box>
+        <Box alignSelf='end' pr='10%'>
             <Heading display='inline' color='white'>by </Heading>
             <Heading display='inline' color='orange'>Computer Society ITBA</Heading>
-          </Box>
-      </Box>
+        </Box>
+      </VStack>
       </Flex>
     )
 }

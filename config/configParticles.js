@@ -31,12 +31,12 @@ const particlesConfig = {
         }
       },
       "size": {
-        "value": 16,
+        "value": 20,
         "random": true,
         "anim": {
           "enable": true,
           "speed": 6,
-          "size_min": 6,
+          "size_min": 10,
           "sync": true
         }
       },
