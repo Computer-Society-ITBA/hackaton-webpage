@@ -56,14 +56,12 @@ const Badge = styled.span`
 `;
 
 const PrimaryButton = styled(Button)`
-  font-size: 14px;
-  border-radius: 8px;
+  border-radius: 4px;
   font-weight: 500;
   border-width: 1px;
   transition: all 0.3s ease;
   margin-top: 40px;
-  height: 48px;
-  padding: 16px 24px;
+  padding: 4% 8%;
 
   svg path {
     fill: #1e212a;
@@ -84,6 +82,7 @@ const PrimaryButton = styled(Button)`
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
+//Dejamos algunos subcomponentes aca, no los hago como componentes porque no se reutilizan
 const GeneralInfo = () => {
   return (
     <VStack spacing={4} paddingX='5%' w='full'>
@@ -108,12 +107,29 @@ const Categories = ()=>{
     </HStack>
   )
 }
+const Inscribite = ()=>{
+  return(
+      <Flex direction='row' width='100%' alignItems='center' height='20%'>
+        <Img src="/images/Inscribite_1.svg" alt="Decoration" width='30%' height='100%'></Img>
+        <Spacer/>
+        <VStack justify='center' spacing='10%'>
+          <Heading size={['xs','sm','md','md','lg']} textAlign='center' >
+            Inscripción por equipos
+          </Heading>
+          <PrimaryButton height='2%' backgroundColor="CSgreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+        </VStack>
+        <Spacer/>
+        <Img src="/images/Inscribite_2.svg" alt="Decoration" width='30%' height='100%'></Img>
+      </Flex>
+  )
+}
 const Home = () => {
   return (
-    <VStack spacing='2%'>
+    <VStack spacing='4%'>
       <ParticlesLogo/>
       <GeneralInfo/>
       <Categories/>
+      <Inscribite/>
     </VStack>
     
   )

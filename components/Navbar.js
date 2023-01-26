@@ -14,18 +14,15 @@ import styled from "@emotion/styled";
 
 const PrimaryButton = styled(Button)`
   font-size: 14px; 
-  border-radius: 8px; 
+  border-radius: 4px; 
   font-weight: 500;
+  background-color: #01CBA1;
   border-width: 1px;
   transition: all 0.3s ease;
   padding: 8px 16px;
   height: 32px;
 
-  &:hover {
-    background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
-  }
+  &:hover x
 `;
 
 
