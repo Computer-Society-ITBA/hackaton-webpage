@@ -27,7 +27,7 @@ const Main = ({ children, router }) => {
         </Head>
         <Navbar />
         {/* No se como hacer para que deje bien el espacio con el position fixex de navbar, por ahora dejo el padding */}
-        <Container maxW="full" pt={16}>
+        <Container maxW="full" paddingX={0} pt={16}>
         {children}
       </Container>
       <Footer />
