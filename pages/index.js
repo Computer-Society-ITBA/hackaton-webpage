@@ -16,6 +16,10 @@ import {
   StackDivider,
   Spacer,
   HStack,
+  Wrap,
+  WrapItem,
+  Center,
+  GridItem,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -31,6 +35,7 @@ import styled from "@emotion/styled";
 import NextLink from "next/link";
 import ParticlesLogo from "../components/ParticlesLogo"
 import CategoryLogo from "../components/CategoryLogo";
+import Jury from '../components/Jury';
 import Head from "next/head";
 const Subtitle = styled(Text)`
   font-size: 14px;
@@ -86,12 +91,12 @@ const motionForce = (x, y) => {
 const GeneralInfo = () => {
   return (
     <VStack spacing={4} paddingX='5%' w='full'>
-        <Heading as='h1' display='inline' color='orange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
+        <Heading as='h1' display='inline' size={['sm','md','lg','xl','2xl']} color='CSOrange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
         <Divider variant="thick"></Divider>
-        <Text textAlign='center'>
-        <Text as="span" color="CSgreen">HackITBA</Text> es una hackathon organizada por y para estudiantes, donde, en grupos de 4 personas, deben generar un MVP en 36 horas de competencia intensiva.
+        <Text textAlign='center' fontSize={['xs','sm','md','lg','xl']}>
+        <Text as="span" color="CSGreen">HackITBA</Text> es una hackathon organizada por y para estudiantes, donde, en grupos de 4 personas, deben generar un MVP en 36 horas de competencia intensiva.
         </Text>
-        <Text textAlign='center'>
+        <Text textAlign='center' fontSize={['xs','sm','md','lg','xl']}>
         La competencia tiene como meta promover soluciones creativas a problemas actuales en un ambiente desafiante y cooperativo.
         </Text>
         <Divider variant="thick"></Divider>
@@ -110,17 +115,41 @@ const Categories = ()=>{
 const Inscribite = ()=>{
   return(
       <Flex direction='row' width='100%' alignItems='center' height='20%'>
-        <Img src="/images/Inscribite_1.svg" alt="Decoration" width='30%' height='100%'></Img>
+        <Img src="/images/Inscribite_1.svg" alt="Decoration" width='25%' height='100%'></Img>
         <Spacer/>
-        <VStack justify='center' spacing='10%'>
+        <VStack justify='center' spacing='5%'>
           <Heading size={['xs','sm','md','md','lg']} textAlign='center' >
             Inscripción por equipos
           </Heading>
-          <PrimaryButton height='2%' backgroundColor="CSgreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+          <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
         </VStack>
         <Spacer/>
-        <Img src="/images/Inscribite_2.svg" alt="Decoration" width='30%' height='100%'></Img>
+        <Img src="/images/Inscribite_2.svg" alt="Decoration" width='25%' height='100%'></Img>
       </Flex>
+  )
+}
+const JurySection = () => {
+  const juries = [
+    {name: "Jose", imgSrc:"/images/jack_black.jpg"},
+    {name: "Tatu", imgSrc:"/images/jack_black.jpg"},
+    {name: "Mateo", imgSrc:"/images/jack_black.jpg"},
+    {name: "Naso", imgSrc:"/images/jack_black.jpg"},
+    {name: "Luciano", imgSrc:"/images/jack_black.jpg"}
+  ]
+  return(
+    <VStack width='full'>
+      <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Jurados</Heading>
+      <Text fontSize={['xs','sm','md','lg','xl']}>Conoce a nuestros jurados</Text>
+      <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
+        {juries.map((jury)=>{
+          return(
+          <GridItem >
+            <Jury jury={jury}></Jury>
+          </GridItem>
+          )
+        })}
+      </Grid>
+    </VStack>
   )
 }
 const Home = () => {
@@ -130,6 +159,7 @@ const Home = () => {
       <GeneralInfo/>
       <Categories/>
       <Inscribite/>
+      <JurySection/>
     </VStack>
     
   )

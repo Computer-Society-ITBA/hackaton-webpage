@@ -31,13 +31,13 @@ const ParticlesLogo = (props) =>{
             loaded={particlesLoaded} options={particlesConfig}/> 
             </Box>
       {/* No poner 99 porque si no pasa al Navbar */}
-      <VStack height='80vh' width='100vw' direction='column' zIndex={90} spacing="2px" justify={'center'} >
+      <VStack height='80vh' width='100vw' direction='column' zIndex={90} spacing="1%" justify={'center'} >
         <Box height='30%'>
             <Img src={csImage} m='auto' height='100%' alt="logo" />
         </Box>
         <Box alignSelf='end' pr='10%'>
-            <Heading display='inline' color='white'>by </Heading>
-            <Heading display='inline' color='orange'>Computer Society ITBA</Heading>
+            <Heading display='inline' size={['sm','md','lg','xl','2xl']} color='white'>by </Heading>
+            <Heading display='inline' size={['sm','md','lg','xl','2xl']} color='CSOrange'>Computer Society ITBA</Heading>
         </Box>
       </VStack>
       </Flex>
