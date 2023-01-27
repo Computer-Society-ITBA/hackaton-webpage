@@ -33,7 +33,7 @@ const ParticlesLogo = (props) =>{
       {/* No poner 99 porque si no pasa al Navbar */}
       <VStack height='80vh' width='100vw' direction='column' zIndex={90} spacing="1%" justify={'center'} >
         <Box height='30%'>
-            <Img src={csImage} m='auto' height='100%' alt="logo" />
+            <Img src={csImage} m='auto' height='100%' alt="logo" paddingX='6%'/>
         </Box>
         <Box alignSelf='end' pr='10%'>
             <Heading display='inline' size={['sm','md','lg','xl','2xl']} color='white'>by </Heading>

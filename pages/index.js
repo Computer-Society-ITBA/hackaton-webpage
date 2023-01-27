@@ -20,6 +20,7 @@ import {
   WrapItem,
   Center,
   GridItem,
+  Stack,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -143,7 +144,7 @@ const JurySection = () => {
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
         {juries.map((jury)=>{
           return(
-          <GridItem >
+          <GridItem key={jury.name}>
             <Jury jury={jury}></Jury>
           </GridItem>
           )
@@ -152,14 +153,36 @@ const JurySection = () => {
     </VStack>
   )
 }
+const WorkshopsSection = () =>{
+  const workshopsPhotos = ['/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg']
+  return(
+      <Stack direction={['column','column','row','row','row']} backgroundColor='#376AF6' width='full' paddingY='8%'>
+        <VStack alignItems='start' width={['100%','100%','40%','40%','40%']} pl='6%' spacing='4%'>
+          <Heading color='CSGreen' size={['sm','md','lg','xl','2xl']}>Workshops</Heading>
+          <Text fontSize={['xs','sm','md','lg','xl']} width='80%'>Workshops en vivo con ....
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
+        </VStack>
+        <Grid p='2%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']} gap='4%'>
+          {workshopsPhotos.map((photo)=>{
+            return(
+            <GridItem>
+              <Img src={photo} alt="course image"></Img>
+            </GridItem>
+            )
+          })}
+        </Grid>
+      </Stack>
+  )
+}
 const Home = () => {
   return (
     <VStack spacing='4%'>
-      <ParticlesLogo/>
+      {/* <ParticlesLogo/> */}
       <GeneralInfo/>
       <Categories/>
       <Inscribite/>
       <JurySection/>
+      <WorkshopsSection/>
     </VStack>
     
   )

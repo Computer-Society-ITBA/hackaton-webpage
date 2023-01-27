@@ -13,18 +13,27 @@ import {
 import styled from "@emotion/styled";
 
 const PrimaryButton = styled(Button)`
-  font-size: 14px; 
-  border-radius: 4px; 
+  border-radius: 4px;
   font-weight: 500;
-  background-color: #01CBA1;
   border-width: 1px;
   transition: all 0.3s ease;
-  padding: 8px 16px;
-  height: 32px;
+  padding: 4% 8%;
 
-  &:hover x
+  svg path {
+    fill: #1e212a;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    background-color: transparent;
+    color: #2fe0b5;
+    border: 1px solid #2fe0b5;
+
+    svg path {
+      fill: #2fe0b5;
+    }
+  }
 `;
-
 
 //No se usa 
 // const LinkItem = ({ href, path, target, children, ...props }) => {
@@ -94,7 +103,7 @@ const Navbar = (props) => {
           { <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
-                <PrimaryButton colorScheme="brand">Inscribite</PrimaryButton>
+                <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INGRESAR</PrimaryButton>
               </a>
             </NextLink>
           </Box> }
