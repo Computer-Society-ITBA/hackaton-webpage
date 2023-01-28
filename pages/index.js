@@ -213,12 +213,14 @@ const Home = () => {
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
       <ParticlesLogo/>
-      <GeneralInfo pt='4%'/>
-      <Categories pt='4%'/>
-      <Inscribite pt='4%'/>
-      <JurySection pt='4%'/>
-      <WorkshopsSection pt='4%'/>
-      <SponsorsSection/>
+      <GeneralInfo pt='4%' zIndex={90}/>
+      <Categories pt='4%' zIndex={90}/>
+      <Inscribite pt='4%' zIndex={90}/>
+      <JurySection pt='4%' zIndex={90}/>
+      <WorkshopsSection pt='4%' zIndex={90}/>
+      <SponsorsSection zIndex={90}/>
+      {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
+      {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
     
   )
