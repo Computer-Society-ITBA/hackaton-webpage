@@ -10,7 +10,7 @@ const SponsorLogo = ({ link, logo, name, width, height, style }) => {
             src={logo}
             alt={name}
             width={width ? width : "auto"}
-            height={height ? height : 40}
+            height={height ? height : "auto"}
             cursor="pointer"
             _hover={{
               transform: "scale(1.1)",

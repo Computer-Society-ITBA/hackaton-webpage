@@ -21,6 +21,7 @@ import {
   Center,
   GridItem,
   Stack,
+  AspectRatio,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -89,9 +90,9 @@ const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
 //Dejamos algunos subcomponentes aca, no los hago como componentes porque no se reutilizan
-const GeneralInfo = () => {
+const GeneralInfo = ({...extendedProps}) => {
   return (
-    <VStack spacing={4} paddingX='5%' w='full'>
+    <VStack spacing={4} paddingX='5%' w='full' {...extendedProps}>
         <Heading as='h1' display='inline' size={['sm','md','lg','xl','2xl']} color='CSOrange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
         <Divider variant="thick"></Divider>
         <Text textAlign='center' fontSize={['xs','sm','md','lg','xl']}>
@@ -104,18 +105,18 @@ const GeneralInfo = () => {
       </VStack>
   )
 }
-const Categories = ()=>{
+const Categories = ({...extendedProps})=>{
   return(
-    <HStack paddingX='10%' w='full' justify='center' spacing='20%'>
+    <HStack paddingX='10%' w='full' justify='center' spacing='20%' {...extendedProps}>
       {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
       <CategoryLogo names={["Economía y", "Descentralización"]} imgSrc='/images/economia.svg'/>
       <CategoryLogo names={["Automatización","Inteligente"]} imgSrc='/images/automatizacion.svg'/>
     </HStack>
   )
 }
-const Inscribite = ()=>{
+const Inscribite = ({...extendedProps})=>{
   return(
-      <Flex direction='row' width='100%' alignItems='center' height='20%'>
+      <Flex direction='row' width='100%' alignItems='center' height='20%' {...extendedProps}>
         <Img src="/images/Inscribite_1.svg" alt="Decoration" width='25%' height='100%'></Img>
         <Spacer/>
         <VStack justify='center' spacing='5%'>
@@ -129,7 +130,7 @@ const Inscribite = ()=>{
       </Flex>
   )
 }
-const JurySection = () => {
+const JurySection = ({...extendedProps}) => {
   const juries = [
     {name: "Jose", imgSrc:"/images/jack_black.jpg"},
     {name: "Tatu", imgSrc:"/images/jack_black.jpg"},
@@ -138,7 +139,7 @@ const JurySection = () => {
     {name: "Luciano", imgSrc:"/images/jack_black.jpg"}
   ]
   return(
-    <VStack width='full'>
+    <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Jurados</Heading>
       <Text fontSize={['xs','sm','md','lg','xl']}>Conoce a nuestros jurados</Text>
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
@@ -153,10 +154,10 @@ const JurySection = () => {
     </VStack>
   )
 }
-const WorkshopsSection = () =>{
+const WorkshopsSection = ({...extendedProps}) =>{
   const workshopsPhotos = ['/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg']
   return(
-      <Stack direction={['column','column','row','row','row']} backgroundColor='#376AF6' width='full' paddingY='8%'>
+      <Stack direction={['column','column','row','row','row']} backgroundColor='#24335d' width='full' paddingY='8%' {...extendedProps}>
         <VStack alignItems='start' width={['100%','100%','40%','40%','40%']} pl='6%' spacing='4%'>
           <Heading color='CSGreen' size={['sm','md','lg','xl','2xl']}>Workshops</Heading>
           <Text fontSize={['xs','sm','md','lg','xl']} width='80%'>Workshops en vivo con ....
@@ -174,15 +175,50 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
       </Stack>
   )
 }
+
+const SponsorsSection = ({...extendedProps}) =>{
+  const sponsors = [
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'},
+    {name:'Auth0',logo:'/images/logos/auth0.png',link:'https://auth0.com'}
+  ]
+  return(
+    <VStack w='full' mt={0} {...extendedProps}>
+        <Img src='/images/Sponsor_corner_1.svg' alt="decoration image" alignSelf='start' w={['20%','18%','15%','12%','10%']}></Img>
+      <VStack top='-1'>
+        <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Sponsors 2023</Heading>
+        <Text fontSize={['xs','sm','md','lg','xl']}>Empresas que nos acompañan</Text>
+      </VStack>
+      <Grid paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)']}>
+        {sponsors.map((sponsor)=>{
+          return(
+            <GridItem padding='4%' key={sponsor.name}>
+              <SponsorLogo link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+            </GridItem>
+          )
+        })}
+      </Grid>
+      <Img src='/images/Sponsor_corner_2.svg' alt="decoration image" alignSelf='end' w={['20%','18%','15%','12%','10%']}></Img>
+    </VStack>
+  )
+}
 const Home = () => {
   return (
-    <VStack spacing='4%'>
-      {/* <ParticlesLogo/> */}
-      <GeneralInfo/>
-      <Categories/>
-      <Inscribite/>
-      <JurySection/>
-      <WorkshopsSection/>
+    <VStack>
+      {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
+      <ParticlesLogo/>
+      <GeneralInfo pt='4%'/>
+      <Categories pt='4%'/>
+      <Inscribite pt='4%'/>
+      <JurySection pt='4%'/>
+      <WorkshopsSection pt='4%'/>
+      <SponsorsSection/>
     </VStack>
     
   )
