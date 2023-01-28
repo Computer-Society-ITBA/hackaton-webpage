@@ -26,7 +26,7 @@ const Main = ({ children, router }) => {
           <meta property="twitter:image" content="https://hackitba.vercel.app/images/flyer.jpeg"/>
         </Head>
       <Navbar />
-      <Container maxW="container.lg" pt={14}>
+      <Container maxW="full" paddingX={0} pt={16}>
         {children}
       </Container>
       <Footer />

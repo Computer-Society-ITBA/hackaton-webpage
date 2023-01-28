@@ -9,6 +9,8 @@ import {
   Button,
   Link,
   Grid,
+  Center,
+
 } from "@chakra-ui/react";
 
 import FirstStep from './firstStep'
@@ -25,10 +27,12 @@ const Register = () => {
   });
 
   return (
-    <Flex flexDir="column" width="100%">
+    <>
       {steps[activeStep]}
-      <button onClick={nextStep}> Hola </button>
-    </Flex>
+      <Center paddingTop='10%'>
+        <Button onClick={nextStep}> Confirmar </Button>
+      </Center>
+    </>
   );
 };
 
