@@ -22,6 +22,8 @@ import {
   GridItem,
   Stack,
   AspectRatio,
+  Input,
+  Textarea,
 } from "@chakra-ui/react";
 import Section from "../components/Section";
 import Paragraph from "../components/Paragraph";
@@ -143,9 +145,9 @@ const JurySection = ({...extendedProps}) => {
       <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Jurados</Heading>
       <Text fontSize={['xs','sm','md','lg','xl']}>Conoce a nuestros jurados</Text>
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
-        {juries.map((jury)=>{
+        {juries.map((jury,index)=>{
           return(
-          <GridItem key={jury.name}>
+          <GridItem key={index}>
             <Jury jury={jury}></Jury>
           </GridItem>
           )
@@ -164,9 +166,9 @@ const WorkshopsSection = ({...extendedProps}) =>{
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
         </VStack>
         <Grid p='2%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']} gap='4%'>
-          {workshopsPhotos.map((photo)=>{
+          {workshopsPhotos.map((photo,index)=>{
             return(
-            <GridItem>
+            <GridItem key={index}>
               <Img src={photo} alt="course image"></Img>
             </GridItem>
             )
@@ -208,6 +210,32 @@ const SponsorsSection = ({...extendedProps}) =>{
     </VStack>
   )
 }
+
+const Form = ({...extendedProps}) => {
+  const LocalInput = ({...extendedProps}) => <Input focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
+  
+  return(
+    <VStack w='50%'>
+      <LocalInput placeholder="email" ></LocalInput>
+      <LocalInput placeholder="asunto"></LocalInput>
+      <Textarea height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps} placeholder='Mensjae'></Textarea>
+      <PrimaryButton width='full'>Enviar</PrimaryButton>
+    </VStack>
+  )
+}
+const DoubtSection = ({...extendedProps}) =>{
+  const CS_img = '/images/IEEE_CS.svg'
+  return(
+    <HStack width='full' justify='center' {...extendedProps}>
+      <VStack spacing="4%">
+        <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenes dudas?</Heading>
+        <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contactanos!</Heading>
+        <Img src={CS_img} alt='ITBA IEEE Computer Society image'></Img>
+      </VStack>
+      <Form/>
+    </HStack>
+  )
+}
 const Home = () => {
   return (
     <VStack>
@@ -219,6 +247,7 @@ const Home = () => {
       <JurySection pt='4%' zIndex={90}/>
       <WorkshopsSection pt='4%' zIndex={90}/>
       <SponsorsSection zIndex={90}/>
+      <DoubtSection zIndex={90}/>
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
