@@ -1,7 +1,24 @@
-import { Text, Flex, Image, useColorModeValue } from "@chakra-ui/react";
+import { Text, Flex, Image, useColorModeValue, VStack, HStack, Img } from "@chakra-ui/react";
 import { useState, useEffect } from 'react';
 
-const Footer = () => {
+const Footer = () =>{
+  const currentYear = new Date().getFullYear();
+  const HackITBAImage = '/images/IEEE_CS_footer.svg' //TODO: cambiar
+  const CSImage = '/images/IEEE_CS_footer.svg'
+  return (
+    <VStack mt="10" w='full'>
+      <Text fontSize={['xs','sm','md','lg','lg']}>
+        &copy; {currentYear} Computer Society ITBA. Todos los
+        derechos reservados.
+      </Text>
+      <HStack w='full' backgroundColor='white' justify='end'>
+        <Img src={HackITBAImage} alt='HackITBA image' width='20%'></Img>
+        <Img src={CSImage} alt='IEEE Computer Society image' width='20%'></Img>
+      </HStack>
+    </VStack>
+  )
+}
+const OldFooter = () => {
   const chickenImage = `/images/chicken${useColorModeValue("", "-dark")}.png`;
   const currentYear = new Date().getFullYear();
   return (

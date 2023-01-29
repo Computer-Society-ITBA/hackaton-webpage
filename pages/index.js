@@ -91,16 +91,18 @@ const PrimaryButton = styled(Button)`
 const motionForce = (x, y) => {
   return forces.disturbance(x, y, 30);
 };
+const HeadingSize = ['sm','md','lg','xl','2xl']
+const TextSize = ['xs','sm','md','lg','xl']
 //Dejamos algunos subcomponentes aca, no los hago como componentes porque no se reutilizan
 const GeneralInfo = ({...extendedProps}) => {
   return (
     <VStack spacing={4} paddingX='5%' w='full' {...extendedProps}>
-        <Heading as='h1' display='inline' size={['sm','md','lg','xl','2xl']} color='CSOrange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
+        <Heading as='h1' display='inline' size={HeadingSize} color='CSOrange' textAlign={'center'} paddingY='6px'>¿Qué es HackITBA?</Heading>
         <Divider variant="thick"></Divider>
-        <Text textAlign='center' fontSize={['xs','sm','md','lg','xl']}>
+        <Text textAlign='center' fontSize={TextSize}>
         <Text as="span" color="CSGreen">HackITBA</Text> es una hackathon organizada por y para estudiantes, donde, en grupos de 4 personas, deben generar un MVP en 36 horas de competencia intensiva.
         </Text>
-        <Text textAlign='center' fontSize={['xs','sm','md','lg','xl']}>
+        <Text textAlign='center' fontSize={TextSize}>
         La competencia tiene como meta promover soluciones creativas a problemas actuales en un ambiente desafiante y cooperativo.
         </Text>
         <Divider variant="thick"></Divider>
@@ -142,8 +144,8 @@ const JurySection = ({...extendedProps}) => {
   ]
   return(
     <VStack width='full' {...extendedProps}>
-      <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Jurados</Heading>
-      <Text fontSize={['xs','sm','md','lg','xl']}>Conoce a nuestros jurados</Text>
+      <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
+      <Text fontSize={TextSize}>Conoce a nuestros jurados</Text>
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
         {juries.map((jury,index)=>{
           return(
@@ -161,8 +163,8 @@ const WorkshopsSection = ({...extendedProps}) =>{
   return(
       <Stack direction={['column','column','row','row','row']} backgroundColor='#24335d' width='full' paddingY='8%' {...extendedProps}>
         <VStack alignItems='start' width={['100%','100%','40%','40%','40%']} pl='6%' spacing='4%'>
-          <Heading color='CSGreen' size={['sm','md','lg','xl','2xl']}>Workshops</Heading>
-          <Text fontSize={['xs','sm','md','lg','xl']} width='80%'>Workshops en vivo con ....
+          <Heading color='CSGreen' size={HeadingSize}>Workshops</Heading>
+          <Text fontSize={TextSize} width='80%'>Workshops en vivo con ....
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </Text>
         </VStack>
         <Grid p='2%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']} gap='4%'>
@@ -194,8 +196,8 @@ const SponsorsSection = ({...extendedProps}) =>{
     <VStack w='full' mt={0} {...extendedProps}>
         <Img src='/images/Sponsor_corner_1.svg' alt="decoration image" alignSelf='start' w={['20%','18%','15%','12%','10%']}></Img>
       <VStack top='-1'>
-        <Heading color="CSOrange" size={['sm','md','lg','xl','2xl']} textAlign='center' >Sponsors 2023</Heading>
-        <Text fontSize={['xs','sm','md','lg','xl']}>Empresas que nos acompañan</Text>
+        <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
+        <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
       <Grid paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)']}>
         {sponsors.map((sponsor)=>{
@@ -215,7 +217,7 @@ const Form = ({...extendedProps}) => {
   const LocalInput = ({...extendedProps}) => <Input focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
   
   return(
-    <VStack w='50%'>
+    <VStack w='50%' {...extendedProps}>
       <LocalInput placeholder="email" ></LocalInput>
       <LocalInput placeholder="asunto"></LocalInput>
       <Textarea height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps} placeholder='Mensjae'></Textarea>
