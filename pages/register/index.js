@@ -14,11 +14,13 @@ import {
 } from "@chakra-ui/react";
 
 import FirstStep from './firstStep'
+import SecondStep from './secondStep'
+import ThirdStep from './thirdStep';
 
 const steps = [
    <FirstStep/> ,
-   <h1> Step 1 </h1> ,
-   <h1> Step 2 </h1> ,
+   <SecondStep/> ,
+   <ThirdStep/> ,
 ];
 
 const Register = () => {
@@ -29,8 +31,19 @@ const Register = () => {
   return (
     <>
       {steps[activeStep]}
-      <Center paddingTop='10%'>
-        <Button onClick={nextStep}> Confirmar </Button>
+      <Center paddingTop='5%'>
+        <Button onClick={nextStep}
+          colorScheme="orange"
+          size={["sm", "lg"]}
+          height="48px"
+          width="200px"
+          border="5px"
+          color="black"
+          variant="solid"
+          bgColor="orange"
+          > 
+          Confirmar 
+        </Button>
       </Center>
     </>
   );

@@ -1,5 +1,4 @@
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import { extendTheme } from "@chakra-ui/react"
 import {
   Heading,
   Flex,
@@ -17,20 +16,14 @@ import {
   Input,
   HStack,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Image
 } from "@chakra-ui/react";
 
-const theme = extendTheme({ 
-    sm: "320px",
-    md: "768px",
-    lg: "960px",
-    xl: "1200px",
- })
-
-const FirstStep = () => {
+const SecondStep = () => {
   return (
     <VStack>
-       <Breadcrumb separator={">"} w='full' padding={"2%"} fontSize = "3xl">
+        <Breadcrumb separator={">"} w='full' padding={'2%'} fontSize = "3xl">
             <BreadcrumbItem>
                 <Text fontSize={['xl', '2xl', '3xl']}>Inscripcion</Text>
             </BreadcrumbItem>
@@ -38,13 +31,12 @@ const FirstStep = () => {
                 <Text color={"orange"} fontSize={['xl', '2xl', '3xl']}>Datos equipo</Text>
             </BreadcrumbItem>
        </Breadcrumb>
-        <VStack paddingTop='10%'>
-            <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el nombre de tu equipo:</Text>
-            <Input bg={"white"}/>
-            <Text fontSize={['xs', 'xl', '2xl']}>Recorda que el nombre debe ser apropiado para la competencia</Text>
-        </VStack>
+       <Text paddingTop={'5%'} paddingBottom={'5%'} fontSize={['xl', '2xl', '3xl']}> Subi aca el logo de tu equipo </Text>
+       <Image src={"/images/backup.svg"} bg="lightGray" borderRadius={"full"} boxSize={["200px", "300px"]}>
+
+       </Image>
     </VStack>
   );
 };
 //size={['sm','md','lg','xl','2xl']
-export default FirstStep
+export default SecondStep
