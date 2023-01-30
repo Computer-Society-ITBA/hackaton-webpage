@@ -119,9 +119,10 @@ const Categories = ({...extendedProps})=>{
   )
 }
 const Inscribite = ({...extendedProps})=>{
+  const imageWidth = ['35%','35%','30%','30%','30%']
   return(
       <Flex direction='row' width='100%' alignItems='center' height='20%' {...extendedProps}>
-        <Img src="/images/Inscribite_1.svg" alt="Decoration" width='25%' height='100%'></Img>
+        <Img src="/images/Inscribite_1.svg" alt="Decoration" width={imageWidth} height='100%'></Img>
         <Spacer/>
         <VStack justify='center' spacing='5%'>
           <Heading size={['xs','sm','md','md','lg']} textAlign='center' >
@@ -130,7 +131,7 @@ const Inscribite = ({...extendedProps})=>{
           <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
         </VStack>
         <Spacer/>
-        <Img src="/images/Inscribite_2.svg" alt="Decoration" width='25%' height='100%'></Img>
+        <Img src="/images/Inscribite_2.svg" alt="Decoration" width={imageWidth} height='100%'></Img>
       </Flex>
   )
 }
@@ -199,7 +200,7 @@ const SponsorsSection = ({...extendedProps}) =>{
         <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
-      <Grid paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)']}>
+      <Grid alignItems='center' paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)']}>
         {sponsors.map((sponsor)=>{
           return(
             <GridItem padding='4%' key={sponsor.name}>
@@ -217,7 +218,7 @@ const Form = ({...extendedProps}) => {
   const LocalInput = ({...extendedProps}) => <Input focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
   
   return(
-    <VStack w='50%' {...extendedProps}>
+    <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
       <LocalInput placeholder="email" ></LocalInput>
       <LocalInput placeholder="asunto"></LocalInput>
       <Textarea height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps} placeholder='Mensjae'></Textarea>
@@ -228,14 +229,14 @@ const Form = ({...extendedProps}) => {
 const DoubtSection = ({...extendedProps}) =>{
   const CS_img = '/images/IEEE_CS.svg'
   return(
-    <HStack width='full' justify='center' {...extendedProps}>
+    <Stack spacing='4%' direction={['column','column','row','row','row']} width='full' justify='center' px='4%' {...extendedProps}>
       <VStack spacing="4%">
         <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenes dudas?</Heading>
         <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contactanos!</Heading>
         <Img src={CS_img} alt='ITBA IEEE Computer Society image'></Img>
       </VStack>
       <Form/>
-    </HStack>
+    </Stack>
   )
 }
 const Home = () => {
@@ -249,7 +250,7 @@ const Home = () => {
       <JurySection pt='4%' zIndex={90}/>
       <WorkshopsSection pt='4%' zIndex={90}/>
       <SponsorsSection zIndex={90}/>
-      <DoubtSection zIndex={90}/>
+      <DoubtSection pt='4%' zIndex={90}/>
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
