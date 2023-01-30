@@ -136,11 +136,11 @@ const Inscribite = ({...extendedProps})=>{
 }
 const JurySection = ({...extendedProps}) => {
   const juries = [
-    {name: "Jose", imgSrc:"/images/jack_black.jpg"},
-    {name: "Tatu", imgSrc:"/images/jack_black.jpg"},
-    {name: "Mateo", imgSrc:"/images/jack_black.jpg"},
-    {name: "Naso", imgSrc:"/images/jack_black.jpg"},
-    {name: "Luciano", imgSrc:"/images/jack_black.jpg"}
+    {name: "Jose", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
+    {name: "Tatu", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
+    {name: "Mateo", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
+    {name: "Naso", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
+    {name: "Luciano", imgSrc:"/images/jack_black.jpg",details:"Buenas"}
   ]
   return(
     <VStack width='full' {...extendedProps}>
