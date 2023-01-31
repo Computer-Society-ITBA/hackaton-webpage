@@ -1,14 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY, ROLE_USER } = require('../middleware/roleMiddleware')
-const { getUser, getUsers, changePassword, userToJson } = require('./auth_util')
+const { getUser, getUsers, changePassword } = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
-const { db, storage, ref, signInWithEmailAndPassword, clientAuth, adminAuth, createUserWithEmailAndPassword } = require('../config')
-const { uploadBytes, getDownloadURL } = require('firebase/storage')
-const { addDoc, collection } = require('firebase/firestore')
-const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument } = require('./firestore_util')
+const { signInWithEmailAndPassword, clientAuth, createUserWithEmailAndPassword } = require('../config')
+const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument, verifyDocument } = require('./firestore_util')
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -191,6 +189,17 @@ router.post('/:userId/members/:memberId/documents',authMiddleware, upload.single
     }
 
     res.status(200).send(response);
+    return
+})
+
+router.put('/:userId/members/:memberId/documents/:documentId/verified', authMiddleware, async (req, res) => {
+    const response = await verifyDocument(req.params.userId, req.params.memberId, req.params.documentId)
+    if(response.error) {
+        res.status(400).send(response);
+        return 
+    }
+
+    res.status(204).send()
     return
 })
 

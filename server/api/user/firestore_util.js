@@ -82,12 +82,13 @@ async function getUserInfo(uid){
         return uploadBytes(pdfRef, file.buffer).then(
             async snapshot => {
                 const downloadUrl =  await getDownloadURL(snapshot.ref)
-                const fileData = {
+                let fileData = {
                     url: downloadUrl,
                     name: file.originalname,
                     verified: false
                 }
-                await addDoc(collection(db, USER_COLLECTION, userId, MEMBERS_COLLECTION,memberId, DOCUMENTS_COLLECTION),fileData)
+                const fileRef = await addDoc(collection(db, USER_COLLECTION, userId, MEMBERS_COLLECTION,memberId, DOCUMENTS_COLLECTION),fileData)
+                fileData.id = fileRef.id
                 return fileData
         })
     }
@@ -96,4 +97,15 @@ async function getUserInfo(uid){
     }
 }
 
-module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument}
+async function verifyDocument(userId, memberId, documentId) {
+    const data = {verified : true}
+    try {
+        await updateDoc(doc(db, USER_COLLECTION, userId, MEMBERS_COLLECTION, memberId, DOCUMENTS_COLLECTION, documentId), data)
+        return data
+    }
+    catch (err) {
+        return error(err.code, err.message)
+    }
+}
+
+module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument, verifyDocument}
