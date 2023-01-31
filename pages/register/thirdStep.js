@@ -35,9 +35,9 @@ const ThirdStep = () => {
             </BreadcrumbItem>
        </Breadcrumb>
         <Text paddingTop={"5%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> EMAIL </Text>
-        <Input w={['300px', '400px', '500px']} bg="white"/>
+        <Input borderColor={"gray"} focusBorderColor='white' w={['300px', '400px', '500px']} />
         <Text paddingTop={"5%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> CONTRASEÑA </Text>
-        <Input w={['300px', '400px', '500px']} bg="white"/>
+        <Input borderColor={"gray"} focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
     </VStack>
   );
 };

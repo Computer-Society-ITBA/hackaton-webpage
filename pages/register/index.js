@@ -15,12 +15,14 @@ import {
 
 import FirstStep from './firstStep'
 import SecondStep from './secondStep'
-import ThirdStep from './thirdStep';
+import ThirdStep from './thirdStep'
+import FourthStep from './fourthStep';
 
 const steps = [
    <FirstStep/> ,
    <SecondStep/> ,
    <ThirdStep/> ,
+   <FourthStep/>
 ];
 
 const Register = () => {
