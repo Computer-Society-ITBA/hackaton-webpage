@@ -178,7 +178,7 @@ router.get('/:userId/members', authMiddleware, async (req, res) => {
     })
 })
 
-router.post('/:userId/members/:memberId/documents',authMiddleware, upload.single('file'), async (req, res) => {
+router.post('/:userId/members/:memberId/documents',authMiddleware, roleMiddleware(ROLE_USER), upload.single('file'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No se encontro un archivo.');
     }
@@ -192,7 +192,7 @@ router.post('/:userId/members/:memberId/documents',authMiddleware, upload.single
     return
 })
 
-router.put('/:userId/members/:memberId/documents/:documentId/verified', authMiddleware, async (req, res) => {
+router.put('/:userId/members/:memberId/documents/:documentId/verified', authMiddleware, roleMiddleware(ROLE_ADMIN), async (req, res) => {
     const response = await verifyDocument(req.params.userId, req.params.memberId, req.params.documentId)
     if(response.error) {
         res.status(400).send(response);
