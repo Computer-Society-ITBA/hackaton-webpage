@@ -4,24 +4,17 @@ import {
   Flex,
   Box,
   Text,
-  useColorModeValue,
   useBreakpointValue,
   Button,
   Link,
   Grid,
-  Container,
   Img,
   VStack,
   Divider,
-  StackDivider,
   Spacer,
   HStack,
-  Wrap,
-  WrapItem,
-  Center,
   GridItem,
   Stack,
-  AspectRatio,
   Input,
   Textarea,
 } from "@chakra-ui/react";
@@ -31,16 +24,11 @@ import NoSSR from "../components/NoSSR";
 import {useWindowSize} from "rooks";
 import ParticleImage, { forces } from "react-particle-image";
 import CustomParticleOptions from "../components/CustomParticleOptions.ts";
-import TrackUnit from "../components/TrackUnit";
 import SponsorLogo from "../components/SponsorLogo";
-import { speakers } from "../common/data/speakers";
-import SpeakerProfile from "../components/SpeakerProfile";
 import styled from "@emotion/styled";
-import NextLink from "next/link";
 import ParticlesLogo from "../components/ParticlesLogo"
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from '../components/Jury';
-import Head from "next/head";
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -263,23 +251,8 @@ const HomeOld = () => {
   const cyberImage = "/images/cyber-security.svg";
   const cryptoImage = "/images/cryptocurrency.svg";
   const robotImage = "/images/robot.svg";
-
-  const particlesInit = useCallback(async engine => {
-      console.log(engine);
-      // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-      // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-      // starting from v2 you can add only the features you need reducing the bundle size
-      await loadFull(engine);
-  }, []);
-
-  const particlesLoaded = useCallback(async container => {
-      await console.log(container);
-  }, []);
   return (
     <Flex direction="column">
-        <Particles id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded} options={particlesConfig} />
       <Flex
         alignItems="center"
         justifyContent="space-between"
