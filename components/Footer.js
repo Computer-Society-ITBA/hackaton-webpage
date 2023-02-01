@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 const Footer = () =>{
   const currentYear = new Date().getFullYear();
-  const HackITBAImage = '/images/IEEE_CS_footer.svg' //TODO: cambiar
+  const HackITBAImage = '/images/hackitba_negro.svg' 
   const CSImage = '/images/IEEE_CS_footer.svg'
   return (
     <VStack mt="10" w='full'>
@@ -12,8 +12,8 @@ const Footer = () =>{
         derechos reservados.
       </Text>
       <HStack w='full' backgroundColor='white' justify='end'>
-        <Img src={HackITBAImage} alt='HackITBA image' width='20%'></Img>
-        <Img src={CSImage} alt='IEEE Computer Society image' width='20%'></Img>
+        <Img src={HackITBAImage} alt='HackITBA image' width={['25%','22%','18%','16%','16%']}></Img>
+        <Img src={CSImage} alt='IEEE Computer Society image' width={['25%','22%','18%','16%','16%']}></Img>
       </HStack>
     </VStack>
   )
