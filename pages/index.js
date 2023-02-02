@@ -98,11 +98,28 @@ const GeneralInfo = ({...extendedProps}) => {
   )
 }
 const Categories = ({...extendedProps})=>{
+  const categories = [
+    {
+        name:"Economía y Descentralización",
+        imgSrc:'/images/economia.svg',
+        description:'Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.',
+        scope:['billetera Web 3.0','Juegos en Web 3.0']
+    },
+    {
+        name:"Automatización Inteligente",
+        imgSrc:'/images/automatizacion.svg',
+        description:'Solucionar problemas de automatización creando herramientas para aumentar la productividad general.',
+        scope:['billetera Web 3.0','Juegos en Web 3.0']
+    }
+  ]
   return(
     <HStack paddingX='10%' w='full' justify='center' spacing='20%' {...extendedProps}>
       {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
-      <CategoryLogo names={["Economía y", "Descentralización"]} imgSrc='/images/economia.svg'/>
-      <CategoryLogo names={["Automatización","Inteligente"]} imgSrc='/images/automatizacion.svg'/>
+      {categories.map((category)=>{
+        return (
+          <CategoryLogo category={category}></CategoryLogo>
+        )
+      })}
     </HStack>
   )
 }
