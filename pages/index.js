@@ -29,6 +29,8 @@ import styled from "@emotion/styled";
 import ParticlesLogo from "../components/ParticlesLogo"
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from '../components/Jury';
+import AutomationLogo from "../components/AutomationLogo";
+import EconomyLogo from "../components/EconomyLogo";
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -101,15 +103,15 @@ const Categories = ({...extendedProps})=>{
   const categories = [
     {
         name:"Economía y Descentralización",
-        imgSrc:'/images/economia.svg',
         description:'Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.',
-        scope:['billetera Web 3.0','Juegos en Web 3.0']
+        scope:['billetera Web 3.0','Juegos en Web 3.0'],
+        logo: EconomyLogo
     },
     {
         name:"Automatización Inteligente",
-        imgSrc:'/images/automatizacion.svg',
         description:'Solucionar problemas de automatización creando herramientas para aumentar la productividad general.',
-        scope:['billetera Web 3.0','Juegos en Web 3.0']
+        scope:['billetera Web 3.0','Juegos en Web 3.0'],
+        logo: AutomationLogo
     }
   ]
   return(

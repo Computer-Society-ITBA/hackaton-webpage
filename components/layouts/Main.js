@@ -3,7 +3,7 @@ import Head from "next/head";
 import { Box, Container, Flex } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-
+import svg from '../../public/images/economia.svg'
 const Main = ({ children, router }) => {
   return (
     <Box as="main" pb={8} overflow="hidden">
