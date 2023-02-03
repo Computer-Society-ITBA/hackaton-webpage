@@ -13,6 +13,10 @@ const CategoryLogo = (props) => {
  const names = category.name.split(new RegExp(" (?=[^y])"))
  const { isOpen, onOpen, onClose} = useDisclosure()
  const [onHover, setOnHover] = useState(false);
+ const closeModal = ()=>{
+    setOnHover(false)
+    onClose()
+ }
  return(
     // queda raro que cuando te acercas a la foto ya te toma el hover, pero bueno es por la caja que la contiene con el texto
     <Box onClick={onOpen} boxSize="25%" direction="column" w='100%' onMouseEnter={()=>setOnHover(true)} onMouseLeave={()=>setOnHover(false)} _hover={{
@@ -23,14 +27,14 @@ const CategoryLogo = (props) => {
         transform: "scale(0.9)",
         transition: "ease-in-out 0.1s",
       }} >
-        <Modal isOpen={isOpen} onClose={onClose} scrollBehavior='inside' size={ModalSize} isCentered>
+        <Modal isOpen={isOpen} onClose={closeModal} scrollBehavior='inside' size={ModalSize} isCentered>
             <ModalOverlay />
             <ModalContent backgroundColor='#1C1C1C' borderWidth='2px' borderColor='CSGreen'>
                 <ModalHeader>
                     <HStack>
                         <Heading fontSize={HeadingSize}>{category.name}</Heading>
                         <Spacer></Spacer>
-                        <IconButton onClick={onClose} icon={<CloseIcon/>}></IconButton>
+                        <IconButton onClick={closeModal} icon={<CloseIcon/>}></IconButton>
                     </HStack>
                 </ModalHeader>
                 <ModalBody p={0}>

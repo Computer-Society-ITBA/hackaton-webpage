@@ -119,7 +119,7 @@ const Categories = ({...extendedProps})=>{
       {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
       {categories.map((category)=>{
         return (
-          <CategoryLogo category={category}></CategoryLogo>
+          <CategoryLogo key={category.name} category={category}></CategoryLogo>
         )
       })}
     </HStack>
