@@ -39,9 +39,9 @@ const FirstStep = () => {
             </BreadcrumbItem>
        </Breadcrumb>
         <VStack paddingTop='10%'>
-            <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el nombre de tu equipo:</Text>
-            <Input borderColor={"gray"} focusBorderColor='white' />
-            <Text fontSize={['xs', 'xl', '2xl']}>Recorda que el nombre debe ser apropiado para la competencia</Text>
+            <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
+            <Input textColor={"black"} bg="white" focusBorderColor='white' />
+            <Text fontSize={['xs', 'xl', '2xl']}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
         </VStack>
     </VStack>
   );
