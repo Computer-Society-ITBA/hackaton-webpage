@@ -14,6 +14,7 @@ import {
   Stack,
   Input,
   Textarea,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
@@ -133,17 +134,16 @@ const Inscribite = ({...extendedProps})=>{
 }
 const JurySection = ({...extendedProps}) => {
   const juries = [
-    {name: "Jose", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
-    {name: "Tatu", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
-    {name: "Mateo", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
-    {name: "Naso", imgSrc:"/images/jack_black.jpg",details:"Buenas"},
-    {name: "Luciano", imgSrc:"/images/jack_black.jpg",details:"Buenas"}
+    {name: "Gabriela Macagni", imgSrc:"/images/juries/GabrielaMacagni.jpg",details:"Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina"},
+    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informatica ITBA, Investigador adjunto del CONICET especializado en machine learning"},
+    {name: "Gabriel Gruber", imgSrc:"/images/juries/GabrielGruber.png",details:"Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati"},
+    {name: "Pablo Sabbatella", imgSrc:"/images/juries/PabloSabbatella.jpeg",details:"Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto"},
   ]
   return(
     <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
       <Text fontSize={TextSize}>Conoce a nuestros jurados</Text>
-      <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)','repeat(5, 1fr)']} justifyItems='center' width='full' spacing='3%'>
+      <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' spacing='3%'>
         {juries.map((jury,index)=>{
           return(
           <GridItem key={index}>
@@ -190,11 +190,11 @@ const SponsorsSection = ({...extendedProps}) =>{
         <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
-      <Grid alignItems='center' paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']}>
+      <Grid paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']}>
         {sponsors.map((sponsor)=>{
           return(
             <GridItem padding='4%' key={sponsor.name}>
-              <SponsorLogo link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+              <SponsorLogo height={['100%','80%','80%','70%','70%']} width={['100%','80%','80%','70%','70%']} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
             </GridItem>
           )
         })}
