@@ -44,7 +44,7 @@ const CategoryLogo = (props) => {
                             <category.logo
                             height='100%' 
                             width='100%'
-                            color='none'
+                            color='white'
                             stroke_width='4px'
                             stroke='white'
                             />
@@ -69,7 +69,7 @@ const CategoryLogo = (props) => {
             <category.logo 
             height='55%' 
             width='55%'
-            color='none'
+            color={onHover?"#01CBA1":'white'}
             stroke_width='4px'
             stroke={onHover?"#01CBA1":'white'}
             />
