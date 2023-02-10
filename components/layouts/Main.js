@@ -6,7 +6,7 @@ import Footer from "../Footer";
 import svg from '../../public/images/economia.svg'
 const Main = ({ children, router }) => {
   return (
-    <Box as="main" pb={8} overflow="hidden">
+    <Box as="main" overflow="hidden">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Juan Pablo Oriana" />
