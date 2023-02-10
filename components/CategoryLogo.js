@@ -51,12 +51,13 @@ const CategoryLogo = (props) => {
                         </HStack>
                         <HStack w='full' align='start'>
                             <Img alignSelf='end' src="/images/Category_decoration.svg" alt="decoration"/>
-                            <VStack p='4%'>
+                            {/* Alcance de la categoria */}
+                            {/* <VStack p='4%'>
                                 <Text fontWeight='bold' fontSize={HeadingSize} >Alcance de la categoría</Text>
                                 <UnorderedList> 
                                     {category.scope.map((scopeItem)=> <ListItem key={scopeItem}>{scopeItem}</ListItem>)}
                                 </UnorderedList>
-                            </VStack>
+                            </VStack> */}
                         </HStack>
                     </VStack>
                 </ModalBody>

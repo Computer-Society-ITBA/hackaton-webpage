@@ -75,7 +75,8 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      // bg={useColorModeValue("#1C1C1C", "#1C1C1C")} sin esto es transparente (tipo vidrio), no se si lo queremos asi 
+      bg={useColorModeValue("#1C1C1C", "#1C1C1C")}// sin esto es transparente (tipo vidrio), no se si lo queremos asi 
+      //Saco lo del navbar transparente porque no funciona en safari
       style={{ backdropFilter: "blur(10px)" }}
       borderBottom="1px solid #676C74"
       height="64px"
@@ -100,13 +101,13 @@ const Navbar = (props) => {
         <Box align="right" alignItems="center" marginLeft="auto" display="flex">
           {/* { <ThemeToggleButton />} */}
 
-          { <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
+          {/* <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
                 <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INGRESAR</PrimaryButton>
               </a>
             </NextLink>
-          </Box> }
+          </Box> */}
         </Box>
       </Container>
     </Box>
