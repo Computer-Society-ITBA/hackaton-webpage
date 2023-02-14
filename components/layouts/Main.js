@@ -12,18 +12,18 @@ const Main = ({ children, router }) => {
         <meta name="author" content="Juan Pablo Oriana" />
           <title>HackIT-BA! by Computer Society ITBA</title>
           <meta name="title" content="HackIT-BA! by Computer Society ITBA"/>
-          <meta name="description" content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."/>
+          <meta name="description" content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."/>
           <meta property="og:type" content="website"/>
           <meta property="og:url" content="https://hackitba.vercel.app"/>
           <meta property="og:title" content="HackIT-BA! by Computer Society ITBA"/>
-          <meta property="og:description" content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."/>
-          <meta property="og:image" content="https://hackitba.vercel.app/images/flyer.jpeg"/>
+          <meta property="og:description" content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."/>
+          <meta property="og:image" content="https://hackitba.vercel.app/images/flyer.jpg"/>
 
           <meta property="twitter:card" content="summary_large_image"/>
-          <meta property="twitter:url" content="https://hackitba.vercel.app/images/flyer.jpeg"/>
+          <meta property="twitter:url" content="https://hackitba.vercel.app/images/flyer.jpg"/>
           <meta property="twitter:title" content="HackIT-BA! by Computer Society ITBA"/>
-          <meta property="twitter:description" content="HackIT-BA es una hackathon gratis de 36hs el 1, 2 y 3 de abril, enmarcada en 3 categorías principales: Ciberseguridad y privacidad, Productividad y Automatización e Inclusión Financera."/>
-          <meta property="twitter:image" content="https://hackitba.vercel.app/images/flyer.jpeg"/>
+          <meta property="twitter:description" content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."/>
+          <meta property="twitter:image" content="https://hackitba.vercel.app/images/flyer.jpg"/>
         </Head>
         <Navbar />
         {/* No se como hacer para que deje bien el espacio con el position fixex de navbar, por ahora dejo el padding */}
