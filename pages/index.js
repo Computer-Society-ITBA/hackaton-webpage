@@ -204,15 +204,39 @@ const SponsorsSection = ({...extendedProps}) =>{
   )
 }
 
+//Tiene que estar definido aca, si no pierde focus cada vez que se agrega una tecla 
+//https://github.com/final-form/react-final-form/issues/730
+const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
 const Form = ({...extendedProps}) => {
-  const LocalInput = ({...extendedProps}) => <Input focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
-  
+
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [body, setBody] = useState("")
+  const [emailError, setEmailError] = useState(false);
+  //Estos errores estan para que de entrada no este como error, pero que si cuando empiece a completar y deje ese
+  const [subjectError, setSubjectError] = useState(false);
+  const [bodyError, setBodyError] = useState(false);
   return(
     <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
-      <LocalInput placeholder="email" ></LocalInput>
-      <LocalInput placeholder="asunto"></LocalInput>
-      <Textarea height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps} placeholder='Mensjae'></Textarea>
-      <PrimaryButton width='full'>Enviar</PrimaryButton>
+      <LocalInput onClick={()=>setEmailError(email.length===0)} onChange={(event)=>{setEmail(event.target.value);setEmailError(event.target.value==="")}} placeholder="email" value ={email} isInvalid = {emailError}  ></LocalInput>
+      <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="asunto" value={subject} isInvalid = {subjectError}></LocalInput>
+      <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensajae'></Textarea>
+      <PrimaryButton  width='full' _disabled={{
+       "border-radius": "4px",
+       "opacity":0.4,
+       "font-weight": 500,
+       "border-width": "1px",
+       "transition": "all 0.3s ease",
+       "padding": "4% 8%",
+        "&:hover":{
+    "background-color": "black",
+    "color": "#FFFFFF",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "borderColor":'var(--chakra-colors-chakra-border-color)',
+    "svg path":{
+    }
+  }}} isDisabled={ emailError || subjectError || bodyError || email===""}>Enviar</PrimaryButton>
     </VStack>
   )
 }
@@ -242,7 +266,7 @@ const Home = () => {
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt='4%'/>
-      {/* <DoubtSection pt='4%' zIndex={90}/> */}
+      <DoubtSection pt='4%' zIndex={90}/>
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
