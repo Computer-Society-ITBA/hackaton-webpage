@@ -23,6 +23,7 @@ import CategoryLogo from "../components/CategoryLogo";
 import Jury from '../components/Jury';
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
+const joi = require('joi');
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -204,11 +205,13 @@ const SponsorsSection = ({...extendedProps}) =>{
   )
 }
 
+function validateEmail(email){
+  return joi.string().email({tlds:{allow:false}}).validate(email).error === undefined
+}
 //Tiene que estar definido aca, si no pierde focus cada vez que se agrega una tecla 
 //https://github.com/final-form/react-final-form/issues/730
 const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
 const Form = ({...extendedProps}) => {
-
   const [email, setEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [body, setBody] = useState("")
@@ -218,7 +221,7 @@ const Form = ({...extendedProps}) => {
   const [bodyError, setBodyError] = useState(false);
   return(
     <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
-      <LocalInput onClick={()=>setEmailError(email.length===0)} onChange={(event)=>{setEmail(event.target.value);setEmailError(event.target.value==="")}} placeholder="email" value ={email} isInvalid = {emailError}  ></LocalInput>
+      <LocalInput onClick={()=>setEmailError(!validateEmail(email))} onChange={(event)=>{setEmail(event.target.value);setEmailError(!validateEmail(event.target.value))}} placeholder="email" value ={email} isInvalid = {emailError}  ></LocalInput>
       <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="asunto" value={subject} isInvalid = {subjectError}></LocalInput>
       <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensajae'></Textarea>
       <PrimaryButton  width='full' _disabled={{
