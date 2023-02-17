@@ -16,4 +16,5 @@ const ROLE_ADMIN = 'admin'
 const ROLE_JURY = 'jury'
 const ROLE_MENTOR = 'mentor'
 const ROLE_USER = 'user'
-module.exports = {roleMiddleware,ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER }
+const ROLE_WEBPAGE = 'webpage' 
+module.exports = {roleMiddleware,ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER, ROLE_WEBPAGE }
