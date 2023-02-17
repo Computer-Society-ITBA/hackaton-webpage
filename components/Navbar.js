@@ -13,52 +13,59 @@ import {
 import styled from "@emotion/styled";
 
 const PrimaryButton = styled(Button)`
-  font-size: 14px; 
-  border-radius: 8px; 
+  border-radius: 4px;
   font-weight: 500;
   border-width: 1px;
   transition: all 0.3s ease;
-  padding: 8px 16px;
-  height: 32px;
+  padding: 4% 8%;
+
+  svg path {
+    fill: #1e212a;
+    transition: all 0.3s ease;
+  }
 
   &:hover {
     background-color: transparent;
     color: #2fe0b5;
     border: 1px solid #2fe0b5;
+
+    svg path {
+      fill: #2fe0b5;
+    }
   }
 `;
 
-
-const LinkItem = ({ href, path, target, children, ...props }) => {
-  const active = path === href;
-  const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
-  if (target !== "_blank") {
-    return (
-      <NextLink href={href} passHref>
-        <Link
-          p={2}
-          bg={active ? "grassTeal" : undefined}
-          color={active ? "#202023" : inactiveColor}
-          {...props}
-        >
-          {children}
-        </Link>
-      </NextLink>
-    );
-  }
-  return (
-    <Link
-      p={2}
-      bg={active ? "grassTeal" : undefined}
-      color={active ? "#202023" : inactiveColor}
-      href={href}
-      target="_blank"
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-};
+//No se usa 
+// const LinkItem = ({ href, path, target, children, ...props }) => {
+//   const active = path === href;
+//   const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
+//   if (target !== "_blank") {
+//     return (
+//       <NextLink href={href} passHref>
+//         <Link
+//           p={2}
+//           bg={active ? "grassTeal" : undefined}
+//           color={active ? "#202023" : inactiveColor}
+//           {...props}
+//         >
+//           {children}
+//         </Link>
+//       </NextLink>
+//     );
+//   }
+//   return (
+//     <Link
+//       p={2}
+//       bg={active ? "grassTeal" : undefined}
+//       color={active ? "#202023" : inactiveColor}
+//       href={href}
+//       target="_blank"
+//       {...props}
+//     >
+//       {children}
+//     </Link>
+//   );
+// };
 
 const Navbar = (props) => {
   const { path } = props;
@@ -68,7 +75,8 @@ const Navbar = (props) => {
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("#1E212A", "#1E212A")}
+      bg={useColorModeValue("#1C1C1C", "#1C1C1C")}// sin esto es transparente (tipo vidrio), no se si lo queremos asi 
+      //Saco lo del navbar transparente porque no funciona en safari
       style={{ backdropFilter: "blur(10px)" }}
       borderBottom="1px solid #676C74"
       height="64px"
@@ -91,12 +99,12 @@ const Navbar = (props) => {
         </Flex>
 
         <Box align="right" alignItems="center" marginLeft="auto" display="flex">
-          {/* <ThemeToggleButton /> */}
+          {/* { <ThemeToggleButton />} */}
 
           {/* <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             <NextLink href="https://bit.ly/hackit-ba" passHref>
               <a target="_blank" rel="noreferrer">
-                <PrimaryButton colorScheme="brand">Inscribite</PrimaryButton>
+                <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INGRESAR</PrimaryButton>
               </a>
             </NextLink>
           </Box> */}
