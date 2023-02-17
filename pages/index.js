@@ -232,7 +232,7 @@ const Form = ({...extendedProps}) => {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
+        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
       },
       body: JSON.stringify(msg)
     }
