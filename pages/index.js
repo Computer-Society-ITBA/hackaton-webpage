@@ -23,7 +23,9 @@ import CategoryLogo from "../components/CategoryLogo";
 import Jury from '../components/Jury';
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
+import { m } from "framer-motion";
 const joi = require('joi');
+
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -205,9 +207,6 @@ const SponsorsSection = ({...extendedProps}) =>{
   )
 }
 
-function validateEmail(email){
-  return joi.string().email({tlds:{allow:false}}).validate(email).error === undefined
-}
 //Tiene que estar definido aca, si no pierde focus cada vez que se agrega una tecla 
 //https://github.com/final-form/react-final-form/issues/730
 const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
@@ -219,27 +218,53 @@ const Form = ({...extendedProps}) => {
   //Estos errores estan para que de entrada no este como error, pero que si cuando empiece a completar y deje ese
   const [subjectError, setSubjectError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const validateEmail = (email)=>{
+    return joi.string().email({tlds:{allow:false}}).validate(email).error === undefined
+  }
+  const sendEmail = async()=>{
+    const msg = {
+      email:'jmentasti@itba.edu.ar',
+      subject: subject,
+      body: body
+    }
+    const fetchOptions = {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
+      },
+      body: JSON.stringify(msg)
+    }
+    setIsLoading(true)
+    try{
+      await fetch("/api/mail/send",fetchOptions)
+    }catch(err){
+      console.log(err)
+    }
+    setIsLoading(false)
+  }
   return(
     <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
       <LocalInput onClick={()=>setEmailError(!validateEmail(email))} onChange={(event)=>{setEmail(event.target.value);setEmailError(!validateEmail(event.target.value))}} placeholder="email" value ={email} isInvalid = {emailError}  ></LocalInput>
       <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="asunto" value={subject} isInvalid = {subjectError}></LocalInput>
       <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensajae'></Textarea>
       <PrimaryButton  width='full' _disabled={{
-       "border-radius": "4px",
+       "borderRadius": "4px",
        "opacity":0.4,
-       "font-weight": 500,
-       "border-width": "1px",
+       "fontWeight": 500,
+       "borderWidth": "1px",
        "transition": "all 0.3s ease",
        "padding": "4% 8%",
         "&:hover":{
-    "background-color": "black",
+    "backgroundColor": "black",
     "color": "#FFFFFF",
-    "border-radius": "4px",
-    "border-width": "1px",
+    "borderRadius": "4px",
+    "borderWidth": "1px",
     "borderColor":'var(--chakra-colors-chakra-border-color)',
     "svg path":{
     }
-  }}} isDisabled={ emailError || subjectError || bodyError || email===""}>Enviar</PrimaryButton>
+  }}} isDisabled={ emailError || subjectError || bodyError || email==="" || subject==="" || body===""} isLoading={isLoading} onClick={sendEmail}>Enviar</PrimaryButton>
     </VStack>
   )
 }
