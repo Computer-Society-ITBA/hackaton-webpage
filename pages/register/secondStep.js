@@ -1,4 +1,5 @@
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import { useEffect } from 'react';
 import {
   Heading,
   Flex,
@@ -17,10 +18,11 @@ import {
   HStack,
   Breadcrumb,
   BreadcrumbItem,
-  Image
+  Image,
+  Center
 } from "@chakra-ui/react";
 
-const SecondStep = () => {
+const SecondStep = ({nextStep}) => {
 
   const divStyle = {
     textAlign: "center",
@@ -33,6 +35,11 @@ const SecondStep = () => {
     padding:"2.5%"
   }
 
+  const moveForward = () => {
+    //Asign image with setter
+    nextStep()
+  }
+
   return (
     <VStack>
         <Breadcrumb separator={">"} w='full' padding={'2%'} fontSize = "3xl">
@@ -43,12 +50,26 @@ const SecondStep = () => {
                 <Text color={"orange"} fontSize={['xl', '2xl', '3xl']}>Datos equipo</Text>
             </BreadcrumbItem>
        </Breadcrumb>
-       <Text paddingTop={'2%'} paddingBottom={'5%'} fontSize={['xl', '2xl', '3xl']}> Subi aca el <Text as="span" color="orange"> logo de tu equipo</Text> </Text>
+       <Text paddingTop={'1%'} paddingBottom={'5%'} fontSize={['xl', '2xl', '3xl']}> Subi aca el <Text as="span" color="orange"> logo de tu equipo</Text> </Text>
        <div style={divStyle}>
-        <Image src={"/images/backup.svg"} borderRadius={"full"} boxSize={["200px", "300px"]}>
+        <Image src={"/images/backup.svg"} borderRadius={"full"} boxSize={["150px", "250px"]}>
 
         </Image>
        </div>
+       <Center paddingTop='2%'>
+          <Button onClick={moveForward}
+            colorScheme="orange"
+            size={["sm", "lg"]}
+            height="48px"
+            width="200px"
+            border="5px"
+            color="black"
+            variant="solid"
+            bgColor="orange"
+            > 
+            Confirmar 
+          </Button>
+        </Center>
     </VStack>
   );
 };

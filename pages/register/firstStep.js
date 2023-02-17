@@ -17,8 +17,10 @@ import {
   Input,
   HStack,
   Breadcrumb,
-  BreadcrumbItem
+  BreadcrumbItem,
+  Center,
 } from "@chakra-ui/react";
+import { useState } from 'react';
 
 const theme = extendTheme({ 
     sm: "320px",
@@ -27,7 +29,16 @@ const theme = extendTheme({
     xl: "1200px",
  })
 
-const FirstStep = () => {
+const FirstStep = ({setName, nextStep}) => {
+
+  const [value, setValue] = useState("");
+  const handleChange = (event) => {setValue(event.target.value);}
+
+  const moveForward = () =>{
+    setName(value)
+    nextStep()
+  }
+
   return (
     <VStack>
        <Breadcrumb separator={">"} w='full' padding={"2%"} fontSize = "3xl">
@@ -38,11 +49,27 @@ const FirstStep = () => {
                 <Text color={"orange"} fontSize={['xl', '2xl', '3xl']}>Datos equipo</Text>
             </BreadcrumbItem>
        </Breadcrumb>
-        <VStack paddingTop='10%'>
+        <VStack paddingTop='5%'>
             <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
-            <Input textColor={"black"} bg="white" focusBorderColor='white' />
+            <Input value={value} onChange={handleChange} textColor={"black"} bg="white" focusBorderColor='white' />
             <Text fontSize={['xs', 'xl', '2xl']}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
         </VStack>
+
+        <Center paddingTop='2%'>
+          <Button onClick={moveForward}
+            colorScheme="orange"
+            size={["sm", "lg"]}
+            height="48px"
+            width="200px"
+            border="5px"
+            color="black"
+            variant="solid"
+            bgColor="orange"
+            > 
+            Confirmar 
+          </Button>
+        </Center>
+       
     </VStack>
   );
 };
