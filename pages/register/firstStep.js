@@ -35,6 +35,11 @@ const FirstStep = ({setName, nextStep}) => {
   const handleChange = (event) => {setValue(event.target.value);}
 
   const moveForward = () =>{
+
+    if (value == ""){
+      return
+    }
+
     setName(value)
     nextStep()
   }
@@ -52,6 +57,7 @@ const FirstStep = ({setName, nextStep}) => {
         <VStack paddingTop='5%'>
             <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
             <Input value={value} onChange={handleChange} textColor={"black"} bg="white" focusBorderColor='white' />
+            <Text fontSize={['2xs', 'lg', 'xl']}>{value===""? "El nombre no puede estar vacio" : ""}</Text>
             <Text fontSize={['xs', 'xl', '2xl']}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
         </VStack>
 

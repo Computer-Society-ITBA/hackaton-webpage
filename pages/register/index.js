@@ -26,33 +26,49 @@ const doSmth = () => console.log("hey");
 const Register = () => {
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState();
-  const [email, setEmail] = useState();
+  const [image, setImage] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
-  const [participant1, setParticipant1] = useState();
-  const [participant2, setParticipant2] = useState();
-  const [participant3, setParticipant3] = useState();
-  const [participant4, setParticipant4] = useState();
-  const [desc1, setDesc1] = useState();
-  const [desc2, setDesc2] = useState();
+  const [participant1, setParticipant1] = useState("");
+  const [participant2, setParticipant2] = useState("");
+  const [participant3, setParticipant3] = useState("");
+  const [participant4, setParticipant4] = useState("");
+  const [desc1, setDesc1] = useState("");
+  const [desc2, setDesc2] = useState("");
 
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
   });
 
+  const registerUser = async () => {
+    await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        "email": email,
+	      "password": password,
+        "name": name 
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      },
+    })
+    .then((response) => {response.json})
+    .then((data) => console.log(data))
+    .catch((e) => console.log(e.message))
+  }
+
   const steps = [
     <FirstStep setName={setName} nextStep={nextStep}/> ,
-    <SecondStep setImage={setImage} nextStep={nextStep}/> ,
-    <ThirdStep setEmail={setEmail} setPassword={setPassword} nextStep={nextStep}/> ,
+    // <SecondStep setImage={setImage} nextStep={nextStep}/> ,
+    <ThirdStep setEmail={setEmail} setPassword={setPassword} nextStep={nextStep} registerUser = {registerUser}/> ,
     <FourthStep setParticipant1={setParticipant1} setParticipant2={setParticipant2} setParticipant3={setParticipant3} setParticipant4={setParticipant4} nextStep={nextStep}/>,
     <FifthStep setDesc1={setDesc1} setDesc2={setDesc2} nextStep={nextStep}/>
  ];
  
-
+ 
   return (
    
     <>
-      {console.log(name)}
       {steps[activeStep]}
     </>
   );
