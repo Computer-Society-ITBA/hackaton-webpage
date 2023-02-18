@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
 const { signInWithEmailAndPassword, clientAuth, createUserWithEmailAndPassword } = require('../config')
-const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument, verifyDocument } = require('./firestore_util')
+const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument, verifyDocument, addTeam, validateTeam} = require('./firestore_util')
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -43,19 +43,23 @@ router.post('/login', async (req, res) => {
 router.post('/', async (req, res) => {
     // SOLO algunos roles deberían poder acceder
     //lista todos los usuarios  
-    const { email, password } = req.body
+    const { email, password, name } = req.body
     try {
-        await schema.validateAsync({ email: email, password: password })
+        await schema.validateAsync({ email: email, password: password, name: name})
 
     } catch (err) {
-        return res.status(400).send(error(1, "Missing email or password"))
+        return res.status(400).send(error(1, "Missing email, password or name"))
     }
+  
     try {
+        await validateTeam(name)
         const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
+        await addTeam(createdUser.user.uid, name)
+        //create
         res.status(200).send({ email: createdUser.user.email, uid: createdUser.user.uid })
     }
     catch (err) {
-        res.status(400).send({ 'result': 'User already exists or password invalid' })
+        res.status(400).send({ 'result': 'User or Team already exists or password invalid' })
     }
 
     return //hacer send no hace que se deje de ejecutar 

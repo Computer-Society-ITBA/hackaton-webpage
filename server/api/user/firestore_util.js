@@ -1,4 +1,4 @@
-const { doc, setDoc, updateDoc, deleteDoc, getDocs, collection, addDoc, getDoc} = require("firebase/firestore") 
+const { doc, setDoc, updateDoc, deleteDoc, getDocs, collection, query, where, addDoc, getDoc} = require("firebase/firestore") 
 const {error} = require('../util')
 const {db, storage} = require('../config')
 const {uploadBytes, getDownloadURL, ref} = require('firebase/storage')
@@ -8,6 +8,24 @@ const MEMBERS_COLLECTION = 'members'
 const DOCUMENTS_COLLECTION = 'documents'
 
 //si doc se usa con varios argumentos, la logica creo que es: [collection, document, collection, document, ...]
+async function validateTeam(name) {
+    const q = query(collection(db, USER_COLLECTION), where("name", "==", name));
+    const res = await getDocs(q)
+    if(!res.empty){
+        throw {message : "Team must be unique"}
+    }
+
+}
+async function addTeam(uid, name){
+    try{
+        const data = {name: name}
+        await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        return data
+    }catch(err){
+        console.log(err)
+        return error(err.code, err.message)
+    }
+}
 async function addMember(uid, memberDNI, memberEmail, memberFullName){
     const data = {
         full_name:  memberFullName,
@@ -108,4 +126,4 @@ async function verifyDocument(userId, memberId, documentId) {
     }
 }
 
-module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument, verifyDocument}
+module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument, verifyDocument, addTeam, validateTeam}
