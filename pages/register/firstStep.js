@@ -72,7 +72,7 @@ const FirstStep = ({setName, name, nextStep}) => {
             variant="solid"
             bgColor="orange"
             > 
-            Confirmar 
+            Siguiente 
           </Button>
         </Center>
        

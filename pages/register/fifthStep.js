@@ -23,10 +23,10 @@ import {
   Center
 } from "@chakra-ui/react";
 
-const FifthStep = ({setDesc1, setDesc2, nextStep,prevStep}) => {
+const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
 
-  const [d1, setD1] = useState()
-  const [d2, setD2] = useState()
+  const [d1, setD1] = useState(desc1)
+  const [d2, setD2] = useState(desc2)
 
   const handleD1 = (e) => {
     setD1(e.target.value)
@@ -45,6 +45,10 @@ const FifthStep = ({setDesc1, setDesc2, nextStep,prevStep}) => {
     setDesc2(d2)
     // callApi()
     
+  }
+  const moveBackwards = () => {
+    setDesc1(d1)
+    setDesc2(d2)    
   }
 
   return (
@@ -82,11 +86,12 @@ const FifthStep = ({setDesc1, setDesc2, nextStep,prevStep}) => {
               border="5px"
               color="black"
               variant="solid"
-              bgColor="orange"
+              bgColor="CSGreen"
+              _hover={{"backgroundColor":'#05eda7'}}
               > 
               Confirmar 
             </Button>
-            <Button onClick={moveForward}
+            <Button onClick={moveBackwards}
               colorScheme="orange"
               size={["sm", "lg"]}
               height="48px"
@@ -96,7 +101,7 @@ const FifthStep = ({setDesc1, setDesc2, nextStep,prevStep}) => {
               variant="solid"
               bgColor="orange"
               > 
-              Confirmar 
+              Inscribirse 
             </Button>
             </HStack>
         </Center>

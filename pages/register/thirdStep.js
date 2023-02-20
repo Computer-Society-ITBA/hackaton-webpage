@@ -81,14 +81,14 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
         <Center paddingTop='2%'>
           <HStack>
             <Button onClick={prevStep}
-              colorScheme="orange"
               size={["sm", "lg"]}
               height="48px"
               width="200px"
               border="5px"
               color="black"
               variant="solid"
-              bgColor="orange"
+              bgColor="CSGreen"
+              _hover={{"backgroundColor":'#05eda7'}}
               > 
               Volver 
             </Button>
@@ -102,7 +102,7 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
               variant="solid"
               bgColor="orange"
               > 
-              Confirmar 
+              Siguiente 
             </Button>
           </HStack>
         </Center>

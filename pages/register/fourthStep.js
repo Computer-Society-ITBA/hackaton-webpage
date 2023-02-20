@@ -92,7 +92,8 @@ const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParti
               border="5px"
               color="black"
               variant="solid"
-              bgColor="orange"
+              bgColor="CSGreen"
+              _hover={{"backgroundColor":'#05eda7'}}
               > 
               Volver 
             </Button>
@@ -106,7 +107,7 @@ const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParti
               variant="solid"
               bgColor="orange"
               > 
-              Confirmar 
+              Siguiente 
             </Button>
 
             </HStack>
