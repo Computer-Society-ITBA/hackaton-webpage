@@ -29,9 +29,9 @@ const theme = extendTheme({
     xl: "1200px",
  })
 
-const FirstStep = ({setName, nextStep}) => {
+const FirstStep = ({setName, name, nextStep}) => {
 
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(name);
   const handleChange = (event) => {setValue(event.target.value);}
 
   const moveForward = () =>{

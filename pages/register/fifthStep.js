@@ -23,7 +23,7 @@ import {
   Center
 } from "@chakra-ui/react";
 
-const FifthStep = ({setDesc1, setDesc2, nextStep}) => {
+const FifthStep = ({setDesc1, setDesc2, nextStep,prevStep}) => {
 
   const [d1, setD1] = useState()
   const [d2, setD2] = useState()
@@ -73,6 +73,19 @@ const FifthStep = ({setDesc1, setDesc2, nextStep}) => {
           <Text paddingTop={"3%"} align={"center"} fontSize={["sm", "md", "lg"]}><Text as="span" color="Red"> DISCLAIMER: </Text>Al completar la inscripción, todos los miembros del equipi aceptan que su imagen pertenece a IEEE Computer Society ITBA durante el evento</Text>
         </VStack>
         <Center paddingTop='2%'>
+            <HStack>
+            <Button onClick={prevStep}
+              colorScheme="orange"
+              size={["sm", "lg"]}
+              height="48px"
+              width="200px"
+              border="5px"
+              color="black"
+              variant="solid"
+              bgColor="orange"
+              > 
+              Confirmar 
+            </Button>
             <Button onClick={moveForward}
               colorScheme="orange"
               size={["sm", "lg"]}
@@ -85,6 +98,7 @@ const FifthStep = ({setDesc1, setDesc2, nextStep}) => {
               > 
               Confirmar 
             </Button>
+            </HStack>
         </Center>
     </VStack>
   );

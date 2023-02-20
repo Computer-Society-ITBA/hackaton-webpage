@@ -22,7 +22,7 @@ import {
   Center
 } from "@chakra-ui/react";
 
-const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParticipant4, nextStep}) => {
+const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParticipant4, nextStep, prevStep}) => {
 
   const [p1, setP1 ] = useState("");
   const [p2, setP2] = useState("");
@@ -81,8 +81,21 @@ const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParti
           <Text paddingTop={"2%"} fontSize={["md", "lg", "xl"]}>Ingresa nombre y apellido del <Text as="span" color="#386af6"> participante 4</Text></Text>
           <Input value={p4} onChange={handleP4} textColor={"black"} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]} w={["350px", "500px", "800px"]}></Input>
           <Text fontSize={["sm", "md", "lg"]}>{p1==="" || p2==="" || p3 === "" || p4 === "" ? "Debes completar todos los participantes":""}</Text>
-          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]} paddingTop={"2%"}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text>
+          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text>
           <Center paddingTop='2%'>
+            <HStack>
+            <Button onClick={prevStep}
+              colorScheme="orange"
+              size={["sm", "lg"]}
+              height="48px"
+              width="200px"
+              border="5px"
+              color="black"
+              variant="solid"
+              bgColor="orange"
+              > 
+              Volver 
+            </Button>
             <Button onClick={moveForward}
               colorScheme="orange"
               size={["sm", "lg"]}
@@ -95,6 +108,8 @@ const FourthStep = ({setParticipant1, setParticipant2, setParticipant3, setParti
               > 
               Confirmar 
             </Button>
+
+            </HStack>
         </Center>
         </VStack>
     </VStack>

@@ -1,12 +1,12 @@
 import React from "react";
 import Head from "next/head";
-import { Box, Container, Flex } from "@chakra-ui/react";
+import { Box, Container, Flex, Spacer, VStack } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import svg from '../../public/images/economia.svg'
 const Main = ({ children, router }) => {
   return (
-    <Box as="main" overflow="hidden">
+    <Flex as="main" overflow="hidden" direction='column'>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Juan Pablo Oriana" />
@@ -29,8 +29,10 @@ const Main = ({ children, router }) => {
       <Container maxW="full" paddingX={0} pt={16}>
         {children}
       </Container>
+      <Spacer/>
+      {/* Por que no funciona el spacer!!! */}
       <Footer />
-    </Box>
+    </Flex>
   );
 };
 

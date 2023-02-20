@@ -11,6 +11,8 @@ import {
   Link,
   Grid,
   Center,
+  VStack,
+  Progress,
 
 } from "@chakra-ui/react";
 
@@ -56,20 +58,24 @@ const Register = () => {
     .then((data) => console.log(data))
     .catch((e) => console.log(e.message))
   }
-
   const steps = [
-    <FirstStep setName={setName} nextStep={nextStep}/> ,
-    // <SecondStep setImage={setImage} nextStep={nextStep}/> ,
-    <ThirdStep setEmail={setEmail} setPassword={setPassword} nextStep={nextStep} registerUser = {registerUser}/> ,
-    <FourthStep setParticipant1={setParticipant1} setParticipant2={setParticipant2} setParticipant3={setParticipant3} setParticipant4={setParticipant4} nextStep={nextStep}/>,
-    <FifthStep setDesc1={setDesc1} setDesc2={setDesc2} nextStep={nextStep}/>
+    <FirstStep name ={name} setName={setName} nextStep={nextStep}/> ,
+    <ThirdStep email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
+    <FourthStep setParticipant1={setParticipant1} setParticipant2={setParticipant2} setParticipant3={setParticipant3} setParticipant4={setParticipant4} nextStep={nextStep} prevStep={prevStep}/>,
+    <FifthStep setDesc1={setDesc1} setDesc2={setDesc2} nextStep={nextStep} prevStep={prevStep}/>
  ];
  
  
   return (
-   
     <>
+    {/* progress bar (lo hice a mano para que quede animado) */}
+    <Box>
+      <Box borderRadius='2px' mt='2%' mx='10%' height='6px' backgroundColor='gray'>
+        <Box borderRadius='2px' backgroundColor='CSBlue'  height='6px' width={`${(activeStep+1)*100.0/steps.length}%`} transition='1s ease' transitionDelay='0.5s'></Box>
+      </Box>
       {steps[activeStep]}
+    </Box>
+        
     </>
   );
 };

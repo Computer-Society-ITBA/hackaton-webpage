@@ -22,7 +22,7 @@ import {
   Center
 } from "@chakra-ui/react";
 
-const SecondStep = ({nextStep}) => {
+const SecondStep = ({nextStep,prevStep}) => {
 
   const divStyle = {
     textAlign: "center",
@@ -57,7 +57,8 @@ const SecondStep = ({nextStep}) => {
         </Image>
        </div>
        <Center paddingTop='2%'>
-          <Button onClick={moveForward}
+        <HStack>
+        <Button onClick={prevStep}
             colorScheme="orange"
             size={["sm", "lg"]}
             height="48px"
@@ -69,6 +70,19 @@ const SecondStep = ({nextStep}) => {
             > 
             Confirmar 
           </Button>
+        <Button onClick={moveForward}
+            colorScheme="orange"
+            size={["sm", "lg"]}
+            height="48px"
+            width="200px"
+            border="5px"
+            color="black"
+            variant="solid"
+            bgColor="orange"
+            > 
+            Confirmar 
+          </Button>
+        </HStack>
         </Center>
     </VStack>
   );

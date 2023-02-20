@@ -23,10 +23,10 @@ import {
 } from "@chakra-ui/react";
 import next from 'next';
 
-const ThirdStep = ({setEmail, setPassword, registerUser, nextStep}) => {
-  const [localEmail, setLocalEmail ] = useState("");
-  const [localPassword, setLocalPassword] = useState("");
-  const [localPassword2, setLocalPassword2] = useState("");
+const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep}) => {
+  const [localEmail, setLocalEmail ] = useState(email);
+  const [localPassword, setLocalPassword] = useState(password);
+  const [localPassword2, setLocalPassword2] = useState(password);
 
   const handleEmail = (event) => {
     setLocalEmail(event.target.value);
@@ -52,7 +52,7 @@ const ThirdStep = ({setEmail, setPassword, registerUser, nextStep}) => {
     setPassword(localPassword)
     setEmail(localEmail)
     //firstApiCall to register and then call to login
-    registerUser()
+    // registerUser() al final lo hacemos todo de una 
     nextStep()
   }
 
@@ -79,18 +79,32 @@ const ThirdStep = ({setEmail, setPassword, registerUser, nextStep}) => {
         <Text fontSize={['sm', 'lg', 'xl']}>{!validEmail(localEmail) && localEmail!=="" ? "Formato de email no valido" : "" }</Text>
         <Text fontSize={['sm', 'lg', 'xl']}>{localPassword !== localPassword2 ? "Las constraseñas deben coincidir" : "" }</Text>
         <Center paddingTop='2%'>
-          <Button onClick={moveForward}
-            colorScheme="orange"
-            size={["sm", "lg"]}
-            height="48px"
-            width="200px"
-            border="5px"
-            color="black"
-            variant="solid"
-            bgColor="orange"
-            > 
-            Confirmar 
-          </Button>
+          <HStack>
+            <Button onClick={prevStep}
+              colorScheme="orange"
+              size={["sm", "lg"]}
+              height="48px"
+              width="200px"
+              border="5px"
+              color="black"
+              variant="solid"
+              bgColor="orange"
+              > 
+              Volver 
+            </Button>
+            <Button onClick={moveForward}
+              colorScheme="orange"
+              size={["sm", "lg"]}
+              height="48px"
+              width="200px"
+              border="5px"
+              color="black"
+              variant="solid"
+              bgColor="orange"
+              > 
+              Confirmar 
+            </Button>
+          </HStack>
         </Center>
     </VStack>
   );
