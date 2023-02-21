@@ -28,7 +28,7 @@ import FourthStep from './fourthStep';
 import FifthStep from './fifthStep';
 import { setOriginalNode } from 'typescript';
 import Head from 'next/head';
-import { CheckCircleIcon } from '@chakra-ui/icons';
+import { CheckCircleIcon, CloseIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 
 
@@ -68,7 +68,53 @@ const Register = () => {
     .catch((e) => console.log(e.message))
   }
   const finishInscription = async () => {
-    
+    const data = {
+      name: name,
+      email: email, 
+      password: password,
+      participants: participants,
+      teamDescription:"hello!", 
+      motivation:"world!"
+    }
+    try{
+      await fetch("/api/users/team",{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+    }catch(err){
+      toastIdRef.current =  toast({
+        title:"¡La inscripción fue registrada!",
+        status:'success',
+        isClosable:true,
+        duration:5000,
+        render: ()=>{
+          return(
+            <Box backgroundColor='red.500' borderRadius='4px' p='4%' w='full'>
+              <VStack>
+                <HStack w='full'>
+                  <CloseIcon/>
+                  <Heading fontSize={HeadingSize}>¡Ocurrió un error!</Heading>
+                  <Spacer/>
+                  <Button onClick={()=>toast.close(toastIdRef.current)}>Volver</Button>
+                </HStack>
+                <HStack>
+                  <Text>Por favor, intenta nuevamente en un momento</Text>
+                  <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+                </HStack>
+              </VStack>
+            </Box>
+          )
+        },
+        onCloseComplete:()=>{
+          router.push('/') //No se si usar replace para que no vuelva
+        }
+      })
+      console.log(err)
+      return
+    }
     toastIdRef.current =  toast({
       title:"¡La inscripción fue registrada!",
       status:'success',

@@ -26,6 +26,7 @@ router.post('/team', async (req, res) => {
     try{
         await schema.validateAsync({full_name:name,email,password,teamDescription,motivation})
     }catch(err){
+        console.log(err)
         return res.status(400).send(error(1,"Invalid team data"))
     }
     //Validar a cada participante
@@ -33,6 +34,7 @@ router.post('/team', async (req, res) => {
         try{
             await schema.validateAsync({full_name:participant.name,dni:participant.dni, email:participant.email})
         }catch(err){
+            console.log(err)
             return res.status(400).send(error(1,"Invalid particpant data"))
         }
     }
@@ -54,6 +56,7 @@ router.post('/team', async (req, res) => {
             if(aux.error) throw error
         }
     }catch(err){
+        console.log(err)
         return res.status(400).send(error(2,"Unknown error"))
     }
     return res.status(200).send({message:"Success"})

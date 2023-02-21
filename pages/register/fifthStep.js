@@ -41,8 +41,8 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
   }
 
   const moveForward = async () => {
-    setDesc1(d1)
-    setDesc2(d2)
+    await setDesc1(d1)
+    await setDesc2(d2)
     setIsLoading(true)
     await nextStep()
     setIsLoading(false)
