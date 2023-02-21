@@ -6,7 +6,8 @@ import Footer from "../Footer";
 import svg from '../../public/images/economia.svg'
 const Main = ({ children, router }) => {
   return (
-    <Flex as="main" overflow="hidden" direction='column'>
+    // Es feo usar vh, pero con 100% o full no funciona
+    <Flex as="main" overflow="hidden" direction='column' minH='100vh'>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Juan Pablo Oriana" />

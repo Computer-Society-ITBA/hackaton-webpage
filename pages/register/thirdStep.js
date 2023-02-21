@@ -103,7 +103,7 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
               color="black"
               variant="solid"
               bgColor="orange"
-              isDisabled={invalidEmail || localPassword!==localPassword2 || localPassword===""}
+              isDisabled={ localEmail==="" || invalidEmail || localPassword!==localPassword2 || localPassword===""}
               > 
               Siguiente 
             </Button>

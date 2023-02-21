@@ -21,7 +21,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import { useState } from 'react';
-
+const TextSize = ['md','lg','xl', '2xl', '3xl']
 const theme = extendTheme({ 
     sm: "320px",
     md: "768px",
@@ -53,11 +53,11 @@ const FirstStep = ({setName, name, nextStep}) => {
                 <Text color={"orange"} fontSize={['xl', '2xl', '3xl']}>Datos equipo</Text>
             </BreadcrumbItem>
        </Breadcrumb>
-        <VStack paddingTop='5%'>
-            <Text fontSize={['xl', '2xl', '3xl']} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
-            <Input isInvalid={invalidValue} borderWidth='1.5px'  errorBorderColor="red.500" value={value} onChange={handleChange} textColor={"black"} bg="white" focusBorderColor='white' />
-            <Text fontSize={['2xs', 'lg', 'xl']} color='red.500'>{invalidValue? "El nombre no puede estar vacio" : ""}</Text>
-            <Text fontSize={['xs', 'xl', '2xl']}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
+        <VStack px='4%' paddingTop='5%'>
+            <Text fontSize={TextSize} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
+            <Input  isInvalid={invalidValue} borderWidth='1.5px'  errorBorderColor="red.500" value={value} onChange={handleChange} textColor={"black"} bg="white" focusBorderColor='white' />
+            <Text textAlign='center' fontSize={TextSize} color='red.500'>{invalidValue? "El nombre no puede estar vacio" : ""}</Text>
+            <Text textAlign='center' fontSize={TextSize}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
         </VStack>
 
         <Center paddingTop='2%'>

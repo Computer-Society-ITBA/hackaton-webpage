@@ -29,7 +29,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
   const [d2, setD2] = useState(desc2)
   const [invalidD1, setInvalidD1] = useState(false)
   const [invalidD2, setInvalidD2] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const handleD1 = (e) => {
     setD1(e.target.value)
     setInvalidD1(e.target.value==="")
@@ -40,11 +40,12 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
     setInvalidD2(e.target.value==="")
   }
 
-  const moveForward = () => {
+  const moveForward = async () => {
     setDesc1(d1)
     setDesc2(d2)
-    nextStep()
-    
+    setIsLoading(true)
+    await nextStep()
+    setIsLoading(false)
   }
   const moveBackwards = () => {
     setDesc1(d1)
