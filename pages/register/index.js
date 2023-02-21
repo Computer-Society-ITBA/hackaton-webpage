@@ -42,8 +42,8 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
   const [participants, setParticipants] = useState([])
-  const [desc1, setDesc1] = useState("");
-  const [desc2, setDesc2] = useState("");
+  const [teamDescription, setTeamDescription] = useState("");
+  const [motivation, setMotivation] = useState("");
 
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
@@ -73,8 +73,8 @@ const Register = () => {
       email: email, 
       password: password,
       participants: participants,
-      teamDescription:"hello!", 
-      motivation:"world!"
+      teamDescription:teamDescription, 
+      motivation:motivation
     }
     try{
       await fetch("/api/users/team",{
@@ -147,7 +147,7 @@ const Register = () => {
     <FirstStep name ={name} setName={setName} nextStep={nextStep}/> ,
     <ThirdStep email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
     <FourthStep participants={participants} setParticipants={setParticipants} nextStep={nextStep} prevStep={prevStep}/>,
-    <FifthStep desc1={desc1} setDesc1={setDesc1} desc2={desc2} setDesc2={setDesc2} nextStep={finishInscription} prevStep={prevStep}/>
+    <FifthStep desc1={teamDescription} setDesc1={setTeamDescription} desc2={motivation} setDesc2={setMotivation} nextStep={finishInscription} prevStep={prevStep}/>
  ];
  
  

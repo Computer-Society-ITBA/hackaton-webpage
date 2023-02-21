@@ -32,17 +32,20 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
   const [isLoading, setIsLoading] = useState(false)
   const handleD1 = (e) => {
     setD1(e.target.value)
+    setDesc1(e.target.value) //Si no se hace siempre, no se propaga para cuando hay que guardarlo
     setInvalidD1(e.target.value==="")
   }
 
   const handleD2 = (e) => {
     setD2(e.target.value)
+    setDesc2(e.target.value)
     setInvalidD2(e.target.value==="")
   }
 
   const moveForward = async () => {
-    await setDesc1(d1)
-    await setDesc2(d2)
+    //Hacerlo aca no funciona, por eso se hace cada vez que se cambie
+    // setDesc1("Hello")
+    // setDesc2("World!")
     setIsLoading(true)
     await nextStep()
     setIsLoading(false)
