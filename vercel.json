@@ -4,14 +4,14 @@
 "builds": [
     {
         "src": "api/**/*.js",
-        "use": "@now/node",
+        "use": "@vercel/node",
         "config": {
             "maxLambdaSize": "50mb"
         }
     },
     {
         "src": "package.json",
-        "use": "@now/next"
+        "use": "@vercel/next"
     }
   ]
 }
