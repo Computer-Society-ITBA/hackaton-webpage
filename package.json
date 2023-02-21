@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node api",
     "build": "next build",
-    "start": "node api",
+    "start": "NODE_ENV=production node api",
     "lint": "next lint"
   },
   "dependencies": {

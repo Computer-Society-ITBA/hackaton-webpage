@@ -13,10 +13,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
-
-// router.get('/hello', (req, res) => {
-//     res.status(200).send({ message: 'Hello User2!' })  // Funciona sin token
-// })
  
 
 //Para crear un equipo en un llamado, con toda la informacion necesaria
@@ -84,27 +80,27 @@ router.post('/login', async (req, res) => {
 })
 
 
-// router.post('/', async (req, res) => {
-//     // SOLO algunos roles deberían poder acceder
-//     //lista todos los usuarios  
-//     const { email, password } = req.body
-//     try {
-//         await schema.validateAsync({ email: email, password: password })
+router.post('/', async (req, res) => {
+    // SOLO algunos roles deberían poder acceder
+    //lista todos los usuarios  
+    const { email, password } = req.body
+    try {
+        await schema.validateAsync({ email: email, password: password })
 
-//     } catch (err) {
-//         return res.status(400).send(error(1, "Missing email or password"))
-//     }
-//     try {
-//         const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
-//         res.status(200).send({ email: createdUser.user.email, uid: createdUser.user.uid })
-//     }
-//     catch (err) {
-//         res.status(400).send({ 'result': 'User already exists or password invalid' })
-//     }
+    } catch (err) {
+        return res.status(400).send(error(1, "Missing email or password"))
+    }
+    try {
+        const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
+        res.status(200).send({ email: createdUser.user.email, uid: createdUser.user.uid })
+    }
+    catch (err) {
+        res.status(400).send({ 'result': 'User already exists or password invalid' })
+    }
 
-//     return //hacer send no hace que se deje de ejecutar 
+    return //hacer send no hace que se deje de ejecutar 
 
-// })
+})
 
 router.get('/', authMiddleware, roleMiddleware([ROLE_ADMIN]), async (req, res) => {
     // SOLO algunos roles deberían poder acceder
@@ -118,25 +114,25 @@ router.get('/', authMiddleware, roleMiddleware([ROLE_ADMIN]), async (req, res) =
     return //hacer send no hace que se deje de ejecutar 
 
 })
-// router.get('/:userId', authMiddleware, async (req, res) => {
-//     const uid = req.params.userId
-//     if (uid === res.locals.userInfo.uid) {
-//         //busca la informacion de su usuario
-//         const ans = (await getUser(uid))
-//         if (ans.error) {
-//             return res.status(404).send(ans)
-//         }
-//         return res.status(200).send(ans)
-//     }
-//     //procesar request
-//     roleMiddleware([ROLE_ADMIN, ROLE_JURY, ROLE_MENTOR])(req, res, async () => {
-//         const ans = (await getUser(uid))
-//         if (ans.error) {
-//             return res.status(404).send(ans)
-//         }
-//         res.status(200).send(ans)
-//     })
-// })
+router.get('/:userId', authMiddleware, async (req, res) => {
+    const uid = req.params.userId
+    if (uid === res.locals.userInfo.uid) {
+        //busca la informacion de su usuario
+        const ans = (await getUser(uid))
+        if (ans.error) {
+            return res.status(404).send(ans)
+        }
+        return res.status(200).send(ans)
+    }
+    //procesar request
+    roleMiddleware([ROLE_ADMIN, ROLE_JURY, ROLE_MENTOR])(req, res, async () => {
+        const ans = (await getUser(uid))
+        if (ans.error) {
+            return res.status(404).send(ans)
+        }
+        res.status(200).send(ans)
+    })
+})
 //No se si es necesario agregar el middleware de rol o directamente lo dejamos para todos
 router.put('/:userId/password', authMiddleware, selfMiddleware, async (req, res) => {
     const uid = req.params.userId
@@ -152,75 +148,75 @@ router.put('/:userId/password', authMiddleware, selfMiddleware, async (req, res)
     }
     res.status(200).send(ans)
 })
-
-// router.put('/:userId/qualified', authMiddleware, roleMiddleware([ROLE_ADMIN]), async (req, res) => {
-//     const qualifiedValue = req.body.qualified
-//     try {
-//         await schema.validateAsync({ qualified: qualifiedValue })
-//     } catch (err) {
-//         return res.status(400).send(error(1, "Missing or invalid qualified body field"))
-//     }
-//     const ans = await editQualification(res.locals.userInfo.uid, qualifiedValue)
-//     if (ans.error) {
-//         return res.status(400).send(ans)
-//     }
-//     res.status(200).send(ans)
-// })
+//TODO: agregar middleware de auth cuando se haya mergeado con el de cambiar contraseña
+router.put('/:userId/qualified', authMiddleware, roleMiddleware([ROLE_ADMIN]), async (req, res) => {
+    const qualifiedValue = req.body.qualified
+    try {
+        await schema.validateAsync({ qualified: qualifiedValue })
+    } catch (err) {
+        return res.status(400).send(error(1, "Missing or invalid qualified body field"))
+    }
+    const ans = await editQualification(res.locals.userInfo.uid, qualifiedValue)
+    if (ans.error) {
+        return res.status(400).send(ans)
+    }
+    res.status(200).send(ans)
+})
 //Estas funciones son muy parecidas, despues veo como puedo juntarlo 
-// router.post('/:userId/members', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
-//     const { full_name, dni, email } = req.body
-//     try {
-//         await schema.validateAsync({ full_name: full_name, dni: dni, email: email })
-//     } catch (err) {
-//         return res.status(400).json(error(1, "Missing or invalid member information"))
-//     }
-//     const ans = await addMember(res.locals.userInfo.uid, dni, email, full_name)
-//     if (ans.error) {
-//         return res.status(400).send(ans)
-//     }
-//     res.status(200).send(ans)
-// })
-// router.patch('/:userId/members/:memberId', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
-//     const { full_name, dni, email } = req.body
-//     const uid = req.params.userId
-//     const memberId = req.params.memberId
-//     try {
-//         await schema.validateAsync({ full_name: full_name, dni: dni, email: email })
-//     } catch (err) {
-//         return res.status(400).json(error(1, "Missing or invalid member information"))
-//     }
-//     const ans = await editMember(uid, memberId, dni, email, full_name)
-//     if (ans.error) {
-//         return res.status(400).send(ans)
-//     }
-//     res.status(200).send(ans)
-// })
-// router.delete('/:userId/members/:memberId', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
-//     const uid = req.params.userId
-//     const memberId = req.params.memberId
-//     const ans = await deleteMember(uid, memberId)
-//     if (ans.error) {
-//         return res.status(400).send(ans)
-//     }
-//     res.status(200).send(ans)
-// })
-// router.get('/:userId/members', authMiddleware, async (req, res) => {
-//     const uid = req.params.userId
-//     if (uid === res.locals.userInfo.uid) {
-//         const ans = await getMembers(uid)
-//         if (ans.error) {
-//             return res.status(400).send(ans)
-//         }
-//         return res.status(200).send(ans)
-//     }
-//     roleMiddleware([ROLE_ADMIN, ROLE_JURY, ROLE_MENTOR])(req, res, async () => {
-//         const ans = await getMembers(uid)
-//         if (ans.error) {
-//             return res.status(400).send(ans)
-//         }
-//         res.status(200).send(ans)
-//     })
-// })
+router.post('/:userId/members', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
+    const { full_name, dni, email } = req.body
+    try {
+        await schema.validateAsync({ full_name: full_name, dni: dni, email: email })
+    } catch (err) {
+        return res.status(400).json(error(1, "Missing or invalid member information"))
+    }
+    const ans = await addMember(res.locals.userInfo.uid, dni, email, full_name)
+    if (ans.error) {
+        return res.status(400).send(ans)
+    }
+    res.status(200).send(ans)
+})
+router.patch('/:userId/members/:memberId', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
+    const { full_name, dni, email } = req.body
+    const uid = req.params.userId
+    const memberId = req.params.memberId
+    try {
+        await schema.validateAsync({ full_name: full_name, dni: dni, email: email })
+    } catch (err) {
+        return res.status(400).json(error(1, "Missing or invalid member information"))
+    }
+    const ans = await editMember(uid, memberId, dni, email, full_name)
+    if (ans.error) {
+        return res.status(400).send(ans)
+    }
+    res.status(200).send(ans)
+})
+router.delete('/:userId/members/:memberId', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
+    const uid = req.params.userId
+    const memberId = req.params.memberId
+    const ans = await deleteMember(uid, memberId)
+    if (ans.error) {
+        return res.status(400).send(ans)
+    }
+    res.status(200).send(ans)
+})
+router.get('/:userId/members', authMiddleware, async (req, res) => {
+    const uid = req.params.userId
+    if (uid === res.locals.userInfo.uid) {
+        const ans = await getMembers(uid)
+        if (ans.error) {
+            return res.status(400).send(ans)
+        }
+        return res.status(200).send(ans)
+    }
+    roleMiddleware([ROLE_ADMIN, ROLE_JURY, ROLE_MENTOR])(req, res, async () => {
+        const ans = await getMembers(uid)
+        if (ans.error) {
+            return res.status(400).send(ans)
+        }
+        res.status(200).send(ans)
+    })
+})
 
 router.post('/:userId/members/:memberId/documents',authMiddleware, roleMiddleware(ROLE_USER), upload.single('file'), async (req, res) => {
     if (!req.file) {
