@@ -1,5 +1,5 @@
 import { Step, Steps, useSteps } from 'chakra-ui-steps';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Heading,
   Flex,
@@ -13,6 +13,11 @@ import {
   Center,
   VStack,
   Progress,
+  useToast,
+  HStack,
+  Icon,
+  Spacer,
+  CircularProgress,
 
 } from "@chakra-ui/react";
 
@@ -22,7 +27,12 @@ import ThirdStep from './thirdStep'
 import FourthStep from './fourthStep';
 import FifthStep from './fifthStep';
 import { setOriginalNode } from 'typescript';
+import Head from 'next/head';
+import { CheckCircleIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
+
+const HeadingSize = ['sm','sm','md','lg','xl']
 const doSmth = () => console.log("hey");
 
 const Register = () => {
@@ -38,7 +48,9 @@ const Register = () => {
   const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
     initialStep: 0,
   });
-
+  const toast = useToast()
+  const toastIdRef = React.useRef()
+  const router = useRouter()
   const registerUser = async () => {
     await fetch('/api/users', {
       method: 'POST',
@@ -55,11 +67,41 @@ const Register = () => {
     .then((data) => console.log(data))
     .catch((e) => console.log(e.message))
   }
+  const finishInscription = async () => {
+    
+    toastIdRef.current =  toast({
+      title:"¡La inscripción fue registrada!",
+      status:'success',
+      isClosable:true,
+      duration:5000,
+      render: ()=>{
+        return(
+          <Box backgroundColor='green' borderRadius='4px' p='4%' w='full'>
+            <VStack>
+              <HStack w='full'>
+                <CheckCircleIcon/>
+                <Heading fontSize={HeadingSize}>¡Inscripción exitosa!</Heading>
+                <Spacer/>
+                <Button onClick={()=>toast.close(toastIdRef.current)}>Volver</Button>
+              </HStack>
+              <HStack>
+                <Text>En unos momentos te redigirimos a la pantalla de inicio</Text>
+                <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+              </HStack>
+            </VStack>
+          </Box>
+        )
+      },
+      onCloseComplete:()=>{
+        router.push('/') //No se si usar replace para que no vuelva
+      }
+    })
+  }
   const steps = [
     <FirstStep name ={name} setName={setName} nextStep={nextStep}/> ,
     <ThirdStep email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
     <FourthStep participants={participants} setParticipants={setParticipants} nextStep={nextStep} prevStep={prevStep}/>,
-    <FifthStep desc1={desc1} setDesc1={setDesc1} desc2={desc2} setDesc2={setDesc2} nextStep={nextStep} prevStep={prevStep}/>
+    <FifthStep desc1={desc1} setDesc1={setDesc1} desc2={desc2} setDesc2={setDesc2} nextStep={finishInscription} prevStep={prevStep}/>
  ];
  
  
@@ -70,6 +112,7 @@ const Register = () => {
       <Box borderRadius='2px' mt='2%' mx='10%' height='6px' backgroundColor='gray'>
         <Box borderRadius='2px' backgroundColor='CSBlue'  height='6px' width={`${(activeStep+1)*100.0/steps.length}%`} transition='1s ease' transitionDelay='0.1s'></Box>
       </Box>
+      <Button onClick={()=>toast.close(toastIdRef.current)}> </Button>
       {steps[activeStep]}
     </Box>
         

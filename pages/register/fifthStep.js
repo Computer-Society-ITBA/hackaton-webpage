@@ -29,6 +29,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
   const [d2, setD2] = useState(desc2)
   const [invalidD1, setInvalidD1] = useState(false)
   const [invalidD2, setInvalidD2] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const handleD1 = (e) => {
     setD1(e.target.value)
     setInvalidD1(e.target.value==="")
@@ -42,12 +43,13 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
   const moveForward = () => {
     setDesc1(d1)
     setDesc2(d2)
-    // callApi()
+    nextStep()
     
   }
   const moveBackwards = () => {
     setDesc1(d1)
-    setDesc2(d2)    
+    setDesc2(d2)
+    prevStep()    
   }
 
   return (
@@ -89,6 +91,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
               variant="solid"
               bgColor="CSGreen"
               _hover={{"backgroundColor":'#05eda7'}}
+              isLoading={isLoading}
               > 
               Volver 
             </Button>
@@ -102,6 +105,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
               variant="solid"
               bgColor="orange"
               isDisabled={d1==="" || d2===""}
+              isLoading={isLoading}
               > 
               Inscribirse 
             </Button>
