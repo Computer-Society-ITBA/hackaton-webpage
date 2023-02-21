@@ -27,9 +27,11 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
   const [localEmail, setLocalEmail ] = useState(email);
   const [localPassword, setLocalPassword] = useState(password);
   const [localPassword2, setLocalPassword2] = useState(password);
-
+  const [invalidEmail, setInvalidEmail] = useState(!validEmail(email) && email!=='')
+  
   const handleEmail = (event) => {
     setLocalEmail(event.target.value);
+    setInvalidEmail(!validEmail(event.target.value))
   }
 
   const handlePassword1 = (event) => {
@@ -46,14 +48,14 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
   }
 
   const moveForward = () => {
-    if (localPassword !== localPassword2 || !validEmail(localEmail)){
-      return
-    }
     setPassword(localPassword)
     setEmail(localEmail)
-    //firstApiCall to register and then call to login
-    // registerUser() al final lo hacemos todo de una 
     nextStep()
+  }
+  const moveBackwards = () => {
+    setEmail(localEmail)
+    setPassword(localPassword===localPassword2?localPassword:"")
+    prevStep()
   }
 
   return (
@@ -70,17 +72,17 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
             </BreadcrumbItem>
        </Breadcrumb>
         <b><Text paddingTop={"5%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> EMAIL </Text></b>
-        <Input value={localEmail} onChange={handleEmail} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} />
+        <Input borderWidth='1.5px'  errorBorderColor="red.500" isInvalid={invalidEmail} value={localEmail} onChange={handleEmail} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} />
         <b><Text paddingTop={"10%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> CONTRASEÑA </Text> </b>
-        <Input value={localPassword} onChange={handlePassword1} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
+        <Input borderWidth='1.5px'  errorBorderColor="red.500" isInvalid={localPassword!==localPassword2} value={localPassword} onChange={handlePassword1} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
         <b><Text paddingTop={"10%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> REPETIR CONTRASEÑA </Text> </b>
-        <Input value={localPassword2} onChange={handlePassword2} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
+        <Input borderWidth='1.5px'  errorBorderColor="red.500" isInvalid={localPassword!==localPassword2} value={localPassword2} onChange={handlePassword2} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
         <Text align={"center"} fontSize={['sm', 'lg', 'xl']} paddingTop={"1%"}>Recorda que estos datos son para  <Text as="span" color="#03caa1"> iniciar sesion</Text></Text>
-        <Text fontSize={['sm', 'lg', 'xl']}>{!validEmail(localEmail) && localEmail!=="" ? "Formato de email no valido" : "" }</Text>
-        <Text fontSize={['sm', 'lg', 'xl']}>{localPassword !== localPassword2 ? "Las constraseñas deben coincidir" : "" }</Text>
+        <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidEmail ? "Email no valido" : "" }</Text>
+        <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{localPassword !== localPassword2 ? "Las constraseñas deben coincidir" : "" }</Text>
         <Center paddingTop='2%'>
           <HStack>
-            <Button onClick={prevStep}
+            <Button onClick={moveBackwards}
               size={["sm", "lg"]}
               height="48px"
               width="200px"
@@ -101,6 +103,7 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
               color="black"
               variant="solid"
               bgColor="orange"
+              isDisabled={invalidEmail || localPassword!==localPassword2 || localPassword===""}
               > 
               Siguiente 
             </Button>
