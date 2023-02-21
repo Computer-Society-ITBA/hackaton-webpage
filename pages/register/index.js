@@ -38,7 +38,7 @@ const doSmth = () => console.log("hey");
 const Register = () => {
 
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
   const [participants, setParticipants] = useState([])

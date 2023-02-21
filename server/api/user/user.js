@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
 const { signInWithEmailAndPassword, clientAuth, createUserWithEmailAndPassword } = require('../config')
-const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument, verifyDocument } = require('./firestore_util')
+const { addMember, editMember, deleteMember, getMembers, editQualification, saveDocument, verifyDocument, setUserInfo } = require('./firestore_util')
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
@@ -16,6 +16,47 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 router.get('/hello', (req, res) => {
     res.status(200).send({ message: 'Hello User2!' })  // Funciona sin token
+})
+ 
+
+//Para crear un equipo en un llamado, con toda la informacion necesaria
+router.post('/team', async (req, res) => {
+    const {name, email,password,participants,teamDescription, motivation} = req.body
+    //Validad datos de usuario
+    try{
+        await schema.validateAsync({full_name:name,email,password,teamDescription,motivation})
+    }catch(err){
+        return res.status(400).send(error(1,"Invalid team data"))
+    }
+    //Validar a cada participante
+    for(const participant of participants){
+        try{
+            await schema.validateAsync({full_name:participant.name,dni:participant.dni, email:participant.email})
+        }catch(err){
+            return res.status(400).send(error(1,"Invalid particpant data"))
+        }
+    }
+    //hacer llamados a la BD
+    try{
+        //creamos el usuario
+        const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
+        const userData = {
+            name,
+            teamDescription,
+            motivation
+        }
+        //seteamos su nombre y descripciones
+        const data = setUserInfo(createdUser.user.uid,userData)
+        if(data.error) throw data.error
+        //agregamos a cada uno de sus participantes
+        for (const participant of participants){
+            const aux = await addMember(createdUser.user.uid,participant.dni, participant.email,participant.name)
+            if(aux.error) throw error
+        }
+    }catch(err){
+        return res.status(400).send(error(2,"Unknown error"))
+    }
+    return res.status(200).send({message:"Success"})
 })
 
 router.post('/login', async (req, res) => {

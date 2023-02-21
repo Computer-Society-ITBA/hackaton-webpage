@@ -75,7 +75,15 @@ async function getUserInfo(uid){
         return error(err.code, err.message)
     }
 }
-
+async function setUserInfo(uid, data){
+    try{
+        await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        return data
+    }catch(err){
+        console.log(err)
+        return error(err.code, err.message)
+    }
+}
  async function saveDocument(userId, memberId, file) {
     try {
         const pdfRef = ref(storage, `documents/${userId}/${memberId}/${file.originalname}`)
@@ -108,4 +116,4 @@ async function verifyDocument(userId, memberId, documentId) {
     }
 }
 
-module.exports = {addMember, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument, verifyDocument}
+module.exports = {addMember, setUserInfo, editMember, deleteMember, getMembers, editQualification, getUserInfo, saveDocument, verifyDocument}
