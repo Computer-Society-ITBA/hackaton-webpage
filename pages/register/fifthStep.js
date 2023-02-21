@@ -27,20 +27,19 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
 
   const [d1, setD1] = useState(desc1)
   const [d2, setD2] = useState(desc2)
-
+  const [invalidD1, setInvalidD1] = useState(false)
+  const [invalidD2, setInvalidD2] = useState(false)
   const handleD1 = (e) => {
     setD1(e.target.value)
+    setInvalidD1(e.target.value==="")
   }
 
   const handleD2 = (e) => {
     setD2(e.target.value)
+    setInvalidD2(e.target.value==="")
   }
 
   const moveForward = () => {
-    if (d1 == "" || d2 == ""){
-      return
-    }
-
     setDesc1(d1)
     setDesc2(d2)
     // callApi()
@@ -69,16 +68,18 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
        </Breadcrumb>
         <VStack w={"full"} align={"center"} >
           <Text align={"center"}  fontSize={["sm", "lg", "xl"]}>Describe al equipo: intereses, estudios, mentalidad.</Text>
-          <Textarea value={d1} onChange={handleD1} align={"center"}  textColor={"black"} bg="white" focusBorderColor='white' h={["130px", "140px", "150px" ]} w={["350px", "500px", "800px"]}></Textarea>
-
+          <Textarea isInvalid={invalidD1} borderWidth='1.5px'  errorBorderColor="red.500" value={d1} onChange={handleD1} align={"center"}  textColor={"black"} bg="white" focusBorderColor='white' h={["130px", "140px", "150px" ]} w={["350px", "500px", "800px"]}></Textarea>
           <Text align={"center"}  paddingTop={"3%"} fontSize={["sm", "lg", "xl"]}>¿Por qué les interesa participar en HackITBA?</Text>
-          <Textarea value={d2} onChange={handleD2} align={"center"}  textColor={"black"} bg="white" focusBorderColor='white' h={["130px", "140px", "150px" ]} w={["350px", "500px", "800px"]}></Textarea>
-
+          <Textarea isInvalid={invalidD2} borderWidth='1.5px'  errorBorderColor="red.500" value={d2} onChange={handleD2} align={"center"}  textColor={"black"} bg="white" focusBorderColor='white' h={["130px", "140px", "150px" ]} w={["350px", "500px", "800px"]}></Textarea>
+          <VStack>
+          <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidD1 ? "La descripción del equipo no puede estar vacía" : "" }</Text>
+          <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidD2 ? "Los motivos para participar de HackITBA no pueden estar vacíos" : "" }</Text>
+          </VStack>
           <Text paddingTop={"3%"} align={"center"} fontSize={["sm", "md", "lg"]}><Text as="span" color="Red"> DISCLAIMER: </Text>Al completar la inscripción, todos los miembros del equipi aceptan que su imagen pertenece a IEEE Computer Society ITBA durante el evento</Text>
         </VStack>
         <Center paddingTop='2%'>
             <HStack>
-            <Button onClick={prevStep}
+            <Button onClick={moveBackwards}
               colorScheme="orange"
               size={["sm", "lg"]}
               height="48px"
@@ -89,9 +90,9 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
               bgColor="CSGreen"
               _hover={{"backgroundColor":'#05eda7'}}
               > 
-              Confirmar 
+              Volver 
             </Button>
-            <Button onClick={moveBackwards}
+            <Button onClick={moveForward}
               colorScheme="orange"
               size={["sm", "lg"]}
               height="48px"
@@ -100,6 +101,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
               color="black"
               variant="solid"
               bgColor="orange"
+              isDisabled={d1==="" || d2===""}
               > 
               Inscribirse 
             </Button>

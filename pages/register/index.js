@@ -59,7 +59,7 @@ const Register = () => {
     <FirstStep name ={name} setName={setName} nextStep={nextStep}/> ,
     <ThirdStep email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
     <FourthStep participants={participants} setParticipants={setParticipants} nextStep={nextStep} prevStep={prevStep}/>,
-    <FifthStep setDesc1={setDesc1} setDesc2={setDesc2} nextStep={nextStep} prevStep={prevStep}/>
+    <FifthStep desc1={desc1} setDesc1={setDesc1} desc2={desc2} setDesc2={setDesc2} nextStep={nextStep} prevStep={prevStep}/>
  ];
  
  
