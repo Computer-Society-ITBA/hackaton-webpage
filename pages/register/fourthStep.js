@@ -46,7 +46,7 @@ const MemberModal = ({isOpen, onClose})=>{
 }
 const schema = joi.object({
   name: joi.string()
-  .min(4),
+  .min(1),
   dni: joi.string().regex(new RegExp('^[0-9]{1,2}\.?[0-9]{3,3}\.?[0-9]{3,3}$')),
   email:joi.string().email({tlds:{allow:false}}),
 })
@@ -225,6 +225,11 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
                   <Input textColor={"black"} isInvalid={modalInvalidDNI} value={modalDNI} onChange={changeModalDNI} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]}></Input>
                   <Text paddingTop={"2%"}   fontSize={["md", "lg", "xl"]}> Email </Text> 
                   <Input textColor={"black"} isInvalid={modalInvalidEmail} value={modalEmail} onChange={changeModalEmail} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]}></Input>
+                  <VStack>
+                  <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{modalInvalidName ? "El nombre no puede estar vacio" : "" }</Text>
+                  <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{modalInvalidDNI ? "DNI no valido" : "" }</Text>
+                  <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{modalInvalidEmail ? "Email no valido" : "" }</Text>
+                  </VStack>
                   <HStack w='full' justify='end'>
                     <Button onClick={SaveParticipant(currIndex)}
                       size={["sm", "lg"]}
@@ -246,6 +251,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
             </ModalContent>
         </Modal>
           </Center>
+          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text> 
           <Center paddingTop='2%'>
             <HStack>
             <Button onClick={moveBackwards}
