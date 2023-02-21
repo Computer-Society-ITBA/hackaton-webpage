@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NextLink from "next/link";
+
 import {
   Heading,
   Flex,
@@ -128,7 +130,9 @@ const Inscribite = ({...extendedProps})=>{
           <Heading size={['xs','sm','md','md','lg']} textAlign='center' >
             Inscripción por equipos
           </Heading>
-          <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+          <NextLink href="/register">
+            <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+          </NextLink>
         </VStack>
         <Spacer/>
         <Img src="/images/Inscribite_2.svg" alt="Decoration" width={imageWidth} height='100%'></Img>
@@ -289,7 +293,7 @@ const Home = () => {
       <GeneralInfo pt='4%' zIndex={90}/>
       <Categories pt='4%' zIndex={90}/>
       {/* Seccion inscribirse */}
-      {/* <Inscribite pt='4%' zIndex={90}/> */}
+      <Inscribite pt='4%' zIndex={90}/>
       <JurySection pt='4%' zIndex={90}/>
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
