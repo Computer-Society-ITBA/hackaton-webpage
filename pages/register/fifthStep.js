@@ -81,7 +81,7 @@ const FifthStep = ({setDesc1, desc1, setDesc2,desc2, nextStep,prevStep}) => {
           <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidD1 ? "La descripción del equipo no puede estar vacía" : "" }</Text>
           <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidD2 ? "Los motivos para participar de HackITBA no pueden estar vacíos" : "" }</Text>
           </VStack>
-          <Text paddingTop={"3%"} align={"center"} fontSize={["sm", "md", "lg"]}><Text as="span" color="Red"> DISCLAIMER: </Text>Al completar la inscripción, todos los miembros del equipi aceptan que su imagen pertenece a IEEE Computer Society ITBA durante el evento</Text>
+          <Text paddingTop={"3%"} align={"center"} fontSize={["sm", "md", "lg"]}><Text as="span" color="Red"> DISCLAIMER: </Text>Al completar la inscripción, todos los miembros del equipo aceptan que su imagen pertenece a IEEE Computer Society ITBA durante el evento</Text>
         </VStack>
         <Center paddingTop='2%'>
             <HStack>

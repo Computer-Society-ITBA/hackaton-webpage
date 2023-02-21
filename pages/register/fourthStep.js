@@ -74,7 +74,7 @@ const ParticipantCard = ({participant, onEdit, onDelete})=>{
 }
 
 const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
-  const [localParticipants, setLocalParticipants] = useState(participants)
+  const [localParticipants, setLocalParticipants] = useState(participants || []);
   const [currIndex, setCurrIndex] = useState(undefined)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [modalName, setModalName] = useState("")
@@ -83,21 +83,24 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
   const [modalInvalidName, setModalInvalidName] = useState(false)
   const [modalInvalidDNI, setModalInvalidDNI] = useState(false)
   const [modalInvalidEmail, setModalInvalidEmail] = useState(false)
-  const changeModalName = (event)=>{
+
+  const changeModalName = (event) => {
     setModalName(event.target.value)
     setModalInvalidName(schema.validate({name:event.target.value}).error!==undefined)
-  }
+  };
+
   const changeModalDNI = (event)=>{
     setModalDNI(event.target.value)
     setModalInvalidDNI(schema.validate({dni:event.target.value}).error!==undefined)
-  }
-  const changeModalEmail = (event)=>{
+  };
+
+  const changeModalEmail = (event) => {
     setModalEmail(event.target.value)
     setModalInvalidEmail(schema.validate({email:event.target.value}).error!==undefined)
-  }
+  };
 
-  const editParticipant = (i) =>{
-    return ()=>{
+  const editParticipant = (i) => {
+    return () => {
       const participant = localParticipants.at(i)
       setModalName(participant.name)
       setModalDNI(participant.dni)
@@ -110,8 +113,8 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
     }
   }
   
-  const SaveParticipant = (i) =>{
-    return ()=>{
+  const SaveParticipant = (i) => {
+    return () => {
       const aux = Array.from(localParticipants)
       if(i===undefined){
         const participant = {
@@ -131,7 +134,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
     }
   }
 
-  const createParticipant = ()=>{
+  const createParticipant = () => {
     setModalName("")
     setModalDNI("")
     setModalEmail("")
@@ -141,6 +144,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
     setCurrIndex(undefined)
     onOpen()
   }
+
   const deleteParticipant = (i)=>{
     return ()=>{
       setLocalParticipants(localParticipants.filter((p,index) => index!==i))
@@ -151,6 +155,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
     setParticipants(localParticipants)
     nextStep()
   }
+
   const moveBackwards = ()=>{
     setParticipants(localParticipants)
     prevStep()
@@ -188,9 +193,9 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
           <Text fontSize={["sm", "md", "lg"]}>{p1==="" || p2==="" || p3 === "" || p4 === "" ? "Debes completar todos los participantes":""}</Text>
           <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text> */}
           <VStack width={['90%','80%','60%','50%','50%']} mb='4%' gap='8px'>
-            {localParticipants.map((participant, index)=>{
+            {localParticipants && localParticipants.map((participant, index)=>{
               return(
-                <ParticipantCard  key={index} onEdit={editParticipant(index)} onDelete={deleteParticipant(index)} participant={participant} ></ParticipantCard>
+                <ParticipantCard key={index} onEdit={editParticipant(index)} onDelete={deleteParticipant(index)} participant={participant} ></ParticipantCard>
               )
             })}
           </VStack>

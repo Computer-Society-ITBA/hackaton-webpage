@@ -1,39 +1,27 @@
-import { Step, Steps, useSteps } from 'chakra-ui-steps';
+import { useSteps } from 'chakra-ui-steps';
 import React, { useState } from 'react';
 import {
   Heading,
-  Flex,
   Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  Center,
   VStack,
-  Progress,
   useToast,
   HStack,
-  Icon,
   Spacer,
   CircularProgress,
 
 } from "@chakra-ui/react";
 
 import FirstStep from './firstStep'
-import SecondStep from './secondStep'
 import ThirdStep from './thirdStep'
 import FourthStep from './fourthStep';
 import FifthStep from './fifthStep';
-import { setOriginalNode } from 'typescript';
-import Head from 'next/head';
 import { CheckCircleIcon, CloseIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/router';
 
 
 const HeadingSize = ['sm','sm','md','lg','xl']
-const doSmth = () => console.log("hey");
 
 const Register = () => {
 
@@ -45,28 +33,28 @@ const Register = () => {
   const [teamDescription, setTeamDescription] = useState("");
   const [motivation, setMotivation] = useState("");
 
-  const { nextStep, prevStep, setStep, reset, activeStep } = useSteps({
+  const { nextStep, prevStep, activeStep } = useSteps({
     initialStep: 0,
   });
   const toast = useToast()
   const toastIdRef = React.useRef()
   const router = useRouter()
-  const registerUser = async () => {
-    await fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify({
-        "email": email,
-	      "password": password,
-        "name": name 
-      }),
-      headers: {
-        'Content-type': 'application/json'
-      },
-    })
-    .then((response) => {response.json})
-    .then((data) => console.log(data))
-    .catch((e) => console.log(e.message))
-  }
+  // const registerUser = async () => {
+  //   await fetch('/api/users', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       "email": email,
+	//       "password": password,
+  //       "name": name 
+  //     }),
+  //     headers: {
+  //       'Content-type': 'application/json'
+  //     },
+  //   })
+  //   .then((response) => {response.json})
+  //   .then((data) => console.log(data))
+  //   .catch((e) => console.log(e.message))
+  // }
   const finishInscription = async () => {
     const data = {
       name: name,
@@ -143,13 +131,13 @@ const Register = () => {
       }
     })
   }
+
   const steps = [
-    <FirstStep name ={name} setName={setName} nextStep={nextStep}/> ,
-    <ThirdStep email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
-    <FourthStep participants={participants} setParticipants={setParticipants} nextStep={nextStep} prevStep={prevStep}/>,
-    <FifthStep desc1={teamDescription} setDesc1={setTeamDescription} desc2={motivation} setDesc2={setMotivation} nextStep={finishInscription} prevStep={prevStep}/>
+    <FirstStep key="first" name ={name} setName={setName} nextStep={nextStep} /> ,
+    <ThirdStep key="third" email={email} setEmail={setEmail} password={password} setPassword={setPassword} nextStep={nextStep} prevStep={prevStep}/> ,
+    <FourthStep key="fourth" participants={participants} setParticipants={setParticipants} nextStep={nextStep} prevStep={prevStep}/>,
+    <FifthStep key="fifth" desc1={teamDescription} setDesc1={setTeamDescription} desc2={motivation} setDesc2={setMotivation} nextStep={finishInscription} prevStep={prevStep}/>
  ];
- 
  
   return (
     <>
