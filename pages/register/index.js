@@ -146,7 +146,6 @@ const Register = () => {
       <Box borderRadius='2px' mt='2%' mx='10%' height='6px' backgroundColor='gray'>
         <Box borderRadius='2px' backgroundColor='CSBlue'  height='6px' width={`${(activeStep+1)*100.0/steps.length}%`} transition='1s ease' transitionDelay='0.1s'></Box>
       </Box>
-      <Button onClick={()=>toast.close(toastIdRef.current)}> </Button>
       {steps[activeStep]}
     </Box>
         
