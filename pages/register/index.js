@@ -65,7 +65,7 @@ const Register = () => {
       motivation:motivation
     }
     try{
-      await fetch("/api/users/team",{
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/team`,{
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',
