@@ -38,3 +38,6 @@ yarn-error.log*
 
 #firebase admin credentials
 .env 
+
+
+.firebase

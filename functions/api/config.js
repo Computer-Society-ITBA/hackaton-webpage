@@ -1,9 +1,9 @@
-require('dotenv').config()
+require('dotenv').config();
 const { getFirestore } = require("firebase/firestore")
 const { getStorage, ref } = require("firebase/storage")
 const admin = require("firebase-admin");
-//por favor, si alguien encuentra una manera mas linda de hacer esto cambielo
-//no queria hacer path relativo 
+
+
 const serviceAccount = {
   type: process.env.ADMIN_TYPE,
   project_id: process.env.ADMIN_PROJECT_ID,
@@ -16,11 +16,12 @@ const serviceAccount = {
   auth_provider_x509_cert_url: process.env.ADMIN_PROVIDER_X509_CERT_URL,
   client_x509_cert_url: process.env.ADMIN_CLIENT_X509_CERT_URL
 }
+
 const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-const adminAuth = app.auth()
 
+const adminAuth = app.auth()
 
 const { initializeApp } = require('firebase/app')
 const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
@@ -33,8 +34,10 @@ const firebaseConfig = {
   appId: process.env.CLIENT_APP_ID,
   measurementId: process.env.CLIENT_MEASUREMENT_ID
 };
+
 const clientApp = initializeApp(firebaseConfig)
 const clientAuth = getAuth(clientApp)
 const db = getFirestore(clientApp)
 const storage = getStorage(clientApp)
+
 module.exports = { adminAuth, clientAuth, db, storage, ref, signInWithEmailAndPassword, createUserWithEmailAndPassword }
