@@ -256,7 +256,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
             </ModalContent>
         </Modal>
           </Center>
-          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text> 
+          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que los equipos deben tener al menos 3 participantes, y  todas las identidades serán corroboradas con foto del DNI</Text> 
           <Center paddingTop='2%'>
             <HStack>
             <Button onClick={moveBackwards}
@@ -281,7 +281,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
               color="black"
               variant="solid"
               bgColor="orange"
-              isDisabled={localParticipants.length===0}
+              isDisabled={localParticipants.length<3}
               > 
               Siguiente 
             </Button>
