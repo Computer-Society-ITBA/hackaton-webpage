@@ -35,3 +35,9 @@ yarn-error.log*
 
 #intellij
 .idea
+
+#firebase admin credentials
+.env 
+
+
+.firebase
