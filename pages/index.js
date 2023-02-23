@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NextLink from "next/link";
+
 import {
   Heading,
   Flex,
@@ -23,6 +25,9 @@ import CategoryLogo from "../components/CategoryLogo";
 import Jury from '../components/Jury';
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
+import { m } from "framer-motion";
+const joi = require('joi');
+
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
@@ -125,7 +130,9 @@ const Inscribite = ({...extendedProps})=>{
           <Heading size={['xs','sm','md','md','lg']} textAlign='center' >
             Inscripción por equipos
           </Heading>
-          <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+          <NextLink href="/register">
+            <PrimaryButton height='2%' backgroundColor="CSGreen" fontSize={['xs','sm','xl','2xl','3xl']} size={['xs','xs','lg','lg','lg']}>INSCRIBITE AQUI</PrimaryButton>
+          </NextLink>
         </VStack>
         <Spacer/>
         <Img src="/images/Inscribite_2.svg" alt="Decoration" width={imageWidth} height='100%'></Img>
@@ -135,14 +142,14 @@ const Inscribite = ({...extendedProps})=>{
 const JurySection = ({...extendedProps}) => {
   const juries = [
     {name: "Gabriela Macagni", imgSrc:"/images/juries/GabrielaMacagni.jpg",details:"Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina"},
-    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informatica ITBA, Investigador adjunto del CONICET especializado en machine learning"},
+    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informática ITBA, Investigador adjunto del CONICET especializado en machine learning"},
     {name: "Gabriel Gruber", imgSrc:"/images/juries/GabrielGruber.png",details:"Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati"},
     {name: "Pablo Sabbatella", imgSrc:"/images/juries/PabloSabbatella.jpeg",details:"Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto"},
   ]
   return(
     <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
-      <Text fontSize={TextSize}>Conoce a nuestros jurados</Text>
+      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' spacing='3%'>
         {juries.map((jury,index)=>{
           return(
@@ -182,6 +189,7 @@ const SponsorsSection = ({...extendedProps}) =>{
     {name:'Nestle',logo:'/images/logos/Nestle.svg',link:'https://www.nestle.com.ar'},
     {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
     {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
+    {name: 'Emilabs', logo:'/images/logos/Emilabs.png',link:'https://www.emilabs.com'},
   ]
   return(
     <VStack w='full' mt={0} {...extendedProps}>
@@ -204,15 +212,64 @@ const SponsorsSection = ({...extendedProps}) =>{
   )
 }
 
+//Tiene que estar definido aca, si no pierde focus cada vez que se agrega una tecla 
+//https://github.com/final-form/react-final-form/issues/730
+const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
 const Form = ({...extendedProps}) => {
-  const LocalInput = ({...extendedProps}) => <Input focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
-  
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [body, setBody] = useState("")
+  const [emailError, setEmailError] = useState(false);
+  //Estos errores estan para que de entrada no este como error, pero que si cuando empiece a completar y deje ese
+  const [subjectError, setSubjectError] = useState(false);
+  const [bodyError, setBodyError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const validateEmail = (email)=>{
+    return joi.string().email({tlds:{allow:false}}).validate(email).error === undefined
+  }
+  const sendEmail = async()=>{
+    const msg = {
+      email:'jmentasti@itba.edu.ar',
+      subject: subject,
+      body: body
+    }
+    const fetchOptions = {
+      method: 'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
+      },
+      body: JSON.stringify(msg)
+    }
+    setIsLoading(true)
+    try{
+      await fetch("/api/mail/send",fetchOptions)
+    }catch(err){
+      console.log(err)
+    }
+    setIsLoading(false)
+  }
   return(
     <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
-      <LocalInput placeholder="email" ></LocalInput>
-      <LocalInput placeholder="asunto"></LocalInput>
-      <Textarea height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps} placeholder='Mensjae'></Textarea>
-      <PrimaryButton width='full'>Enviar</PrimaryButton>
+      <LocalInput onClick={()=>setEmailError(!validateEmail(email))} onChange={(event)=>{setEmail(event.target.value);setEmailError(!validateEmail(event.target.value))}} placeholder="Email" value ={email} isInvalid = {emailError}  ></LocalInput>
+      <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="Asunto" value={subject} isInvalid = {subjectError}></LocalInput>
+      <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensaje'></Textarea>
+      <PrimaryButton  width='full' _disabled={{
+       "borderRadius": "4px",
+       "opacity":0.4,
+       "fontWeight": 500,
+       "borderWidth": "1px",
+       "transition": "all 0.3s ease",
+       "padding": "4% 8%",
+        "&:hover":{
+    "backgroundColor": "black",
+    "color": "#FFFFFF",
+    "borderRadius": "4px",
+    "borderWidth": "1px",
+    "borderColor":'var(--chakra-colors-chakra-border-color)',
+    "svg path":{
+    }
+  }}} isDisabled={ emailError || subjectError || bodyError || email==="" || subject==="" || body===""} isLoading={isLoading} onClick={sendEmail}>Enviar</PrimaryButton>
     </VStack>
   )
 }
@@ -221,8 +278,8 @@ const DoubtSection = ({...extendedProps}) =>{
   return(
     <Stack spacing='4%' direction={['column','column','row','row','row']} width='full' justify='center' px='4%' {...extendedProps}>
       <VStack spacing="4%">
-        <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenes dudas?</Heading>
-        <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contactanos!</Heading>
+        <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenés dudas?</Heading>
+        <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contáctanos!</Heading>
         <Img src={CS_img} alt='ITBA IEEE Computer Society image'></Img>
       </VStack>
       <Form/>
@@ -237,12 +294,12 @@ const Home = () => {
       <GeneralInfo pt='4%' zIndex={90}/>
       <Categories pt='4%' zIndex={90}/>
       {/* Seccion inscribirse */}
-      {/* <Inscribite pt='4%' zIndex={90}/> */}
+      <Inscribite pt='4%' zIndex={90}/>
       <JurySection pt='4%' zIndex={90}/>
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt='4%'/>
-      {/* <DoubtSection pt='4%' zIndex={90}/> */}
+      <DoubtSection pt='4%' zIndex={90}/>
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
