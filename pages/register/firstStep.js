@@ -54,10 +54,10 @@ const FirstStep = ({setName, name, nextStep}) => {
             </BreadcrumbItem>
        </Breadcrumb>
         <VStack px='4%' paddingTop='5%'>
-            <Text fontSize={TextSize} paddingBottom='5%'>Ingresa aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
+            <Text fontSize={TextSize} paddingBottom='5%'>Ingresá aca el <Text as="span" color="orange"> nombre de tu equipo:</Text></Text>
             <Input  isInvalid={invalidValue} borderWidth='1.5px'  errorBorderColor="red.500" value={value} onChange={handleChange} textColor={"black"} bg="white" focusBorderColor='white' />
             <Text textAlign='center' fontSize={TextSize} color='red.500'>{invalidValue? "El nombre no puede estar vacio" : ""}</Text>
-            <Text textAlign='center' fontSize={TextSize}><Text as="span" color="orange"> Recorda</Text>: el nombre debe ser apropiado para la competencia</Text>
+            <Text textAlign='center' fontSize={TextSize}><Text as="span" color="orange"> Recordá</Text>: el nombre debe ser apropiado para la competencia</Text>
         </VStack>
 
         <Center paddingTop='2%'>

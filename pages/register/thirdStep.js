@@ -87,7 +87,7 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
         <Input borderWidth='1.5px'  errorBorderColor="red.500" isInvalid={localPassword!==localPassword2 || invalidPassword1} value={localPassword} onChange={handlePassword1} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
         <b><Text paddingTop={"10%"} color="#03caa1" fontSize={['2xl', '3xl', '4xl']}> REPETIR CONTRASEÑA </Text> </b>
         <Input borderWidth='1.5px'  errorBorderColor="red.500" isInvalid={localPassword!==localPassword2 || invalidPassword2} value={localPassword2} onChange={handlePassword2} textColor={"black"} bg="white" focusBorderColor='white' w={['300px', '400px', '500px']} type={"password"}/>
-        <Text align={"center"} fontSize={['sm', 'lg', 'xl']} paddingTop={"1%"}>Recorda que estos datos son para  <Text as="span" color="#03caa1"> iniciar sesion</Text></Text>
+        <Text align={"center"} fontSize={['sm', 'lg', 'xl']} paddingTop={"1%"}>Recordá que estos datos son para  <Text as="span" color="#03caa1"> iniciar sesión</Text></Text>
         <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{invalidEmail ? "Email no valido" : "" }</Text>
         <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{ (invalidPassword1||invalidPassword2) ? "La contraseña debe estar formada por 6 a 30 caracteres sin espacios" : "" }</Text>
         <Text fontSize={['sm', 'lg', 'xl']} color='red.500'>{localPassword !== localPassword2 ? "Las constraseñas deben coincidir" : "" }</Text>

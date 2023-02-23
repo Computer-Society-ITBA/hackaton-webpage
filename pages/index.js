@@ -142,14 +142,14 @@ const Inscribite = ({...extendedProps})=>{
 const JurySection = ({...extendedProps}) => {
   const juries = [
     {name: "Gabriela Macagni", imgSrc:"/images/juries/GabrielaMacagni.jpg",details:"Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina"},
-    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informatica ITBA, Investigador adjunto del CONICET especializado en machine learning"},
+    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informática ITBA, Investigador adjunto del CONICET especializado en machine learning"},
     {name: "Gabriel Gruber", imgSrc:"/images/juries/GabrielGruber.png",details:"Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati"},
     {name: "Pablo Sabbatella", imgSrc:"/images/juries/PabloSabbatella.jpeg",details:"Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto"},
   ]
   return(
     <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
-      <Text fontSize={TextSize}>Conoce a nuestros jurados</Text>
+      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
       <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' spacing='3%'>
         {juries.map((jury,index)=>{
           return(
@@ -250,9 +250,9 @@ const Form = ({...extendedProps}) => {
   }
   return(
     <VStack w={['100%','100%','100%','50%','50%']} {...extendedProps}>
-      <LocalInput onClick={()=>setEmailError(!validateEmail(email))} onChange={(event)=>{setEmail(event.target.value);setEmailError(!validateEmail(event.target.value))}} placeholder="email" value ={email} isInvalid = {emailError}  ></LocalInput>
-      <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="asunto" value={subject} isInvalid = {subjectError}></LocalInput>
-      <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensajae'></Textarea>
+      <LocalInput onClick={()=>setEmailError(!validateEmail(email))} onChange={(event)=>{setEmail(event.target.value);setEmailError(!validateEmail(event.target.value))}} placeholder="Email" value ={email} isInvalid = {emailError}  ></LocalInput>
+      <LocalInput onClick={()=>setSubjectError(subject.length===0)} onChange={(event)=>{setSubject(event.target.value);setSubjectError(event.target.value==="")}} placeholder="Asunto" value={subject} isInvalid = {subjectError}></LocalInput>
+      <Textarea onClick={()=>setBodyError(body.length===0)} isInvalid = {bodyError} value={body} onChange={(event) => {setBody(event.target.value);setBodyError(event.target.value==="")}} height={['4em','6em','8em','10em','12em']} focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' borderWidth='1.5px' errorBorderColor="red.500" color='white' _placeholder={{color:'white'}} placeholder='Mensaje'></Textarea>
       <PrimaryButton  width='full' _disabled={{
        "borderRadius": "4px",
        "opacity":0.4,
@@ -277,8 +277,8 @@ const DoubtSection = ({...extendedProps}) =>{
   return(
     <Stack spacing='4%' direction={['column','column','row','row','row']} width='full' justify='center' px='4%' {...extendedProps}>
       <VStack spacing="4%">
-        <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenes dudas?</Heading>
-        <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contactanos!</Heading>
+        <Heading size={['md','lg','xl','2xl','3xl']}>¿Tenés dudas?</Heading>
+        <Heading size={['md','lg','xl','2xl','3xl']} color='CSOrange'>¡Contáctanos!</Heading>
         <Img src={CS_img} alt='ITBA IEEE Computer Society image'></Img>
       </VStack>
       <Form/>
