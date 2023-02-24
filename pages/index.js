@@ -224,7 +224,7 @@ const Form = ({...extendedProps}) => {
   }
   const sendEmail = async()=>{
     const msg = {
-      email:'jmentasti@itba.edu.ar',
+      email:email,
       subject: subject,
       body: body
     }
