@@ -242,7 +242,7 @@ const Form = ({...extendedProps}) => {
     }
     setIsLoading(true)
     try{
-      await fetch("/api/mail/send",fetchOptions)
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mail/send`,fetchOptions)
     }catch(err){
       console.log(err)
     }
