@@ -39,6 +39,9 @@ const ParticlesLogo = (props) =>{
             <Heading display='inline' size={['sm','md','lg','xl','2xl']} color='white'>by </Heading>
             <Heading display='inline' size={['sm','md','lg','xl','2xl']} color='CSOrange'>Computer Society ITBA</Heading>
         </Box>
+          <Box alignSelf='end' pr='10%'>
+              <Heading display='inline' size={['xs','sm','md','lg','xl']} color='white'>31 de marzo, 1 y 2 de abril </Heading>
+          </Box>
       </VStack>
       </Flex>
     )
