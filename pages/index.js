@@ -189,7 +189,8 @@ const SponsorsSection = ({...extendedProps}) =>{
     {name:'Nestle',logo:'/images/logos/Nestle.svg',link:'https://www.nestle.com.ar'},
     {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
     {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
-    {name: 'Emilabs', logo:'/images/logos/Emilabs.png',link:'https://www.emilabs.com'},
+    {name: 'Emilabs', logo:'/images/logos/Emilabs.png',link:'https://www.emilabs.ai'},
+    {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
   ]
   return(
     <VStack w='full' mt={0} {...extendedProps}>
