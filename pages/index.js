@@ -146,6 +146,8 @@ const JurySection = ({...extendedProps}) => {
     {name: "Gabriel Gruber", imgSrc:"/images/juries/GabrielGruber.png",details:"Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati"},
     {name: "Pablo Sabbatella", imgSrc:"/images/juries/PabloSabbatella.jpeg",details:"Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto"},
     {name: "Mariano Di Pietrantonio", imgSrc:"/images/juries/MarianoDiPietrantonio.jpeg", details:"Co-Founder y Head Of Strategy de Maker Growth, con mas de 15 años como Product Manager en diversas empresas."},
+    {name: "Manuel Beaudroit", imgSrc:"/images/juries/ManuelBeaudroit.jpg", details:"Co-Founder y CEO de Belo, previamente Co-Founder de Bitex."},
+    {name: "Diego Fernandez", imgSrc:"/images/juries/DiegoFernandez.jpg", details:"Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires."},
   ]
   return(
     <VStack width='full' {...extendedProps}>
