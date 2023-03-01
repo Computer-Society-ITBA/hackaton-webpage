@@ -174,6 +174,9 @@ const MentorsSection = ({...extendedProps}) => {
     {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:"Cloud Delivery Center Manager en Google"},
     {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpeg", details:"Founder y CPO en Podcast App"},
     {name: "Gonzalo Otálora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:"Founder y Director en Go!"},
+    {/*{name: "Federico Viarnes", imgSrc:"/images/mentors/FedericoViarnes.jpg", details:""},
+  {name: "Juan Gallo", imgSrc:"/images/mentors/JuanGallo.jpg", details:"Cofounder y CEO en Cafecito y CourseIt"},*/}
+  
   ]
   return(
     <VStack width='full' {...extendedProps}>
