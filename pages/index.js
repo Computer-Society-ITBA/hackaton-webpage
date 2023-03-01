@@ -142,15 +142,18 @@ const Inscribite = ({...extendedProps})=>{
 const JurySection = ({...extendedProps}) => {
   const juries = [
     {name: "Gabriela Macagni", imgSrc:"/images/juries/GabrielaMacagni.jpg",details:"Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina"},
-    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingenieria Informática ITBA, Investigador adjunto del CONICET especializado en machine learning"},
+    {name: "Guillermo Rodriguez", imgSrc:"/images/juries/Guillermo-Rodriguez.jpg",details:"Director de Carrera Ingeniería Informática ITBA, Investigador adjunto del CONICET especializado en machine learning"},
     {name: "Gabriel Gruber", imgSrc:"/images/juries/GabrielGruber.png",details:"Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati"},
     {name: "Pablo Sabbatella", imgSrc:"/images/juries/PabloSabbatella.jpeg",details:"Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto"},
+    {name: "Mariano Di Pietrantonio", imgSrc:"/images/juries/MarianoDiPietrantonio.jpeg", details:"Co-Founder y Head Of Strategy de Maker Growth, con más de 15 años como Product Manager en diversas empresas"},
+    {name: "Manuel Beaudroit", imgSrc:"/images/juries/ManuelBeaudroit.jpg", details:"Co-Founder y CEO de Belo, también Co-Founder de Bitex"},
+    {name: "Diego Fernandez", imgSrc:"/images/juries/DiegoFernandez.jpg", details:"Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires"},
   ]
   return(
     <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
       <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
-      <Grid paddingX='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' spacing='3%'>
+      <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
         {juries.map((jury,index)=>{
           return(
           <GridItem key={index}>
