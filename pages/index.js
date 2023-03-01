@@ -328,6 +328,7 @@ const Home = () => {
       {/* Seccion inscribirse */}
       <Inscribite pt='4%' zIndex={90}/>
       <JurySection pt='4%' zIndex={90}/>
+      <MentorsSection pt='4%' zIndex={90}/>
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt='4%'/>
