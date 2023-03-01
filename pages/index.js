@@ -168,12 +168,12 @@ const JurySection = ({...extendedProps}) => {
 
 const MentorsSection = ({...extendedProps}) => {
   const mentors = [
-    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpg", details:""},
-    {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpg", details:""},
-    {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:""},
-    {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:""},
-    {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpg", details:""},
-    {name: "Gonzalo Otalora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:""},
+    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpeg", details:"Founder y CEO en The Gaming Agency"},
+    {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpeg", details:"Cofounder y CEO en TiendaCrypto"},
+    {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:"Cofounder y CEO en Fantastic"},
+    {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:"Cloud Delivery Center Manager en Google"},
+    {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpeg", details:"Founder y CPO en Podcast App"},
+    {name: "Gonzalo Otálora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:"Founder y Director en Go!"},
   ]
   return(
     <VStack width='full' {...extendedProps}>
