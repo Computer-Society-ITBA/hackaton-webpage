@@ -165,6 +165,33 @@ const JurySection = ({...extendedProps}) => {
     </VStack>
   )
 }
+
+const MentorsSection = ({...extendedProps}) => {
+  const mentors = [
+    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpg", details:""},
+    {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpg", details:""},
+    {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:""},
+    {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:""},
+    {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpg", details:""},
+    {name: "Gonzalo Otalora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:""},
+  ]
+  return(
+    <VStack width='full' {...extendedProps}>
+      <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Mentores</Heading>
+      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
+      <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
+        {mentors.map((mentor,index)=>{
+          return(
+          <GridItem key={index}>
+            <Jury jury={mentor}></Jury> {/* Queda mal el keyword pero creo que el componente sería el mismo */}
+          </GridItem>
+          )
+        })}
+      </Grid>
+    </VStack>
+  )
+}
+
 const WorkshopsSection = ({...extendedProps}) =>{
   const workshopsPhotos = ['/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg']
   return(
