@@ -188,7 +188,7 @@ const SponsorsSection = ({...extendedProps}) =>{
   const sponsors = [
     {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
     {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
-    {name: 'Emilabs', logo:'/images/logos/Emilabs.png',link:'https://www.emilabs.ai'},
+    {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
     {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
     {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
     {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
