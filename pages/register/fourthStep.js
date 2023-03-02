@@ -165,7 +165,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
     <VStack  w="full">
       <Breadcrumb separator={">"} w='full' padding={'2%'} fontSize = "3xl">
             <BreadcrumbItem>
-                <Text fontSize={['3xs', 'xs', 'lg', '2xl']}>Inscripcion</Text>
+                <Text fontSize={['3xs', 'xs', 'lg', '2xl']}>Inscripción</Text>
             </BreadcrumbItem>
             <BreadcrumbItem>
                 <Text  fontSize={['3xs', 'xs', 'lg', '2xl']}>Datos equipo</Text>
@@ -224,7 +224,7 @@ const FourthStep = ({participants, setParticipants, nextStep, prevStep}) => {
                     </HStack>
                 </ModalHeader>
                 <ModalBody>
-                  <Text paddingTop={"2%"}   fontSize={["md", "lg", "xl"]}> Nombre </Text> 
+                  <Text paddingTop={"2%"}   fontSize={["md", "lg", "xl"]}> Nombre y Apellido</Text> 
                   <Input textColor={"black"} isInvalid={modalInvalidName} value={modalName} onChange={changeModalName} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]}></Input>
                   <Text paddingTop={"2%"}   fontSize={["md", "lg", "xl"]}> DNI </Text> 
                   <Input textColor={"black"} isInvalid={modalInvalidDNI} value={modalDNI} onChange={changeModalDNI} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]}></Input>
