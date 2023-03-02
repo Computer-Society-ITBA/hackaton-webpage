@@ -193,6 +193,7 @@ const SponsorsSection = ({...extendedProps}) =>{
     {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
     {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
     {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
+    {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'},
     {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
     {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
   ]
