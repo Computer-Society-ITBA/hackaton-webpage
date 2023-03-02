@@ -175,7 +175,7 @@ const MentorsSection = ({...extendedProps}) => {
     {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpeg", details:"Founder y CPO en Podcast App"},
     {name: "Gonzalo Otálora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:"Founder y Director en Go!"},
     {name: "Juan Gallo", imgSrc:"/images/mentors/JuanGallo.jpeg", details:"Cofounder y CEO en Cafecito y CourseIt"},
-    {name: "Federico Viarnés", imgSrc:"/images/mentors/FedericoViarnes.jpeg", details:""},
+    {name: "Federico Viarnés", imgSrc:"/images/mentors/FedericoViarnes.jpeg", details:"Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain."},
   
   ]
   return(
