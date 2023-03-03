@@ -190,6 +190,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 }
 
 const SponsorsSection = ({...extendedProps}) =>{
+  const dimensions = [
+    ['80%','80%','70%','60%','60%'], 
+    ['70%','65%','60%','55%','55%'],
+    ['65%','60%','55%','50%','50%']
+  ]
   const sponsors = [
     {
       name: "Platinum",
@@ -234,10 +239,10 @@ const SponsorsSection = ({...extendedProps}) =>{
               <Heading textAlign='center' size={TextSize}>{cateogry.name}</Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
               <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`}>
-                {cateogry.items.map((sponsor,index)=>{
+                {cateogry.items.map((sponsor,sponsorIndex)=>{
                   return(
-                    <GridItem padding='4%' key={index}>
-                      <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+                    <GridItem padding='4%' key={sponsorIndex}>
+                      <SponsorLogo height={dimensions[index]} width={dimensions[index]} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
                     </GridItem>
                   )
                 })}
