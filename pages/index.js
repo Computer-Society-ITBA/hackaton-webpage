@@ -197,7 +197,8 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
         {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
       ],
-      dimensions:['80%','80%','70%','60%','60%']
+      dimensions:['80%','80%','70%','60%','60%'],
+      scale:1
     },
     {
       name: "Standard",
@@ -206,7 +207,8 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
         {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'}
       ],
-      dimensions:['70%','65%','60%','55%','55%']
+      dimensions:['70%','65%','60%','55%','55%'],
+      scale:0.8
     },
     {
       name: "Colaboradores",
@@ -214,7 +216,8 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
         {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
       ],
-      dimensions:['65%','60%','55%','50%','50%']
+      dimensions:['65%','60%','55%','50%','50%'],
+      scale:0.7
     }
   ]
   return(
