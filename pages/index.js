@@ -235,14 +235,14 @@ const SponsorsSection = ({...extendedProps}) =>{
       <VStack pt='4%' divider={<StackDivider variant="thick"></StackDivider>}>
         {sponsors.map((cateogry,index)=>{
           return(
-            <Box key={cateogry.name} align='center'>
+            <Box key={index} align='center' pt='2%'>
               <Heading textAlign='center' size={TextSize}>{cateogry.name}</Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
               <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`}>
                 {cateogry.items.map((sponsor,sponsorIndex)=>{
                   return(
-                    <GridItem padding='4%' key={sponsor.name}>
-                      <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+                    <GridItem padding='4%' key={sponsorIndex}>
+                      <SponsorLogo height={['70%','65%','60%','55%','55%']} width={['70%','65%','60%','55%','55%']} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
                     </GridItem>
                   )
                 })}
