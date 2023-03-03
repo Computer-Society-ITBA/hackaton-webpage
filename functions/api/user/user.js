@@ -10,7 +10,7 @@ const { addMember, editMember, deleteMember, getMembers, editQualification, save
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
-
+const {sendRegisterConfirmationEmail} = require('../mail/util')
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
  
@@ -54,6 +54,12 @@ router.post('/team', async (req, res) => {
     }catch(err){
         console.log(err)
         return res.status(400).send(error(2,"Unknown error"))
+    }
+    try{ 
+        await sendRegisterConfirmationEmail(email)
+    }catch(err){
+        console.log(err)
+        return res.status(400).send(error(2,err.message))
     }
     return res.status(200).send({message:"Success"})
 })

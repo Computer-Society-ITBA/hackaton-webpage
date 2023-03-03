@@ -33,7 +33,6 @@ router.post('/send',async (req, res)=>{
         console.log(err.response.body.errors)
         return res.status(400).json(error(1,"Sendgrid error")) 
     }
-    
 })
 
 module.exports = router
