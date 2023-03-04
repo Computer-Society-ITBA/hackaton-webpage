@@ -16,7 +16,6 @@
     "@emotion/styled": "^11.10.5",
     "@typescript-eslint/parser": "^5.47.0",
     "chakra-ui-steps": "^2.0.1",
-    "framer-motion": "^7.10.2",
     "fs": "^0.0.1-security",
     "joi": "^17.7.0",
     "next": "^12.1.2",
