@@ -1,7 +1,5 @@
 const express = require('express')
-const authMiddleware = require('../middleware/authMiddleware')
 const router = express.Router()
-const {roleMiddleware, ROLE_WEBPAGE} = require('../middleware/roleMiddleware')
 const joi = require('joi');
 const {error} = require('../util')
 const schema = joi.object({

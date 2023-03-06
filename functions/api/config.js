@@ -22,6 +22,8 @@ const app = admin.initializeApp({
 });
 
 const adminAuth = app.auth()
+//Para acceder como administrador!
+const db = app.firestore()
 
 const { initializeApp } = require('firebase/app')
 const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
@@ -37,7 +39,7 @@ const firebaseConfig = {
 
 const clientApp = initializeApp(firebaseConfig)
 const clientAuth = getAuth(clientApp)
-const db = getFirestore(clientApp)
+// const db = getFirestore(clientApp) //Usamos la de admin
 const storage = getStorage(clientApp)
 
 module.exports = { adminAuth, clientAuth, db, storage, ref, signInWithEmailAndPassword, createUserWithEmailAndPassword }

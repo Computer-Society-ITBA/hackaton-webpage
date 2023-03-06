@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY, ROLE_USER } = require('../middleware/roleMiddleware')
-const { getUser, getUsers, changePassword } = require('./auth_util')
+const { getUser, getUsers, changePassword, setRoleToUser } = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
@@ -43,6 +43,7 @@ router.post('/team', async (req, res) => {
             teamDescription,
             motivation
         }
+        await setRoleToUser(createdUser.user.uid) 
         //seteamos su nombre y descripciones
         const data = setUserInfo(createdUser.user.uid,userData)
         if(data.error) throw data.error
