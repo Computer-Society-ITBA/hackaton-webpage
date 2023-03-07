@@ -1,7 +1,5 @@
 const express = require('express')
-const authMiddleware = require('../middleware/authMiddleware')
 const router = express.Router()
-const {roleMiddleware, ROLE_WEBPAGE} = require('../middleware/roleMiddleware')
 const joi = require('joi');
 const {error} = require('../util')
 const schema = joi.object({
@@ -13,7 +11,7 @@ const schema = joi.object({
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-router.post('/send',authMiddleware,roleMiddleware([ROLE_WEBPAGE]),async (req, res)=>{
+router.post('/send',async (req, res)=>{
     const {email, subject, body} = req.body
     try{
         await schema.validateAsync({email,subject,body})
@@ -21,8 +19,8 @@ router.post('/send',authMiddleware,roleMiddleware([ROLE_WEBPAGE]),async (req, re
         return res.status(400).json(error(1,"Missing or invalid information"))
     }
     const msg = {
-        to:'jmentasti@itba.edu.ar', //Mail CS
-        from:'jrmenta2@gmail.com', //Mail cuenta Sendgrid
+        to:'computersociety@itba.edu.ar', //Mail CS
+        from:'computersociety@itba.edu.ar', //Mail cuenta Sendgrid
         subject: "from: " + email + ", subject: " + subject,
         text: body,
     }
@@ -33,7 +31,6 @@ router.post('/send',authMiddleware,roleMiddleware([ROLE_WEBPAGE]),async (req, re
         console.log(err.response.body.errors)
         return res.status(400).json(error(1,"Sendgrid error")) 
     }
-    
 })
 
 module.exports = router
