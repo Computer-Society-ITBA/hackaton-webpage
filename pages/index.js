@@ -215,7 +215,8 @@ const SponsorsSection = ({...extendedProps}) =>{
       items:[
         {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
         {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
-        {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'}
+        {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'},
+        {name: 'PAE', logo:'/images/logos/PAE.png',link:'https://www.pan-energy.com/}'},
       ],
       dimensions:['78%','78%','68%','53%','58%'],
     },
