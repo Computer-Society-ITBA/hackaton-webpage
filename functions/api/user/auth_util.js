@@ -1,5 +1,6 @@
 //Funciones utiles de users que interactuan con la api de firebase auth
-const { adminAuth } = require('../config')
+const { adminAuth } = require('../config');
+const { ROLE_ADMIN, ROLE_USER, ROLE_MENTOR, ROLE_JURY } = require('../middleware/roleMiddleware');
 const { error } = require('../util')
 const { getUserInfo } = require('./firestore_util')
 
@@ -64,4 +65,24 @@ async function changePassword(uid, newPassword) {
         return error(err.code, err.message);
     }
 }
-module.exports = { getUser, getUsers, changePassword, userToJson };
+async function setRoleTo(uid, role){
+    try{
+        await adminAuth.setCustomUserClaims(uid,{role:role})
+    }catch(err){
+        console.log(err)
+        throw err //para manejarlo desde el que lo llama
+    }
+}
+async function setRoleToAdmin(uid){
+    await setRoleTo(uid,ROLE_ADMIN)
+}
+async function setRoleToJury(uid){
+    await setRoleTo(uid,ROLE_JURY)
+}
+async function setRoleToMentor(uid){
+    await setRoleTo(uid,ROLE_MENTOR)
+}
+async function setRoleToUser(uid){
+    await setRoleTo(uid,ROLE_USER)
+}
+module.exports = { getUser, getUsers, changePassword, userToJson, setRoleToUser, setRoleToMentor, setRoleToJury, setRoleToAdmin };

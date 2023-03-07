@@ -12,7 +12,6 @@ import { useCallback } from "react";
 
 const ParticlesLogo = (props) =>{
     const particlesInit = useCallback(async engine => {
-        console.log(engine);
         // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
         // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
         // starting from v2 you can add only the features you need reducing the bundle size
@@ -20,7 +19,6 @@ const ParticlesLogo = (props) =>{
     }, []);
   
     const particlesLoaded = useCallback(async container => {
-        await console.log(container);
     }, []);
     const csImage = `/images/cs_logo.svg`;
     return (

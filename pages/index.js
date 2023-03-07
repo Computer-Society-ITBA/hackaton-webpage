@@ -17,6 +17,9 @@ import {
   Input,
   Textarea,
   SimpleGrid,
+  useToast,
+  Box,
+  CircularProgress,
 } from "@chakra-ui/react";
 import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
@@ -26,6 +29,7 @@ import Jury from '../components/Jury';
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
 import { m } from "framer-motion";
+import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 const joi = require('joi');
 
 const Subtitle = styled(Text)`
@@ -220,6 +224,8 @@ const SponsorsSection = ({...extendedProps}) =>{
 //https://github.com/final-form/react-final-form/issues/730
 const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
 const Form = ({...extendedProps}) => {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
   const [email, setEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [body, setBody] = useState("")
@@ -233,7 +239,7 @@ const Form = ({...extendedProps}) => {
   }
   const sendEmail = async()=>{
     const msg = {
-      email:'jmentasti@itba.edu.ar',
+      email:email,
       subject: subject,
       body: body
     }
@@ -241,15 +247,69 @@ const Form = ({...extendedProps}) => {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
+        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
       },
       body: JSON.stringify(msg)
     }
     setIsLoading(true)
     try{
-      await fetch("/api/mail/send",fetchOptions)
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mail/send`,fetchOptions)
+      toastIdRef.current =  toast({
+        title:"¡La inscripción fue registrada!",
+        status:'success',
+        isClosable:true,
+        duration:5000,
+        render: ()=>{
+          return(
+            <Box backgroundColor='green' borderRadius='4px' p='4%' w='full'>
+              <VStack>
+                <HStack w='full'>
+                  <CheckCircleIcon/>
+                  <Heading fontSize={HeadingSize}>¡Consulta enviada!</Heading>
+                  <Spacer/>
+                  <Button onClick={()=>toast.close(toastIdRef.current)}>Cerrar</Button>
+                </HStack>
+                <HStack>
+                  <Text>Nos comunicaremos por email brevemente</Text>
+                  <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+                </HStack>
+              </VStack>
+            </Box>
+          )
+        },
+      })
+      setEmail("")
+      setSubject("")
+      setBody("")
+      setEmailError(false)
+      setSubjectError(false)
+      setBodyError(false)
     }catch(err){
       console.log(err)
+      toastIdRef.current =  toast({
+        title:"¡La inscripción fue registrada!",
+        status:'success',
+        isClosable:true,
+        duration:5000,
+        render: ()=>{
+          return(
+            <Box backgroundColor='red.500' borderRadius='4px' p='4%' w='full'>
+              <VStack>
+                <HStack w='full'>
+                  <CloseIcon/>
+                  <Heading fontSize={HeadingSize}>¡Ocurrió un error!</Heading>
+                  <Spacer/>
+                  <Button onClick={()=>toast.close(toastIdRef.current)}>Cerrar</Button>
+                </HStack>
+                <HStack>
+                  <Text>Por favor, intenta nuevamente en un momento</Text>
+                  <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+                </HStack>
+              </VStack>
+            </Box>
+          )
+        },
+      })
     }
     setIsLoading(false)
   }

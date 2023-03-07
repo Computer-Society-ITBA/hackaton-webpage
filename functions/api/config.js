@@ -1,8 +1,8 @@
 require('dotenv').config();
-const { getFirestore } = require("firebase/firestore")
+// const { getFirestore } = require("firebase/firestore")
 const { getStorage, ref } = require("firebase/storage")
 const admin = require("firebase-admin");
-
+const {getFirestore} = require('firebase-admin/firestore')
 
 const serviceAccount = {
   type: process.env.ADMIN_TYPE,
@@ -22,6 +22,8 @@ const app = admin.initializeApp({
 });
 
 const adminAuth = app.auth()
+//Para acceder como administrador!
+const db = getFirestore(app)
 
 const { initializeApp } = require('firebase/app')
 const { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } = require("firebase/auth");
@@ -37,7 +39,7 @@ const firebaseConfig = {
 
 const clientApp = initializeApp(firebaseConfig)
 const clientAuth = getAuth(clientApp)
-const db = getFirestore(clientApp)
+// const db = getFirestore(clientApp) //Usamos la de admin
 const storage = getStorage(clientApp)
 
 module.exports = { adminAuth, clientAuth, db, storage, ref, signInWithEmailAndPassword, createUserWithEmailAndPassword }
