@@ -193,11 +193,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 }
 
 const SponsorsSection = ({...extendedProps}) =>{
-  const dimensions = [
-    ['80%','80%','70%','60%','60%'], 
-    ['70%','65%','60%','55%','55%'],
-    ['65%','60%','55%','50%','50%']
-  ]
   const sponsors = [
     {
       name: "Platinum",
@@ -205,8 +200,15 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
         {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
       ],
-      dimensions:['80%','80%','70%','60%','60%'],
-      scale:1
+      dimensions:['83%','83%','73%','68%','63%'],
+    },
+    {
+      name: "Black",
+      items:[
+        {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
+        {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
+      ],
+      dimensions:['80%','80%','70%','65%','60%'],
     },
     {
       name: "Standard",
@@ -215,8 +217,7 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
         {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'}
       ],
-      dimensions:['70%','65%','60%','55%','55%'],
-      scale:0.8
+      dimensions:['78%','78%','68%','53%','58%'],
     },
     {
       name: "Colaboradores",
@@ -224,8 +225,7 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
         {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
       ],
-      dimensions:['65%','60%','55%','50%','50%'],
-      scale:0.7
+      dimensions:['76%','70%','66%','61%','54%'],
     }
   ]
   return(
@@ -245,7 +245,7 @@ const SponsorsSection = ({...extendedProps}) =>{
                 {cateogry.items.map((sponsor)=>{
                   return(
                     <GridItem padding='4%' key={sponsor.name}>
-                      <SponsorLogo height={['70%','65%','60%','55%','55%']} width={['70%','65%','60%','55%','55%']} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+                      <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
                     </GridItem>
                   )
                 })}
