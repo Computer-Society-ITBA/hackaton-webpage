@@ -235,14 +235,14 @@ const SponsorsSection = ({...extendedProps}) =>{
         <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
-      <VStack pt='4%' divider={<StackDivider variant="thick"></StackDivider>}>
-        {sponsors.map((cateogry,index)=>{
+      <VStack pt='4%' divider={<StackDivider variant="thick"></StackDivider>} w='full'>
+        {sponsors.map((cateogry)=>{
           return(
-            <Box key={cateogry.name} align='center' pt='2%'>
+            <Box key={cateogry.name} align='center' pt='2%' width="100%">
               <Heading textAlign='center' size={TextSize}>{cateogry.name}</Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
-              <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`}>
-                {cateogry.items.map((sponsor,sponsorIndex)=>{
+              <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`} w='full'>
+                {cateogry.items.map((sponsor)=>{
                   return(
                     <GridItem padding='4%' key={sponsor.name}>
                       <SponsorLogo height={['70%','65%','60%','55%','55%']} width={['70%','65%','60%','55%','55%']} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
