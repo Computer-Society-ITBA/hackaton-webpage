@@ -65,13 +65,14 @@ const Register = () => {
       motivation:motivation
     }
     try{
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/team`,{
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/team`,{
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       })
+      if(response.status!==200) throw new Error("Server error")
     }catch(err){
       toastIdRef.current =  toast({
         title:"¡La inscripción fue registrada!",

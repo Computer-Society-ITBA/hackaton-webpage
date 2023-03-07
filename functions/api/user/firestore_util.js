@@ -15,7 +15,9 @@ async function addMember(uid, memberDNI, memberEmail, memberFullName){
         email:      memberEmail
     }
     try{
-        const ans = await addDoc(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION),data)
+        // const ans = await addDoc(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION),data)
+        // const ans = await addDoc(db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`),data)
+        const ans = db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`).add(data)
         return {id:ans.id, data:data}
     }catch(err){
         console.log(err)
@@ -30,7 +32,9 @@ async function editMember(uid,memberId, memberDNI, memberEmail, memberFullName){
     }
     const data = JSON.parse(JSON.stringify(aux))//para sacar campos undefined (si no da error firestore)
     try{
-        await updateDoc(doc(db, USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId), data)
+        // await updateDoc(doc(db, USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId), data)
+        // await updateDoc(db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`), data)
+        await db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`).update(data)
         return data
     }catch(err){
         console.log(err)
@@ -39,7 +43,9 @@ async function editMember(uid,memberId, memberDNI, memberEmail, memberFullName){
 }
 async function deleteMember(uid, memberId){
     try{
-        await deleteDoc(doc(db,USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId))
+        // await deleteDoc(doc(db,USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId))
+        // await deleteDoc(db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`))
+        await db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`).delete()
         return {message:"success"}
     }catch(err){
         console.log(err)
@@ -49,7 +55,9 @@ async function deleteMember(uid, memberId){
 
 async function getMembers(uid){
     try{
-        const ans = (await getDocs(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION))).docs
+        // const ans = (await getDocs(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION))).docs
+        // const ans = (await getDocs(db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`))).docs
+        const ans =  (await db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`).get()).docs 
         return ans.map((doc)=>{ return {id: doc.id, data:doc.data()}})
     }catch(err){
         console.log(err)
@@ -60,7 +68,9 @@ async function getMembers(uid){
 async function editQualification(uid, qualifiedValue){
     const data = {qualified: qualifiedValue}
     try{
-        await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        // await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        // await setDoc(db.doc(`/${USER_COLLECTION}/${uid}`), data,{merge:true})
+        await db.doc(`/${USER_COLLECTION}/${uid}`).set(data,{merge:true})
         return data
     }catch(err){
         console.log(err)
@@ -69,7 +79,9 @@ async function editQualification(uid, qualifiedValue){
 }
 async function getUserInfo(uid){
     try{
-        const ans = await getDoc(doc(db,USER_COLLECTION,uid))
+        // const ans = await getDoc(doc(db,USER_COLLECTION,uid))
+        // const ans = await getDoc(db.doc(`/${USER_COLLECTION}/${uid}`))
+        const ans = await db.doc(`/${USER_COLLECTION}/${uid}`).get()
         return {id: ans.id, data: ans.data()}
     }catch(err){
         return error(err.code, err.message)
@@ -77,7 +89,9 @@ async function getUserInfo(uid){
 }
 async function setUserInfo(uid, data){
     try{
-        await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        // await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
+        // await setDoc(db.doc(`/${USER_COLLECTION}/${uid}`), data,{merge:true})
+        await db.doc(`/${USER_COLLECTION}/${uid}`).set(data,{merge:true})
         return data
     }catch(err){
         console.log(err)
@@ -95,7 +109,8 @@ async function setUserInfo(uid, data){
                     name: file.originalname,
                     verified: false
                 }
-                const fileRef = await addDoc(collection(db, USER_COLLECTION, userId, MEMBERS_COLLECTION,memberId, DOCUMENTS_COLLECTION),fileData)
+                // const fileRef = await addDoc(db.collection(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`),fileData)
+                const fileRef = await db.collection(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`).add(fileData)
                 fileData.id = fileRef.id
                 return fileData
         })
@@ -108,7 +123,8 @@ async function setUserInfo(uid, data){
 async function verifyDocument(userId, memberId, documentId) {
     const data = {verified : true}
     try {
-        await updateDoc(doc(db, USER_COLLECTION, userId, MEMBERS_COLLECTION, memberId, DOCUMENTS_COLLECTION, documentId), data)
+        // await updateDoc(db.doc(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`), data)
+        await db.doc(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`).update(data)
         return data
     }
     catch (err) {
