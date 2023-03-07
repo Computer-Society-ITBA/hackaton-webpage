@@ -205,10 +205,10 @@ const SponsorsSection = ({...extendedProps}) =>{
     {
       name: "Black",
       items:[
-        {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
-        {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
+        {name:'MetLife',logo:'/images/logos/MetLife.png',link:'https://www.metlife.com.ar'},
       ],
-      dimensions:['80%','80%','70%','65%','60%'],
+      // dimensions:['80%','80%','70%','65%','60%'],
+      dimensions:['75%','75%','68%','65%','58%'],
     },
     {
       name: "Standard",
@@ -244,7 +244,7 @@ const SponsorsSection = ({...extendedProps}) =>{
               <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`} w='full'>
                 {cateogry.items.map((sponsor)=>{
                   return(
-                    <GridItem padding='4%' key={sponsor.name}>
+                    <GridItem padding='1%' pt='4%' key={sponsor.name}>
                       <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
                     </GridItem>
                   )
