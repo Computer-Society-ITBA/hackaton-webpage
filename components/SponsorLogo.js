@@ -1,9 +1,8 @@
-import { Img, Box, Center, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Image, Img, Link } from "@chakra-ui/react";
 
 const SponsorLogo = ({ link, logo, name, width, height, style }) => {
   return (
-    <Link {...style} href={link} isExternal height='100%' mx={8}>
+    <Link {...style} href={link} isExternal >
       <Img
         src={logo}
         alt={name}
