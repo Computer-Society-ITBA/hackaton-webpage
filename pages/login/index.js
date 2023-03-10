@@ -89,7 +89,7 @@ const Home = () => {
                     </InputRightElement>
                 </InputGroup>
                 <Link href='/forgot-password' ><Text fontSize={TextSize} cursor='pointer' _hover={{"color":"CSGreen"}} >¿Olvidaste tu contraseña?</Text></Link>
-                <IngresarButton isLoading={isLoading} disabled={email==="" || password===""} onClick={()=>signIn(email,password)} backgroundColor='CSGreen' width='full'>Ingresar</IngresarButton>
+                <IngresarButton isLoading={isLoading} disabled={email==="" || password===""} onClick={()=>/*signIn(email,password)*/} backgroundColor='CSGreen' width='full'>Ingresar</IngresarButton>
                 <Text mt='4%' fontSize={TextSize}>¿No estás inscripto?</Text>
                 <InscribirseButton isLoading={isLoading} backgroundColor='CSOrange' width='full'>Registrarse</InscribirseButton>
             </Flex>
