@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { roleMiddleware, ROLE_ADMIN, ROLE_MENTOR, ROLE_JURY, ROLE_USER } = require('../middleware/roleMiddleware')
-const { getUser, getUsers, changePassword } = require('./auth_util')
+const { getUser, getUsers, changePassword, setRoleToUser } = require('./auth_util')
 const authMiddleware = require('../middleware/authMiddleware')
 const selfMiddleware = require('../middleware/selfMiddleware')
 const { error } = require('../util')
@@ -10,7 +10,7 @@ const { addMember, editMember, deleteMember, getMembers, editQualification, save
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
-
+const {sendRegisterConfirmationEmail} = require('../mail/util')
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
  
@@ -43,6 +43,7 @@ router.post('/team', async (req, res) => {
             teamDescription,
             motivation
         }
+        await setRoleToUser(createdUser.user.uid) 
         //seteamos su nombre y descripciones
         const data = setUserInfo(createdUser.user.uid,userData)
         if(data.error) throw data.error
@@ -54,6 +55,12 @@ router.post('/team', async (req, res) => {
     }catch(err){
         console.log(err)
         return res.status(400).send(error(2,"Unknown error"))
+    }
+    try{ 
+        await sendRegisterConfirmationEmail(email)
+    }catch(err){
+        console.log(err)
+        return res.status(400).send(error(2,err.message))
     }
     return res.status(200).send({message:"Success"})
 })
