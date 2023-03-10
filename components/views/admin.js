@@ -24,14 +24,15 @@ import {
     AccordionPanel,
     AccordionIcon,
     Button,
+    Center,
 } from "@chakra-ui/react"
 
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
-const TeamCard = ({team}) => {
+const TeamCard = ({team, ...extendedProps}) => {
     const {isOpen, onToggle} = useDisclosure()
     return (
-        <VStack p='2%' align='center' width='full' borderRadius='8px' borderWidth='2px 2px 6px 2px' borderColor='CSBlue'>
+        <VStack p='2%' align='center' borderRadius='8px' borderWidth='2px 2px 6px 2px' borderColor='CSBlue' {...extendedProps}>
             <Flex onClick={onToggle} direction='row' verticalAlign='middle' width='full'>
                 <Heading fontSize={HeadingSize}>{`Equipo ${team.number}: ${team.name}`}</Heading>
                 <Spacer></Spacer>
@@ -141,13 +142,37 @@ const TeamSelection = ()=>{
             teamDescription: 'We are the best',
             motivation:'We want to win',
             participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+        },
+        {
+            number: 1,
+            name: 'Hello world',
+            qualified:false,
+            teamDescription: 'We are the best',
+            motivation:'We want to win',
+            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+        },
+        {
+            number: 1,
+            name: 'Hello world',
+            qualified:false,
+            teamDescription: 'We are the best',
+            motivation:'We want to win',
+            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+        },
+        {
+            number: 1,
+            name: 'Hello world',
+            qualified:false,
+            teamDescription: 'We are the best',
+            motivation:'We want to win',
+            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
         }
 
     ]
     return(
         <VStack align='start' width='full'>
             <Heading textAlign='start'>{`Equipos aceptados: ${teams.filter(team=>team.qualified).length}`}</Heading>
-            <Grid width='full' templateColumns={['repeat(1,1fr)','repeat(1,1fr)','repeat(2,1fr)','repeat(2,1fr)','repeat(2,1fr)']}>
+            {/* <Grid width='full' templateColumns={['repeat(1,1fr)','repeat(1,1fr)','repeat(2,1fr)','repeat(2,1fr)','repeat(2,1fr)']}>
                 {teams.map((team,index)=>{
                     return(
                         <GridItem key={index} mx={['2%','2%','4%','6%','8%']} align='center' py='2%'>
@@ -155,7 +180,14 @@ const TeamSelection = ()=>{
                         </GridItem>
                     )
                 })}
-            </Grid>
+            </Grid> */}
+            <Flex width='full' direction='row' flexWrap='wrap' justifyContent='start' alignItems='start' verticalAlign='top'>
+                {teams.map((team,index)=>{
+                    return(
+                        <TeamCard mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={team} key={index}></TeamCard>
+                    )
+                })}
+            </Flex>
         </VStack>
     )
 
