@@ -158,7 +158,7 @@ const JurySection = ({...extendedProps}) => {
     <VStack width='full' {...extendedProps}>
       <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Jurados</Heading>
       <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
-      <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
+      {/* <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
         {juries.map((jury,index)=>{
           return(
           <GridItem key={index}>
@@ -166,7 +166,14 @@ const JurySection = ({...extendedProps}) => {
           </GridItem>
           )
         })}
-      </Grid>
+      </Grid> */}
+      <Flex width='full' direction='row' flexWrap='wrap' justifyContent='center' alignItems='start' verticalAlign='top'>
+        {juries.map((jury,index)=>{
+          return(
+            <Jury key={index} jury={jury} my='2%' mx='4%'></Jury>
+          )
+        })}
+      </Flex>
     </VStack>
   )
 }
@@ -208,7 +215,7 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name:'MetLife',logo:'/images/logos/MetLife.png',link:'https://www.metlife.com.ar'},
       ],
       // dimensions:['80%','80%','70%','65%','60%'],
-      dimensions:['75%','75%','68%','65%','58%'],
+      dimensions:['65%','68','63%','60%','55%'],
     },
     {
       name: "Standard",
@@ -236,16 +243,16 @@ const SponsorsSection = ({...extendedProps}) =>{
         <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
-      <VStack pt='4%' divider={<StackDivider variant="thick"></StackDivider>} w='full'>
+      <VStack px='8%' pt='2%' divider={<StackDivider variant="thick"></StackDivider>} w='full'>
         {sponsors.map((cateogry)=>{
           return(
-            <Box key={cateogry.name} align='center' pt='2%' width="100%">
+            <Box key={cateogry.name} align='center' pt='1%' width="100%">
               <Heading textAlign='center' size={TextSize}>{cateogry.name}</Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
               <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`} w='full'>
                 {cateogry.items.map((sponsor)=>{
                   return(
-                    <GridItem padding='1%' pt='4%' key={sponsor.name}>
+                    <GridItem padding='1%' pt='2%' key={sponsor.name}>
                       <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
                     </GridItem>
                   )
