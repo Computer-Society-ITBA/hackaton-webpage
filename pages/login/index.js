@@ -1,10 +1,11 @@
 import { EmailIcon, LockIcon, UnlockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, IconButton, Img, Input, InputGroup, InputLeftAddon, InputLeftElement, InputRightElement, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Fade, Flex, Heading, IconButton, Img, Input, InputGroup, InputLeftAddon, InputLeftElement, InputRightElement, Text, VStack } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { useState } from 'react';
 import { auth } from '../../config/firebaseConfig';
 import {signInWithEmailAndPassword} from "firebase/auth"
+import { useRouter } from 'next/router';
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
 const IngresarButton = styled(Button)`
@@ -53,25 +54,26 @@ svg path {
 `;
 
 const Home = () => {
+    const router = useRouter()
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const [errorMessage, setErorrMessage] = useState("")
     const handleEmailChange = (event)=>setEmail(event.target.value)
     const handlePasswordChange = (event)=>setPassword(event.target.value)
+
     const signIn = async (email, password)=>{
       setIsLoading(true)
       try{
         const credentials = await signInWithEmailAndPassword(auth,email,password)
-        const token = await credentials.user.getIdTokenResult()
-        console.log(token.claims.role)//asi obtenemos el rol del usuario
+        console.log(credentials)
+        router.push('/profile')
       }catch(err){
-        // console.log(err)
-        console.log(err.code)
-        console.log(err.message)
+        setErorrMessage("Ocurrio un error, revisa el que el email y la contraseña sean correctos")
       }
       setIsLoading(false)
-    }
+    } 
     return (
         <VStack width='full' direction='column' justifyContent='space-between'>
             <Img src='/images/Sponsor_corner_1.svg' alt="decoration image" alignSelf='start' w={['18%','15%','12%','10%','8%']}></Img>
@@ -89,7 +91,8 @@ const Home = () => {
                     </InputRightElement>
                 </InputGroup>
                 <Link href='/forgot-password' ><Text fontSize={TextSize} cursor='pointer' _hover={{"color":"CSGreen"}} >¿Olvidaste tu contraseña?</Text></Link>
-                <IngresarButton isLoading={isLoading} disabled={email==="" || password===""} onClick={()=>/*signIn(email,password)*/} backgroundColor='CSGreen' width='full'>Ingresar</IngresarButton>
+                <Text fontSize={TextSize} color="red.500">{errorMessage}</Text>
+                <IngresarButton isLoading={isLoading} disabled={email==="" || password===""} onClick={()=>signIn(email,password)} backgroundColor='CSGreen' width='full'>Ingresar</IngresarButton>
                 <Text mt='4%' fontSize={TextSize}>¿No estás inscripto?</Text>
                 <InscribirseButton isLoading={isLoading} backgroundColor='CSOrange' width='full'>Registrarse</InscribirseButton>
             </Flex>

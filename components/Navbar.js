@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
+import { auth } from "../config/firebaseConfig";
 
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
@@ -67,9 +68,15 @@ const PrimaryButton = styled(Button)`
 //   );
 // };
 
+const ProfileButton = ({user,...extendedProps})=>{
+  return(
+    <Box>
+
+    </Box>
+  )
+}
 const Navbar = (props) => {
   const { path } = props;
-
   return (
     <Box
       position="fixed"
@@ -102,11 +109,15 @@ const Navbar = (props) => {
           {/* { <ThemeToggleButton />} */}
 
           <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
+            {auth.currentUser?
+              <Heading>Hello</Heading>
+            :
             <NextLink href="/register" >
               <a>
                 <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
               </a>
             </NextLink>
+            }
           </Box>
         </Box>
       </Container>

@@ -28,7 +28,7 @@ const {ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER} = require('../middleware/ro
 // })
 
 // //Para poder cambiar el rol desde admin, recibimos el uid por body
-// router.put('/set_role_to_admin',authMiddleware,async (req, res)=>{
+// router.put('/set_role_to_admin',async (req, res)=>{
 //     // const uid = res.locals.userInfo.uid 
 //     const {uid} = req.body
 //     try{
