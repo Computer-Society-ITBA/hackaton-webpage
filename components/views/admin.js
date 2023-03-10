@@ -103,7 +103,6 @@ const TeamCard = ({team, ...extendedProps}) => {
                       > 
                       Aceptar 
                     </Button>
-                   
                 </Flex>
             </Collapse>
         </VStack>

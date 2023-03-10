@@ -33,6 +33,7 @@ import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 const joi = require('joi');
 
+
 const Subtitle = styled(Text)`
   font-size: 14px;
   text-transform: uppercase;
