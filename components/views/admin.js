@@ -184,7 +184,7 @@ const TeamSelection = ()=>{
             <Flex width='full' direction='row' flexWrap='wrap' justifyContent='start' alignItems='start' verticalAlign='top'>
                 {teams.map((team,index)=>{
                     return(
-                        <TeamCard mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={team} key={index}></TeamCard>
+                        <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={team}></TeamCard>
                     )
                 })}
             </Flex>
@@ -211,10 +211,9 @@ const AdminView = ()=>{
                 </TabPanel>
                 {/* Evaluacion de proyectos */}
                 <TabPanel>
-                <p>two!</p>
-                </TabPanel>
-                <TabPanel>
-                <p>three!</p>
+                    <div>
+                    <p>two!</p>
+                    </div>
                 </TabPanel>
             </TabPanels>
         </Tabs>

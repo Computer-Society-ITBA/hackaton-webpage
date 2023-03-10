@@ -58,11 +58,11 @@ const Home = () => {
             <Flex gap='2em' align='center' direction='column' width={['85%','65%','50%','40%','30%']}>
                 <Heading size={HeadingSize}>Iniciar sesión</Heading>
                 <InputGroup>
-                    <InputLeftElement minH='3.5em'  children={<EmailIcon/>} color='grey'></InputLeftElement>
+                    <InputLeftElement minH='3.5em'color='grey'><EmailIcon/></InputLeftElement>
                     <Input minH='3.5em' placeholder="Ingresá tu email" borderWidth='1.5px'  focusBorderColor='CSOrange'  errorBorderColor="red.500" borderRadius='4px' backgroundColor='white' color='black' _placeholder={{color:'gray'}}></Input>
                 </InputGroup>
                 <InputGroup>
-                    <InputLeftElement minH='3.5em'  children={<LockIcon/>} color='grey'></InputLeftElement>
+                    <InputLeftElement minH='3.5em' color='grey'><LockIcon/></InputLeftElement>
                     <Input type={showPassword?'text':'password'} minH='3.5em' placeholder="Ingresá tu contraseña" borderWidth='1.5px'  focusBorderColor='CSOrange'  errorBorderColor="red.500" borderRadius='4px' backgroundColor='white' color='black' _placeholder={{color:'gray'}}></Input>
                     <InputRightElement minH='3.5em'>
                         <IconButton color='black' icon={showPassword?<ViewIcon/>:<ViewOffIcon/>} onClick={()=>setShowPassword(!showPassword)}></IconButton>
