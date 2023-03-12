@@ -44,13 +44,13 @@ const SecondStep = ({nextStep,prevStep}) => {
     <VStack>
         <Breadcrumb separator={">"} w='full' padding={'2%'} fontSize = "3xl">
             <BreadcrumbItem>
-                <Text fontSize={['xl', '2xl', '3xl']}>Inscripcion</Text>
+                <Text fontSize={['xl', '2xl', '3xl']}>Inscripción</Text>
             </BreadcrumbItem>
             <BreadcrumbItem>
                 <Text color={"orange"} fontSize={['xl', '2xl', '3xl']}>Datos equipo</Text>
             </BreadcrumbItem>
        </Breadcrumb>
-       <Text paddingTop={'1%'} paddingBottom={'5%'} fontSize={['xl', '2xl', '3xl']}> Subi aca el <Text as="span" color="orange"> logo de tu equipo</Text> </Text>
+       <Text paddingTop={'1%'} paddingBottom={'5%'} fontSize={['xl', '2xl', '3xl']}> Subí acá el <Text as="span" color="orange"> logo de tu equipo</Text> </Text>
        <div style={divStyle}>
         <Image src={"/images/backup.svg"} borderRadius={"full"} boxSize={["150px", "250px"]}>
 

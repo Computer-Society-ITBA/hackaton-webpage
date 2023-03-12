@@ -72,7 +72,7 @@ const ThirdStep = ({setEmail, email, setPassword, password, nextStep, prevStep})
     <VStack>
         <Breadcrumb separator={">"} w='full' padding={'2%'} fontSize = "3xl">
             <BreadcrumbItem>
-                <Text fontSize={['xs', 'sm', '2xl']}>Inscripcion</Text>
+                <Text fontSize={['xs', 'sm', '2xl']}>Inscripción</Text>
             </BreadcrumbItem>
             <BreadcrumbItem>
                 <Text  fontSize={['xs', 'sm', '2xl']}>Datos equipo</Text>

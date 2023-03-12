@@ -17,6 +17,10 @@ import {
   Input,
   Textarea,
   SimpleGrid,
+  StackDivider,
+  useToast,
+  Box,
+  CircularProgress,
 } from "@chakra-ui/react";
 import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
@@ -26,6 +30,7 @@ import Jury from '../components/Jury';
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
 import { m } from "framer-motion";
+import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 const joi = require('joi');
 
 const Subtitle = styled(Text)`
@@ -219,12 +224,40 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 const SponsorsSection = ({...extendedProps}) =>{
   const sponsors = [
-    {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
-    {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
-    {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
-    {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
-    {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
-    {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
+    {
+      name: "Platinum",
+      items:[
+        {name:'Nestle',logo:'/images/logos/Nestle.png',link:'https://www.nestle.com.ar'},
+        {name:'Accenture',logo:'/images/logos/Accenture.png',link:'https://www.accenture.com/ar-es'},
+      ],
+      dimensions:['83%','83%','73%','68%','63%'],
+    },
+    {
+      name: "Black",
+      items:[
+        {name:'MetLife',logo:'/images/logos/MetLife.png',link:'https://www.metlife.com.ar'},
+      ],
+      // dimensions:['80%','80%','70%','65%','60%'],
+      dimensions:['75%','75%','68%','65%','58%'],
+    },
+    {
+      name: "Standard",
+      items:[
+        {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
+        {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
+        {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'},
+        {name: 'PAE', logo:'/images/logos/PAE.png',link:'https://www.pan-energy.com'},
+      ],
+      dimensions:['78%','78%','68%','53%','58%'],
+    },
+    {
+      name: "Colaboradores",
+      items:[
+        {name: 'Buenos Aires Ciudad', logo:'/images/logos/BuenosAiresCiudad.png',link:'https://buenosaires.gob.ar/inicio/'},
+        {name:'Defy Education',logo:'/images/logos/Defy.png',link:'https://www.defyeducation.com'},
+      ],
+      dimensions:['76%','70%','66%','61%','54%'],
+    }
   ]
   return(
     <VStack w='full' mt={0} {...extendedProps}>
@@ -233,15 +266,25 @@ const SponsorsSection = ({...extendedProps}) =>{
         <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Sponsors 2023</Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
-      <Grid paddingX='6%' templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)']}>
-        {sponsors.map((sponsor)=>{
+      <VStack pt='4%' divider={<StackDivider variant="thick"></StackDivider>} w='full'>
+        {sponsors.map((cateogry)=>{
           return(
-            <GridItem padding='4%' key={sponsor.name}>
-              <SponsorLogo height={['100%','80%','80%','70%','70%']} width={['100%','80%','80%','70%','70%']} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
-            </GridItem>
+            <Box key={cateogry.name} align='center' pt='2%' width="100%">
+              <Heading textAlign='center' size={TextSize}>{cateogry.name}</Heading>
+              {/* Lo dejamos como para que sea una fila por categoría */}
+              <Grid paddingX='6%' templateColumns={`repeat(${cateogry.items.length},1fr)`} w='full'>
+                {cateogry.items.map((sponsor)=>{
+                  return(
+                    <GridItem padding='1%' pt='4%' key={sponsor.name}>
+                      <SponsorLogo height={cateogry.dimensions} width={cateogry.dimensions} link={sponsor.link} logo={sponsor.logo} name={sponsor.name}></SponsorLogo>
+                    </GridItem>
+                  )
+                })}
+              </Grid>
+            </Box>
           )
         })}
-      </Grid>
+      </VStack>
       <Img src='/images/Sponsor_corner_2.svg' alt="decoration image" alignSelf='end' w={['20%','18%','15%','12%','10%']}></Img>
     </VStack>
   )
@@ -251,6 +294,8 @@ const SponsorsSection = ({...extendedProps}) =>{
 //https://github.com/final-form/react-final-form/issues/730
 const LocalInput = ({...extendedProps}) => <Input  borderWidth='1.5px' errorBorderColor="red.500" focusBorderColor='white' borderRadius='4px' backgroundColor='CSOrange' color='white' _placeholder={{color:'white'}} {...extendedProps}></Input>
 const Form = ({...extendedProps}) => {
+  const toast = useToast()
+  const toastIdRef = React.useRef()
   const [email, setEmail] = useState("")
   const [subject, setSubject] = useState("")
   const [body, setBody] = useState("")
@@ -264,7 +309,7 @@ const Form = ({...extendedProps}) => {
   }
   const sendEmail = async()=>{
     const msg = {
-      email:'jmentasti@itba.edu.ar',
+      email:email,
       subject: subject,
       body: body
     }
@@ -272,15 +317,69 @@ const Form = ({...extendedProps}) => {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
+        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
       },
       body: JSON.stringify(msg)
     }
     setIsLoading(true)
     try{
-      await fetch("/api/mail/send",fetchOptions)
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mail/send`,fetchOptions)
+      toastIdRef.current =  toast({
+        title:"¡La inscripción fue registrada!",
+        status:'success',
+        isClosable:true,
+        duration:5000,
+        render: ()=>{
+          return(
+            <Box backgroundColor='green' borderRadius='4px' p='4%' w='full'>
+              <VStack>
+                <HStack w='full'>
+                  <CheckCircleIcon/>
+                  <Heading fontSize={HeadingSize}>¡Consulta enviada!</Heading>
+                  <Spacer/>
+                  <Button onClick={()=>toast.close(toastIdRef.current)}>Cerrar</Button>
+                </HStack>
+                <HStack>
+                  <Text>Nos comunicaremos por email brevemente</Text>
+                  <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+                </HStack>
+              </VStack>
+            </Box>
+          )
+        },
+      })
+      setEmail("")
+      setSubject("")
+      setBody("")
+      setEmailError(false)
+      setSubjectError(false)
+      setBodyError(false)
     }catch(err){
       console.log(err)
+      toastIdRef.current =  toast({
+        title:"¡La inscripción fue registrada!",
+        status:'success',
+        isClosable:true,
+        duration:5000,
+        render: ()=>{
+          return(
+            <Box backgroundColor='red.500' borderRadius='4px' p='4%' w='full'>
+              <VStack>
+                <HStack w='full'>
+                  <CloseIcon/>
+                  <Heading fontSize={HeadingSize}>¡Ocurrió un error!</Heading>
+                  <Spacer/>
+                  <Button onClick={()=>toast.close(toastIdRef.current)}>Cerrar</Button>
+                </HStack>
+                <HStack>
+                  <Text>Por favor, intenta nuevamente en un momento</Text>
+                  <CircularProgress isIndeterminate  color='grey' value={20}></CircularProgress>
+                </HStack>
+              </VStack>
+            </Box>
+          )
+        },
+      })
     }
     setIsLoading(false)
   }
