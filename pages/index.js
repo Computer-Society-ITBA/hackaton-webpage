@@ -170,6 +170,36 @@ const JurySection = ({...extendedProps}) => {
     </VStack>
   )
 }
+
+const MentorsSection = ({...extendedProps}) => {
+  const mentors = [
+    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpeg", details:"Founder y CEO en The Gaming Agency"},
+    {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpeg", details:"Cofounder y CEO en TiendaCrypto"},
+    {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:"Cofounder y CEO en Fantastic"},
+    {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:"Cloud Delivery Center Manager en Google"},
+    {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpeg", details:"Founder y CPO en Podcast App"},
+    {name: "Gonzalo Otálora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:"Founder y Director en Go!"},
+    {name: "Juan Gallo", imgSrc:"/images/mentors/JuanGallo.jpeg", details:"Cofounder y CEO en Cafecito y CourseIt"},
+    {name: "Federico Viarnés", imgSrc:"/images/mentors/FedericoViarnes.jpeg", details:"Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain."},
+  
+  ]
+  return(
+    <VStack width='full' {...extendedProps}>
+      <Heading color="CSOrange" size={HeadingSize} textAlign='center' >Mentores</Heading>
+      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
+      <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
+        {mentors.map((mentor,index)=>{
+          return(
+          <GridItem key={index}>
+            <Jury jury={mentor}></Jury> {/* Queda mal el keyword pero creo que el componente sería el mismo */}
+          </GridItem>
+          )
+        })}
+      </Grid>
+    </VStack>
+  )
+}
+
 const WorkshopsSection = ({...extendedProps}) =>{
   const workshopsPhotos = ['/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg','/images/course_example.jpg']
   return(
@@ -216,7 +246,7 @@ const SponsorsSection = ({...extendedProps}) =>{
         {name: 'Emilabs', logo:'/images/logos/Emi.png',link:'https://www.emilabs.ai'},
         {name: 'BBVA', logo:'/images/logos/BBVA.png',link:'https://www.bbva.com.ar/'},
         {name: 'MODO', logo:'/images/logos/modo.png',link:'https://www.modo.com.ar/'},
-        {name: 'PAE', logo:'/images/logos/PAE.png',link:'https://www.pan-energy.com/}'},
+        {name: 'PAE', logo:'/images/logos/PAE.png',link:'https://www.pan-energy.com'},
       ],
       dimensions:['78%','78%','68%','53%','58%'],
     },
@@ -400,6 +430,7 @@ const Home = () => {
       {/* Seccion inscribirse */}
       <Inscribite pt='4%' zIndex={90}/>
       <JurySection pt='4%' zIndex={90}/>
+      <MentorsSection pt='4%' zIndex={90}/>
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt='4%'/>
