@@ -8,11 +8,15 @@ import {
   Heading,
   Flex,
   useColorModeValue,
+  Text,
 } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
 import { auth } from "../config/firebaseConfig";
-
+import { useEffect, useState } from "react";
+import {onAuthStateChanged} from 'firebase/auth'
+import Head from "next/head";
+import { useStore } from "../config/storeConfig";
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -68,14 +72,35 @@ const PrimaryButton = styled(Button)`
 //   );
 // };
 
-const ProfileButton = ({user,...extendedProps})=>{
+const LoggedOutButton = ()=>{
   return(
-    <Box>
-
-    </Box>
+    <NextLink href="/register" >
+        <a>
+          <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
+        </a>
+    </NextLink>
   )
 }
+const LoggedInButton = (user)=>{
+  return(
+    <Heading>Hello</Heading>
+  )
+}
+
 const Navbar = (props) => {
+  const isLoggedIn = useStore((state)=>state.isLoggedIn)
+  const userInfo = useStore((state)=>state.userInfo)
+  const [navButton, setNavButton] = useState(
+      isLoggedIn?<LoggedInButton/>:<LoggedOutButton/>
+)
+useEffect(()=>{
+  if(isLoggedIn){
+    setNavButton(<LoggedInButton/>)
+  }else{
+    setNavButton(<LoggedOutButton/>)
+  }
+},[isLoggedIn])
+// onAuthStateChanged(auth,()=>setNavButton(<Heading>Logged In!</Heading>))
   const { path } = props;
   return (
     <Box
@@ -109,15 +134,16 @@ const Navbar = (props) => {
           {/* { <ThemeToggleButton />} */}
 
           <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
-            {auth.currentUser?
-              <Heading>Hello</Heading>
+            {navButton}
+            {/* {isLoggedIn?
+            <Heading>Logged in!</Heading> 
             :
             <NextLink href="/register" >
-              <a>
-                <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
-              </a>
-            </NextLink>
-            }
+            <a>
+              <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
+            </a>
+          </NextLink> 
+          } */}
           </Box>
         </Box>
       </Container>

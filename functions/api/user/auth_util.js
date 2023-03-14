@@ -30,8 +30,8 @@ async function getUser(uid) {
         return {
             displayName: user.displayName,
             email: user.email,
-            phoneNumber: user.phoneNumber,
-            photoURL: user.photoURL,
+            // phoneNumber: user.phoneNumber,
+            // photoURL: user.photoURL,
             uid: user.uid,
             role: user.customClaims?.role,
             qualified: userInfo.data?.qualified

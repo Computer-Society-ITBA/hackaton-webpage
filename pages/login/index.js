@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { auth } from '../../config/firebaseConfig';
 import {signInWithEmailAndPassword} from "firebase/auth"
 import { useRouter } from 'next/router';
+import {useStore} from '../../config/storeConfig'
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
 const IngresarButton = styled(Button)`
@@ -55,6 +56,7 @@ svg path {
 
 const Home = () => {
     const router = useRouter()
+    const storeSignIn = useStore((state)=>state.signIn)
     const [showPassword, setShowPassword] = useState(false)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -67,7 +69,14 @@ const Home = () => {
       setIsLoading(true)
       try{
         const credentials = await signInWithEmailAndPassword(auth,email,password)
-        console.log(credentials)
+        const token = await credentials.user.getIdToken() 
+        const userInfo = await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`,{
+          method:'GET',
+          headers:{"Authorization":`Bearer ${token}`}
+        })).json()
+        console.log(userInfo)
+        console.log(token)
+        storeSignIn(userInfo,token)
         router.push('/profile')
       }catch(err){
         setErorrMessage("Ocurrio un error, revisa el que el email y la contraseña sean correctos")
