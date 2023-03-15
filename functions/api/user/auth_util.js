@@ -2,7 +2,7 @@
 const { adminAuth } = require('../config');
 const { ROLE_ADMIN, ROLE_USER, ROLE_MENTOR, ROLE_JURY } = require('../middleware/roleMiddleware');
 const { error } = require('../util')
-const { getUserInfo } = require('./firestore_util')
+const { getUserInfo, getMembers } = require('./firestore_util')
 
 function userToJson(user) { // formato que estaba previamente definido en getUser
     return {
@@ -14,6 +14,22 @@ function userToJson(user) { // formato que estaba previamente definido en getUse
         role: (user.customClaims ? user.customClaims : {}).role,
     };
 }
+async function getAllUserInfo(user){
+    const userInfo = await getUserInfo(user.uid)
+    const userParticipants = await getMembers(user.uid)
+    if (userInfo.error || userParticipants.error) throw new Error("Firebase error")
+    return {
+        uid: user.uid,
+        email: user.email,
+        role: user?.customClaims?.role,
+        name: userInfo?.data?.name,
+        teamDescription: userInfo?.data?.name,
+        motivation: userInfo?.data?.motivation,
+        participants: userParticipants?.map(participant=>{
+            return({name:participant?.data?.full_name, DNI: participant?.data?.dni, email:participant?.data?.email})
+        })
+    }
+}
 //No paso toda la informacion que nos da firebase para poder controlarlo nosotros
 //Puede ser que nos pase cosas que no queremos mostrarle al usuario final
 async function getUser(uid) {
@@ -22,20 +38,21 @@ async function getUser(uid) {
     }
     try {
         const user = await adminAuth.getUser(uid)
-        const userInfo = await getUserInfo(uid) //esto es raro porque mezcla un poco de funcionalidad, despues lo puedo mejorar
-        if (userInfo.error) {
-            throw error //para que vaya abajo 
-        }
-        //lo del final es para no tener errores por si no tiene los claims 
-        return {
-            displayName: user.displayName,
-            email: user.email,
-            phoneNumber: user.phoneNumber,
-            photoURL: user.photoURL,
-            uid: user.uid,
-            role: user.customClaims?.role,
-            qualified: userInfo.data?.qualified
-        }
+        // const userInfo = await getUserInfo(uid) //esto es raro porque mezcla un poco de funcionalidad, despues lo puedo mejorar
+        // if (userInfo.error) {
+        //     throw new Error("Firestore error")
+        // }
+        // //lo del final es para no tener errores por si no tiene los claims 
+        // return {
+        //     displayName: user.displayName,
+        //     email: user.email,
+        //     // phoneNumber: user.phoneNumber,
+        //     photoURL: user.photoURL,
+        //     uid: user.uid,
+        //     role: user.customClaims?.role,
+        //     qualified: userInfo.data?.qualified
+        // }
+        return getAllUserInfo(user)
     } catch (err) {
         return error(err.code, err.message)
     }
@@ -43,9 +60,24 @@ async function getUser(uid) {
 
 async function getUsers() {
     try {
-        const users = (await adminAuth.listUsers()).users.map((user) => {
-            return userToJson(user)
-        })
+        const users =  await Promise.all( (await adminAuth.listUsers()).users.map(async (user) => {
+            // const aux = userToJson(user)
+            // const userInfo = await getUserInfo(user.uid)
+            // const userParticipants = await getMembers(user.uid)
+            // if (userInfo.error || userParticipants.error) return error(err.code, err.message)
+            // return ({
+            //     uid: aux.uid,
+            //     email: aux.email,
+            //     role: aux.role,
+            //     name: userInfo?.data?.name,
+            //     teamDescription: userInfo?.data?.name,
+            //     motivation: userInfo?.data?.motivation,
+            //     participants: userParticipants?.map(participant=>{
+            //         return({name:participant?.data?.full_name, DNI: participant?.data?.dni, email:participant?.data?.email})
+            //     })
+            // })
+            return await getAllUserInfo(user)   
+        }))
         return users;
     } catch (err) {
         return error(err.code, err.message);
