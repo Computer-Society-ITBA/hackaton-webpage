@@ -156,7 +156,7 @@ const TeamSelection = ({token})=>{
             <Flex width='full' direction='row' flexWrap='wrap' justifyContent='start' alignItems='start' verticalAlign='top'>
                 {teams.map((team,index)=>{
                     return(
-                        <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={team}></TeamCard>
+                        <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={{number: index+1, ...team}}></TeamCard>
                     )
                 })}
             </Flex>  

@@ -103,7 +103,10 @@ const LoggedInButton = ()=>{
   const storeLogOut = useStore((state)=>state.logout)
   const {isOpen, onToggle} = useDisclosure()
   const goToProfile=()=>router.push('/profile')
-  const logOut = ()=>{storeLogOut()}
+  const logOut = ()=>{
+    storeLogOut()
+    router.push('/')
+  }
   // return(
   //   <VStack top='0.5' cursor='pointer' transition="all 0.3s ease" _hover={{"borderColor":"CSOrange"}} px='2px' gap={0} borderWidth='2px' borderColor='CSBlue' borderRadius='4px'>
   //     <HStack>
