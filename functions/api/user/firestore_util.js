@@ -82,6 +82,9 @@ async function getUserInfo(uid){
         // const ans = await getDoc(doc(db,USER_COLLECTION,uid))
         // const ans = await getDoc(db.doc(`/${USER_COLLECTION}/${uid}`))
         const ans = await db.doc(`/${USER_COLLECTION}/${uid}`).get()
+        if (!ans.exists) {
+            return error(404, "No such document!");
+        }
         return {id: ans.id, data: ans.data()}
     }catch(err){
         return error(err.code, err.message)
