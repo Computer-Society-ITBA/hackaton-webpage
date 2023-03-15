@@ -24,3 +24,15 @@ module.exports.getSubmission = async function getSubmissionByUserId(userId) {
         throw new Error("Unable to get submission");
     }
 }
+
+module.exports.getSubmissions = async function getSubmissions() {
+    try {
+        const submissionsRef = await db.collection(SUBMISSION_COLLECTION).get();
+        if (submissionsRef.empty) {
+            return [];
+        }
+        return submissionsRef.docs.map(doc => ({id: doc.id, ...doc.data()}));
+    } catch (err) {
+        throw new Error("Unable to get submission");
+    }
+}
