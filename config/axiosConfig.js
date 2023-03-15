@@ -2,8 +2,7 @@ import axios from 'axios'
 import {useStore} from "../config/storeConfig"
 const axiosApiInstance = axios.create()
 
-const userToken = useStore((state)=>state.token)
-
+// const userToken = useStore((state)=>state.token)
 
 axiosApiInstance.interceptors.request.use(
     async config =>{
