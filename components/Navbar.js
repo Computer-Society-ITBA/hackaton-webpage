@@ -9,6 +9,17 @@ import {
   Flex,
   useColorModeValue,
   Text,
+  Card,
+  Avatar,
+  HStack,
+  VStack,
+  Collapse,
+  useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Divider,
 } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
@@ -17,6 +28,8 @@ import { useEffect, useState } from "react";
 import {onAuthStateChanged} from 'firebase/auth'
 import Head from "next/head";
 import { useStore } from "../config/storeConfig";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -40,6 +53,8 @@ const PrimaryButton = styled(Button)`
   }
 `;
 
+const HeadingSize = ['sm','md','lg','xl','2xl']
+const TextSize = ['10px','10px','8px','9px','12px']
 //No se usa 
 // const LinkItem = ({ href, path, target, children, ...props }) => {
 //   const active = path === href;
@@ -81,9 +96,44 @@ const LoggedOutButton = ()=>{
     </NextLink>
   )
 }
-const LoggedInButton = (user)=>{
+const mapToName = new Map([["user","Equipo"],["mentor","Mentor"],["jury","Jurado"],["admin","Administrador"]])
+const LoggedInButton = ()=>{
+  const router = useRouter()
+  const userInfo = useStore((state)=>state.userInfo)
+  const storeLogOut = useStore((state)=>state.logout)
+  const {isOpen, onToggle} = useDisclosure()
+  const goToProfile=()=>router.push('/profile')
+  const logOut = ()=>{storeLogOut()}
+  // return(
+  //   <VStack top='0.5' cursor='pointer' transition="all 0.3s ease" _hover={{"borderColor":"CSOrange"}} px='2px' gap={0} borderWidth='2px' borderColor='CSBlue' borderRadius='4px'>
+  //     <HStack>
+  //       <Avatar color='white' backgroundColor='gray' name={userInfo.name}></Avatar>
+  //       <VStack p='2' align='start'>
+  //         <Heading fontSize='smaller'>{userInfo.name}</Heading>
+  //         <Text fontSize='smaller'>{mapToName.get(userInfo.role)}</Text>
+  //       </VStack>
+  //     </HStack> 
+  //     <Collapse in={isOpen}>
+  //       <Heading>Hello world</Heading>
+  //     </Collapse>
+  //   </VStack>
+  // )
   return(
-    <Heading>Hello</Heading>
+    <Menu>
+    <MenuButton backgroundColor='transparent' height="120%" _hover={{"backgroundColor":"CSBlue"}} as={Button} rightIcon={<ChevronDownIcon />}>
+        <HStack>
+         <Avatar color='white' backgroundColor='gray' name={userInfo?.name}></Avatar>
+         <VStack p='2' align='start'>
+           <Heading fontSize='smaller'>{userInfo?.name}</Heading>
+           <Text fontSize='smaller'>{mapToName.get(userInfo?.role)}</Text>
+         </VStack>
+       </HStack> 
+    </MenuButton>
+  <MenuList>
+    <MenuItem onClick={goToProfile} >Mi perfil</MenuItem>
+    <MenuItem onClick={logOut}>Cerrar sesión</MenuItem>
+  </MenuList>
+</Menu>
   )
 }
 
@@ -111,7 +161,7 @@ useEffect(()=>{
       //Saco lo del navbar transparente porque no funciona en safari
       style={{ backdropFilter: "blur(10px)" }}
       borderBottom="1px solid #676C74"
-      height="64px"
+      height="72px"
       zIndex={99}
       {...props}
     >

@@ -25,6 +25,8 @@ import {
     AccordionIcon,
     Button,
     Center,
+    useAvatarStyles,
+    CircularProgress,
 } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 
@@ -116,70 +118,24 @@ const TeamSelection = ({token})=>{
     useEffect(()=>{
         async function getUsersFromApi(){
             setIsLoading(true)
-
-
+            const reqOptions = {
+                method:'GET',
+                headers:{
+                    "Authorization":`Bearer ${token}`,
+                }
+            }
+            try{
+                const users = (await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`,reqOptions)).json()).users
+                setTeams(users.filter(user=>user.role==='user'))
+            }catch(err){
+                console.log(err)
+            }
+            //dejamos a los participantes solo
+            
             setIsLoading(false)
         }
+        getUsersFromApi()
     },[])
-    //TODO: replace with real data
-    // const teams = [
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:true,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:false,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:true,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },{
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:false,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:false,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:false,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     },
-    //     {
-    //         number: 1,
-    //         name: 'Hello world',
-    //         qualified:false,
-    //         teamDescription: 'We are the best',
-    //         motivation:'We want to win',
-    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-    //     }
-
-    // ]
     return(
         <VStack align='start' width='full'>
             <Heading textAlign='start'>{`Equipos aceptados: ${teams.filter(team=>team.qualified).length}`}</Heading>
@@ -192,13 +148,20 @@ const TeamSelection = ({token})=>{
                     )
                 })}
             </Grid> */}
+            {isLoading?
+            <Center width='full'>
+                <CircularProgress isIndeterminate color='CSOrange' size='40%'></CircularProgress>
+            </Center>
+            :
             <Flex width='full' direction='row' flexWrap='wrap' justifyContent='start' alignItems='start' verticalAlign='top'>
                 {teams.map((team,index)=>{
                     return(
                         <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={team}></TeamCard>
                     )
                 })}
-            </Flex>
+            </Flex>  
+            }
+            
         </VStack>
     )
 
@@ -218,7 +181,7 @@ const AdminView = ({token})=>{
             <TabPanels>
                 {/* Selección de proyectos */}
                 <TabPanel> 
-                    <TeamSelection/>
+                    <TeamSelection token={token}/>
                 </TabPanel>
                 {/* Evaluacion de proyectos */}
                 <TabPanel>

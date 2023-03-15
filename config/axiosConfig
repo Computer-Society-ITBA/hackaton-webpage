@@ -1,0 +1,6 @@
+import axios from 'axios'
+
+const axiosApiInstance = axios.create()
+
+//TODO: add middleware
+module.exports = {axiosApiInstance}

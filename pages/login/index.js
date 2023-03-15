@@ -74,8 +74,6 @@ const Home = () => {
           method:'GET',
           headers:{"Authorization":`Bearer ${token}`}
         })).json()
-        console.log(userInfo)
-        console.log(token)
         storeSignIn(userInfo,token)
         router.push('/profile')
       }catch(err){
