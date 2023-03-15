@@ -29,7 +29,7 @@ import {
     CircularProgress,
 } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
-
+import {axiosApiInstance} from "../../config/axiosConfig"
 
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
@@ -118,14 +118,16 @@ const TeamSelection = ({token})=>{
     useEffect(()=>{
         async function getUsersFromApi(){
             setIsLoading(true)
-            const reqOptions = {
-                method:'GET',
-                headers:{
-                    "Authorization":`Bearer ${token}`,
-                }
-            }
+            // const reqOptions = {
+            //     method:'GET',
+            //     headers:{
+            //         "Authorization":`Bearer ${token}`,
+            //     }
+            // }
             try{
-                const users = (await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`,reqOptions)).json()).users
+                // const users = (await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`,reqOptions)).json()).users
+                const users = (await axiosApiInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users`)).users
+                console.log(users)
                 setTeams(users.filter(user=>user.role==='user'))
             }catch(err){
                 console.log(err)
