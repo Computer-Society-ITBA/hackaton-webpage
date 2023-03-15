@@ -153,6 +153,8 @@ const JurySection = ({...extendedProps}) => {
     {name: "Mariano Di Pietrantonio", imgSrc:"/images/juries/MarianoDiPietrantonio.jpeg", details:"Co-Founder y Head Of Strategy de Maker Growth, con más de 15 años como Product Manager en diversas empresas"},
     {name: "Manuel Beaudroit", imgSrc:"/images/juries/ManuelBeaudroit.jpg", details:"Co-Founder y CEO de Belo, también Co-Founder de Bitex"},
     {name: "Diego Fernandez", imgSrc:"/images/juries/DiegoFernandez.jpg", details:"Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires"},
+    {name: "Matias Eisbruch", imgSrc:"/images/juries/MatiasEisbruch.jpeg", details:"Head of digital products en Accenture, previamente formó parte de Wolox. Además, es profesor de la Universidad de Buenos Aires."},
+
   ]
   return(
     <VStack width='full' {...extendedProps}>
@@ -177,11 +179,11 @@ const MentorsSection = ({...extendedProps}) => {
     {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpeg", details:"Cofounder y CEO en TiendaCrypto"},
     {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:"Cofounder y CEO en Fantastic"},
     {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:"Cloud Delivery Center Manager en Google"},
+    {name: "Mariano Vazquez", imgSrc:"/images/mentors/MarianoVazquez.jpeg", details: "CTO en Modo, con mas de 15 años como desarrollador."},
     {name: "Juan Catalano", imgSrc:"/images/mentors/JuanCatalano.jpeg", details:"Founder y CPO en Podcast App"},
     {name: "Gonzalo Otálora", imgSrc:"/images/mentors/GonzaloOtalora.jpg", details:"Founder y Director en Go!"},
     {name: "Juan Gallo", imgSrc:"/images/mentors/JuanGallo.jpeg", details:"Cofounder y CEO en Cafecito y CourseIt"},
     {name: "Federico Viarnés", imgSrc:"/images/mentors/FedericoViarnes.jpeg", details:"Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain."},
-  
   ]
   return(
     <VStack width='full' {...extendedProps}>
