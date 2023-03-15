@@ -26,6 +26,8 @@ import {
     Button,
     Center,
 } from "@chakra-ui/react"
+import { useEffect, useState } from "react"
+
 
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
@@ -64,8 +66,8 @@ const TeamCard = ({team, ...extendedProps}) => {
                                 </h2>
                                 <AccordionPanel>
                                     <VStack align='start' width='full'>
-                                        <Text size={TextSize} textAlign='start' color='CSBlue'>DNI: <Text size={TextSize} color='white' display='inline'>{participant.DNI}</Text></Text>
-                                        <Text size={TextSize} textAlign='start' color='CSBlue'>email: <Text size={TextSize} color='white' display='inline'>{participant.email}</Text></Text>
+                                        <Text size={TextSize} textAlign='start' color='CSBlue'>DNI: <span size={TextSize} color='white' display='inline'>{participant.DNI}</span></Text>
+                                        <Text size={TextSize} textAlign='start' color='CSBlue'>email: <span size={TextSize} color='white' display='inline'>{participant.email}</span></Text>
                                     </VStack>
                                 </AccordionPanel>
                             </AccordionItem>
@@ -108,66 +110,76 @@ const TeamCard = ({team, ...extendedProps}) => {
         </VStack>
     )
 }
-const TeamSelection = ()=>{
-    //TODO: replace with real data
-    const teams = [
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:true,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:false,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:true,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },{
-            number: 1,
-            name: 'Hello world',
-            qualified:false,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:false,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:false,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        },
-        {
-            number: 1,
-            name: 'Hello world',
-            qualified:false,
-            teamDescription: 'We are the best',
-            motivation:'We want to win',
-            participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
-        }
+const TeamSelection = ({token})=>{
+    const [teams,setTeams] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    useEffect(()=>{
+        async function getUsersFromApi(){
+            setIsLoading(true)
 
-    ]
+
+            setIsLoading(false)
+        }
+    },[])
+    //TODO: replace with real data
+    // const teams = [
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:true,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:false,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:true,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },{
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:false,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:false,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:false,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     },
+    //     {
+    //         number: 1,
+    //         name: 'Hello world',
+    //         qualified:false,
+    //         teamDescription: 'We are the best',
+    //         motivation:'We want to win',
+    //         participants:[{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'},{name:"Jose",DNI:'43448342',email:'jmentasti@itba.edu.ar'}]
+    //     }
+
+    // ]
     return(
         <VStack align='start' width='full'>
             <Heading textAlign='start'>{`Equipos aceptados: ${teams.filter(team=>team.qualified).length}`}</Heading>
@@ -191,7 +203,7 @@ const TeamSelection = ()=>{
     )
 
 }
-const AdminView = ()=>{
+const AdminView = ({token})=>{
     return(
         <Tabs variant='enclosed'>
             <TabList>

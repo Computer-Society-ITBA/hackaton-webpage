@@ -91,7 +91,7 @@ const Navbar = (props) => {
   const isLoggedIn = useStore((state)=>state.isLoggedIn)
   const userInfo = useStore((state)=>state.userInfo)
   const [navButton, setNavButton] = useState(
-      isLoggedIn?<LoggedInButton/>:<LoggedOutButton/>
+      <LoggedOutButton></LoggedOutButton>
 )
 useEffect(()=>{
   if(isLoggedIn){

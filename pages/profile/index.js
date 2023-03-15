@@ -16,6 +16,7 @@ const TODOView = ()=>{
 const {AdminView} = require('../../components/views/admin')
 const Home = () => {
     const userInfo = useStore((state)=>state.userInfo)
+    const userToken = useStore((state)=>state.token)
     const [view, setView] = useState(
         <Flex pt='8%' justifyContent='center' alignItems='center'align='center'>
             <CircularProgress isIndeterminate color='CSOrange' size='40%'></CircularProgress>
@@ -35,8 +36,8 @@ const Home = () => {
         // }
         // }
         // getUser()
-        switch(userInfo.role){
-            case "admin": setView(<AdminView/>);break;
+        switch(userInfo?.role){
+            case "admin": setView(<AdminView token={userToken}/>);break;
             default: setView(<TODOView/>)
         }
     },[userInfo])
