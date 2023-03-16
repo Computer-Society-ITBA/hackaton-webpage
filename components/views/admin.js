@@ -50,11 +50,11 @@ const TeamCard = ({team, ...extendedProps}) => {
             </Flex>
             <Collapse in={isOpen} animateOpacity>
                 <VStack width='full' align='start'>
-                    <Text fontSize={TextSize} textAlign='start' color='CSBlue'>Describe al equipo: intereses, estudios, mentalidad:</Text>
+                    <Text fontSize={TextSize} textAlign='start' color='CSOrange'>Describe al equipo: intereses, estudios, mentalidad:</Text>
                     <Text  size={TextSize}textAlign='start'>{team.teamDescription}</Text>
-                    <Text fontSize={TextSize} textAlign='start' color='CSBlue'>¿Por qué les interesa participar en HackITBA?</Text>
+                    <Text fontSize={TextSize} textAlign='start' color='CSOrange'>¿Por qué les interesa participar en HackITBA?</Text>
                     <Text size={TextSize} textAlign='start'>{team.motivation}</Text> 
-                    <Text fontSize={TextSize} textAlign='start' color='CSBlue'>Participantes</Text>
+                    <Text fontSize={TextSize} textAlign='start' color='CSOrange'>Participantes</Text>
                     <Accordion width='full' defaultIndex={[]} allowMultiple>
                     {team.participants.map((participant,index)=>{
                         return(
@@ -68,8 +68,8 @@ const TeamCard = ({team, ...extendedProps}) => {
                                 </h2>
                                 <AccordionPanel>
                                     <VStack align='start' width='full'>
-                                        <Text size={TextSize} textAlign='start' color='CSBlue'>DNI: <span size={TextSize} color='white' display='inline'>{participant.DNI}</span></Text>
-                                        <Text size={TextSize} textAlign='start' color='CSBlue'>email: <span size={TextSize} color='white' display='inline'>{participant.email}</span></Text>
+                                        <Text size={TextSize} textAlign='start' color='CSOrange'>DNI: <Text as='span' size={TextSize} color='white' display='inline'>{participant.DNI}</Text></Text>
+                                        <Text size={TextSize} textAlign='start' color='CSOrange'>email: <Text as='span' size={TextSize} color='white' display='inline'>{participant.email}</Text></Text>
                                     </VStack>
                                 </AccordionPanel>
                             </AccordionItem>
