@@ -126,8 +126,7 @@ const TeamSelection = ({token})=>{
             // }
             try{
                 // const users = (await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`,reqOptions)).json()).users
-                const users = (await axiosApiInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users`)).users
-                console.log(users)
+                const users = (await axiosApiInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users`)).data.users
                 setTeams(users.filter(user=>user.role==='user'))
             }catch(err){
                 console.log(err)
