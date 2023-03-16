@@ -41,7 +41,7 @@ const TeamCard = ({team, ...extendedProps}) => {
                 <Heading fontSize={HeadingSize}>{`Equipo ${team.number}: ${team.name}`}</Heading>
                 <Spacer></Spacer>
                 <HStack>
-                    {team.qualified?<CheckCircleIcon color='CSGreen'/>:<CloseIcon color='red.500'/>}
+                    {team.qualified===undefined?<MinusIcon color='gray'/>:(team.qualified?<CheckIcon color='CSGreen'/>:<CloseIcon color='red.500'/>)}
                     <IconButton _hover={{"backgroundColor":"grey"}} mx='4%' onClick={onToggle} backgroundColor='transparent' icon={isOpen?<MinusIcon/>:<AddIcon/>}></IconButton>
                 </HStack>
             </Flex>
