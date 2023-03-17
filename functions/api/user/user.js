@@ -10,7 +10,7 @@ const { addMember, editMember, deleteMember, getMembers, editQualification, save
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
-const {sendRegisterConfirmationEmail} = require('../mail/util')
+const {sendRegisterConfirmationEmail,sendConfirmationEmail,sendRejectionEmail} = require('../mail/util')
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
  
@@ -163,9 +163,22 @@ router.put('/:userId/qualified', authMiddleware, roleMiddleware([ROLE_ADMIN]), a
     } catch (err) {
         return res.status(400).send(error(1, "Missing or invalid qualified body field"))
     }
-    const ans = await editQualification(res.locals.userInfo.uid, qualifiedValue)
+    const user = await getUser(req.params.userId)
+    if(user.error){
+        return res.status(400).send(ans) 
+    }
+    const ans = await editQualification(req.params.userId, qualifiedValue)
     if (ans.error) {
         return res.status(400).send(ans)
+    }
+    try{
+        if(qualifiedValue){
+            await sendConfirmationEmail(user.email)
+        }else{
+            await sendRejectionEmail(user.email)
+        }
+    }catch(err){
+        return res.status(400).send(error(1, "Error sending email")) 
     }
     res.status(200).send(ans)
 })
