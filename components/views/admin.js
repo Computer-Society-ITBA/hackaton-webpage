@@ -33,8 +33,30 @@ import {axiosApiInstance} from "../../config/axiosConfig"
 
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
-const TeamCard = ({team, ...extendedProps}) => {
+const TeamCard = ({team,onTeamSelected,onTeamRejected, ...extendedProps}) => {
     const {isOpen, onToggle} = useDisclosure()
+    const [isLoading, setIsLoading] = useState(false)
+    const [errorrMessage, setErrorMessage] = useState('')
+    const rejectTeam = async ()=>{
+        setIsLoading(true)
+        try{
+            await onTeamRejected()
+            setErrorMessage('')
+        }catch(err){
+            setErrorMessage('Ocurrio un error al rechazar al equipo')
+        }
+        setIsLoading(false)
+    }
+    const acceptTeam = async ()=>{
+        setIsLoading(true)
+        try{
+            await onTeamSelected()
+            setErrorMessage('')
+        }catch(err){
+            setErrorMessage('Ocurrio un error al aceptar al equipo')
+        }
+        setIsLoading(false)
+    }
     return (
         <VStack p='2%' align='center' borderRadius='8px' borderWidth='2px 2px 6px 2px' borderColor='CSBlue' {...extendedProps}>
             <Flex onClick={onToggle} direction='row' verticalAlign='middle' width='full'>
@@ -77,11 +99,16 @@ const TeamCard = ({team, ...extendedProps}) => {
                     })}
                     </Accordion>
                 </VStack>
+                <Center>
+                    <Text fontSize={TextSize} color="red.500">{errorrMessage}</Text>
+                </Center>
                 <Flex width='full'>
                 <Button 
+                      onClick={rejectTeam}
                       size={["sm", "lg"]}
                       height="48px"
                       width="40%"
+                      isLoading={isLoading}
                       border="5px"
                       color="black"
                       variant="solid"
@@ -93,10 +120,12 @@ const TeamCard = ({team, ...extendedProps}) => {
                       Rechazar 
                     </Button>
                     <Spacer/>
-                <Button 
+                <Button
+                      onClick={acceptTeam}
                       size={["sm", "lg"]}
                       height="48px"
                       width="40%"
+                      isLoading={isLoading}
                       border="5px"
                       color="black"
                       variant="solid"
@@ -115,6 +144,19 @@ const TeamCard = ({team, ...extendedProps}) => {
 const TeamSelection = ({token})=>{
     const [teams,setTeams] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const modifyTeamQualification = (index, uid, qualification)=>{
+        return async ()=>{
+            try{
+                await axiosApiInstance.put(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${uid}/qualified`,{qualified:qualification})
+                const aux = teams.slice()
+                aux[index].qualified=qualification
+                setTeams(aux)
+            }catch(err){
+                console.log(err)
+                throw err
+            }
+        }
+    }
     useEffect(()=>{
         async function getUsersFromApi(){
             setIsLoading(true)
@@ -157,7 +199,7 @@ const TeamSelection = ({token})=>{
             <Flex width='full' direction='row' flexWrap='wrap' justifyContent='start' alignItems='start' verticalAlign='top'>
                 {teams.map((team,index)=>{
                     return(
-                        <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={{number: index+1, ...team}}></TeamCard>
+                        <TeamCard key={index} mx='2%' my='1%' width={['100%','80%','45%','40%','25%']} team={{number: index+1, ...team}} onTeamSelected={modifyTeamQualification(index,team.uid,true)} onTeamRejected={modifyTeamQualification(index,team.uid,false)}></TeamCard>
                     )
                 })}
             </Flex>  
@@ -175,6 +217,9 @@ const AdminView = ({token})=>{
                     Selección de equipos
                 </Tab>
                 <Tab>
+                    Criterios de corrección
+                </Tab>
+                <Tab>
                     Evaluación de proyectos
                 </Tab>
             </TabList>
@@ -187,7 +232,12 @@ const AdminView = ({token})=>{
                 {/* Evaluacion de proyectos */}
                 <TabPanel>
                     <div>
-                    <p>two!</p>
+                    <p>TODO</p>
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                    <div>
+                    <p>TODO</p>
                     </div>
                 </TabPanel>
             </TabPanels>
