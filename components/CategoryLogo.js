@@ -67,8 +67,8 @@ const CategoryLogo = (props) => {
             {/* {isShown?<Img onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} height='200px' width='200px' src={imgSrc} alt={names[0]}></Img>: <Img onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} height='200px' width='200px' src='/images/IEEE_CS.svg' alt={names[0]}></Img>} */}
             {/* <Img height='200px' width='200px' src={category.imgSrc} alt={category.name}></Img> */}
             <category.logo 
-            height='55%' 
-            width='55%'
+            height='50%' 
+            width='50%'
             color={onHover?"#01CBA1":'white'}
             stroke_width='4px'
             stroke={onHover?"#01CBA1":'white'}

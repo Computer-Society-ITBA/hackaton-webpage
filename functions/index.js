@@ -11,9 +11,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', api);
 
+//Testing
+// app.listen(5002,()=>{
+//     console.log("Test api running!")
+// })
 // Expose used environment variables
 
-
+//Production
 exports.app = functions
     .runWith(['ADMIN_TYPE', 'ADMIN_PROJECT_ID', 'ADMIN_PRIVATE_KEY_ID', 
     'ADMIN_PRIVATE_KEY', 'ADMIN_CLIENT_EMAIL', 'ADMIN_CLIENT_ID', 
