@@ -89,9 +89,9 @@ const TextSize = ['10px','10px','8px','9px','12px']
 
 const LoggedOutButton = ()=>{
   return(
-    <NextLink href="/register" >
+    <NextLink href="/login" >
         <a>
-          <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
+          <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>Iniciar Sesión</PrimaryButton>
         </a>
     </NextLink>
   )
@@ -146,14 +146,14 @@ const Navbar = (props) => {
   const userInfo = useStore((state)=>state.userInfo)
   const [navButton, setNavButton] = useState(
       <LoggedOutButton></LoggedOutButton>
-)
-useEffect(()=>{
-  if(isLoggedIn){
-    setNavButton(<LoggedInButton/>)
-  }else{
-    setNavButton(<LoggedOutButton/>)
-  }
-},[isLoggedIn])
+  )
+  useEffect(()=>{
+    if(isLoggedIn){
+      setNavButton(<LoggedInButton/>)
+    }else{
+      setNavButton(<LoggedOutButton/>)
+    }
+  },[isLoggedIn])
 // onAuthStateChanged(auth,()=>setNavButton(<Heading>Logged In!</Heading>))
   const { path } = props;
   return (
@@ -185,19 +185,8 @@ useEffect(()=>{
         </Flex>
 
         <Box align="right" alignItems="center" marginLeft="auto" display="flex">
-          {/* { <ThemeToggleButton />} */}
-
           <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
             {navButton}
-            {/* {isLoggedIn?
-            <Heading>Logged in!</Heading> 
-            :
-            <NextLink href="/register" >
-            <a>
-              <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>INSCRIBITE</PrimaryButton>
-            </a>
-          </NextLink> 
-          } */}
           </Box>
         </Box>
       </Container>
