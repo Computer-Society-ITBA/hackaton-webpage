@@ -17,7 +17,7 @@ function userToJson(user) { // formato que estaba previamente definido en getUse
 async function getAllUserInfo(user){
     const userInfo = await getUserInfo(user.uid)
     const userParticipants = await getMembers(user.uid)
-    if (userInfo.error || userParticipants.error) throw new Error("Firebase error")
+    if (userInfo.error || userParticipants.error) return null;
     return {
         uid: user.uid,
         email: user.email,
@@ -81,7 +81,7 @@ async function getUsers() {
         }))
 
         // Agrego el filter pq tenemos usuarios creados sin equipo
-        return users.filter(user => user.name != null);
+        return users.filter(user => user && user.name != null);
     } catch (err) {
         return error(err.code, err.message);
     }
