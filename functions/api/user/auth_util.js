@@ -23,6 +23,7 @@ async function getAllUserInfo(user){
         email: user.email,
         role: user?.customClaims?.role,
         name: userInfo?.data?.name,
+        qualified: userInfo?.data?.qualified,
         teamDescription: userInfo?.data?.name,
         motivation: userInfo?.data?.motivation,
         participants: userParticipants?.map(participant=>{
@@ -78,7 +79,9 @@ async function getUsers() {
             // })
             return await getAllUserInfo(user)   
         }))
-        return users;
+
+        // Agrego el filter pq tenemos usuarios creados sin equipo
+        return users.filter(user => user.name != null);
     } catch (err) {
         return error(err.code, err.message);
     }

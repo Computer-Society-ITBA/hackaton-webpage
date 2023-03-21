@@ -7,6 +7,7 @@ import { auth } from '../../config/firebaseConfig';
 import {signInWithEmailAndPassword} from "firebase/auth"
 import { useRouter } from 'next/router';
 import {useStore} from '../../config/storeConfig'
+import {axiosApiInstance, setAxiosToken} from '../../config/axiosConfig'
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
 const IngresarButton = styled(Button)`
@@ -64,16 +65,18 @@ const Home = () => {
     const [errorMessage, setErorrMessage] = useState("")
     const handleEmailChange = (event)=>setEmail(event.target.value)
     const handlePasswordChange = (event)=>setPassword(event.target.value)
-
     const signIn = async (email, password)=>{
       setIsLoading(true)
       try{
         const credentials = await signInWithEmailAndPassword(auth,email,password)
         const token = await credentials.user.getIdToken() 
-        const userInfo = await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`,{
-          method:'GET',
-          headers:{"Authorization":`Bearer ${token}`}
-        })).json()
+        setAxiosToken(token)
+        // const userInfo = await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`,{
+        //   method:'GET',
+        //   headers:{"Authorization":`Bearer ${token}`}
+        // })).json()
+
+        const userInfo = (await axiosApiInstance.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`)).data
         storeSignIn(userInfo,token)
         router.push('/profile')
       }catch(err){
