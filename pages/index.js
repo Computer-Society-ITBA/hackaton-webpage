@@ -183,7 +183,7 @@ const JurySection = ({...extendedProps}) => {
 
 const MentorsSection = ({...extendedProps}) => {
   const mentors = [
-    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpeg", details:"Founder y CEO en The Gaming Agency"},
+    {name: "Tomas Giovanetti", imgSrc:"/images/mentors/TomasGiovanetti.jpeg", details:"Founder y CEO en TGA"},
     {name: "Nicolas D'Onofrio", imgSrc:"/images/mentors/NicolasDonofrio.jpeg", details:"Cofounder y CEO en TiendaCrypto"},
     {name: "Martin Furst", imgSrc:"/images/mentors/MartinFurst.jpg", details:"Cofounder y CEO en Fantastic"},
     {name: "Marisabel Rodriguez", imgSrc:"/images/mentors/MarisabelRodriguez.jpg", details:"Cloud Delivery Center Manager en Google"},
