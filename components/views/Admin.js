@@ -73,9 +73,9 @@ const TeamCard = ({team,onTeamSelected,onTeamRejected, ...extendedProps}) => {
             <Collapse in={isOpen} animateOpacity>
                 <VStack width='full' align='start'>
                     <Text fontSize={TextSize} textAlign='start' color='CSOrange'>Email del equipo:</Text>
-                    <Text  size={TextSize}textAlign='start'>{team.email}</Text>
+                    <Text size={TextSize}textAlign='start'>{team.email}</Text>
                     <Text fontSize={TextSize} textAlign='start' color='CSOrange'>Describe al equipo: intereses, estudios, mentalidad:</Text>
-                    <Text  size={TextSize}textAlign='start'>{team.teamDescription}</Text>
+                    <Text size={TextSize}textAlign='start'>{team.teamDescription}</Text>
                     <Text fontSize={TextSize} textAlign='start' color='CSOrange'>¿Por qué les interesa participar en HackITBA?</Text>
                     <Text size={TextSize} textAlign='start'>{team.motivation}</Text> 
                     <Text fontSize={TextSize} textAlign='start' color='CSOrange'>Participantes</Text>

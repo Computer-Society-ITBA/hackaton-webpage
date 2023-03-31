@@ -32,8 +32,6 @@ router.post('/', authMiddleware, bodySelfMiddleware, async (req, res) => {
         return res.status(400).send("User already submitted");
     }
 
-
-
     try {
         const submission = await createSubmission(req.body);
         res.status(200).send(submission);
@@ -43,7 +41,7 @@ router.post('/', authMiddleware, bodySelfMiddleware, async (req, res) => {
     }
 });
 
-router.get('/', authMiddleware, roleMiddleware(ROLE_ADMIN), async (_, res) => {
+router.get('/', authMiddleware, roleMiddleware(ROLE_ADMIN), async (req, res) => {
     try {
         const submissions = await getSubmissions();
         if (submissions.length === 0)
