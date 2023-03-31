@@ -10,7 +10,10 @@ const { addMember, editMember, deleteMember, getMembers, editQualification, save
 const { schema } = require('./schema')
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
-const {sendRegisterConfirmationEmail,sendConfirmationEmail,sendRejectionEmail} = require('../mail/util')
+const {sendRegisterConfirmationEmail,sendConfirmationEmail,sendRejectionEmail} = require('../mail/util');
+const {getSubmission} = require('../submission/firestore_util');
+
+
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
  
@@ -126,7 +129,8 @@ router.get('/:userId', authMiddleware, async (req, res) => {
     if (uid === res.locals.userInfo.uid) {
         //busca la informacion de su usuario
         const ans = (await getUser(uid))
-        if (ans.error) {
+        
+        if (ans == null || ans.error) {
             return res.status(404).send(ans)
         }
         return res.status(200).send(ans)
@@ -182,6 +186,22 @@ router.put('/:userId/qualified', authMiddleware, roleMiddleware([ROLE_ADMIN]), a
     }
     res.status(200).send(ans)
 })
+
+
+router.get('/:userId/submission', authMiddleware, selfMiddleware, async (req, res) => {
+    const uid = req.params.userId;
+    try {
+        const ans = await getSubmission(uid)
+        if (ans == null || ans.error) {
+            return res.status(404).send(ans)
+        }
+
+        res.status(200).send(ans);
+    }catch(err){
+        console.log(err);
+        return res.status(404).send(error(1, "Error getting submission"))
+    }
+});
 //Estas funciones son muy parecidas, despues veo como puedo juntarlo 
 // router.post('/:userId/members', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
 //     const { full_name, dni, email } = req.body
