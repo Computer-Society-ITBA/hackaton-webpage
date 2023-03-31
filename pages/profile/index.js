@@ -1,7 +1,9 @@
-import { Box, Center, CircularProgress, Flex, Heading, Text, VStack } from '@chakra-ui/react';
+import { CircularProgress, Flex, Heading, Text, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { auth } from '../../config/firebaseConfig';
-import {useStore} from '../../config/storeConfig'
+import {useStore} from '../../config/storeConfig';
+import {AdminView} from '../../components/views/Admin';
+import { UserView } from '../../components/views/User';
+
 const HeadingSize = ['sm','md','lg','xl','2xl']
 const TextSize = ['xs','sm','md','lg','xl']
 
@@ -13,7 +15,6 @@ const TODOView = ()=>{
         </VStack>
     )
 }
-const {AdminView} = require('../../components/views/admin')
 const Home = () => {
     const userInfo = useStore((state)=>state.userInfo)
     const userToken = useStore((state)=>state.token)
@@ -24,23 +25,12 @@ const Home = () => {
         
     )
     useEffect(()=>{
-        // async function getUser(){
-        // if(auth.currentUser){
-        //     const userCredentials = await auth.currentUser.getIdTokenResult()
-        //     switch(userCredentials.claims.role){
-        //         case "admin": setView(<AdminView></AdminView>);break;
-        //         default: setView(<TODOView/>)
-        //     }
-        // }else{
-        //     setView(<Heading>Not found</Heading>)
-        // }
-        // }
-        // getUser()
         switch(userInfo?.role){
             case "admin": setView(<AdminView token={userToken}/>);break;
+            case "user": setView(<UserView userInfo={userInfo}/>);break;
             default: setView(<TODOView/>)
         }
-    },[userInfo])
+    },[userToken, userInfo])
     return view
 }
   
