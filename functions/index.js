@@ -12,9 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', api);
 
 //Testing
-// app.listen(5002,()=>{
-//     console.log("Test api running!")
-// })
+if (process.env.TEST) {
+    app.listen(5002, () => {
+        console.log("Test api running! Checkout http://localhost:5002/api")
+    })
+}
 
 //Production
 // Expose used environment variables

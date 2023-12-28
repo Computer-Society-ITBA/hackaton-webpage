@@ -5,7 +5,7 @@
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "dev" : "nodemon index.js",
+    "dev" : "TEST=1 nodemon index.js",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
