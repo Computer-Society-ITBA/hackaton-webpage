@@ -13,17 +13,17 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@tsparticles/react": "^3.0.0",
     "axios": "^1.6.3",
     "chakra-ui-steps": "^2.0.1",
     "firebase": "^10.7.1",
     "joi": "^17.11.0",
-    "next": "^12.1.2",
+    "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
     "react-particle-image": "^1.0.2",
-    "@tsparticles/react": "^3.0.0",
     "rooks": "^7.14.1",
     "tsparticles": "^3.0.3",
     "typescript": "^5.3.3",
@@ -31,6 +31,6 @@
   },
   "devDependencies": {
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "^14.0.4"
   }
 }
