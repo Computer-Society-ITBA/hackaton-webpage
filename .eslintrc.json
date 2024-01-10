@@ -25,7 +25,10 @@
     "no-eq-null": "warn",
     "no-eval": "warn",
     "no-extend-native": "warn",
-    "camelcase": "warn"
+    "camelcase": "warn",
+    "no-undef": "warn",
+    "no-useless-escape": "warn",
+    "no-dupe-keys": "warn"
   },
   "settings": {
     "react": {
