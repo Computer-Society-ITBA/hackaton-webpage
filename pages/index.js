@@ -147,7 +147,7 @@ const Categories = ({ ...extendedProps }) => {
 const Inscribite = ({ ...extendedProps }) => {
   const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
   const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
-  const pbFontSize = ["2xs", "xs", "sm", "lg", "2xl", "3xl"];
+  const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
   const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
   const pbMT = [3, 5, 5, 7, 9, 20];
   return (
@@ -164,10 +164,7 @@ const Inscribite = ({ ...extendedProps }) => {
         width={imageWidth}
       ></Img>
       <VStack justify="center" width={vstackWidth}>
-        <Heading
-          size={["xs", "sm", "md", "md", "xl", "2xl"]}
-          textAlign="center"
-        >
+        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Inscripción por equipos
         </Heading>
         <PrimaryButton
@@ -185,10 +182,7 @@ const Inscribite = ({ ...extendedProps }) => {
       </VStack>
       <Spacer />
       <VStack justify="center" width={vstackWidth}>
-        <Heading
-          size={["xs", "sm", "md", "md", "xl", "2xl"]}
-          textAlign="center"
-        >
+        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Convertite en Sponsor/Jurado
         </Heading>
         <PrimaryButton
