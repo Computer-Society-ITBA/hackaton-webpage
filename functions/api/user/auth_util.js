@@ -37,7 +37,7 @@ async function getAllUserInfo(user) {
         name: participant?.data?.full_name,
         DNI: participant?.data?.dni,
         email: participant?.data?.email,
-        edad: participant?.data?.edad,
+        age: participant?.data?.age,
       };
     }),
   };

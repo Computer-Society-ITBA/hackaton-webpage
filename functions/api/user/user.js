@@ -68,7 +68,7 @@ router.post("/team", async (req, res) => {
         full_name: participant.name,
         dni: participant.dni,
         email: participant.email,
-        edad: participant.edad,
+        age: participant.age,
       });
     } catch (err) {
       console.log(err);
@@ -99,7 +99,7 @@ router.post("/team", async (req, res) => {
         participant.dni,
         participant.email,
         participant.name,
-        participant.edad
+        participant.age
       );
       if (aux.error) throw error;
     }
@@ -270,13 +270,13 @@ router.get(
 );
 //Estas funciones son muy parecidas, despues veo como puedo juntarlo
 // router.post('/:userId/members', authMiddleware, selfMiddleware, roleMiddleware([ROLE_USER]), async (req, res) => {
-//     const { full_name, dni, email,edad } = req.body
+//     const { full_name, dni, email,age } = req.body
 //     try {
-//         await schema.validateAsync({ full_name: full_name, dni: dni, email: email, edad: edad })
+//         await schema.validateAsync({ full_name: full_name, dni: dni, email: email, age: age })
 //     } catch (err) {
 //         return res.status(400).json(error(1, "Missing or invalid member information"))
 //     }
-//     const ans = await addMember(res.locals.userInfo.uid, dni, email, full_name ,edad)
+//     const ans = await addMember(res.locals.userInfo.uid, dni, email, full_name ,age)
 //     if (ans.error) {
 //         return res.status(400).send(ans)
 //     }
@@ -291,7 +291,7 @@ router.get(
 //     } catch (err) {
 //         return res.status(400).json(error(1, "Missing or invalid member information"))
 //     }
-//     const ans = await editMember(uid, memberId, dni, email, full_name,edad)
+//     const ans = await editMember(uid, memberId, dni, email, full_name,age)
 //     if (ans.error) {
 //         return res.status(400).send(ans)
 //     }

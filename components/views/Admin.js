@@ -172,7 +172,7 @@ const TeamCard = ({
                           color="white"
                           display="inline"
                         >
-                          {participant.edad}
+                          {participant.age}
                         </Text>
                       </Text>
                     </VStack>

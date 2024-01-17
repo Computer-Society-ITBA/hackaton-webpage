@@ -22,13 +22,13 @@ async function addMember(
   memberDNI,
   memberEmail,
   memberFullName,
-  memberEdad
+  memberAge
 ) {
   const data = {
     full_name: memberFullName,
     dni: memberDNI,
     email: memberEmail,
-    edad: memberEdad,
+    age: memberAge,
   };
   try {
     // const ans = await addDoc(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION),data)
@@ -48,13 +48,13 @@ async function editMember(
   memberDNI,
   memberEmail,
   memberFullName,
-  memberEdad
+  memberAge
 ) {
   const aux = {
     full_name: memberFullName,
     dni: memberDNI,
     email: memberEmail,
-    edad: memberEdad,
+    age: memberAge,
   };
   const data = JSON.parse(JSON.stringify(aux)); //para sacar campos undefined (si no da error firestore)
   try {

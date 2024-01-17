@@ -55,7 +55,7 @@ const schema = joi.object({
   name: joi.string().min(1),
   dni: joi.string().regex(/^[0-9]{1,2}\.?[0-9]{3}\.?[0-9]{3}$/),
   email: joi.string().email({ tlds: { allow: false } }),
-  edad: joi.number().integer().min(17).max(26),
+  age: joi.number().integer().min(17).max(26),
 });
 
 const ParticipantCard = ({ participant, onEdit, onDelete }) => {
@@ -73,7 +73,7 @@ const ParticipantCard = ({ participant, onEdit, onDelete }) => {
             <Text fontSize={HeadingSize}>{`Nombre: ${participant.name}`}</Text>
             <Text fontSize={HeadingSize}>{`DNI: ${participant.dni}`}</Text>
             <Text fontSize={HeadingSize}>{`Email: ${participant.email}`}</Text>
-            <Text fontSize={HeadingSize}>{`Edad: ${participant.edad}`}</Text>
+            <Text fontSize={HeadingSize}>{`Edad: ${participant.age}`}</Text>
           </VStack>
           <Spacer />
           <Stack
@@ -98,11 +98,11 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
   const [modalName, setModalName] = useState("");
   const [modalDNI, setModalDNI] = useState("");
   const [modalEmail, setModalEmail] = useState("");
-  const [modalEdad, setModalEdad] = useState("");
+  const [modalAge, setModalAge] = useState("");
   const [modalInvalidName, setModalInvalidName] = useState(false);
   const [modalInvalidDNI, setModalInvalidDNI] = useState(false);
   const [modalInvalidEmail, setModalInvalidEmail] = useState(false);
-  const [modalInvalidEdad, setModalInvalidEdad] = useState(false);
+  const [modalInvalidAge, setModalInvalidAge] = useState(false);
 
   const changeModalName = (event) => {
     setModalName(event.target.value);
@@ -125,10 +125,10 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
     );
   };
 
-  const changeModalEdad = (event) => {
-    setModalEdad(event.target.value);
-    setModalInvalidEdad(
-      schema.validate({ edad: event.target.value }).error !== undefined
+  const changeModalAge = (event) => {
+    setModalAge(event.target.value);
+    setModalInvalidAge(
+      schema.validate({ age: event.target.value }).error !== undefined
     );
   };
 
@@ -138,11 +138,11 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
       setModalName(participant.name);
       setModalDNI(participant.dni);
       setModalEmail(participant.email);
-      setModalEdad(participant.edad);
+      setModalAge(participant.age);
       setModalInvalidName(false);
       setModalInvalidDNI(false);
       setModalInvalidEmail(false);
-      setModalInvalidEdad(false);
+      setModalInvalidAge(false);
       setCurrIndex(i);
       onOpen();
     };
@@ -156,14 +156,14 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
           name: modalName,
           dni: modalDNI,
           email: modalEmail,
-          edad: modalEdad,
+          age: modalAge,
         };
         aux.push(participant);
       } else {
         aux[i].name = modalName;
         aux[i].dni = modalDNI;
         aux[i].email = modalEmail;
-        aux[i].edad = modalEdad;
+        aux[i].age = modalAge;
       }
       setLocalParticipants(aux);
       setCurrIndex(undefined);
@@ -175,11 +175,11 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
     setModalName("");
     setModalDNI("");
     setModalEmail("");
-    setModalEdad("");
+    setModalAge("");
     setModalInvalidName(false);
     setModalInvalidDNI(false);
     setModalInvalidEmail(false);
-    setModalInvalidEdad(false);
+    setModalInvalidAge(false);
     setCurrIndex(undefined);
     onOpen();
   };
@@ -325,13 +325,13 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
                 ></Input>
                 <Text paddingTop={"2%"} fontSize={["md", "lg", "xl"]}>
                   {" "}
-                  EDAD{" "}
+                  Edad{" "}
                 </Text>
                 <Input
                   textColor={"black"}
-                  isInvalid={modalInvalidEdad}
-                  value={modalEdad}
-                  onChange={changeModalEdad}
+                  isInvalid={modalInvalidAge}
+                  value={modalAge}
+                  onChange={changeModalAge}
                   bg="white"
                   focusBorderColor="white"
                   h={["30px", "40px", "50px"]}
@@ -347,7 +347,7 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
                     {modalInvalidEmail ? "Email no valido" : ""}
                   </Text>
                   <Text fontSize={["sm", "lg", "xl"]} color="red.500">
-                    {modalInvalidEdad ? "Edad no valida" : ""}
+                    {modalInvalidAge ? "Edad no valida" : ""}
                   </Text>
                 </VStack>
                 <HStack w="full" justify="end">
@@ -367,11 +367,11 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
                       modalName === "" ||
                       modalDNI === "" ||
                       modalEmail === "" ||
-                      modalEdad === "" ||
+                      modalAge === "" ||
                       modalInvalidName ||
                       modalInvalidDNI ||
                       modalInvalidEmail ||
-                      modalInvalidEdad
+                      modalInvalidAge
                     }
                   >
                     Guardar
