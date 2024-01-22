@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+
 const useStore = create(
   persist(
     (set, get) => ({
@@ -7,6 +8,8 @@ const useStore = create(
       role: undefined,
       userInfo: undefined,
       token: undefined,
+      inscriptionsEnabled: false,
+      submissionsEnabled: false,
       setToken: (token) => set((state) => ({ token: token })),
       signIn: (userInfo, token) =>
         set((state) => ({
@@ -21,6 +24,11 @@ const useStore = create(
           role: undefined,
           userInfo: undefined,
           token: undefined,
+        })),
+      setConfig: (config) =>
+        set((state) => ({
+          inscriptionsEnabled: config.inscriptionsEnabled,
+          submissionsEnabled: config.submissionsEnabled,
         })),
     }),
     {

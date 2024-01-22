@@ -95,7 +95,7 @@ const Home = () => {
         password
       );
       const token = await credentials.user.getIdToken();
-      setAxiosToken(token);
+      await setAxiosToken(token);
       // const userInfo = await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`,{
       //   method:'GET',
       //   headers:{"Authorization":`Bearer ${token}`}

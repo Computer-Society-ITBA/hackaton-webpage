@@ -3,7 +3,7 @@ const { error } = require("../util");
 
 function inscriptionsOpenMiddleware(_, res, next) {
     if (!inscriptionsEnabled()) {
-        return res.status(403).send(error(2, "Inscriptions are not open yet!"));
+        return res.status(403).send(error("config", "Inscriptions are not open yet!"));
     }
 
     next();
@@ -11,7 +11,7 @@ function inscriptionsOpenMiddleware(_, res, next) {
 
 function submissionsOpenMiddleware(_, res, next) {
     if (!submissionsEnabled()) {
-        return res.status(403).send(error(2, "Submissions are not open yet!"));
+        return res.status(403).send(error("config", "Submissions are not open yet!"));
     }
 
     next();

@@ -7,8 +7,8 @@ router.get("", async (_, res) => {
     let submissions = await submissionsEnabled();
 
     res.status(200).send({
-        "inscriptions-enabled": inscriptions,
-        "submissions-enabled": submissions,
+        inscriptionsEnabled: inscriptions,
+        submissionsEnabled: submissions,
     });
 });
 
