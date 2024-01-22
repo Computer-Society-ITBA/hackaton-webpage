@@ -29,4 +29,5 @@ const useStore = create(
     }
   )
 );
-module.exports = { useStore };
+
+export default useStore;

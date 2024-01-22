@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useStore } from "../config/storeConfig";
-const axiosApiInstance = axios.create();
-const { auth } = require("../config/firebaseConfig");
+import useStore from "../config/storeConfig";
+import auth from "../config/firebaseConfig";
+
+export const axiosApiInstance = axios.create();
+
 let userToken = useStore.getState().token;
 const setToken = useStore.getState().setToken;
 
@@ -48,8 +50,8 @@ axiosApiInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-function setAxiosToken(token) {
+
+export function setAxiosToken(token) {
   userToken = token;
 }
 //TODO: add middleware
-module.exports = { axiosApiInstance, setAxiosToken };

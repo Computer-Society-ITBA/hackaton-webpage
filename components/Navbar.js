@@ -23,11 +23,11 @@ import {
 } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
-import { auth } from "../config/firebaseConfig";
+import auth from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import Head from "next/head";
-import { useStore } from "../config/storeConfig";
+import useStore from "../config/storeConfig";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 const PrimaryButton = styled(Button)`

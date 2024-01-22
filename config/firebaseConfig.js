@@ -1,10 +1,6 @@
-const { initializeApp } = require("firebase/app");
-const {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  browserLocalPersistence,
-} = require("firebase/auth");
+import { initializeApp } from "firebase/app";
+import { getAuth, browserLocalPersistence } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_CLIENT_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_CLIENT_AUTH_DOMAIN,
@@ -16,7 +12,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
-//No se como poner el await aca!
-auth.setPersistence(browserLocalPersistence);
-module.exports = { auth };
+await auth.setPersistence(browserLocalPersistence);
+
+export default auth;

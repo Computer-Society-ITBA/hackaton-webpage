@@ -22,7 +22,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 
-const joi = require("joi");
+import joi from "joi";
 
 const ThirdStep = ({
   setEmail,

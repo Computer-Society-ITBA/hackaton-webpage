@@ -49,7 +49,7 @@ const HasSubmitedView = () => {
   );
 };
 
-export const UserView = ({ userInfo }) => {
+const UserView = ({ userInfo }) => {
   const toast = useToast();
 
   const {
@@ -186,3 +186,5 @@ export const UserView = ({ userInfo }) => {
     </Box>
   );
 };
+
+export default UserView;

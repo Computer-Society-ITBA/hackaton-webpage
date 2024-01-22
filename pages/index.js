@@ -30,7 +30,7 @@ import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
 import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
-const joi = require("joi");
+import joi from "joi";
 
 const Subtitle = styled(Text)`
   font-size: 14px;

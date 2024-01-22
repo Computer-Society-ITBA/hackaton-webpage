@@ -22,6 +22,8 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
+import joi from "joi";
+
 const EnviarButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -44,7 +46,6 @@ const EnviarButton = styled(Button)`
     }
   }
 `;
-const joi = require("joi");
 const HeadingSize = ["sm", "md", "lg", "xl", "xl"];
 
 const Forms = ({ ...extendedProps }) => {

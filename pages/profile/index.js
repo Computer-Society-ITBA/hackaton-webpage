@@ -6,9 +6,9 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useStore } from "../../config/storeConfig";
-import { AdminView } from "../../components/views/Admin";
-import { UserView } from "../../components/views/User";
+import useStore from "../../config/storeConfig";
+import AdminView from "../../components/views/Admin";
+import UserView from "../../components/views/User";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
