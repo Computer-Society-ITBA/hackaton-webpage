@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "next/core-web-vitals", "prettier"],
+  "extends": ["eslint:recommended", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-console": "warn",
@@ -15,10 +15,5 @@
     "no-undef": "warn",
     "no-useless-escape": "warn",
     "no-dupe-keys": "warn"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }
