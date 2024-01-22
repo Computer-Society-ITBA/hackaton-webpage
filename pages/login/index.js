@@ -95,17 +95,11 @@ const Home = () => {
         password
       );
       const token = await credentials.user.getIdToken();
-      await setAxiosToken(token);
-      // const userInfo = await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`,{
-      //   method:'GET',
-      //   headers:{"Authorization":`Bearer ${token}`}
-      // })).json()
-
       const userInfo = (
-        await axiosApiInstance.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/users/${credentials.user.uid}`
-        )
+        await axiosApiInstance.get(`/users/${credentials.user.uid}`)
       ).data;
+
+      await setAxiosToken(token);
       storeSignIn(userInfo, token);
       router.push("/profile");
     } catch (err) {

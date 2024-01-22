@@ -64,10 +64,7 @@ const UserView = ({ userInfo }) => {
     async (data) => {
       try {
         data.userId = userInfo.uid;
-        await axiosApiInstance.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/submissions`,
-          data
-        );
+        await axiosApiInstance.post("/submissions", data);
         toast({
           title: "Proyecto enviado",
           status: "success",
@@ -90,7 +87,7 @@ const UserView = ({ userInfo }) => {
   const userHasSubmited = useCallback(async () => {
     try {
       const response = await axiosApiInstance.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userInfo.uid}/submission`
+        `/users/${userInfo.uid}/submission`
       );
       return response.data && response.data.userId === userInfo.uid;
     } catch (err) {

@@ -232,10 +232,9 @@ const TeamSelection = ({ token }) => {
   const modifyTeamQualification = (index, uid, qualification) => {
     return async () => {
       try {
-        await axiosApiInstance.put(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/users/${uid}/qualified`,
-          { qualified: qualification }
-        );
+        await axiosApiInstance.put(`/users/${uid}/qualified`, {
+          qualified: qualification,
+        });
         const aux = teams.slice();
         aux[index].qualified = qualification;
         setTeams(aux);
@@ -248,19 +247,8 @@ const TeamSelection = ({ token }) => {
   useEffect(() => {
     async function getUsersFromApi() {
       setIsLoading(true);
-      // const reqOptions = {
-      //     method:'GET',
-      //     headers:{
-      //         "Authorization":`Bearer ${token}`,
-      //     }
-      // }
       try {
-        // const users = (await (await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users`,reqOptions)).json()).users
-        const users = (
-          await axiosApiInstance.get(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/users`
-          )
-        ).data.users;
+        const users = (await axiosApiInstance.get("/users")).data.users;
         setTeams(users.filter((user) => user.role === "user"));
       } catch (err) {
         console.log(err);

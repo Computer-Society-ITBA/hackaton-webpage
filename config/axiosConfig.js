@@ -2,7 +2,9 @@ import axios from "axios";
 import useStore from "../config/storeConfig";
 import auth from "../config/firebaseConfig";
 
-export const axiosApiInstance = axios.create();
+export const axiosApiInstance = axios.create({
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api/`,
+});
 
 let userToken = useStore.getState().token;
 const setToken = useStore.getState().setToken;
