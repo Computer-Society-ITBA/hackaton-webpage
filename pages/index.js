@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NextLink from "next/link";
 
 import {
   Heading,
@@ -61,7 +60,6 @@ const PrimaryButton = styled(Button)`
   font-weight: 500;
   border-width: 1px;
   transition: all 0.3s ease;
-  margin-top: 40px;
   padding: 4% 8%;
 
   svg path {
@@ -147,7 +145,11 @@ const Categories = ({ ...extendedProps }) => {
   );
 };
 const Inscribite = ({ ...extendedProps }) => {
-  const imageWidth = ["35%", "35%", "30%", "30%", "30%"];
+  const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
+  const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
+  const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
+  const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
+  const pbMT = [3, 5, 5, 7, 9, 20];
   return (
     <Flex
       direction="row"
@@ -160,30 +162,46 @@ const Inscribite = ({ ...extendedProps }) => {
         src="/images/Inscribite_1.svg"
         alt="Decoration"
         width={imageWidth}
-        height="100%"
       ></Img>
-      <Spacer />
-      <VStack justify="center" spacing="5%">
-        <Heading size={["xs", "sm", "md", "md", "lg"]} textAlign="center">
+      <VStack justify="center" width={vstackWidth}>
+        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Inscripción por equipos
         </Heading>
-        <NextLink href="/register">
-          <PrimaryButton
-            height="2%"
-            backgroundColor="CSGreen"
-            fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-            size={["xs", "xs", "lg", "lg", "lg"]}
-          >
-            INSCRIBITE AQUI
-          </PrimaryButton>
-        </NextLink>
+        <PrimaryButton
+          mt={pbMT}
+          height="2%"
+          backgroundColor="CSGreen"
+          fontSize={pbFontSize}
+          size={pbSize}
+          onClick={() => {
+            location.href = "/register";
+          }}
+        >
+          INSCRIBITE AQUI
+        </PrimaryButton>
       </VStack>
       <Spacer />
+      <VStack justify="center" width={vstackWidth}>
+        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
+          Convertite en Sponsor/Jurado
+        </Heading>
+        <PrimaryButton
+          mt={pbMT}
+          height="2%"
+          backgroundColor="CSGreen"
+          fontSize={pbFontSize}
+          size={pbSize}
+          onClick={() => {
+            location.href = "/SMJ";
+          }}
+        >
+          CONTACTANOS AQUI
+        </PrimaryButton>
+      </VStack>
       <Img
         src="/images/Inscribite_2.svg"
         alt="Decoration"
         width={imageWidth}
-        height="100%"
       ></Img>
     </Flex>
   );
@@ -706,6 +724,7 @@ const Form = ({ ...extendedProps }) => {
         placeholder="Mensaje"
       ></Textarea>
       <PrimaryButton
+        mt={10}
         width="full"
         _disabled={{
           borderRadius: "4px",
