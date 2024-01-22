@@ -1,17 +1,21 @@
 const { inscriptionsEnabled, submissionsEnabled } = require("../config/util");
 const { error } = require("../util");
 
-function inscriptionsOpenMiddleware(_, res, next) {
-    if (!inscriptionsEnabled()) {
-        return res.status(403).send(error("config", "Inscriptions are not open yet!"));
+async function inscriptionsOpenMiddleware(req, res, next) {
+    if (!(await inscriptionsEnabled())) {
+        return res
+            .status(403)
+            .send(error("config", "Inscriptions are not open yet!"));
     }
 
     next();
 }
 
-function submissionsOpenMiddleware(_, res, next) {
-    if (!submissionsEnabled()) {
-        return res.status(403).send(error("config", "Submissions are not open yet!"));
+async function submissionsOpenMiddleware(req, res, next) {
+    if (!(await submissionsEnabled())) {
+        return res
+            .status(403)
+            .send(error("config", "Submissions are not open yet!"));
     }
 
     next();
