@@ -788,16 +788,17 @@ const Editions = () => {
         Ediciones Anteriores
       </Heading>
       <VStack justify="center" spacing="5%">
-        <NextLink href="/2023">
-          <PrimaryButton
-            height="2%"
-            backgroundColor="CSGreen"
-            fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-            size={["xs", "xs", "lg", "lg", "lg"]}
-          >
-            2023
-          </PrimaryButton>
-        </NextLink>
+        <PrimaryButton
+          height="2%"
+          backgroundColor="CSGreen"
+          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
+          size={["xs", "xs", "lg", "lg", "lg"]}
+          onClick={() => {
+            location.href = "/2023";
+          }}
+        >
+          2023
+        </PrimaryButton>
         <Spacer />
       </VStack>
     </VStack>
