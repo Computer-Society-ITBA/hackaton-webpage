@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useRouter } from "next/router";
-import { EmailIcon, CloseIcon } from "@chakra-ui/icons";
+import { EmailIcon, CloseIcon, CheckCircleIcon } from "@chakra-ui/icons";
 import {
   Stack,
   VStack,
@@ -19,7 +19,6 @@ import {
   Textarea,
   Button,
   useToast,
-  CheckCircleIcon,
   Spacer,
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";

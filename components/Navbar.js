@@ -25,7 +25,7 @@ import {
 import styled from "@emotion/styled";
 import { auth } from "../config/firebaseConfig";
 import { useEffect, useState } from "react";
-import {onAuthStateChanged} from 'firebase/auth'
+import { onAuthStateChanged } from "firebase/auth";
 import Head from "next/head";
 import { useStore } from "../config/storeConfig";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -53,9 +53,9 @@ const PrimaryButton = styled(Button)`
   }
 `;
 
-const HeadingSize = ['sm','md','lg','xl','2xl']
-const TextSize = ['10px','10px','8px','9px','12px']
-//No se usa 
+const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
+const TextSize = ["10px", "10px", "8px", "9px", "12px"];
+//No se usa
 // const LinkItem = ({ href, path, target, children, ...props }) => {
 //   const active = path === href;
 //   const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
@@ -87,27 +87,35 @@ const TextSize = ['10px','10px','8px','9px','12px']
 //   );
 // };
 
-const LoggedOutButton = ()=>{
+const LoggedOutButton = () => {
   return (
-    (<NextLink href="/login" >
-
-      <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>Iniciar Sesión</PrimaryButton>
-
-    </NextLink>)
+    <NextLink href="/login">
+      <PrimaryButton
+        backgroundColor="CSGreen"
+        fontSize={["xs", "sm", "md", "xl", "xl"]}
+        size={["xs", "sm", "sm", "md", "md"]}
+      >
+        Iniciar Sesión
+      </PrimaryButton>
+    </NextLink>
   );
-}
-const mapToName = new Map([["user","Equipo"],["mentor","Mentor"],["jury","Jurado"],["admin","Administrador"]])
-const LoggedInButton = ()=>{
-  const router = useRouter()
-  const userInfo = useStore((state)=>state.userInfo)
-  const storeLogOut = useStore((state)=>state.logout)
-  const {isOpen, onToggle} = useDisclosure()
-  const goToProfile=()=>router.push('/profile')
-  const logOut = async ()=>{
-    await router.push('/')
-    storeLogOut()
-    
-  }
+};
+const mapToName = new Map([
+  ["user", "Equipo"],
+  ["mentor", "Mentor"],
+  ["jury", "Jurado"],
+  ["admin", "Administrador"],
+]);
+const LoggedInButton = () => {
+  const router = useRouter();
+  const userInfo = useStore((state) => state.userInfo);
+  const storeLogOut = useStore((state) => state.logout);
+  const { isOpen, onToggle } = useDisclosure();
+  const goToProfile = () => router.push("/profile");
+  const logOut = async () => {
+    await router.push("/");
+    storeLogOut();
+  };
   // return(
   //   <VStack top='0.5' cursor='pointer' transition="all 0.3s ease" _hover={{"borderColor":"CSOrange"}} px='2px' gap={0} borderWidth='2px' borderColor='CSBlue' borderRadius='4px'>
   //     <HStack>
@@ -116,52 +124,62 @@ const LoggedInButton = ()=>{
   //         <Heading fontSize='smaller'>{userInfo.name}</Heading>
   //         <Text fontSize='smaller'>{mapToName.get(userInfo.role)}</Text>
   //       </VStack>
-  //     </HStack> 
+  //     </HStack>
   //     <Collapse in={isOpen}>
   //       <Heading>Hello world</Heading>
   //     </Collapse>
   //   </VStack>
   // )
-  return(
+  return (
     <Menu>
-    <MenuButton backgroundColor='transparent' height="120%" _hover={{"backgroundColor":"CSBlue"}} as={Button} rightIcon={<ChevronDownIcon />}>
+      <MenuButton
+        backgroundColor="transparent"
+        height="120%"
+        _hover={{ backgroundColor: "CSBlue" }}
+        as={Button}
+        rightIcon={<ChevronDownIcon />}
+      >
         <HStack>
-         <Avatar color='white' backgroundColor='gray' name={userInfo?.name}></Avatar>
-         <VStack p='2' align='start'>
-           <Heading fontSize='smaller'>{userInfo?.name}</Heading>
-           <Text fontSize='smaller'>{mapToName.get(userInfo?.role)}</Text>
-         </VStack>
-       </HStack> 
-    </MenuButton>
-  <MenuList>
-    <MenuItem onClick={goToProfile} >Mi perfil</MenuItem>
-    <MenuItem onClick={logOut}>Cerrar sesión</MenuItem>
-  </MenuList>
-</Menu>
-  )
-}
+          <Avatar
+            color="white"
+            backgroundColor="gray"
+            name={userInfo?.name}
+          ></Avatar>
+          <VStack p="2" align="start">
+            <Heading fontSize="smaller">{userInfo?.name}</Heading>
+            <Text fontSize="smaller">{mapToName.get(userInfo?.role)}</Text>
+          </VStack>
+        </HStack>
+      </MenuButton>
+      <MenuList>
+        <MenuItem onClick={goToProfile}>Mi perfil</MenuItem>
+        <MenuItem onClick={logOut}>Cerrar sesión</MenuItem>
+      </MenuList>
+    </Menu>
+  );
+};
 
 const Navbar = (props) => {
-  const isLoggedIn = useStore((state)=>state.isLoggedIn)
-  const userInfo = useStore((state)=>state.userInfo)
+  const isLoggedIn = useStore((state) => state.isLoggedIn);
+  const userInfo = useStore((state) => state.userInfo);
   const [navButton, setNavButton] = useState(
-      <LoggedOutButton></LoggedOutButton>
-  )
-  useEffect(()=>{
-    if(isLoggedIn){
-      setNavButton(<LoggedInButton/>)
-    }else{
-      setNavButton(<LoggedOutButton/>)
+    <LoggedOutButton></LoggedOutButton>
+  );
+  useEffect(() => {
+    if (isLoggedIn) {
+      setNavButton(<LoggedInButton />);
+    } else {
+      setNavButton(<LoggedOutButton />);
     }
-  },[isLoggedIn])
-// onAuthStateChanged(auth,()=>setNavButton(<Heading>Logged In!</Heading>))
+  }, [isLoggedIn]);
+  // onAuthStateChanged(auth,()=>setNavButton(<Heading>Logged In!</Heading>))
   const { path } = props;
   return (
     <Box
       position="fixed"
       as="nav"
       w="100%"
-      bg={useColorModeValue("#1C1C1C", "#1C1C1C")}// sin esto es transparente (tipo vidrio), no se si lo queremos asi 
+      bg={useColorModeValue("#1C1C1C", "#1C1C1C")} // sin esto es transparente (tipo vidrio), no se si lo queremos asi
       //Saco lo del navbar transparente porque no funciona en safari
       style={{ backdropFilter: "blur(10px)" }}
       borderBottom="1px solid #676C74"
