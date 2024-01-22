@@ -11,8 +11,7 @@ import { useCallback, useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import { useForm } from "react-hook-form";
 import SubmitInput from "../utils/SubmitInput";
-import { useRouter } from "next/router";
-import { SP } from "next/dist/shared/lib/utils";
+import useStore from "../../config/storeConfig";
 
 const LoadingSpinner = () => {
   return (
@@ -28,7 +27,7 @@ const LoadingSpinner = () => {
   );
 };
 
-const HasSubmitedView = () => {
+const CenteredMessage = (title, subtitle) => {
   return (
     <Box
       w="100vw"
@@ -40,12 +39,26 @@ const HasSubmitedView = () => {
       flexDirection="column"
     >
       <Text fontSize="4xl" color="#55faa2">
-        Ya hemos recibido tu proyecto!
+        {title}
       </Text>
       <Text fontSize="2xl" color="white">
-        Pronto nos pondremos en contacto contigo
+        {subtitle}
       </Text>
     </Box>
+  );
+};
+
+const HasSubmitedView = () => {
+  return CenteredMessage(
+    "Ya hemos recibido tu proyecto!",
+    "Pronto nos pondremos en contacto contigo"
+  );
+};
+
+const SubmissionsClosedView = () => {
+  return CenteredMessage(
+    "¡Nos estamos preparando!",
+    "No se pueden enviar proyectos en este momento"
   );
 };
 
@@ -74,8 +87,13 @@ const UserView = ({ userInfo }) => {
           },
         });
       } catch (err) {
+        const title =
+          err.response.data.error.code === "config"
+            ? "Lo sentimos, el plazo de entrega de proyectos ha concluído"
+            : "Error al enviar el proyecto";
+
         toast({
-          title: "Error al enviar el proyecto",
+          title: title,
           status: "error",
           duration: 3000,
         });
@@ -100,14 +118,17 @@ const UserView = ({ userInfo }) => {
 
   useEffect(() => {
     userHasSubmited().then((hasSubmited) => {
-      console.log(hasSubmited);
       setHasSubmited(hasSubmited);
       setIsLoading(false);
     });
   }, [userHasSubmited]);
 
+  const submissionsEnabled = useStore((state) => state.submissionsEnabled);
+
   return isLoading ? (
     <LoadingSpinner />
+  ) : !submissionsEnabled ? (
+    <SubmissionsClosedView />
   ) : hasSubmited ? (
     <HasSubmitedView />
   ) : (
