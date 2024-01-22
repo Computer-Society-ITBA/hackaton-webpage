@@ -40,12 +40,15 @@ const {
     sendRejectionEmail,
 } = require("../mail/util");
 const { getSubmission } = require("../submission/firestore_util");
+const {
+    inscriptionsOpenMiddleware,
+} = require("../middleware/configMiddleware");
 
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
 
 //Para crear un equipo en un llamado, con toda la informacion necesaria
-router.post("/team", async (req, res) => {
+router.post("/team", inscriptionsOpenMiddleware, async (req, res) => {
     const { name, email, password, participants, teamDescription, motivation } =
         req.body;
     //Validad datos de usuario
@@ -216,7 +219,7 @@ router.put(
         res.status(200).send(ans);
     }
 );
-//TODO: agregar middleware de auth cuando se haya mergeado con el de cambiar contraseña
+
 router.put(
     "/:userId/qualified",
     authMiddleware,

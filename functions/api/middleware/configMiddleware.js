@@ -1,5 +1,5 @@
-const { inscriptionsEnabled, submissionsEnabled } = require('../config/util')
-const { error } = require('../util')
+const { inscriptionsEnabled, submissionsEnabled } = require("../config/util");
+const { error } = require("../util");
 
 function inscriptionsOpenMiddleware(_, res, next) {
     if (!inscriptionsEnabled()) {
@@ -17,4 +17,4 @@ function submissionsOpenMiddleware(_, res, next) {
     next();
 }
 
-module.exports = { inscriptionsOpenMiddleware, submissionsOpenMiddleware }
+module.exports = { inscriptionsOpenMiddleware, submissionsOpenMiddleware };

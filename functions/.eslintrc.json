@@ -5,7 +5,7 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "eqeqeq": ["error", "smart"],
     "no-unused-vars": "warn",
     "no-lonely-if": "warn",
@@ -14,9 +14,6 @@
     "no-eq-null": "warn",
     "no-eval": "warn",
     "no-extend-native": "warn",
-    "camelcase": "warn",
-    "no-undef": "warn",
-    "no-useless-escape": "warn",
-    "no-dupe-keys": "warn"
+    "camelcase": "warn"
   }
 }
