@@ -5,8 +5,18 @@ const SUBMISSION_COLLECTION = 'submissions';
 
 module.exports.createSubmission = async function createSubmission(submission) {
   try {
+    const userDoc = await db.collection('users').doc(submission.userId).get();
+    if (!userDoc.exists) {
+        throw new Error("Invalid user ID");
+    }
+    submission.team = userDoc.data().name;
+    submission.createdAt = new Date();
+
     const submissionRef = await db.collection(SUBMISSION_COLLECTION).add(submission);
-    return { id: submissionRef.id, ...submission };
+    return { 
+        id: submissionRef.id,
+        ...submission
+     };
   } catch (err) {
     console.log(err);
     throw new Error("Unable to create submission");

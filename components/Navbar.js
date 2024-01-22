@@ -88,13 +88,13 @@ const TextSize = ['10px','10px','8px','9px','12px']
 // };
 
 const LoggedOutButton = ()=>{
-  return(
-    <NextLink href="/login" >
-        <a>
-          <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>Iniciar Sesión</PrimaryButton>
-        </a>
-    </NextLink>
-  )
+  return (
+    (<NextLink href="/login" >
+
+      <PrimaryButton  backgroundColor="CSGreen" fontSize={['xs','sm','md','xl','xl']} size={['xs','sm','sm','md','md']}>Iniciar Sesión</PrimaryButton>
+
+    </NextLink>)
+  );
 }
 const mapToName = new Map([["user","Equipo"],["mentor","Mentor"],["jury","Jurado"],["admin","Administrador"]])
 const LoggedInButton = ()=>{
