@@ -8,8 +8,8 @@ const useStore = create(
       role: undefined,
       userInfo: undefined,
       token: undefined,
-      inscriptionsEnabled: false,
-      submissionsEnabled: false,
+      inscriptionsEnabled: undefined,
+      submissionsEnabled: undefined,
       setToken: (token) => set((state) => ({ token: token })),
       signIn: (userInfo, token) =>
         set((state) => ({
@@ -25,11 +25,25 @@ const useStore = create(
           userInfo: undefined,
           token: undefined,
         })),
-      setConfig: (config) =>
+      setConfig: async () => {
+        let config;
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/api/config`
+          );
+          config = await response.json();
+        } catch (e) {
+          config = {
+            inscriptionsEnabled: false,
+            submissionsEnabled: false,
+          };
+        }
+
         set((state) => ({
           inscriptionsEnabled: config.inscriptionsEnabled,
           submissionsEnabled: config.submissionsEnabled,
-        })),
+        }));
+      },
     }),
     {
       name: "session-storage", // name of the item in the storage (must be unique)

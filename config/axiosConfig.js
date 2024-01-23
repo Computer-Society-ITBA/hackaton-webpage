@@ -61,8 +61,7 @@ axiosApiInstance.interceptors.response.use(
       error.response.status === 403 &&
       error.response.data.error.code === "config"
     ) {
-      const config = (await axiosApiInstance.get("/config")).data;
-      setConfig(config);
+      await setConfig();
     }
     return Promise.reject(error);
   }
@@ -71,8 +70,5 @@ axiosApiInstance.interceptors.response.use(
 export async function setAxiosToken(token) {
   setToken(token);
   userToken = token;
-
-  const config = (await axiosApiInstance.get("/config")).data;
-
-  setConfig(config);
+  await setConfig();
 }
