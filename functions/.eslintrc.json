@@ -1,15 +1,7 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/recommended",
-    "next/core-web-vitals",
-    "prettier"
-  ],
-  "plugins": ["import"],
+  "extends": ["eslint:recommended", "prettier"],
   "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+    "node": true
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
@@ -23,11 +15,8 @@
     "no-eval": "warn",
     "no-extend-native": "warn",
     "camelcase": "warn",
-    "no-useless-escape": "warn"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+    "no-undef": "warn",
+    "no-useless-escape": "warn",
+    "no-dupe-keys": "warn"
   }
 }

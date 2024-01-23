@@ -43,8 +43,10 @@ export const speakers = [
     link: "https://exactly.finance/",
     title: "Co-founder & CTO",
     twitter: "lucaslain",
-    img:"https://hackitba.vercel.app/images/lucas.jpg",
-    description: "Sr Software Engineer at Compass ($COMP) and at Squarespace ($SQSP) + Co-Founder & CTO at WeHostels (sold to Student Universe in 2014) and at Confronte (sold to Clarin in 2009), Bachelor in Software Engineer at UADE"},
+    img: "https://hackitba.vercel.app/images/lucas.jpg",
+    description:
+      "Sr Software Engineer at Compass ($COMP) and at Squarespace ($SQSP) + Co-Founder & CTO at WeHostels (sold to Student Universe in 2014) and at Confronte (sold to Clarin in 2009), Bachelor in Software Engineer at UADE",
+  },
   {
     name: "Agustina Fainguersch",
     brand: "Meta | Directora Regional",
@@ -52,7 +54,7 @@ export const speakers = [
     title: "Co-founder & CEO",
     twitter: "agusfagus",
     img: "https://hackitba.vercel.app/images/agus_wolox.jpeg",
- },
+  },
   {
     name: "Santiago Valles",
     brand: "ITBA | Director ",
@@ -67,6 +69,6 @@ export const speakers = [
     link: "https://matterscale.com",
     title: "Partner",
     twitter: "gabrielamacagni",
-    img: "https://100klatam.org/wp-content/uploads/2020/02/tum__0059_GABRIELA.MACAGNI@GMAIL.COM_2019-06-18T20_29_30.494Z_Gabriela_0434.jpg-e1570735399107.png"
-  }
+    img: "https://100klatam.org/wp-content/uploads/2020/02/tum__0059_GABRIELA.MACAGNI@GMAIL.COM_2019-06-18T20_29_30.494Z_Gabriela_0434.jpg-e1570735399107.png",
+  },
 ];

@@ -1,7 +1,9 @@
-function error(code,message){
-    return {error:{
-        code:code,
-        message:message
-    }}
+function error(code, message) {
+    return {
+        error: {
+            code: code,
+            message: message,
+        },
+    };
 }
-module.exports = {error}
+module.exports = { error };

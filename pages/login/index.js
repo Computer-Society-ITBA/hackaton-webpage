@@ -24,10 +24,10 @@ import {
 import styled from "@emotion/styled";
 import Link from "next/link";
 import { useState } from "react";
-import { auth } from "../../config/firebaseConfig";
+import auth from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useStore } from "../../config/storeConfig";
+import useStore from "../../config/storeConfig";
 import { axiosApiInstance, setAxiosToken } from "../../config/axiosConfig";
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];

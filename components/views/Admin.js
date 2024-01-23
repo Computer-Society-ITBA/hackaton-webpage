@@ -350,4 +350,4 @@ const AdminView = ({ token }) => {
   );
 };
 
-module.exports = { AdminView };
+export default AdminView;

@@ -41,7 +41,7 @@ import {
   DeleteIcon,
   EditIcon,
 } from "@chakra-ui/icons";
-const joi = require("joi");
+import joi from "joi";
 
 const ModalSize = ["sm", "md", "lg", "xl", "2xl"];
 const HeadingSize = ["sm", "sm", "md", "lg", "xl"];
