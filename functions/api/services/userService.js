@@ -1,15 +1,5 @@
-const {
-    doc,
-    setDoc,
-    updateDoc,
-    deleteDoc,
-    getDocs,
-    collection,
-    addDoc,
-    getDoc,
-} = require("firebase/firestore");
-const { error } = require("../util");
-const { db, storage } = require("../config");
+const { error } = require("../model/error");
+const { db, storage } = require("../firebaseConfig");
 const { uploadBytes, getDownloadURL, ref } = require("firebase/storage");
 
 const USER_COLLECTION = "users";
@@ -31,8 +21,6 @@ async function addMember(
         age: memberAge,
     };
     try {
-        // const ans = await addDoc(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION),data)
-        // const ans = await addDoc(db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`),data)
         const ans = db
             .collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`)
             .add(data);
@@ -58,8 +46,6 @@ async function editMember(
     };
     const data = JSON.parse(JSON.stringify(aux)); //para sacar campos undefined (si no da error firestore)
     try {
-        // await updateDoc(doc(db, USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId), data)
-        // await updateDoc(db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`), data)
         await db
             .doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`)
             .update(data);
@@ -71,8 +57,6 @@ async function editMember(
 }
 async function deleteMember(uid, memberId) {
     try {
-        // await deleteDoc(doc(db,USER_COLLECTION, uid, MEMBERS_COLLECTION, memberId))
-        // await deleteDoc(db.doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`))
         await db
             .doc(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}/${memberId}`)
             .delete();
@@ -85,8 +69,6 @@ async function deleteMember(uid, memberId) {
 
 async function getMembers(uid) {
     try {
-        // const ans = (await getDocs(collection(db, USER_COLLECTION, uid, MEMBERS_COLLECTION))).docs
-        // const ans = (await getDocs(db.collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`))).docs
         const ans = (
             await db
                 .collection(`/${USER_COLLECTION}/${uid}/${MEMBERS_COLLECTION}`)
@@ -104,8 +86,6 @@ async function getMembers(uid) {
 async function editQualification(uid, qualifiedValue) {
     const data = { qualified: qualifiedValue };
     try {
-        // await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
-        // await setDoc(db.doc(`/${USER_COLLECTION}/${uid}`), data,{merge:true})
         await db.doc(`/${USER_COLLECTION}/${uid}`).set(data, { merge: true });
         return data;
     } catch (err) {
@@ -115,8 +95,6 @@ async function editQualification(uid, qualifiedValue) {
 }
 async function getUserInfo(uid) {
     try {
-        // const ans = await getDoc(doc(db,USER_COLLECTION,uid))
-        // const ans = await getDoc(db.doc(`/${USER_COLLECTION}/${uid}`))
         const ans = await db.doc(`/${USER_COLLECTION}/${uid}`).get();
         if (!ans.exists) {
             return error(404, "No such document!");
@@ -128,8 +106,6 @@ async function getUserInfo(uid) {
 }
 async function setUserInfo(uid, data) {
     try {
-        // await setDoc(doc(db,USER_COLLECTION, uid), data,{merge:true})
-        // await setDoc(db.doc(`/${USER_COLLECTION}/${uid}`), data,{merge:true})
         await db.doc(`/${USER_COLLECTION}/${uid}`).set(data, { merge: true });
         return data;
     } catch (err) {
@@ -150,7 +126,6 @@ async function saveDocument(userId, memberId, file) {
                 name: file.originalname,
                 verified: false,
             };
-            // const fileRef = await addDoc(db.collection(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`),fileData)
             const fileRef = await db
                 .collection(
                     `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`
@@ -167,7 +142,6 @@ async function saveDocument(userId, memberId, file) {
 async function verifyDocument(userId, memberId, documentId) {
     const data = { verified: true };
     try {
-        // await updateDoc(db.doc(`/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`), data)
         await db
             .doc(
                 `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`

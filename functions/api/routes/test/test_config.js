@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const { adminAuth, clientAuth } = require("../config");
+const { adminAuth, clientAuth } = require("../../firebaseConfig");
 require("dotenv").config();
-const { error } = require("../util");
-const authMiddleware = require("../middleware/authMiddleware");
+const { error } = require("../../model/error");
+const authMiddleware = require("../../middleware/authMiddleware");
 const { signInWithEmailAndPassword } = require("firebase/auth");
 const {
     ROLE_ADMIN,
     ROLE_JURY,
     ROLE_MENTOR,
     ROLE_USER,
-} = require("../middleware/roleMiddleware");
+} = require("../../middleware/roleMiddleware");
 
 //endpoints to test middlewares by changing user's role
 // router.get('/get_test_token',async (req,res)=>{

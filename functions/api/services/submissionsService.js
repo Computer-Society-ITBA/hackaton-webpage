@@ -1,5 +1,5 @@
-const { db } = require("../config");
-const { schema } = require("./schema");
+const { db } = require("../firebaseConfig");
+const { schema } = require("../model/submission");
 
 const SUBMISSION_COLLECTION = "submissions";
 

@@ -1,9 +1,9 @@
 require("dotenv").config();
-// const { getFirestore } = require("firebase/firestore")
 const { getStorage, ref } = require("firebase/storage");
 const admin = require("firebase-admin");
 const { getFirestore } = require("firebase-admin/firestore");
 
+/* eslint-disable camelcase */
 const serviceAccount = {
     type: process.env.ADMIN_TYPE,
     project_id: process.env.ADMIN_PROJECT_ID,
@@ -16,13 +16,13 @@ const serviceAccount = {
     auth_provider_x509_cert_url: process.env.ADMIN_PROVIDER_X509_CERT_URL,
     client_x509_cert_url: process.env.ADMIN_CLIENT_X509_CERT_URL,
 };
+/* eslint-enable camelcase */
 
 const app = admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
 });
 
 const adminAuth = app.auth();
-//Para acceder como administrador!
 const db = getFirestore(app);
 
 const { initializeApp } = require("firebase/app");
@@ -43,7 +43,6 @@ const firebaseConfig = {
 
 const clientApp = initializeApp(firebaseConfig);
 const clientAuth = getAuth(clientApp);
-// const db = getFirestore(clientApp) //Usamos la de admin
 const storage = getStorage(clientApp);
 
 module.exports = {
