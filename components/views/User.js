@@ -1,31 +1,10 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Spinner,
-  Text,
-  Textarea,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Textarea, useToast } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import { useForm } from "react-hook-form";
 import SubmitInput from "../utils/SubmitInput";
 import useStore from "../../config/storeConfig";
-
-const LoadingSpinner = () => {
-  return (
-    <Box
-      w="100vw"
-      h="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Spinner size="xl" color="#55faa2" />
-    </Box>
-  );
-};
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const CenteredMessage = (title, subtitle) => {
   return (

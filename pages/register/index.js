@@ -1,5 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { useSteps } from "chakra-ui-steps";
-import React, { useState } from "react";
 import {
   Heading,
   Box,
@@ -11,19 +12,30 @@ import {
   Spacer,
   CircularProgress,
 } from "@chakra-ui/react";
-
+import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import FirstStep from "./firstStep";
 import ThirdStep from "./thirdStep";
 import FourthStep from "./fourthStep";
 import FifthStep from "./fifthStep";
-import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
+import useStore from "../../config/storeConfig";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 
 const HeadingSize = ["sm", "sm", "md", "lg", "xl"];
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+
+  useEffect(() => {
+    if (!inscriptionsEnabled) {
+      router.replace("/login");
+    } else {
+      setIsLoading(false);
+    }
+  }, [router, inscriptionsEnabled]);
+
   const [name, setName] = useState("");
-  // const [image, setImage] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
   const [participants, setParticipants] = useState([]);
@@ -35,23 +47,9 @@ const Register = () => {
   });
   const toast = useToast();
   const toastIdRef = React.useRef();
-  const router = useRouter();
-  // const registerUser = async () => {
-  //   await fetch('/api/users', {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       "email": email,
-  //       "password": password,
-  //       "name": name
-  //     }),
-  //     headers: {
-  //       'Content-type': 'application/json'
-  //     },
-  //   })
-  //   .then((response) => {response.json})
-  //   .then((data) => console.log(data))
-  //   .catch((e) => console.log(e.message))
-  // }
+
+  if (isLoading) return <LoadingSpinner />;
+
   const finishInscription = async () => {
     const data = {
       name: name,
@@ -75,8 +73,8 @@ const Register = () => {
       if (response.status !== 200) throw new Error("Server error");
     } catch (err) {
       toastIdRef.current = toast({
-        title: "¡La inscripción fue registrada!",
-        status: "success",
+        title: "Error en la inscripción",
+        status: "error",
         isClosable: true,
         duration: 5000,
         render: () => {
@@ -107,7 +105,6 @@ const Register = () => {
           router.push("/"); //No se si usar replace para que no vuelva
         },
       });
-      console.log(err);
       return;
     }
     toastIdRef.current = toast({
