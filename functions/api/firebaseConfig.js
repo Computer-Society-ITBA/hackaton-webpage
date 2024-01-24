@@ -45,6 +45,9 @@ const clientApp = initializeApp(firebaseConfig);
 const clientAuth = getAuth(clientApp);
 const storage = getStorage(clientApp);
 
+const SUBMISSION_COLLECTION = "2024_submissions";
+const USER_COLLECTION = "2024_users";
+
 module.exports = {
     adminAuth,
     clientAuth,
@@ -53,4 +56,6 @@ module.exports = {
     ref,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    SUBMISSION_COLLECTION,
+    USER_COLLECTION,
 };

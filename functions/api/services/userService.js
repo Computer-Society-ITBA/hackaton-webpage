@@ -1,10 +1,7 @@
 const { error } = require("../model/error");
-const { db, storage } = require("../firebaseConfig");
-const { uploadBytes, getDownloadURL, ref } = require("firebase/storage");
+const { db, USER_COLLECTION } = require("../firebaseConfig");
 
-const USER_COLLECTION = "users";
 const MEMBERS_COLLECTION = "members";
-const DOCUMENTS_COLLECTION = "documents";
 
 //si doc se usa con varios argumentos, la logica creo que es: [collection, document, collection, document, ...]
 async function addMember(
@@ -113,45 +110,47 @@ async function setUserInfo(uid, data) {
         return error(err.code, err.message);
     }
 }
-async function saveDocument(userId, memberId, file) {
-    try {
-        const pdfRef = ref(
-            storage,
-            `documents/${userId}/${memberId}/${file.originalname}`
-        );
-        return uploadBytes(pdfRef, file.buffer).then(async (snapshot) => {
-            const downloadUrl = await getDownloadURL(snapshot.ref);
-            let fileData = {
-                url: downloadUrl,
-                name: file.originalname,
-                verified: false,
-            };
-            const fileRef = await db
-                .collection(
-                    `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`
-                )
-                .add(fileData);
-            fileData.id = fileRef.id;
-            return fileData;
-        });
-    } catch (err) {
-        return error(err.code, err.message);
-    }
-}
 
-async function verifyDocument(userId, memberId, documentId) {
-    const data = { verified: true };
-    try {
-        await db
-            .doc(
-                `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`
-            )
-            .update(data);
-        return data;
-    } catch (err) {
-        return error(err.code, err.message);
-    }
-}
+// const DOCUMENTS_COLLECTION = "documents";
+// async function saveDocument(userId, memberId, file) {
+//     try {
+//         const pdfRef = ref(
+//             storage,
+//             `documents/${userId}/${memberId}/${file.originalname}`
+//         );
+//         return uploadBytes(pdfRef, file.buffer).then(async (snapshot) => {
+//             const downloadUrl = await getDownloadURL(snapshot.ref);
+//             let fileData = {
+//                 url: downloadUrl,
+//                 name: file.originalname,
+//                 verified: false,
+//             };
+//             const fileRef = await db
+//                 .collection(
+//                     `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}`
+//                 )
+//                 .add(fileData);
+//             fileData.id = fileRef.id;
+//             return fileData;
+//         });
+//     } catch (err) {
+//         return error(err.code, err.message);
+//     }
+// }
+
+// async function verifyDocument(userId, memberId, documentId) {
+//     const data = { verified: true };
+//     try {
+//         await db
+//             .doc(
+//                 `/${USER_COLLECTION}/${userId}/${MEMBERS_COLLECTION}/${memberId}/${DOCUMENTS_COLLECTION}/${documentId}`
+//             )
+//             .update(data);
+//         return data;
+//     } catch (err) {
+//         return error(err.code, err.message);
+//     }
+// }
 
 module.exports = {
     addMember,
@@ -161,6 +160,4 @@ module.exports = {
     getMembers,
     editQualification,
     getUserInfo,
-    saveDocument,
-    verifyDocument,
 };

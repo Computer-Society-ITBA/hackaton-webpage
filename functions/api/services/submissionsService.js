@@ -1,12 +1,14 @@
-const { db } = require("../firebaseConfig");
+const {
+    db,
+    SUBMISSION_COLLECTION,
+    USER_COLLECTION,
+} = require("../firebaseConfig");
 const { schema } = require("../model/submission");
-
-const SUBMISSION_COLLECTION = "submissions";
 
 module.exports.createSubmission = async function createSubmission(submission) {
     try {
         const userDoc = await db
-            .collection("users")
+            .collection(USER_COLLECTION)
             .doc(submission.userId)
             .get();
         if (!userDoc.exists) {
