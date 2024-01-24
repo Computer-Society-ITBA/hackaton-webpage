@@ -70,10 +70,8 @@ const LoggedOutButton = () => {
 
   useEffect(() => {
     if (inscriptionsEnabled === undefined) {
-      return setConfig();
-    }
-
-    if (inscriptionsEnabled) {
+      setConfig();
+    } else if (inscriptionsEnabled) {
       setNavButtons(
         <>
           <NavButton text="Inscribite Aqui!" href="/register" />

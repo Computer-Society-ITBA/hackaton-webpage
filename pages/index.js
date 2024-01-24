@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Heading,
@@ -31,6 +31,7 @@ import EconomyLogo from "../components/EconomyLogo";
 import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
+import useStore from "../config/storeConfig";
 
 const Subtitle = styled(Text)`
   font-size: 14px;
@@ -144,7 +145,7 @@ const Categories = ({ ...extendedProps }) => {
     </HStack>
   );
 };
-const Inscribite = ({ ...extendedProps }) => {
+const InscriptionSection = ({ ...extendedProps }) => {
   const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
   const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
   const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
@@ -781,6 +782,15 @@ const DoubtSection = ({ ...extendedProps }) => {
   );
 };
 const Home = () => {
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
+
+  useEffect(() => {
+    if (inscriptionsEnabled) {
+      setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
+    }
+  }, [inscriptionsEnabled]);
+
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
@@ -788,7 +798,7 @@ const Home = () => {
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
-      <Inscribite pt="4%" zIndex={90} />
+      {inscriptionsSection}
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
