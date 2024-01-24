@@ -95,11 +95,11 @@ const Home = () => {
         password
       );
       const token = await credentials.user.getIdToken();
+      await setAxiosToken(token);
       const userInfo = (
         await axiosApiInstance.get(`/users/${credentials.user.uid}`)
       ).data;
 
-      await setAxiosToken(token);
       storeSignIn(userInfo, token);
       router.push("/profile");
     } catch (err) {
