@@ -1,4 +1,4 @@
-const { error } = require("../util");
+const { error } = require("../model/error");
 //Se debe usar despues de authMiddleware
 function selfMiddleware(req, res, next) {
     const paramsUid = req.params.userId;

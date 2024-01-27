@@ -1,4 +1,4 @@
-const { error } = require("../util");
+const { error } = require("../model/error");
 //Se debe usar despues de authMiddleware
 function bodySelfMiddleware(req, res, next) {
     const bodyUid = req.body.userId;

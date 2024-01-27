@@ -1,13 +1,13 @@
 //Funciones utiles de users que interactuan con la api de firebase auth
-const { adminAuth } = require("../config");
+const { adminAuth } = require("../firebaseConfig");
 const {
     ROLE_ADMIN,
     ROLE_USER,
     ROLE_MENTOR,
     ROLE_JURY,
 } = require("../middleware/roleMiddleware");
-const { error } = require("../util");
-const { getUserInfo, getMembers } = require("./firestore_util");
+const { error } = require("../model/error");
+const { getUserInfo, getMembers } = require("./userService");
 
 function userToJson(user) {
     // formato que estaba previamente definido en getUser
