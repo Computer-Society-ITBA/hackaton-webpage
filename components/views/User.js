@@ -1,34 +1,12 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Spinner,
-  Text,
-  Textarea,
-  useToast,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Textarea, useToast } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import { useForm } from "react-hook-form";
 import SubmitInput from "../utils/SubmitInput";
-import { useRouter } from "next/router";
-import { SP } from "next/dist/shared/lib/utils";
+import useStore from "../../config/storeConfig";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
-const LoadingSpinner = () => {
-  return (
-    <Box
-      w="100vw"
-      h="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Spinner size="xl" color="#55faa2" />
-    </Box>
-  );
-};
-
-const HasSubmitedView = () => {
+const CenteredMessage = (title, subtitle) => {
   return (
     <Box
       w="100vw"
@@ -40,12 +18,26 @@ const HasSubmitedView = () => {
       flexDirection="column"
     >
       <Text fontSize="4xl" color="#55faa2">
-        Ya hemos recibido tu proyecto!
+        {title}
       </Text>
       <Text fontSize="2xl" color="white">
-        Pronto nos pondremos en contacto contigo
+        {subtitle}
       </Text>
     </Box>
+  );
+};
+
+const HasSubmitedView = () => {
+  return CenteredMessage(
+    "Ya hemos recibido tu proyecto!",
+    "Pronto nos pondremos en contacto contigo"
+  );
+};
+
+const SubmissionsClosedView = () => {
+  return CenteredMessage(
+    "¡Nos estamos preparando!",
+    "No se pueden enviar proyectos en este momento"
   );
 };
 
@@ -64,10 +56,7 @@ const UserView = ({ userInfo }) => {
     async (data) => {
       try {
         data.userId = userInfo.uid;
-        await axiosApiInstance.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/submissions`,
-          data
-        );
+        await axiosApiInstance.post("/submissions", data);
         toast({
           title: "Proyecto enviado",
           status: "success",
@@ -77,8 +66,13 @@ const UserView = ({ userInfo }) => {
           },
         });
       } catch (err) {
+        const title =
+          err.response.data.error.code === "config"
+            ? "Lo sentimos, el plazo de entrega de proyectos ha concluído"
+            : "Error al enviar el proyecto";
+
         toast({
-          title: "Error al enviar el proyecto",
+          title: title,
           status: "error",
           duration: 3000,
         });
@@ -90,7 +84,7 @@ const UserView = ({ userInfo }) => {
   const userHasSubmited = useCallback(async () => {
     try {
       const response = await axiosApiInstance.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/users/${userInfo.uid}/submission`
+        `/users/${userInfo.uid}/submission`
       );
       return response.data && response.data.userId === userInfo.uid;
     } catch (err) {
@@ -103,14 +97,17 @@ const UserView = ({ userInfo }) => {
 
   useEffect(() => {
     userHasSubmited().then((hasSubmited) => {
-      console.log(hasSubmited);
       setHasSubmited(hasSubmited);
       setIsLoading(false);
     });
   }, [userHasSubmited]);
 
+  const submissionsEnabled = useStore((state) => state.submissionsEnabled);
+
   return isLoading ? (
     <LoadingSpinner />
+  ) : !submissionsEnabled ? (
+    <SubmissionsClosedView />
   ) : hasSubmited ? (
     <HasSubmitedView />
   ) : (

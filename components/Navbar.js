@@ -1,35 +1,27 @@
-import Logo from "./Logo";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import NextLink from "next/link";
 import {
   Container,
   Box,
-  Link,
   Button,
   Heading,
   Flex,
   useColorModeValue,
   Text,
-  Card,
   Avatar,
   HStack,
   VStack,
-  Collapse,
-  useDisclosure,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  Divider,
 } from "@chakra-ui/react";
-
-import styled from "@emotion/styled";
-import auth from "../config/firebaseConfig";
-import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import Head from "next/head";
-import useStore from "../config/storeConfig";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
+import styled from "@emotion/styled";
+import Logo from "./Logo";
+import useStore from "../config/storeConfig";
+
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -53,53 +45,45 @@ const PrimaryButton = styled(Button)`
   }
 `;
 
-const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
-const TextSize = ["10px", "10px", "8px", "9px", "12px"];
-//No se usa
-// const LinkItem = ({ href, path, target, children, ...props }) => {
-//   const active = path === href;
-//   const inactiveColor = useColorModeValue("gray200", "whiteAlpha.900");
-//   if (target !== "_blank") {
-//     return (
-//       <NextLink href={href} passHref>
-//         <Link
-//           p={2}
-//           bg={active ? "grassTeal" : undefined}
-//           color={active ? "#202023" : inactiveColor}
-//           {...props}
-//         >
-//           {children}
-//         </Link>
-//       </NextLink>
-//     );
-//   }
-//   return (
-//     <Link
-//       p={2}
-//       bg={active ? "grassTeal" : undefined}
-//       color={active ? "#202023" : inactiveColor}
-//       href={href}
-//       target="_blank"
-//       {...props}
-//     >
-//       {children}
-//     </Link>
-//   );
-// };
-
-const LoggedOutButton = () => {
+const NavButton = ({ text, href }) => {
   return (
-    <NextLink href="/login">
-      <PrimaryButton
-        backgroundColor="CSGreen"
-        fontSize={["xs", "sm", "md", "xl", "xl"]}
-        size={["xs", "sm", "sm", "md", "md"]}
-      >
-        Iniciar Sesión
-      </PrimaryButton>
-    </NextLink>
+    <Box ml={(5, 0)} mr={(0, 5)} zIndex={99}>
+      <NextLink href={href}>
+        <PrimaryButton
+          backgroundColor="CSGreen"
+          fontSize={["xs", "sm", "md", "xl", "xl"]}
+          size={["xs", "sm", "sm", "md", "md"]}
+        >
+          {text}
+        </PrimaryButton>
+      </NextLink>
+    </Box>
   );
 };
+
+const LoggedOutButton = () => {
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const setConfig = useStore((state) => state.setConfig);
+  const [navButtons, setNavButtons] = useState(
+    <NavButton text="Iniciar Sesión" href="/login" />
+  );
+
+  useEffect(() => {
+    if (inscriptionsEnabled === undefined) {
+      setConfig();
+    } else if (inscriptionsEnabled) {
+      setNavButtons(
+        <>
+          <NavButton text="Inscribite Aqui!" href="/register" />
+          <NavButton text="Iniciar Sesión" href="/login" />
+        </>
+      );
+    }
+  }, [setConfig, inscriptionsEnabled, navButtons]);
+
+  return navButtons;
+};
+
 const mapToName = new Map([
   ["user", "Equipo"],
   ["mentor", "Mentor"],
@@ -110,26 +94,12 @@ const LoggedInButton = () => {
   const router = useRouter();
   const userInfo = useStore((state) => state.userInfo);
   const storeLogOut = useStore((state) => state.logout);
-  const { isOpen, onToggle } = useDisclosure();
   const goToProfile = () => router.push("/profile");
   const logOut = async () => {
     await router.push("/");
     storeLogOut();
   };
-  // return(
-  //   <VStack top='0.5' cursor='pointer' transition="all 0.3s ease" _hover={{"borderColor":"CSOrange"}} px='2px' gap={0} borderWidth='2px' borderColor='CSBlue' borderRadius='4px'>
-  //     <HStack>
-  //       <Avatar color='white' backgroundColor='gray' name={userInfo.name}></Avatar>
-  //       <VStack p='2' align='start'>
-  //         <Heading fontSize='smaller'>{userInfo.name}</Heading>
-  //         <Text fontSize='smaller'>{mapToName.get(userInfo.role)}</Text>
-  //       </VStack>
-  //     </HStack>
-  //     <Collapse in={isOpen}>
-  //       <Heading>Hello world</Heading>
-  //     </Collapse>
-  //   </VStack>
-  // )
+
   return (
     <Menu>
       <MenuButton
@@ -161,10 +131,10 @@ const LoggedInButton = () => {
 
 const Navbar = (props) => {
   const isLoggedIn = useStore((state) => state.isLoggedIn);
-  const userInfo = useStore((state) => state.userInfo);
   const [navButton, setNavButton] = useState(
     <LoggedOutButton></LoggedOutButton>
   );
+
   useEffect(() => {
     if (isLoggedIn) {
       setNavButton(<LoggedInButton />);
@@ -172,8 +142,7 @@ const Navbar = (props) => {
       setNavButton(<LoggedOutButton />);
     }
   }, [isLoggedIn]);
-  // onAuthStateChanged(auth,()=>setNavButton(<Heading>Logged In!</Heading>))
-  const { path } = props;
+
   return (
     <Box
       position="fixed"
@@ -202,10 +171,14 @@ const Navbar = (props) => {
           </Heading>
         </Flex>
 
-        <Box align="right" alignItems="center" marginLeft="auto" display="flex">
-          <Box ml={(2, 0)} mr={(0, 2)} zIndex={99}>
-            {navButton}
-          </Box>
+        <Box
+          align="right"
+          justifyContent="space-between"
+          alignItems="center"
+          marginLeft="auto"
+          display="flex"
+        >
+          {navButton}
         </Box>
       </Container>
     </Box>
