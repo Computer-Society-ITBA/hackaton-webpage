@@ -1,4 +1,4 @@
-const { db } = require("../config");
+const { db } = require("../firebaseConfig");
 
 async function getDateConfig(config) {
     const query = await db.doc(`/config/${config}`).get();

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { inscriptionsEnabled, submissionsEnabled } = require("./util");
+const {
+    inscriptionsEnabled,
+    submissionsEnabled,
+} = require("../services/configService");
 
 router.get("", async (_, res) => {
     let inscriptions = await inscriptionsEnabled();

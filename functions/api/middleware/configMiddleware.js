@@ -1,5 +1,8 @@
-const { inscriptionsEnabled, submissionsEnabled } = require("../config/util");
-const { error } = require("../util");
+const {
+    inscriptionsEnabled,
+    submissionsEnabled,
+} = require("../services/configService");
+const { error } = require("../model/error");
 
 async function inscriptionsOpenMiddleware(req, res, next) {
     if (!(await inscriptionsEnabled())) {

@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
+const authMiddleware = require("../../middleware/authMiddleware");
 const {
     roleMiddleware,
     ROLE_ADMIN,
     ROLE_JURY,
     ROLE_MENTOR,
     ROLE_USER,
-} = require("../middleware/roleMiddleware");
+} = require("../../middleware/roleMiddleware");
 // endpoints to test privilege middleware
 router.get(
     "/admin",

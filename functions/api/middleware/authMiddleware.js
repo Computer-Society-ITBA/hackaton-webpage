@@ -1,5 +1,5 @@
-const { adminAuth } = require("../config");
-const { error } = require("../util");
+const { adminAuth } = require("../firebaseConfig");
+const { error } = require("../model/error");
 
 async function authMiddleware(req, res, next) {
     const authHeader = req.headers["authorization"]; //no tengo idea por que si los pongo con A mayuscula no lo reconoce

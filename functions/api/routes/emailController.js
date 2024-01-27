@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const joi = require("joi");
-const { error } = require("../util");
+const { error } = require("../model/error");
 const schema = joi.object({
     email: joi.string().email(),
     subject: joi.string(),

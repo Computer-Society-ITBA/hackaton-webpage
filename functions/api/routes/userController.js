@@ -12,15 +12,15 @@ const {
     getUsers,
     changePassword,
     setRoleToUser,
-} = require("./auth_util");
+} = require("../services/authService");
 const authMiddleware = require("../middleware/authMiddleware");
 const selfMiddleware = require("../middleware/selfMiddleware");
-const { error } = require("../util");
+const { error } = require("../model/error");
 const {
     signInWithEmailAndPassword,
     clientAuth,
     createUserWithEmailAndPassword,
-} = require("../config");
+} = require("../firebaseConfig");
 const {
     addMember,
     editMember,
@@ -30,16 +30,16 @@ const {
     saveDocument,
     verifyDocument,
     setUserInfo,
-} = require("./firestore_util");
-const { schema } = require("./schema");
+} = require("../services/userService");
+const { schema } = require("../model/user");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const {
     sendRegisterConfirmationEmail,
     sendConfirmationEmail,
     sendRejectionEmail,
-} = require("../mail/util");
-const { getSubmission } = require("../submission/firestore_util");
+} = require("../services/emailService");
+const { getSubmission } = require("../services/submissionsService");
 const {
     inscriptionsOpenMiddleware,
 } = require("../middleware/configMiddleware");

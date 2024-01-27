@@ -3,9 +3,9 @@ const {
     createSubmission,
     getSubmission,
     getSubmissions,
-} = require("./firestore_util");
-const { schema } = require("./schema");
-const { getUserInfo } = require("../user/firestore_util");
+} = require("../services/submissionsService");
+const { schema } = require("../model/submission");
+const { getUserInfo } = require("../services/userService");
 const authMiddleware = require("../middleware/authMiddleware");
 const bodySelfMiddleware = require("../middleware/bodySelfMiddleware");
 const { roleMiddleware, ROLE_ADMIN } = require("../middleware/roleMiddleware");
