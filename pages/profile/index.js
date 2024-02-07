@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import useStore from "../../config/storeConfig";
 import AdminView from "../../components/views/Admin";
 import UserView from "../../components/views/User";
+import MentorView from "../../components/views/Mentor";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -45,7 +46,11 @@ const Home = () => {
       case "user":
         setView(<UserView userInfo={userInfo} />);
         break;
+      case "mentor":
+        setView(<MentorView token={userToken}/>);
+        break
       default:
+        // SET TO PROFILE VIEW
         setView(<TODOView />);
     }
   }, [userToken, userInfo]);

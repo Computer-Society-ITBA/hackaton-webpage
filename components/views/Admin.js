@@ -313,8 +313,7 @@ const AdminView = ({ token }) => {
     <Tabs variant="enclosed">
       <TabList>
         <Tab>Selección de equipos</Tab>
-        <Tab>Criterios de corrección</Tab>
-        <Tab>Evaluación de proyectos</Tab>
+        <Tab>Registrar mentor</Tab>
       </TabList>
 
       <TabPanels>
@@ -322,12 +321,7 @@ const AdminView = ({ token }) => {
         <TabPanel>
           <TeamSelection token={token} />
         </TabPanel>
-        {/* Evaluacion de proyectos */}
-        <TabPanel>
-          <div>
-            <p>TODO</p>
-          </div>
-        </TabPanel>
+        {/* Registrar mentor TODO*/}
         <TabPanel>
           <div>
             <p>TODO</p>
