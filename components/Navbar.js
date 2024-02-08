@@ -74,12 +74,12 @@ const LoggedOutButton = () => {
     } else if (inscriptionsEnabled) {
       setNavButtons(
         <>
-          <NavButton text="Inscribite Aqui!" href="/register" />
+          <NavButton text="Inscribite Aquí!" href="/register" />
           <NavButton text="Iniciar Sesión" href="/login" />
         </>
       );
     }
-  }, [setConfig, inscriptionsEnabled, navButtons]);
+  }, [setConfig, inscriptionsEnabled]);
 
   return navButtons;
 };

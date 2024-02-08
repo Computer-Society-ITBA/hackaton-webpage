@@ -1,21 +1,12 @@
+import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
-  EmailIcon,
-  LockIcon,
-  UnlockIcon,
-  ViewIcon,
-  ViewOffIcon,
-} from "@chakra-ui/icons";
-import {
-  Box,
   Button,
-  Fade,
   Flex,
   Heading,
   IconButton,
   Img,
   Input,
   InputGroup,
-  InputLeftAddon,
   InputLeftElement,
   InputRightElement,
   Text,
@@ -23,14 +14,16 @@ import {
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import auth from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import useStore from "../../config/storeConfig";
 import { axiosApiInstance, setAxiosToken } from "../../config/axiosConfig";
+
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
+
 const IngresarButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -53,6 +46,7 @@ const IngresarButton = styled(Button)`
     }
   }
 `;
+
 const InscribirseButton = styled(Button)`
   border-radius: 4px;
   font-weight: 500;
@@ -86,6 +80,32 @@ const Home = () => {
   const [errorMessage, setErorrMessage] = useState("");
   const handleEmailChange = (event) => setEmail(event.target.value.trim());
   const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  const [registerSection, setRegisterSection] = useState();
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+
+  useEffect(() => {
+    if (inscriptionsEnabled) {
+      setRegisterSection(
+        <>
+          <Text mt="4%" fontSize={TextSize}>
+            ¿No estás inscripto?
+          </Text>
+          <InscribirseButton
+            isLoading={isLoading}
+            backgroundColor="CSOrange"
+            width="full"
+            onClick={() => {
+              location.href = "/register";
+            }}
+          >
+            Registrarse
+          </InscribirseButton>
+        </>
+      );
+    }
+  }, [inscriptionsEnabled, isLoading]);
+
   const signIn = async (email, password) => {
     setIsLoading(true);
     try {
@@ -109,6 +129,7 @@ const Home = () => {
     }
     setIsLoading(false);
   };
+
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
       <Img
@@ -189,16 +210,7 @@ const Home = () => {
         >
           Ingresar
         </IngresarButton>
-        <Text mt="4%" fontSize={TextSize}>
-          ¿No estás inscripto?
-        </Text>
-        <InscribirseButton
-          isLoading={isLoading}
-          backgroundColor="CSOrange"
-          width="full"
-        >
-          Registrarse
-        </InscribirseButton>
+        {registerSection}
       </Flex>
     </VStack>
   );

@@ -28,10 +28,12 @@ const Register = () => {
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
 
   useEffect(() => {
-    if (!inscriptionsEnabled) {
-      router.replace("/login");
-    } else {
-      setIsLoading(false);
+    if (inscriptionsEnabled !== undefined) {
+      if (!inscriptionsEnabled) {
+        router.replace("/login");
+      } else {
+        setIsLoading(false);
+      }
     }
   }, [router, inscriptionsEnabled]);
 
