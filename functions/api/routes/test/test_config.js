@@ -1,14 +1,16 @@
-const express = require('express')
-const router = express.Router()
-const {adminAuth, clientAuth} = require('../config')
-require('dotenv').config()
-const {error} = require('../util')
-const authMiddleware = require('../middleware/authMiddleware')
-const { signInWithEmailAndPassword} = require ("firebase/auth");
-const {ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER} = require('../middleware/roleMiddleware')
-
-
-
+const express = require("express");
+const router = express.Router();
+const { adminAuth, clientAuth } = require("../../firebaseConfig");
+require("dotenv").config();
+const { error } = require("../../model/error");
+const authMiddleware = require("../../middleware/authMiddleware");
+const { signInWithEmailAndPassword } = require("firebase/auth");
+const {
+    ROLE_ADMIN,
+    ROLE_JURY,
+    ROLE_MENTOR,
+    ROLE_USER,
+} = require("../../middleware/roleMiddleware");
 
 //endpoints to test middlewares by changing user's role
 // router.get('/get_test_token',async (req,res)=>{
@@ -29,7 +31,7 @@ const {ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER} = require('../middleware/ro
 
 // //Para poder cambiar el rol desde admin, recibimos el uid por body
 // router.put('/set_role_to_admin',async (req, res)=>{
-//     // const uid = res.locals.userInfo.uid 
+//     // const uid = res.locals.userInfo.uid
 //     const {uid} = req.body
 //     try{
 //         await adminAuth.setCustomUserClaims(uid, {role:ROLE_ADMIN})
@@ -69,4 +71,4 @@ const {ROLE_ADMIN, ROLE_JURY,ROLE_MENTOR, ROLE_USER} = require('../middleware/ro
 //         res.status(401).send(error(3,"Custom Claims error"))
 //     }
 // })
-module.exports = router
+module.exports = router;

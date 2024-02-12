@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-console": "off",
+    "eqeqeq": ["error", "smart"],
+    "no-unused-vars": ["warn", { "args": "none" }],
+    "no-lonely-if": "warn",
+    "no-else-return": "warn",
+    "no-implicit-coercion": "warn",
+    "no-eq-null": "warn",
+    "no-eval": "warn",
+    "no-extend-native": "warn",
+    "camelcase": "warn"
+  }
+}

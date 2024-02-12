@@ -1,6 +1,6 @@
-const {error} = require('../util')
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const { error } = require("../model/error");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const registerConfirmationEmail = `   <div style="text-align: center; background-color: #1c1c1c; padding: 40px;">
 <span style="font-size: 18pt;">
@@ -45,7 +45,7 @@ const registerConfirmationEmail = `   <div style="text-align: center; background
 <br>
 <br>
 </div>
-`
+`;
 //TODO: change emails
 const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: justify;">
 <div class="row" style="max-width: 100%; object-fit: cover;">
@@ -166,7 +166,7 @@ const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: ju
 <div>
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt">
 </div>
-</div>`
+</div>`;
 const rejectionEmail = `<div style="background-color: #1c1c1c; text-align: justify;">
 <div class="row" style="max-width: 100%; object-fit: cover;">
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt" align="middle">
@@ -216,30 +216,34 @@ const rejectionEmail = `<div style="background-color: #1c1c1c; text-align: justi
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt">
 </div>
 </div>
-`
-async function sendEmail(email, content){
+`;
+async function sendEmail(email, content) {
     const msg = {
         to: email, //Mail del equipo
-        from:'computersociety@itba.edu.ar', //Mail cuenta Sendgrid
-        subject:"Inscripción HackITBA",
-        html: content
-    }
-    try{
-        await sgMail.send(msg)
-        return {status:"success"}
-    }catch(err){
-        console.log(err.response.body.errors)
-        throw new Error("Sendgrid error")
+        from: "computersociety@itba.edu.ar", //Mail cuenta Sendgrid
+        subject: "Inscripción HackITBA",
+        html: content,
+    };
+    try {
+        await sgMail.send(msg);
+        return { status: "success" };
+    } catch (err) {
+        console.log(err.response.body.errors);
+        throw new Error("Sendgrid error");
     }
 }
 
-async function sendConfirmationEmail(email){
-    return sendEmail(email,confirmationEmail)
+async function sendConfirmationEmail(email) {
+    return sendEmail(email, confirmationEmail);
 }
-async function sendRejectionEmail(email){
-    return sendEmail(email,rejectionEmail)
+async function sendRejectionEmail(email) {
+    return sendEmail(email, rejectionEmail);
 }
-async function sendRegisterConfirmationEmail(email){
-    return sendEmail(email,registerConfirmationEmail)
+async function sendRegisterConfirmationEmail(email) {
+    return sendEmail(email, registerConfirmationEmail);
 }
-module.exports = {sendRegisterConfirmationEmail,sendConfirmationEmail,sendRejectionEmail}
+module.exports = {
+    sendRegisterConfirmationEmail,
+    sendConfirmationEmail,
+    sendRejectionEmail,
+};
