@@ -78,44 +78,33 @@ const InscribirseButton = styled(Button)`
   }
 `;
 
-const handleSendResetEmail = (email) => {
-  // sendPasswordResetEmail(email).addOnCompleteListener {
-  //   task ->
-  //   if (task.isSuccessful) {
-  //     Log.d(TAG, "Email sent.")
-  //   }
-  // }
-
-  // if (newPassword !== repeateNewPassword) {
-  //   // TODO: Hacer que salte
-  //   alert("Contraseñas deben ser identicas");
-  //   return;
-  // } else {
-  //   updatePassword(auth.currentUser, newPassword)
-  //     .then(() => {
-  //       // Success
-  //       alert("Contraseña cambiada!");
-  //     })
-  //     .catch((error) => {
-  //       // Fail
-  //       alert("Error cambiando la contraseña :(");
-  //     });
-  // }
-};
 
 function Home() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showRepeatePassword, setShowRepeatePassword] = useState(false);
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [showRepeatePassword, setShowRepeatePassword] = useState(false);
+  // const [password, setPassword] = useState("");
+  // const [repeatPassword, setRepeatPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErorrMessage] = useState("");
+  const [correctMessage, setCorrectMessage] = useState("");
+
+  const [correctEmail, setCorrectEmail] = useState(false);
 
   const handleEmailChange = (event) => setEmail(event.target.value.trim());
-  const handlePasswordChange = (event) => setPassword(event.target.value);
-  const handleRepeatPasswordChange = (event) =>
-    setRepeatPassword(event.target.value);
+
+  const handleSendResetEmail = (email) => {
+    // sendPasswordResetEmail(email).then(() => {
+      sendPasswordResetEmail(auth, email).then(() => {
+      // console.log("Email sent!");
+      setCorrectEmail(true);
+      setCorrectMessage(`Correo enviado correctamente a ${email}.`);
+    }).catch((error) => {
+      // console.log(`Error ${error}`);
+      setErorrMessage("Ocurrio un error, revisa el que el email sea correcto.");
+    })
+
+  };
 
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
@@ -154,56 +143,6 @@ function Home() {
         <Text fontSize={TextSize}>
           Se enviara un correo a esa direccion para restablecer la contraseña.
         </Text>
-{/* 
-        <InputGroup>
-          <InputLeftElement minH="3.5em" color="grey"></InputLeftElement>
-          <Input
-            value={password}
-            type={showPassword ? "text" : "password"}
-            onChange={handlePasswordChange}
-            minH="3.5em"
-            placeholder="Ingrese nueva contraseña"
-            borderWidth="1.5px"
-            focusBorderColor="CSOrange"
-            errorBorderColor="red.500"
-            borderRadius="4px"
-            backgroundColor="white"
-            color="black"
-            _placeholder={{ color: "gray" }}
-          ></Input>
-          <InputRightElement minH="3.5em">
-            <IconButton
-              color="black"
-              icon={showPassword ? <ViewIcon /> : <ViewOffIcon />}
-              onClick={() => setShowPassword(!showPassword)}
-            ></IconButton>
-          </InputRightElement>
-        </InputGroup>
-
-        <InputGroup>
-          <InputLeftElement minH="3.5em" color="grey"></InputLeftElement>
-          <Input
-            value={repeatPassword}
-            type={showRepeatePassword ? "text" : "password"}
-            onChange={handleRepeatPasswordChange}
-            minH="3.5em"
-            placeholder="Vuelva a ingresar su nueva contraseña"
-            borderWidth="1.5px"
-            focusBorderColor="CSOrange"
-            errorBorderColor="red.500"
-            borderRadius="4px"
-            backgroundColor="white"
-            color="black"
-            _placeholder={{ color: "gray" }}
-          ></Input>
-          <InputRightElement minH="3.5em">
-            <IconButton
-              color="black"
-              icon={showRepeatePassword ? <ViewIcon /> : <ViewOffIcon />}
-              onClick={() => setShowRepeatePassword(!showRepeatePassword)}
-            ></IconButton>
-          </InputRightElement>
-        </InputGroup> */}
 
         <InscribirseButton
           isLoading={isLoading}
@@ -213,6 +152,13 @@ function Home() {
         >
           Enviar
         </InscribirseButton>
+
+        {/* <Text fontSize={TextSize} color="red.500"> */}
+        <Text fontSize={TextSize} color={correctEmail ? "CSGreen": "red.500"}>
+          {correctEmail ? correctMessage: errorMessage}
+        </Text>
+
+
       </Flex>
     </VStack>
   );
