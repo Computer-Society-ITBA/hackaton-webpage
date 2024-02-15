@@ -39,6 +39,7 @@ import {
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import ReactStars from "react-rating-stars-component";
+import { SocialIcon } from "react-social-icons";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -138,7 +139,11 @@ const RateTeamCard = ({
           <Text size={TextSize} textAlign="start">
             {team.teamDescription}
           </Text>
-          {/* TODO ADD VIDEO */}
+          <Spacer></Spacer>
+          <HStack width="full" justify="space-around">
+            <SocialIcon network="github" url={team.githubLink} />
+            <SocialIcon network="youtube" url={team.youtubeLink} />
+          </HStack>
           <Spacer></Spacer>
         </VStack>
         <Center>
@@ -186,6 +191,8 @@ const TeamRating = ({ token }) => {
       email: "equipo1@email.com",
       teamDescription: "Un equipo muy interesante",
       motivation: "Queremos aprender",
+      githubLink: "github.com",
+      youtubeLink: "youtube.com",
       participants: [
         {
           name: "Participante 1",
@@ -202,6 +209,8 @@ const TeamRating = ({ token }) => {
       email: "equipo2@email.com",
       teamDescription: "Un equipo muy interesante",
       motivation: "Queremos aprender",
+      githubLink: "github.com",
+      youtubeLink: "youtube.com",
       participants: [
         {
           name: "Participante 1",

@@ -25,6 +25,7 @@
     "react-hook-form": "^7.49.2",
     "react-icons": "^4.12.0",
     "react-rating-stars-component": "^2.2.0",
+    "react-social-icons": "^6.12.0",
     "tsparticles": "^3.0.3",
     "zustand": "^4.4.7"
   },
