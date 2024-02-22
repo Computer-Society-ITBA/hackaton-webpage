@@ -62,3 +62,20 @@ module.exports.getSubmissions = async function getSubmissions() {
         throw new Error("Unable to get submission");
     }
 };
+
+module.exports.getSingleSubmission = async function getSingleSubmission(
+    submissionId
+) {
+    try {
+        const submissionRef = await db
+            .collection(SUBMISSION_COLLECTION)
+            .doc(submissionId)
+            .get();
+        if (!submissionRef.exists) {
+            throw new Error("Submission doesnt exist");
+        }
+        return { id: submissionRef.id, ...submissionRef.data() };
+    } catch (err) {
+        throw new Error("Unable to get submission");
+    }
+};
