@@ -15,6 +15,8 @@ function roleMiddleware(allowed) {
         }
     };
 }
+
+
 const ROLE_ADMIN = "admin";
 const ROLE_JURY = "jury";
 const ROLE_MENTOR = "mentor";

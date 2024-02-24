@@ -101,6 +101,7 @@ async function getUserInfo(uid) {
         return error(err.code, err.message);
     }
 }
+
 async function setUserInfo(uid, data) {
     try {
         await db.doc(`/${USER_COLLECTION}/${uid}`).set(data, { merge: true });
@@ -110,6 +111,7 @@ async function setUserInfo(uid, data) {
         return error(err.code, err.message);
     }
 }
+
 
 // const DOCUMENTS_COLLECTION = "documents";
 // async function saveDocument(userId, memberId, file) {
