@@ -1,5 +1,5 @@
 const { error } = require("../model/error");
-const { db, VOTE_COLLECTION, USER_COLLECTION } = require("../firebaseConfig");
+const { db, VOTE_COLLECTION, USER_COLLECTION, SUBMISSION_COLLECTION } = require("../firebaseConfig");
 const { adminAuth, clientAuth } = require("../firebaseConfig");
 const { ROLE_MENTOR } = require("../middleware/roleMiddleware");
 
@@ -8,6 +8,7 @@ module.exports.createMentor = async function createMentor(uid) {
     const data = {
         submissions: [],
         voted: false,
+        mentor: true,
     };
 
     try {
@@ -58,7 +59,7 @@ module.exports.assignSubmissionToMentor =
                 return { error: "Mentor not found." };
             }
 
-            const submissionDoc = db.doc(`/${USER_COLLECTION}/${submissionId}`);
+            const submissionDoc = db.doc(`/${SUBMISSION_COLLECTION}/${submissionId}`);
             const submissionDocSnapshot = await submissionDoc.get();
             if (!submissionDocSnapshot.exists) {
                 return { error: "Submission not found." };
@@ -130,6 +131,23 @@ module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
         const ans = db.collection(`/${VOTE_COLLECTION}`).add(data);
 
         return { message: "Success" };
+    } catch (error) {
+        console.error(error);
+        return { error: error.message };
+    }
+};
+
+module.exports.getAllMentors = async function getAllMentors() {
+    try {
+        const mentors = [];
+        const mentorsSnapshot = await db
+            .collection(`/${USER_COLLECTION}`)
+            .where("mentor", "==", true)
+            .get();
+        mentorsSnapshot.forEach((doc) => {
+            mentors.push(doc.data());
+        });
+        return { mentors: mentors };
     } catch (error) {
         console.error(error);
         return { error: error.message };

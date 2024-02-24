@@ -89,6 +89,8 @@ async function getUsers() {
                 //         return({name:participant?.data?.full_name, DNI: participant?.data?.dni, email:participant?.data?.email})
                 //     })
                 // })
+
+                if (user)
                 return await getAllUserInfo(user);
             })
         );

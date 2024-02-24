@@ -5,9 +5,10 @@ const {
     createMentor,
     checkIfMentor,
     getMentorSubmissions,
+    getAllMentors,
 } = require("../services/mentorService");
 
-const {getSingleSubmission} = require("../services/submissionsService");
+const { getSingleSubmission } = require("../services/submissionsService");
 const { mentor } = require("../model/mentor");
 const vote = require("../model/vote");
 const authMiddleware = require("../middleware/authMiddleware");
@@ -36,8 +37,7 @@ router.post(
     }
 );
 
-//FIXME: habria que proteger la ruta. No se si para admins o como lo vamos a hacer.
-// el loggeduser que sea el mentorId... va en middleware?
+
 router.post("/:mentorId/submissions", async (req, res) => {
     mentorId = req.params.mentorId;
     console.log(mentorId);
@@ -52,8 +52,7 @@ router.post("/:mentorId/submissions", async (req, res) => {
     return res.status(201).send("Submission assigned to mentor");
 });
 
-//FIXME: habria que proteger la ruta. No se si para admins o como lo vamos a hacer.
-// el loggeduser que sea el mentorId... va en middleware?
+
 router.post("/:mentorId/votes", async (req, res) => {
     const mentorId = req.params.mentorId;
     const isMentor = await checkIfMentor(mentorId);
@@ -89,6 +88,10 @@ router.get("/:mentorId/submissions", async (req, res) => {
     return res.status(200).send(data);
 });
 
-
+router.get("/", async (req, res) => {
+    const data = await getAllMentors();
+    if (data.error) return res.status(400).send(data.error);
+    return res.status(200).send(data);
+});
 
 module.exports = router;
