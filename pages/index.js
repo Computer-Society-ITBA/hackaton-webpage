@@ -117,14 +117,14 @@ const Categories = ({ ...extendedProps }) => {
     {
       name: "Economía y Finanzas",
       description:
-      "En la era de la digitalización, no dejan de surgir alternativas para adentrarse y desarrollarse en torno a la economía y finanzas. Finanzas personales, accesibilidad a tecnologías modernas como criptomonedas, validación de identidad ante la ola de ataques potenciados por la IA, pueden ser algunos de los ejes para explorar.",
+      "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, ySupply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: EconomyLogo,
     },
     {
-      name: "Salud",
+      name: "Salud y bienestar",
       description:
-      "La salud es un ámbito que siempre tiene lugar para mejoría. Los avances en los últimos años, tanto en gestión como en conocimiento, abren las puertas para desarrollarse en un area que se vale mucho del valor tecnológico aportado. Atención remota, gestión de recursos para hopsitales, administración de horarios, o problemas de sueño son tan solo algunas de las posibilidades dentro del rubro para explorar.",
+      "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: AutomationLogo,
     },
