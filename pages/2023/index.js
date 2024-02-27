@@ -28,6 +28,7 @@ const Categories = ({ ...extendedProps }) => {
         "Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: EconomyLogo,
+      logoSvg: true,
     },
     {
       name: "Automatización Inteligente",
@@ -35,6 +36,7 @@ const Categories = ({ ...extendedProps }) => {
         "Solucionar problemas de automatización creando herramientas para aumentar la productividad general.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: AutomationLogo,
+      logoSvg: true,
     },
   ];
   return (

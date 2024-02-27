@@ -66,7 +66,7 @@ const ParticlesLogo = () => {
             size={["xs", "sm", "md", "lg", "xl"]}
             color="white"
           >
-            31 de marzo, 1 y 2 de abril{" "}
+            5, 6 y 7 de abril{" "}
           </Heading>
         </Box>
       </VStack>

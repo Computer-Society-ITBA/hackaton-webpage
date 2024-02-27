@@ -26,10 +26,6 @@ import styled from "@emotion/styled";
 import ParticlesLogo from "../components/ParticlesLogo";
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
-import AutomationLogo from "../components/AutomationLogo";
-import EconomyLogo from "../components/EconomyLogo";
-import HealthLogo from "../public/images/salud.svg";
-import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
@@ -119,14 +115,16 @@ const Categories = ({ ...extendedProps }) => {
       description:
       "En la era de la digitalización, no dejan de surgir alternativas para adentrarse y desarrollarse en torno a la economía y finanzas. Finanzas personales, accesibilidad a tecnologías modernas como criptomonedas, validación de identidad ante la ola de ataques potenciados por la IA, pueden ser algunos de los ejes para explorar.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: EconomyLogo,
+      logo: "/images/categories/econ.png",
+      logoSvg: false,
     },
     {
       name: "Salud",
       description:
       "La salud es un ámbito que siempre tiene lugar para mejoría. Los avances en los últimos años, tanto en gestión como en conocimiento, abren las puertas para desarrollarse en un area que se vale mucho del valor tecnológico aportado. Atención remota, gestión de recursos para hopsitales, administración de horarios, o problemas de sueño son tan solo algunas de las posibilidades dentro del rubro para explorar.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: AutomationLogo,
+      logo: "/images/categories/salud.png",
+      logoSvg: false,
     },
   ];
   return (
