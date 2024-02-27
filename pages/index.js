@@ -28,6 +28,7 @@ import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
 import AutomationLogo from "../components/AutomationLogo";
 import EconomyLogo from "../components/EconomyLogo";
+import HealthLogo from "../public/images/salud.svg";
 import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
@@ -114,16 +115,16 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Economía y Descentralización",
+      name: "Economía y Finanzas",
       description:
-        "Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.",
+      "En la era de la digitalización, no dejan de surgir alternativas para adentrarse y desarrollarse en torno a la economía y finanzas. Finanzas personales, accesibilidad a tecnologías modernas como criptomonedas, validación de identidad ante la ola de ataques potenciados por la IA, pueden ser algunos de los ejes para explorar.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: EconomyLogo,
     },
     {
-      name: "Automatización Inteligente",
+      name: "Salud",
       description:
-        "Solucionar problemas de automatización creando herramientas para aumentar la productividad general.",
+      "La salud es un ámbito que siempre tiene lugar para mejoría. Los avances en los últimos años, tanto en gestión como en conocimiento, abren las puertas para desarrollarse en un area que se vale mucho del valor tecnológico aportado. Atención remota, gestión de recursos para hopsitales, administración de horarios, o problemas de sueño son tan solo algunas de las posibilidades dentro del rubro para explorar.",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: AutomationLogo,
     },
@@ -209,7 +210,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
 };
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
-    {
+    /*{
       name: "Gabriela Macagni",
       imgSrc: "/images/juries/GabrielaMacagni.jpg",
       details:
@@ -255,7 +256,7 @@ const JurySection = ({ ...extendedProps }) => {
       imgSrc: "/images/juries/MatiasEisbruch.jpeg",
       details:
         "Head of digital products en Accenture, previamente formó parte de Wolox. Además, es profesor de la Universidad de Buenos Aires.",
-    },
+    },*/
   ];
   return (
     <VStack width="full" {...extendedProps}>
@@ -284,13 +285,14 @@ const JurySection = ({ ...extendedProps }) => {
           return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
         })}
       </Flex>
+      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
     </VStack>
   );
 };
 
 const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
-    {
+    /*{
       name: "Tomas Giovanetti",
       imgSrc: "/images/mentors/TomasGiovanetti.jpeg",
       details: "Founder y CEO en TGA",
@@ -335,7 +337,7 @@ const MentorsSection = ({ ...extendedProps }) => {
       imgSrc: "/images/mentors/FedericoViarnes.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-    },
+    },*/
   ];
   return (
     <VStack width="full" {...extendedProps}>
@@ -343,6 +345,8 @@ const MentorsSection = ({ ...extendedProps }) => {
         Mentores
       </Heading>
       <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
+      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
+
       <Grid
         paddingX="4%"
         paddingY="4%"
@@ -429,7 +433,7 @@ const WorkshopsSection = ({ ...extendedProps }) => {
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
-    {
+    /*{
       name: "Platinum",
       items: [
         {
@@ -498,7 +502,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
         },
       ],
       dimensions: ["76%", "70%", "66%", "61%", "54%"],
-    },
+    },*/
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -550,6 +554,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
           );
         })}
       </VStack>
+      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
       <Img
         src="/images/Sponsor_corner_2.svg"
         alt="decoration image"
