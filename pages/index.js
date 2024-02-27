@@ -26,10 +26,6 @@ import styled from "@emotion/styled";
 import ParticlesLogo from "../components/ParticlesLogo";
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
-import AutomationLogo from "../components/AutomationLogo";
-import EconomyLogo from "../components/EconomyLogo";
-import HealthLogo from "../public/images/salud.svg";
-import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
@@ -119,14 +115,16 @@ const Categories = ({ ...extendedProps }) => {
       description:
       "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, ySupply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: EconomyLogo,
+      logo: "/images/categories/econ.png",
+      logoSvg: false,
     },
     {
       name: "Salud y bienestar",
       description:
       "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: AutomationLogo,
+      logo: "/images/categories/salud.png",
+      logoSvg: false,
     },
   ];
   return (

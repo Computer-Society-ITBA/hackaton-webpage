@@ -86,13 +86,14 @@ const CategoryLogo = (props) => {
                 <Text fontSize={TextSize} pr="6%" align="center">
                   {category.description}
                 </Text>
-                <category.logo
-                  height="100%"
-                  width="100%"
-                  color="white"
-                  stroke_width="4px"
-                  stroke="white"
-                />
+                {category.logoSvg ?
+                  <category.logo
+                    height="100%"
+                    width="100%"
+                    color="white"
+                    stroke_width="4px"
+                    stroke="white"
+                  /> : null}
               </HStack>
               <HStack w="full" align="start">
                 <Img
@@ -115,13 +116,20 @@ const CategoryLogo = (props) => {
       <Center>
         {/* {isShown?<Img onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} height='200px' width='200px' src={imgSrc} alt={names[0]}></Img>: <Img onMouseEnter={()=>setIsShown(true)} onMouseLeave={()=>setIsShown(false)} height='200px' width='200px' src='/images/IEEE_CS.svg' alt={names[0]}></Img>} */}
         {/* <Img height='200px' width='200px' src={category.imgSrc} alt={category.name}></Img> */}
-        <category.logo
-          height="50%"
-          width="50%"
-          color={onHover ? "#01CBA1" : "white"}
-          stroke_width="4px"
-          stroke={onHover ? "#01CBA1" : "white"}
-        />
+        {category.logoSvg ?
+          <category.logo
+            height="50%"
+            width="50%"
+            color={onHover ? "#01CBA1" : "white"}
+            stroke_width="4px"
+            stroke={onHover ? "#01CBA1" : "white"}
+          />
+          : <Img
+            height="50%"
+            width="50%"
+            src={category.logo}
+            alt="category_logo"
+          ></Img>}
       </Center>
       <Container>
         {names.map((name) => {
