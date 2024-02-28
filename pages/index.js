@@ -155,6 +155,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       direction="row"
       width="100%"
       alignItems="center"
+      justifyContent="space-between"
       height="20%"
       {...extendedProps}
     >
@@ -180,7 +181,8 @@ const InscriptionSection = ({ ...extendedProps }) => {
           INSCRIBITE AQUI
         </PrimaryButton>
       </VStack>
-      <Spacer />
+      {/* TODO: Turn on for next event? */}
+      {/* <Spacer />
       <VStack justify="center" width={vstackWidth}>
         <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Convertite en Sponsor/Jurado
@@ -197,7 +199,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         >
           CONTACTANOS AQUI
         </PrimaryButton>
-      </VStack>
+      </VStack> */}
       <Img
         src="/images/Inscribite_2.svg"
         alt="Decoration"
