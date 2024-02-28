@@ -1,6 +1,5 @@
-const {error} = require('../util')
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const registerConfirmationEmail = `   <div style="text-align: center; background-color: #1c1c1c; padding: 40px;">
 <span style="font-size: 18pt;">
@@ -45,8 +44,8 @@ const registerConfirmationEmail = `   <div style="text-align: center; background
 <br>
 <br>
 </div>
-`
-//TODO: change emails
+`;
+//TODO: LINE 138 change documents
 const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: justify;">
 <div class="row" style="max-width: 100%; object-fit: cover;">
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt" align="middle">
@@ -65,7 +64,7 @@ const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: ju
     <br>
     <span style="font-size: 14pt;">¡Ya casi! 
       <span class="Lm ng" data-ddnwab="PR_1_0" aria-invalid="grammar">Les comunicamos que </span>ahora mismo se encuentran en la lista de preseleccionados para participar de 
-      <span class="LI ng" data-ddnwab="PR_217_0" aria-invalid="spelling">HackITBA</span> ‘23 el próximo 31 de marzo, 1 y 2 de abril en las sedes del Instituto Tecnológico de Buenos Aires.
+      <span class="LI ng" data-ddnwab="PR_217_0" aria-invalid="spelling">HackITBA</span> ‘24 el 5, 6 y 7 de abril en las sedes del Instituto Tecnológico de Buenos Aires.
     </span>
   </span> 
   <br>
@@ -108,7 +107,7 @@ const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: ju
           <span class="corrected-phrase__displayed-text corrected-phrase__displayed-text_no-correction corrected-phrase__displayed-text_synonyms-mode ng-star-inserted" style="text-align: justify;">Como podrás notar, este año la tasa de inscriptos fue superior a lo esperado y solo los 25 equipos que, según nuestro criterio, más podrán disfrutar de la experiencia, fueron seleccionados para participar de la competencia. Considerando esto, necesitamos como primer paso que confirmen 
             <span class="Lm ng" data-ddnwab="PR_4_0" aria-invalid="grammar">
               <span class="Lm ng" data-ddnwab="PR_11_0" aria-invalid="grammar">su presencia</span>
-            </span> en el evento. Para esto necesitamos que nos envíes:
+            </span> en el evento. Para esto necesitamos que nos envíes al correo computersociety@itba.com.ar los siguientes datos:
           </span>
         </span>
       </div>
@@ -166,7 +165,7 @@ const confirmationEmail = `<div style="background-color: #1c1c1c; text-align: ju
 <div>
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt">
 </div>
-</div>`
+</div>`;
 const rejectionEmail = `<div style="background-color: #1c1c1c; text-align: justify;">
 <div class="row" style="max-width: 100%; object-fit: cover;">
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt" align="middle">
@@ -216,30 +215,34 @@ const rejectionEmail = `<div style="background-color: #1c1c1c; text-align: justi
   <img style="max-width: 100%; object-fit: cover; display: block; margin-left: auto; margin-right: auto;" src="https://share1.cloudhq-mkt3.net/7adcd562e1286f.png" alt="" height="70pt">
 </div>
 </div>
-`
-async function sendEmail(email, content){
+`;
+async function sendEmail(email, content) {
     const msg = {
         to: email, //Mail del equipo
-        from:'computersociety@itba.edu.ar', //Mail cuenta Sendgrid
-        subject:"Inscripción HackITBA",
-        html: content
-    }
-    try{
-        await sgMail.send(msg)
-        return {status:"success"}
-    }catch(err){
-        console.log(err.response.body.errors)
-        throw new Error("Sendgrid error")
+        from: "no-reply@hackitba.com.ar", //Mail cuenta Sendgrid
+        subject: "Inscripción HackITBA",
+        html: content,
+    };
+    try {
+        await sgMail.send(msg);
+        return { status: "success" };
+    } catch (err) {
+        console.log(err.response.body.errors);
+        throw new Error("Sendgrid error");
     }
 }
 
-async function sendConfirmationEmail(email){
-    return sendEmail(email,confirmationEmail)
+async function sendConfirmationEmail(email) {
+    return sendEmail(email, confirmationEmail);
 }
-async function sendRejectionEmail(email){
-    return sendEmail(email,rejectionEmail)
+async function sendRejectionEmail(email) {
+    return sendEmail(email, rejectionEmail);
 }
-async function sendRegisterConfirmationEmail(email){
-    return sendEmail(email,registerConfirmationEmail)
+async function sendRegisterConfirmationEmail(email) {
+    return sendEmail(email, registerConfirmationEmail);
 }
-module.exports = {sendRegisterConfirmationEmail,sendConfirmationEmail,sendRejectionEmail}
+module.exports = {
+    sendRegisterConfirmationEmail,
+    sendConfirmationEmail,
+    sendRejectionEmail,
+};

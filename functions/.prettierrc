@@ -1,0 +1,11 @@
+{
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
+}

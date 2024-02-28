@@ -12,7 +12,7 @@ const LogoBox = styled.span`
   padding: 10px;
   display: flex;
   cursor: pointer;
-  // &:hover img {  
+  // &:hover img {
   //   transform: rotate(20deg);
   // }
 `;
