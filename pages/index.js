@@ -433,32 +433,31 @@ const WorkshopsSection = ({ ...extendedProps }) => {
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
-    /*{
-      name: "Platinum",
-      items: [
-        {
-          name: "Nestle",
-          logo: "/images/logos/Nestle.png",
-          link: "https://www.nestle.com.ar",
-        },
-        {
-          name: "Accenture",
-          logo: "/images/logos/Accenture.png",
-          link: "https://www.accenture.com/ar-es",
-        },
-      ],
-      dimensions: ["83%", "83%", "73%", "68%", "63%"],
-    },
+    // {
+    //   name: "Platinum",
+    //   items: [
+    //     {
+    //       name: "Nestle",
+    //       logo: "/images/logos/Nestle.png",
+    //       link: "https://www.nestle.com.ar",
+    //     },
+    //     {
+    //       name: "Accenture",
+    //       logo: "/images/logos/Accenture.png",
+    //       link: "https://www.accenture.com/ar-es",
+    //     },
+    //   ],
+    //   dimensions: ["83%", "83%", "73%", "68%", "63%"],
+    // },
     {
       name: "Black",
       items: [
         {
-          name: "MetLife",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          name: "Le Wagon",
+          logo: "/images/logos/lewagon.png",
+          link: "https://www.lewagon.com/es",
         },
       ],
-      // dimensions:['80%','80%','70%','65%','60%'],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
     },
     {
@@ -467,42 +466,32 @@ const SponsorsSection = ({ ...extendedProps }) => {
         {
           name: "Emilabs",
           logo: "/images/logos/Emi.png",
-          link: "https://www.emilabs.ai",
+          link: "https://www.emilabs.ai/es",
         },
         {
-          name: "BBVA",
-          logo: "/images/logos/BBVA.png",
-          link: "https://www.bbva.com.ar/",
-        },
-        {
-          name: "MODO",
-          logo: "/images/logos/modo.png",
-          link: "https://www.modo.com.ar/",
-        },
-        {
-          name: "PAE",
-          logo: "/images/logos/PAE.png",
-          link: "https://www.pan-energy.com",
-        },
+          name: "Wúru",
+          logo: "/images/logos/wuru.png",
+          link: "https://wuru.ai/",
+        }
       ],
       dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
-    {
-      name: "Colaboradores",
-      items: [
-        {
-          name: "Buenos Aires Ciudad",
-          logo: "/images/logos/BuenosAiresCiudad.png",
-          link: "https://buenosaires.gob.ar/inicio/",
-        },
-        {
-          name: "Defy Education",
-          logo: "/images/logos/Defy.png",
-          link: "https://www.defyeducation.com",
-        },
-      ],
-      dimensions: ["76%", "70%", "66%", "61%", "54%"],
-    },*/
+    // {
+    //   name: "Colaboradores",
+    //   items: [
+    //     {
+    //       name: "Buenos Aires Ciudad",
+    //       logo: "/images/logos/BuenosAiresCiudad.png",
+    //       link: "https://buenosaires.gob.ar/inicio/",
+    //     },
+    //     {
+    //       name: "Defy Education",
+    //       logo: "/images/logos/Defy.png",
+    //       link: "https://www.defyeducation.com",
+    //     },
+    //   ],
+    //   dimensions: ["76%", "70%", "66%", "61%", "54%"],
+    // }
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -554,7 +543,6 @@ const SponsorsSection = ({ ...extendedProps }) => {
           );
         })}
       </VStack>
-      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
       <Img
         src="/images/Sponsor_corner_2.svg"
         alt="decoration image"
