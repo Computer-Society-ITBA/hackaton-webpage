@@ -514,7 +514,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
       ></Img>
       <VStack top="-1">
         <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2023
+          Sponsors 2024
         </Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
