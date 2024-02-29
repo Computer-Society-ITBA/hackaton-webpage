@@ -214,47 +214,55 @@ const JurySection = ({ ...extendedProps }) => {
       imgSrc: "/images/juries/GabrielaMacagni.jpg",
       details:
         "Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina",
+      revelead: false,
     },
     {
       name: "Guillermo Rodriguez",
       imgSrc: "/images/juries/Guillermo-Rodriguez.jpg",
       details:
         "Director de Carrera Ingeniería Informática ITBA, Investigador adjunto del CONICET especializado en machine learning",
+      revelead: false,
     },
     {
       name: "Gabriel Gruber",
       imgSrc: "/images/juries/GabrielGruber.png",
       details:
         "Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati",
+      revelead: false,
     },
     {
       name: "Pablo Sabbatella",
       imgSrc: "/images/juries/PabloSabbatella.jpeg",
       details:
         "Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto",
+      revelead: true,
     },
     {
       name: "Mariano Di Pietrantonio",
       imgSrc: "/images/juries/MarianoDiPietrantonio.jpeg",
       details:
         "Co-Founder y Head Of Strategy de Maker Growth, con más de 15 años como Product Manager en diversas empresas",
+      revelead: true,
     },
     {
       name: "Manuel Beaudroit",
       imgSrc: "/images/juries/ManuelBeaudroit.jpg",
       details: "Co-Founder y CEO de Belo, también Co-Founder de Bitex",
+      revelead: true,
     },
     {
       name: "Diego Fernandez",
       imgSrc: "/images/juries/DiegoFernandez.jpg",
       details:
         "Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires",
+      revelead: true,
     },
     {
       name: "Matias Eisbruch",
       imgSrc: "/images/juries/MatiasEisbruch.jpeg",
       details:
         "Head of digital products en Accenture, previamente formó parte de Wolox. Además, es profesor de la Universidad de Buenos Aires.",
+      revelead: true,
     },
   ];
   return (
@@ -263,15 +271,6 @@ const JurySection = ({ ...extendedProps }) => {
         Jurados
       </Heading>
       <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
-      {/* <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
-        {juries.map((jury,index)=>{
-          return(
-          <GridItem key={index}>
-            <Jury jury={jury}></Jury>
-          </GridItem>
-          )
-        })}
-      </Grid> */}
       <Flex
         width="full"
         direction="row"
@@ -281,7 +280,7 @@ const JurySection = ({ ...extendedProps }) => {
         verticalAlign="top"
       >
         {juries.map((jury, index) => {
-          return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
+          return <Jury key={index} jury={jury} my="2%" mx="4%" ></Jury>;
         })}
       </Flex>
     </VStack>
@@ -294,47 +293,56 @@ const MentorsSection = ({ ...extendedProps }) => {
       name: "Tomas Giovanetti",
       imgSrc: "/images/mentors/TomasGiovanetti.jpeg",
       details: "Founder y CEO en TGA",
+      revelead: true,
     },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
       details: "Cofounder y CEO en TiendaCrypto",
+      revelead: true,
     },
     {
       name: "Martin Furst",
       imgSrc: "/images/mentors/MartinFurst.jpg",
       details: "Cofounder y CEO en Fantastic",
+      revelead: true,
     },
     {
       name: "Marisabel Rodriguez",
       imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
       details: "Cloud Delivery Center Manager en Google",
+      revelead: true,
     },
     {
       name: "Mariano Vazquez",
       imgSrc: "/images/mentors/MarianoVazquez.jpeg",
       details: "CTO en Modo, con mas de 15 años como desarrollador.",
+      revelead: true,
     },
     {
       name: "Juan Catalano",
       imgSrc: "/images/mentors/JuanCatalano.jpeg",
       details: "Founder y CPO en Podcast App",
+      revelead: true,
     },
     {
       name: "Gonzalo Otálora",
       imgSrc: "/images/mentors/GonzaloOtalora.jpg",
       details: "Founder y Director en Go!",
+      revelead: true,
     },
     {
       name: "Juan Gallo",
       imgSrc: "/images/mentors/JuanGallo.jpeg",
       details: "Cofounder y CEO en Cafecito y CourseIt",
+      revelead: true,
     },
     {
       name: "Federico Viarnés",
       imgSrc: "/images/mentors/FedericoViarnes.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
+      revelead: true,
     },
   ];
   return (
