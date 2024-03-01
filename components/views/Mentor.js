@@ -40,9 +40,12 @@ import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import ReactStars from "react-rating-stars-component";
 import { SocialIcon } from "react-social-icons";
+import useStore from "../../config/storeConfig";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
+
+
 
 const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
   return (
@@ -81,17 +84,42 @@ const RateTeamCard = ({
   const [feedback, setFeedback] = useState('');
   const [ratings, setRatings] = useState([]);
 
+  const userInfo = useStore((state) => state.userInfo);
+
+
   const handleRatingChange = (index, newRating) => {
+
+
     setRatings(prevRatings => {
       const newRatings = [...prevRatings];
       newRatings[index] = newRating;
-      // TODO send to backend
       return newRatings;
     });
   };
 
+  // try {
+  //   const response = await axiosApiInstance.get(
+  //     `/users/${userInfo.uid}/submission`
+  //   );
+  //   return response.data && response.data.userId === userInfo.uid;
+  // } catch (err) {
+  //   return false;
+  // }
+
   const handleSubmit = () => {
-    // TODO send to backend
+
+    //         submissionId, relevancia, creatividad, presentacion, descripcion
+    try{
+      axiosApiInstance.post(
+        `/mentors/${userInfo.uid}/votes`,
+        {
+          ...ratings,
+          feedback
+        }
+      );
+    } catch (err) {
+        console.log(err)
+    }
     setFeedback('');
   };
 
@@ -238,7 +266,9 @@ const TeamRating = ({ token }) => {
       }
     };
   };
+
   useEffect(() => {
+
     async function getUsersFromApi() {
       setIsLoading(true);
       try {
@@ -253,6 +283,10 @@ const TeamRating = ({ token }) => {
       }
 
       setIsLoading(false);
+    }
+
+    async function getUserProfile() {
+
     }
     getUsersFromApi();
   }, []);
