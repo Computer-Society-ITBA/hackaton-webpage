@@ -99,6 +99,8 @@ const FifthStep = ({
         ></Textarea>
         <Text align={"center"} paddingTop={"3%"} fontSize={["sm", "lg", "xl"]}>
           ¿Por qué les interesa participar en HackITBA?
+          <br></br>
+          ¿En qué categoría prefieren participar?
         </Text>
         <Textarea
           isInvalid={invalidD2}
