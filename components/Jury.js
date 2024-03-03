@@ -49,7 +49,7 @@ const Jury = ({ jury, ...extendedProps }) => {
         >
           <AspectRatio className={styles.container} ratio={1} width="full">
             <Box>
-              <Text>Unknown</Text>
+              <Text>Proximamente</Text>
               <Box className={styles.overlay} borderRadius="6%">
                 <Text fontSize={TextSize} textAlign="center" pt="2">
                   Los detalles seran revelados una vez que se conozca el juez.
