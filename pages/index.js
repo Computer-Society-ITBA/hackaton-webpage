@@ -113,7 +113,7 @@ const Categories = ({ ...extendedProps }) => {
     {
       name: "Economía y Finanzas",
       description:
-      "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, ySupply chain",
+      "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: "/images/categories/econ.png",
       logoSvg: false,
@@ -435,30 +435,31 @@ const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
     // {
     //   name: "Platinum",
-    //   items: [
-    //     {
-    //       name: "Nestle",
-    //       logo: "/images/logos/Nestle.png",
-    //       link: "https://www.nestle.com.ar",
-    //     },
-    //     {
-    //       name: "Accenture",
-    //       logo: "/images/logos/Accenture.png",
-    //       link: "https://www.accenture.com/ar-es",
-    //     },
-    //   ],
+    //   items: [],
     //   dimensions: ["83%", "83%", "73%", "68%", "63%"],
     // },
     {
       name: "Black",
       items: [
         {
+          name: "Chevron",
+          logo: "/images/logos/chevron.png",
+          link: "https://www.chevron.com/",
+        },
+        {
           name: "Le Wagon",
           logo: "/images/logos/lewagon.png",
           link: "https://www.lewagon.com/es",
         },
+        {
+          name: "IADT",
+          logo: "/images/logos/iadt2.png",
+          link: "https://www.iadt.com/",
+        },
       ],
-      dimensions: ["65%", "68", "63%", "60%", "55%"],
+      dimensions: ["83%", "83%", "73%", "68%", "63%"],
+      // NOTE: Original
+      // dimensions: ["65%", "68", "63%", "60%", "55%"],
     },
     {
       name: "Standard",
@@ -469,12 +470,24 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.emilabs.ai/es",
         },
         {
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
+        },
+        {
           name: "Wúru",
           logo: "/images/logos/wuru.png",
           link: "https://wuru.ai/",
-        }
+        },
+        // {
+        //   name: "Proios S.A.",
+        //   logo: "/images/logos/todo.png",
+        //   link: "https://TODO/es",
+        // },
       ],
-      dimensions: ["78%", "78%", "68%", "53%", "58%"],
+      dimensions: ["65%", "68", "63%", "60%", "55%"],
+      // NOTE: Original
+      // dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
     // {
     //   name: "Colaboradores",
@@ -483,12 +496,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
     //       name: "Buenos Aires Ciudad",
     //       logo: "/images/logos/BuenosAiresCiudad.png",
     //       link: "https://buenosaires.gob.ar/inicio/",
-    //     },
-    //     {
-    //       name: "Defy Education",
-    //       logo: "/images/logos/Defy.png",
-    //       link: "https://www.defyeducation.com",
-    //     },
+    //     }
     //   ],
     //   dimensions: ["76%", "70%", "66%", "61%", "54%"],
     // }
