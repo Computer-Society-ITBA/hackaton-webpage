@@ -479,11 +479,11 @@ const SponsorsSection = ({ ...extendedProps }) => {
           logo: "/images/logos/wuru.png",
           link: "https://wuru.ai/",
         },
-        // {
-        //   name: "Proios S.A.",
-        //   logo: "/images/logos/todo.png",
-        //   link: "https://TODO/es",
-        // },
+        {
+          name: "Proios S.A.",
+          logo: "/images/logos/proios.png",
+          link: "https://www.proios.com/",
+        },
       ],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
       // NOTE: Original
