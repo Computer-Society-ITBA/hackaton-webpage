@@ -10,16 +10,17 @@ const schema = joi.object({
 });
 
 router.post("/send", async (req, res) => {
-    const { email, userSubject, body } = req.body;
+    const { email, subject, body } = req.body;
     try {
         await schema.validateAsync({ email, subject, body });
     } catch (err) {
+        console.log(err);
         return res.status(400).json(error(1, "Missing or invalid information"));
     }
 
-    const subject = `from: ${email}, subject: ${userSubject}`;
+    const emailSubject = `from: ${email}, subject: ${subject}`;
     try {
-        sendContactEmail(subject, body);
+        sendContactEmail(emailSubject, body);
         return res.status(200).json({ status: "success: email sent" });
     } catch (err) {
         console.log(err.response.body.errors);
