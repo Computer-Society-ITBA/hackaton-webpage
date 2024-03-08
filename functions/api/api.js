@@ -10,7 +10,7 @@ router.use("/users", userController);
 router.use("/mail", emailController);
 router.use("/submissions", submissionController);
 router.use("/config", configController);
-router.use("/mentors", mentorController)
+router.use("/mentors", mentorController);
 
 router.get("/test", (req, res) => {
     res.status(200).send({ message: "Hello Api!" });

@@ -6,11 +6,11 @@ const {setRoleToMentor, setRoleToUser} = require("./authService");
 const {setUserInfo} = require("./userService");
 
 //Method that recieves a user and assigns him the mentor role. Also creates the mentor doc in de db.
-module.exports.createMentor = async function createMentor(email, password) {
+module.exports.createMentor = async function createMentor(email, password, name) {
     //crear usuario como se cree en el register y darle los claims de mentor directo aca.
     const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
     await setRoleToMentor(createdUser.user.uid)
-    const data =  await setUserInfo(createdUser.user.uid, {submissions: [], mentor:true, email: email, voted:[]})
+    const data =  await setUserInfo(createdUser.user.uid, {submissions: [], mentor:true, email: email, name: name, voted:[]})
     if(data.error) throw data.error
     console.log(createdUser.user.uid + " <- Created")
     return { message: "Success" };
@@ -29,10 +29,10 @@ module.exports.checkIfMentor = async function checkIfMentor(uid) {
         const userClaims = userRecord.customClaims;
         if (userClaims && userClaims.role === "mentor") {
             return true;
-        } else {
+        } 
             console.log("No tiene el rol.")
             return false;
-        }
+        
     } catch (error) {
         console.error(error);
         return false;
