@@ -34,15 +34,18 @@ import {
   Center,
   useAvatarStyles,
   CircularProgress,
-  Input,
+  Input, useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import ReactStars from "react-rating-stars-component";
 import { SocialIcon } from "react-social-icons";
+import useStore from "../../config/storeConfig";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
+
+
 
 const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
   return (
@@ -80,18 +83,46 @@ const RateTeamCard = ({
 
   const [feedback, setFeedback] = useState('');
   const [ratings, setRatings] = useState([]);
+  const toast = useToast();
+
+
+  //
+  const RELEVANCIA = 0
+  const CREATIVIDAD = 1
+  const PRESENTACION = 2
+
+  const userInfo = useStore((state) => state.userInfo);
+
 
   const handleRatingChange = (index, newRating) => {
     setRatings(prevRatings => {
       const newRatings = [...prevRatings];
       newRatings[index] = newRating;
-      // TODO send to backend
       return newRatings;
     });
   };
 
+
   const handleSubmit = () => {
-    // TODO send to backend
+
+    try{
+      axiosApiInstance.post(
+        `/mentors/${userInfo.uid}/votes`,
+        {
+          "submissionId": team.submission,
+          "relevancia": ratings[RELEVANCIA],
+          "creatividad": ratings[CREATIVIDAD],
+          "presentacion": ratings[PRESENTACION],
+          "descripcion": feedback
+        }
+      );
+    } catch (err) {
+      toast({
+        title: "Error votando",
+        status: "error",
+        duration: 3000,
+      });
+    }
     setFeedback('');
   };
 
@@ -160,7 +191,7 @@ const RateTeamCard = ({
           <RateCategoryCard 
             key={index} 
             name={category}
-            onRatingChange={(newRating) => handleRatingChange(index, newRating)} 
+            onCategoryRatingChanged={(newRating) => handleRatingChange(index, newRating)}
           />
         ))}
         </Accordion>
@@ -172,7 +203,7 @@ const RateTeamCard = ({
             placeholder="Feedback" 
           >
           </Input>
-          <Button onClick={handleSubmit} mt={2}>
+          <Button onClick={ handleSubmit} mt={2}>
         Enviar
         </Button>
         </VStack>
@@ -183,44 +214,54 @@ const RateTeamCard = ({
 
 
 const TeamRating = ({ token }) => {
-  const [teams, setTeams] = useState([
-    {
-      number: 1,
-      name: "Equipo 1",
-      quialified: true,
-      email: "equipo1@email.com",
-      teamDescription: "Un equipo muy interesante",
-      motivation: "Queremos aprender",
-      githubLink: "github.com",
-      youtubeLink: "youtube.com",
-      participants: [
-        {
-          name: "Participante 1",
-          DNI: "12345678",
-          email: "e1p1@email.com",
-          age: 20,
+
+  const userInfo = useStore((state) => state.userInfo);
+  const [teams, setTeams] = useState([])
+
+  useEffect(() => {
+    const getTeams = async () => {
+      try {
+        const response = await axiosApiInstance.get(`/mentors/${userInfo.uid}/submissions`);
+        const submissions = response.data.submissions;
+        const updatedTeams = [];
+        console.log(submissions)
+
+        for (const sub of submissions) {
+          try {
+            const submissionReq = await axiosApiInstance.get(`/submissions/${sub}`)
+            const submissionObj = submissionReq.data
+
+            const team = await axiosApiInstance.get(`/users/${submissionObj.userId}`)
+            const teamData = team.data
+            console.log(teamData)
+            const teamObj = {
+              name: teamData.name,
+              email: teamData.email,
+              teamDescription: teamData.teamDescription,
+              githubLink: submissionObj.githubLink,
+              youtubeLink: submissionObj.youtubeLink,
+              submission: sub
+            }
+
+            updatedTeams.push(teamObj);
+
+          } catch (error) {
+            console.log(error)
+          }
         }
-      ]
-    },
-    {
-      number: 2,
-      name: "Equipo 2",
-      quialified: false,
-      email: "equipo2@email.com",
-      teamDescription: "Un equipo muy interesante",
-      motivation: "Queremos aprender",
-      githubLink: "github.com",
-      youtubeLink: "youtube.com",
-      participants: [
-        {
-          name: "Participante 1",
-          DNI: "12345678",
-          email: "e2p1@email.com",
-          age: 20,
-        }
-      ]
+
+        setTeams(prevTeams => [...updatedTeams]);
+
+      } catch (err) {
+        console.log(err);
+      }
     }
-  ]);
+
+    getTeams();
+
+  }, []);
+
+
   const [isLoading, setIsLoading] = useState(false);
   const modifyTeamQualification = (index, uid, qualification) => {
     return async () => {
@@ -238,7 +279,9 @@ const TeamRating = ({ token }) => {
       }
     };
   };
+
   useEffect(() => {
+
     async function getUsersFromApi() {
       setIsLoading(true);
       try {
@@ -247,14 +290,18 @@ const TeamRating = ({ token }) => {
             `${process.env.NEXT_PUBLIC_API_URL}/api/users`
           )
         ).data.users;
-        setTeams(users.filter((user) => user.role === "user"));
+        // setTeams(users.filter((user) => user.role === "user"));
       } catch (err) {
         console.log(err);
       }
 
       setIsLoading(false);
     }
-    getUsersFromApi();
+
+    async function getUserProfile() {
+
+    }
+    // getUsersFromApi();
   }, []);
   return (
     <VStack align="start" width="full">
@@ -275,7 +322,8 @@ const TeamRating = ({ token }) => {
           alignItems="start"
           verticalAlign="top"
         >
-          {teams.map((team, index) => {
+          {
+            teams ? teams.map((team, index) => {
             return (
               <RateTeamCard
                 key={index}
@@ -287,7 +335,9 @@ const TeamRating = ({ token }) => {
                 onTeamRejected={modifyTeamQualification(index, team.uid, false)}
               ></RateTeamCard>
             );
-          })}
+          }) :
+                <></>
+          }
         </Flex>
       )}
     </VStack>

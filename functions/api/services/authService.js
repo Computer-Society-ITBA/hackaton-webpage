@@ -30,7 +30,7 @@ async function getAllUserInfo(user) {
         role: user?.customClaims?.role,
         name: userInfo?.data?.name,
         qualified: userInfo?.data?.qualified,
-        teamDescription: userInfo?.data?.name,
+        teamDescription: userInfo?.data?.teamDescription,
         motivation: userInfo?.data?.motivation,
         participants: userParticipants?.map((participant) => {
             return {
