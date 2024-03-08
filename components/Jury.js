@@ -52,7 +52,7 @@ const Jury = ({ jury, ...extendedProps }) => {
               <Text>Proximamente</Text>
               <Box className={styles.overlay} borderRadius="6%">
                 <Text fontSize={TextSize} textAlign="center" pt="2">
-                  Los detalles seran revelados una vez que se conozca el juez.
+                  Será revelado luego de ser publicado en nuestras redes sociales
                 </Text>
               </Box>
             </Box>
