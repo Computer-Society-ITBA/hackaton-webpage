@@ -452,14 +452,14 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.lewagon.com/es",
         },
         {
-          name: "IADT",
-          logo: "/images/logos/iadt2.png",
-          link: "https://www.iadt.com/",
-        },
-        {
           name: "BBVA",
           logo: "/images/logos/BBVA.png",
           link: "https://www.bbva.com.ar/",
+        },
+        {
+          name: "IADT",
+          logo: "/images/logos/iadt2.png",
+          link: "https://www.iadt.com/",
         },
       ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
