@@ -20,7 +20,7 @@ router.post("/send", async (req, res) => {
     }
     const msg = {
         to: "computersociety@itba.edu.ar", //Mail CS
-        from: "computersociety@itba.edu.ar", //Mail cuenta Sendgrid
+        from: "no-reply@hackitba.com.ar", //Mail cuenta Sendgrid
         subject: "from: " + email + ", subject: " + subject,
         text: body,
     };

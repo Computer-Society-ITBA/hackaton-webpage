@@ -26,9 +26,6 @@ import styled from "@emotion/styled";
 import ParticlesLogo from "../components/ParticlesLogo";
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
-import AutomationLogo from "../components/AutomationLogo";
-import EconomyLogo from "../components/EconomyLogo";
-import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
@@ -114,18 +111,20 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Economía y Descentralización",
+      name: "Economía y Finanzas",
       description:
-        "Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.",
+      "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: EconomyLogo,
+      logo: "/images/categories/econ.png",
+      logoSvg: false,
     },
     {
-      name: "Automatización Inteligente",
+      name: "Salud y bienestar",
       description:
-        "Solucionar problemas de automatización creando herramientas para aumentar la productividad general.",
+      "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: AutomationLogo,
+      logo: "/images/categories/salud.png",
+      logoSvg: false,
     },
   ];
   return (
@@ -156,6 +155,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       direction="row"
       width="100%"
       alignItems="center"
+      justifyContent="space-between"
       height="20%"
       {...extendedProps}
     >
@@ -181,7 +181,8 @@ const InscriptionSection = ({ ...extendedProps }) => {
           INSCRIBITE AQUI
         </PrimaryButton>
       </VStack>
-      <Spacer />
+      {/* TODO: Turn on for next event? */}
+      {/* <Spacer />
       <VStack justify="center" width={vstackWidth}>
         <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Convertite en Sponsor/Jurado
@@ -198,7 +199,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         >
           CONTACTANOS AQUI
         </PrimaryButton>
-      </VStack>
+      </VStack> */}
       <Img
         src="/images/Inscribite_2.svg"
         alt="Decoration"
@@ -437,41 +438,23 @@ const WorkshopsSection = ({ ...extendedProps }) => {
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
-    {
-      name: "Platinum",
-      items: [
-        {
-          name: "Nestle",
-          logo: "/images/logos/Nestle.png",
-          link: "https://www.nestle.com.ar",
-        },
-        {
-          name: "Accenture",
-          logo: "/images/logos/Accenture.png",
-          link: "https://www.accenture.com/ar-es",
-        },
-      ],
-      dimensions: ["83%", "83%", "73%", "68%", "63%"],
-    },
+    // {
+    //   name: "Platinum",
+    //   items: [],
+    //   dimensions: ["83%", "83%", "73%", "68%", "63%"],
+    // },
     {
       name: "Black",
       items: [
         {
-          name: "MetLife",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          name: "Chevron",
+          logo: "/images/logos/chevron.png",
+          link: "https://www.chevron.com/",
         },
-      ],
-      // dimensions:['80%','80%','70%','65%','60%'],
-      dimensions: ["65%", "68", "63%", "60%", "55%"],
-    },
-    {
-      name: "Standard",
-      items: [
         {
-          name: "Emilabs",
-          logo: "/images/logos/Emi.png",
-          link: "https://www.emilabs.ai",
+          name: "Le Wagon",
+          logo: "/images/logos/lewagon.png",
+          link: "https://www.lewagon.com/es",
         },
         {
           name: "BBVA",
@@ -479,34 +462,54 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.bbva.com.ar/",
         },
         {
-          name: "MODO",
-          logo: "/images/logos/modo.png",
-          link: "https://www.modo.com.ar/",
-        },
-        {
-          name: "PAE",
-          logo: "/images/logos/PAE.png",
-          link: "https://www.pan-energy.com",
+          name: "IADT",
+          logo: "/images/logos/iadt2.png",
+          link: "https://www.iadt.com/",
         },
       ],
-      dimensions: ["78%", "78%", "68%", "53%", "58%"],
+      dimensions: ["83%", "83%", "73%", "68%", "63%"],
+      // NOTE: Original
+      // dimensions: ["65%", "68", "63%", "60%", "55%"],
     },
     {
-      name: "Colaboradores",
+      name: "Standard",
       items: [
         {
-          name: "Buenos Aires Ciudad",
-          logo: "/images/logos/BuenosAiresCiudad.png",
-          link: "https://buenosaires.gob.ar/inicio/",
+          name: "Emilabs",
+          logo: "/images/logos/Emi.png",
+          link: "https://www.emilabs.ai/es",
         },
         {
-          name: "Defy Education",
-          logo: "/images/logos/Defy.png",
-          link: "https://www.defyeducation.com",
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
+        },
+        {
+          name: "Wúru",
+          logo: "/images/logos/wuru.png",
+          link: "https://wuru.ai/",
+        },
+        {
+          name: "Proios S.A.",
+          logo: "/images/logos/proios.png",
+          link: "https://www.proios.com/",
         },
       ],
-      dimensions: ["76%", "70%", "66%", "61%", "54%"],
+      dimensions: ["65%", "68", "63%", "60%", "55%"],
+      // NOTE: Original
+      // dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
+    // {
+    //   name: "Colaboradores",
+    //   items: [
+    //     {
+    //       name: "Buenos Aires Ciudad",
+    //       logo: "/images/logos/BuenosAiresCiudad.png",
+    //       link: "https://buenosaires.gob.ar/inicio/",
+    //     }
+    //   ],
+    //   dimensions: ["76%", "70%", "66%", "61%", "54%"],
+    // }
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -518,7 +521,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
       ></Img>
       <VStack top="-1">
         <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2023
+          Sponsors 2024
         </Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
