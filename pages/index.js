@@ -113,7 +113,7 @@ const Categories = ({ ...extendedProps }) => {
     {
       name: "Economía y Finanzas",
       description:
-      "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
+        "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: "/images/categories/econ.png",
       logoSvg: false,
@@ -121,7 +121,7 @@ const Categories = ({ ...extendedProps }) => {
     {
       name: "Salud y bienestar",
       description:
-      "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
+        "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
       logo: "/images/categories/salud.png",
       logoSvg: false,
@@ -210,53 +210,36 @@ const InscriptionSection = ({ ...extendedProps }) => {
 };
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
-    /*{
-      name: "Gabriela Macagni",
-      imgSrc: "/images/juries/GabrielaMacagni.jpg",
-      details:
-        "Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina",
+    {
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
     },
     {
-      name: "Guillermo Rodriguez",
-      imgSrc: "/images/juries/Guillermo-Rodriguez.jpg",
-      details:
-        "Director de Carrera Ingeniería Informática ITBA, Investigador adjunto del CONICET especializado en machine learning",
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
     },
     {
-      name: "Gabriel Gruber",
-      imgSrc: "/images/juries/GabrielGruber.png",
-      details:
-        "Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati",
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
     },
     {
-      name: "Pablo Sabbatella",
-      imgSrc: "/images/juries/PabloSabbatella.jpeg",
-      details:
-        "Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto",
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
     },
     {
-      name: "Mariano Di Pietrantonio",
-      imgSrc: "/images/juries/MarianoDiPietrantonio.jpeg",
-      details:
-        "Co-Founder y Head Of Strategy de Maker Growth, con más de 15 años como Product Manager en diversas empresas",
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
     },
-    {
-      name: "Manuel Beaudroit",
-      imgSrc: "/images/juries/ManuelBeaudroit.jpg",
-      details: "Co-Founder y CEO de Belo, también Co-Founder de Bitex",
-    },
-    {
-      name: "Diego Fernandez",
-      imgSrc: "/images/juries/DiegoFernandez.jpg",
-      details:
-        "Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires",
-    },
-    {
-      name: "Matias Eisbruch",
-      imgSrc: "/images/juries/MatiasEisbruch.jpeg",
-      details:
-        "Head of digital products en Accenture, previamente formó parte de Wolox. Además, es profesor de la Universidad de Buenos Aires.",
-    },*/
   ];
   return (
     <VStack width="full" {...extendedProps}>
@@ -264,15 +247,6 @@ const JurySection = ({ ...extendedProps }) => {
         Jurados
       </Heading>
       <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
-      {/* <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
-        {juries.map((jury,index)=>{
-          return(
-          <GridItem key={index}>
-            <Jury jury={jury}></Jury>
-          </GridItem>
-          )
-        })}
-      </Grid> */}
       <Flex
         width="full"
         direction="row"
@@ -285,59 +259,61 @@ const JurySection = ({ ...extendedProps }) => {
           return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
         })}
       </Flex>
-      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
     </VStack>
   );
 };
 
 const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
-    /*{
-      name: "Tomas Giovanetti",
-      imgSrc: "/images/mentors/TomasGiovanetti.jpeg",
-      details: "Founder y CEO en TGA",
-    },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
       details: "Cofounder y CEO en TiendaCrypto",
-    },
-    {
-      name: "Martin Furst",
-      imgSrc: "/images/mentors/MartinFurst.jpg",
-      details: "Cofounder y CEO en Fantastic",
+      revelead: false,
     },
     {
       name: "Marisabel Rodriguez",
       imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
       details: "Cloud Delivery Center Manager en Google",
+      revelead: false,
     },
     {
       name: "Mariano Vazquez",
       imgSrc: "/images/mentors/MarianoVazquez.jpeg",
       details: "CTO en Modo, con mas de 15 años como desarrollador.",
+      revelead: false,
     },
     {
       name: "Juan Catalano",
       imgSrc: "/images/mentors/JuanCatalano.jpeg",
       details: "Founder y CPO en Podcast App",
-    },
-    {
-      name: "Gonzalo Otálora",
-      imgSrc: "/images/mentors/GonzaloOtalora.jpg",
-      details: "Founder y Director en Go!",
-    },
-    {
-      name: "Juan Gallo",
-      imgSrc: "/images/mentors/JuanGallo.jpeg",
-      details: "Cofounder y CEO en Cafecito y CourseIt",
+      revelead: false,
     },
     {
       name: "Federico Viarnés",
       imgSrc: "/images/mentors/FedericoViarnes.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-    },*/
+      revelead: false,
+    },
+    {
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
+    },
+    {
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
+    },
+    {
+      name: "TODO",
+      imgSrc: "/images/juries/TODO.jpg",
+      details: "TODO",
+      revelead: false,
+    },
   ];
   return (
     <VStack width="full" {...extendedProps}>
@@ -345,8 +321,6 @@ const MentorsSection = ({ ...extendedProps }) => {
         Mentores
       </Heading>
       <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
-      <Text fontSize={HeadingSize} color="white">Proximamente...</Text>
-
       <Grid
         paddingX="4%"
         paddingY="4%"
