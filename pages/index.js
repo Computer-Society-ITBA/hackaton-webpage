@@ -456,6 +456,11 @@ const SponsorsSection = ({ ...extendedProps }) => {
           logo: "/images/logos/iadt2.png",
           link: "https://www.iadt.com/",
         },
+        {
+          name: "BBVA",
+          logo: "/images/logos/BBVA.png",
+          link: "https://www.bbva.com.ar/",
+        },
       ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
       // NOTE: Original
