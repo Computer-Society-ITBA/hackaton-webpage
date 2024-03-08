@@ -22,13 +22,10 @@ router.post(
     // authMiddleware - Depende como querramos implementar el crear un mentor... se hace desde un admin?,
     async (req, res) => {
         try {
-            const isMentor = await checkIfMentor(req.body.userId);
 
-            //Deberia ser middleware??
-            if (isMentor)
-                return res.status(400).send("User is already a mentor");
-
-            const data = await createMentor(req.body.userId);
+            const email = req.body.email
+            const password = req.body.password
+            const data = await createMentor(email, password);
             if (data.error) return res.status(400).send(error.data);
             return res.status(201).send("Mentor created");
         } catch (error) {
@@ -38,18 +35,16 @@ router.post(
 );
 
 
-router.post("/:mentorId/submissions", async (req, res) => {
-    mentorId = req.params.mentorId;
+router.put("/:mentorId/submissions", async (req, res) => {
+    const mentorId = req.params.mentorId;
     console.log(mentorId);
     const isMentor = await checkIfMentor(mentorId);
-
-    //Deberia ser middleware??
     if (!isMentor) return res.status(400).send("User is not a mentor");
 
-    const { submissionId } = req.body;
-    const data = await assignSubmissionToMentor(mentorId, submissionId);
+    const { submissions } = req.body;
+    const data = await assignSubmissionToMentor(mentorId, submissions);
     if (data.error) return res.status(400).send(data.error);
-    return res.status(201).send("Submission assigned to mentor");
+    return res.status(201).send("Submissions assigned to mentor");
 });
 
 
