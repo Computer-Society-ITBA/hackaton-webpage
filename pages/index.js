@@ -266,28 +266,23 @@ const JurySection = ({ ...extendedProps }) => {
 const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
     {
-      name: "Nicolas D'Onofrio",
-      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details: "Cofounder y CEO en TiendaCrypto",
-      revelead: false,
-    },
-    {
-      name: "Marisabel Rodriguez",
-      imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
-      details: "Cloud Delivery Center Manager en Google",
-      revelead: false,
-    },
-    {
-      name: "Mariano Vazquez",
-      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
-      details: "CTO en Modo, con mas de 15 años como desarrollador.",
-      revelead: false,
+      name: "José Abuchaem",
+      imgSrc: "/images/mentors/JoséAbuchaem.jpeg",
+      details:
+        "Software Engineer en Podcast App, Mentor en OZOM Builders, Advisor en SimpleState, Co-founder y previamente CFO y CMO en Tienda Nube",
+      revelead: true,
     },
     {
       name: "Juan Catalano",
-      imgSrc: "/images/mentors/JuanCatalano.jpeg",
+      imgSrc: "/images/mentors/JuanCatalano2.jpeg",
       details: "Founder y CPO en Podcast App",
-      revelead: false,
+      revelead: true,
+    },
+    {
+      name: "Marisabel Rodriguez",
+      imgSrc: "/images/mentors/MarisabelRodriguez.jpeg",
+      details: "Cloud Delivery Center Manager en Google",
+      revelead: true,
     },
     {
       name: "Federico Viarnés",
@@ -297,21 +292,27 @@ const MentorsSection = ({ ...extendedProps }) => {
       revelead: false,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
+      name: "Javier Roberts",
+      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
       details: "TODO",
       revelead: false,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
+      name: "Luqui Diaz",
+      imgSrc: "/images/mentors/TODO.jpg",
+      details: "Co-founder y COO en Mudafy",
       revelead: false,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
+      name: "Nicolas D'Onofrio",
+      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
+      details: "Cofounder y CEO en TiendaCrypto",
+      revelead: false,
+    },
+    {
+      name: "Matías Podrojsky",
+      imgSrc: "/images/mentors/TODO.jpg",
+      details: "Co-founder y CHRO en Wirsolut",
       revelead: false,
     },
   ];
