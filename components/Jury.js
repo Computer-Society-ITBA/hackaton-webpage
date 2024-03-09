@@ -10,10 +10,11 @@ import {
 import styles from "./juryStyle.module.css";
 const TextSize = ["8px", "10px", "12px", "16px", "16px"];
 const Jury = ({ jury, ...extendedProps }) => {
+  const revealed = jury.revelead === undefined ? true : jury.revealed;
 
   return (
     <>
-      {jury.revelead ?
+      {revealed ? (
         <VStack
           justify="center"
           w={["8em", "8em", "10em", "12em", "13em"]}
@@ -41,7 +42,7 @@ const Jury = ({ jury, ...extendedProps }) => {
             {jury.name}
           </Text>
         </VStack>
-        :
+      ) : (
         <VStack
           justify="center"
           w={["8em", "8em", "10em", "12em", "13em"]}
@@ -52,15 +53,16 @@ const Jury = ({ jury, ...extendedProps }) => {
               <Text>Proximamente</Text>
               <Box className={styles.overlay} borderRadius="6%">
                 <Text fontSize={TextSize} textAlign="center" pt="2">
-                  Será revelado luego de ser publicado en nuestras redes sociales
+                  Será revelado luego de ser publicado en nuestras redes
+                  sociales
                 </Text>
               </Box>
             </Box>
           </AspectRatio>
         </VStack>
-      }
+      )}
     </>
-  )
+  );
 
   // return (
   // <VStack

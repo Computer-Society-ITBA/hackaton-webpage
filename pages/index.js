@@ -799,7 +799,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <ParticlesLogo />
+      <ParticlesLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
