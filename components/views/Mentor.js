@@ -85,13 +85,29 @@ const RateTeamCard = ({
   const [ratings, setRatings] = useState([]);
   const toast = useToast();
 
+  const userInfo = useStore((state) => state.userInfo);
+
+  const [voted, setVoted] = useState(false)
+
+  //Check if already voted to disable the card.
+  useEffect(() => {
+      const getVote = async () => {
+        const votings = await axiosApiInstance.get(`/votes?mentor=${userInfo.uid}&submission=${team.submission}`)
+        if (votings.data.length > 0) {
+          setVoted(true)
+        }
+      }
+
+      getVote()
+  }, []);
+
+
 
   //
   const RELEVANCIA = 0
   const CREATIVIDAD = 1
   const PRESENTACION = 2
 
-  const userInfo = useStore((state) => state.userInfo);
 
 
   const handleRatingChange = (index, newRating) => {
@@ -105,7 +121,6 @@ const RateTeamCard = ({
 
   const handleSubmit = () => {
 
-    try{
       axiosApiInstance.post(
         `/mentors/${userInfo.uid}/votes`,
         {
@@ -115,15 +130,16 @@ const RateTeamCard = ({
           "presentacion": ratings[PRESENTACION],
           "descripcion": feedback
         }
-      );
-    } catch (err) {
-      toast({
-        title: "Error votando",
-        status: "error",
-        duration: 3000,
-      });
-    }
-    setFeedback('');
+      ).catch(err => {
+        toast({
+          title: "Error. Recuerda que solo podes votar una vez al equipo",
+          status: "error",
+          duration: 3000,
+        });
+        setFeedback('');
+    }).then(e => {
+      setVoted(true)
+    })
   };
 
   return (
@@ -183,30 +199,38 @@ const RateTeamCard = ({
           </Text>
           
         </Center>
-        <Text fontSize={TextSize} textAlign="start" color="CSOrange">
-            Calificar equipo:
-          </Text>
-        <Accordion width="full" defaultIndex={[]} allowMultiple>
-        {['Relevancia', 'Creatividad', 'Presentación'].map((category, index) => (
-          <RateCategoryCard 
-            key={index} 
-            name={category}
-            onCategoryRatingChanged={(newRating) => handleRatingChange(index, newRating)}
-          />
-        ))}
-        </Accordion>
-        <VStack width="full" align="end">
-          <Spacer></Spacer>
-          <Input
-            value={feedback} 
-            onChange={(e) => setFeedback(e.target.value)} 
-            placeholder="Feedback" 
-          >
-          </Input>
-          <Button onClick={ handleSubmit} mt={2}>
-        Enviar
-        </Button>
-        </VStack>
+
+        {
+          !voted ?
+              <>
+                <Text fontSize={TextSize} textAlign="start" color="CSOrange">
+                  Calificar equipo:
+                </Text>
+                <Accordion width="full" defaultIndex={[]} allowMultiple>
+                  {['Relevancia', 'Creatividad', 'Presentación'].map((category, index) => (
+                      <RateCategoryCard
+                          key={index}
+                          name={category}
+                          onCategoryRatingChanged={(newRating) => handleRatingChange(index, newRating)}
+                      />
+                  ))}
+                </Accordion>
+                <VStack width="full" align="end">
+                  <Spacer></Spacer>
+                  <Input
+                      value={feedback}
+                      onChange={(e) => setFeedback(e.target.value)}
+                      placeholder="Feedback"
+                  >
+                  </Input>
+                  <Button onClick={ handleSubmit} mt={2}>
+                    Enviar
+                  </Button>
+                </VStack>
+              </> : <></>
+        }
+
+
       </Box>
     </VStack>
   );

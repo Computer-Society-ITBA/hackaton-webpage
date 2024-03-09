@@ -4,6 +4,7 @@ const { adminAuth, clientAuth, createUserWithEmailAndPassword } = require("../fi
 const { ROLE_MENTOR } = require("../middleware/roleMiddleware");
 const {setRoleToMentor, setRoleToUser} = require("./authService");
 const {setUserInfo} = require("./userService");
+const { collection, query, where, getDocs } =  require("firebase/firestore");
 
 //Method that recieves a user and assigns him the mentor role. Also creates the mentor doc in de db.
 module.exports.createMentor = async function createMentor(email, password) {
@@ -103,15 +104,19 @@ module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
         if (!submissionDocSnapshot.exists)
             return {error: "Submission not found."}
 
-        const mentorData = mentorDocSnapshot.data();
-        const existingVotes = mentorData.voted?mentorData.voted:[]; // default to empty array
+        
+        // Check for existing vote by mentor for this submission
+        const voteQuery = db
+            .collection(`${VOTE_COLLECTION}`)
+            .where("userId", "==", mentorId)
+            .where("submissionId", "==", submissionId);
+        const voteSnapshot = await voteQuery.get();
 
-        if (existingVotes.includes(submissionId))
-            return { error: "Submission already voted by mentor." };
+        // Handle existing vote scenario
+        if (!voteSnapshot.empty) {
+            return { error: "User has already voted for this submission." };
+        }
 
-        await mentorDocRef.update({
-            voted: [...existingVotes, submissionId],
-        });
 
 
         const data = {
