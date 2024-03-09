@@ -188,8 +188,13 @@ const RateTeamCard = ({
           </Text>
           <Spacer></Spacer>
           <HStack width="full" justify="space-around">
-            <SocialIcon network="github" url={team.githubLink} />
-            <SocialIcon network="youtube" url={team.youtubeLink} />
+            <a rel={'external'} href={team.githubLink? team.githubLink.includes("//") ?  team.githubLink : `//${team.githubLink}` : ""} target={"_blank"}>
+              <SocialIcon network="github" />
+            </a>
+
+            <a rel={'external'} href={team.youtubeLink ? team.youtubeLink.includes("//") ? team.youtubeLink : `//${team.youtubeLink}` : ""} target={"_blank"} >
+              <SocialIcon network="youtube" />
+            </a>
           </HStack>
           <Spacer></Spacer>
         </VStack>
