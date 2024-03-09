@@ -7,16 +7,22 @@ const {setUserInfo} = require("./userService");
 const { collection, query, where, getDocs } =  require("firebase/firestore");
 
 module.exports.getVote = async function getVote(submissionId, mentorId) {
-    const voteQuery = db
-        .collection(`${VOTE_COLLECTION}`)
-        .where("userId", "==", mentorId)
-        .where("submissionId", "==", submissionId);
+    var voteQuery = db.collection(`${VOTE_COLLECTION}`);
+
+    // Build query based on provided filters (optional)
+    if (submissionId) {
+        voteQuery = voteQuery.where("submissionId", "==", submissionId);
+    }
+    if (mentorId) {
+        voteQuery = voteQuery.where("userId", "==", mentorId);
+    }
+
     const voteSnapshot = await voteQuery.get();
 
     // Handle existing vote scenario
     if (!voteSnapshot.empty) {
-         // Map data from each doc
-        return voteSnapshot.docs.map(doc => doc.data());
+        const votes = voteSnapshot.docs.map(doc => doc.data());
+        return votes;
     }
     return []; // Return empty array if no votes found
-}
+};

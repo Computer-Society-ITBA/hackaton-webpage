@@ -139,6 +139,11 @@ const RateTeamCard = ({
         setFeedback('');
     }).then(e => {
       setVoted(true)
+        toast({
+          title: "Voto guardado correctemente",
+          status: "success",
+          duration: 3000,
+        });
     })
   };
 
