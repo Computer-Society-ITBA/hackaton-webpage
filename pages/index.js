@@ -211,33 +211,42 @@ const InscriptionSection = ({ ...extendedProps }) => {
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
     {
-      name: "TODO",
+      name: "Paul Detry",
+      imgSrc: "/images/juries/PaulDetry.jpeg",
+      details: "CTO en Balanz",
+      revelead: true,
+    },
+    {
+      name: "Mariano Daniel Vazquez",
+      imgSrc: "/images/juries/MarianoDanielVazquez.jpeg",
+      details: "Co Founder y CTO de Bondly, previamente CTO en MODO",
+      revelead: true,
+    },
+    {
+      name: "Martin Sciarrillo",
+      imgSrc: "/images/juries/MartinSciarrillo.jpeg",
+      details:
+        "Director Data & AI for Hispanic South America en Microsoft, previamente CTO en Microsoft Argentina",
+      revelead: true,
+    },
+    {
+      name: "Paula Bonomini",
+      imgSrc: "/images/juries/PaulaBonomini.jpeg",
+      details:
+        "Directora de la carrera de Bioingeniería en ITBA, investigadora adjunta de CONICET",
+      revelead: true,
+    },
+    {
+      name: "Alejandra Weill",
       imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
+      details: "Argentina IT Lead en ExxonMobil",
       revelead: false,
     },
     {
-      name: "TODO",
+      name: "Juan Martin Sotuyo Dodero",
       imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
-    },
-    {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
-    },
-    {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
-    },
-    {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
+      details:
+        "CTO en PedidosYa, previamente VP of Engineering en Salesforce y Director of Product Development en Mercado Libre",
       revelead: false,
     },
   ];
