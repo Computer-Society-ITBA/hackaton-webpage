@@ -30,10 +30,10 @@ module.exports.checkIfMentor = async function checkIfMentor(uid) {
         const userClaims = userRecord.customClaims;
         if (userClaims && userClaims.role === "mentor") {
             return true;
-        } else {
+        } 
             console.log("No tiene el rol.")
             return false;
-        }
+        
     } catch (error) {
         console.error(error);
         return false;
@@ -145,7 +145,10 @@ module.exports.getAllMentors = async function getAllMentors() {
             .where("mentor", "==", true)
             .get();
         mentorsSnapshot.forEach((doc) => {
-            mentors.push(doc.data());
+            const mentor = doc.data();
+
+            mentor.id = doc.id;
+            mentors.push(mentor);
         });
         return { mentors: mentors };
     } catch (error) {
