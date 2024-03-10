@@ -462,8 +462,8 @@ const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
-  const handleSelectedMentorsChange = (mentors) => {
-    setSelectedMentors(mentors);
+  const handleSelectedMentorsChange = (selectedMentors) => {
+    setSelectedMentors(selectedMentors);
     // TODO send to backend
   };
   return (
@@ -525,82 +525,107 @@ const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
 
 const MentorAssignment = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [submissions, setSubmissions] = useState([
-    {
-      number: 1,
-      name: "Primer Equipo",
-      email: "equipo1@email.com",
-      mentors: [
-        {
-          name: "Mentor 1",
-          email: "mentor1@email.com"
+  const [teams, setTeams] = useState([]);
+  const [mentors, setMentors] = useState([]);
+
+  useEffect(() => {
+      const getTeams = async () => {
+        try {
+          const response = await axiosApiInstance.get(`/submissions`);
+          const submissions = response.data;
+          const updatedTeams = [];
+          for (const sub of submissions) {
+            try {
+              const submissionReq = await axiosApiInstance.get(`/submissions/${sub.id}`)
+              const submissionObj = submissionReq.data
+              const team = await axiosApiInstance.get(`/users/${submissionObj.userId}`)
+              const teamData = team.data
+              const teamObj = {
+                name: teamData.name,
+                email: teamData.email,
+                teamDescription: teamData.teamDescription,
+                githubLink: submissionObj.githubLink,
+                youtubeLink: submissionObj.youtubeLink,
+                submission: sub
+              }
+  
+              updatedTeams.push(teamObj);
+  
+            } catch (error) {
+              console.log(error)
+            }
+          }
+  
+          setTeams(prevTeams => [...updatedTeams]);
+  
+        } catch (err) {
+          console.log(err);
         }
-      ]
-    },
-    {
-      number: 2,
-      name: "Segundo Equipo",
-      email: "equipo2@email.com",
-      mentors: [
-        {
-          name: "Mentor 2",
-          email: "mentor2@email.com"
+      }
+      
+      const getMentors = async () => {
+        try{
+          const response = await axiosApiInstance.get(`/mentors`)
+          const mentors = response.data.mentors
+          setMentors(prevMentors => [...mentors])
+          console.log("Mentors:")
+          console.log(mentors)
         }
-      ]
-    }
-  ]);
-  const [mentors, setMentors] = useState([
-    {
-      name: "Mentor 1",
-      email: "mentor1@email.com"
-    },
-    {
-      name: "Mentor 2",
-      email: "mentor2@email.com"
-    },
-    {
-      name: "Mentor 3",
-      email: "mentor3@email.com"
-    },
-    {
-      name: "Mentor 4",
-      email: "mentor4@email.com"
-    }
-  ]);
+        catch(err){
+          console.log(err)
+        }
+      }
+
+      getTeams();
+      getMentors();
+  
+    }, []);
+
+  const handleSaveChanges = () => {
+    console.log("submissionsByMentor")
+    console.log(submissionsByMentor)
+  }
+
   return (
-    <VStack align="start" width="full">
-    {isLoading ? (
+    <HStack width="full" align="start" justifyContent="start">
+      <VStack align="start" width="full">
+      {isLoading ? (
         <Center width="full">
-          <CircularProgress
-            isIndeterminate
-            color="CSOrange"
-            size="40%"
-          ></CircularProgress>
-        </Center>
-      ) : (
-        <Flex
+            <CircularProgress
+              isIndeterminate
+              color="CSOrange"
+              size="40%"
+              ></CircularProgress>
+          </Center>
+        ) : (
+          <Flex
           width="full"
           direction="row"
           flexWrap="wrap"
           justifyContent="start"
           alignItems="start"
           verticalAlign="top"
-        >
-          {submissions.map((submission, index) => {
-            return (
-              <SubmissionCard
+          >
+            {teams.map((submission, index) => {
+              return (
+                <SubmissionCard
                 key={index}
                 mx="2%"
                 my="1%"
                 width={["100%", "80%", "45%", "40%", "25%"]}
                 submission={{ number: index + 1, ...submission }}
                 mentors={mentors}
-              ></SubmissionCard>
-            );
-          })}
-        </Flex>
-      )}
-    </VStack>
+                ></SubmissionCard>
+                );
+              })}
+          </Flex>
+        )}
+      </VStack>
+      <Button mt={2} mr={2} onClick={handleSaveChanges}>
+        Guardar Cambios
+      </Button>
+                      
+    </HStack>
   );
 };
 
