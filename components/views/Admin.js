@@ -39,6 +39,7 @@ import {
   Input,
   InputRightElement,
   Box,
+  useToast
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
@@ -46,6 +47,7 @@ import styled from "@emotion/styled";
 import { MultiSelect } from 'primereact/multiselect';
 import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 
+const submissionsByMentor = {};
         
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
@@ -464,7 +466,13 @@ const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
   const handleSelectedMentorsChange = (selectedMentors) => {
     setSelectedMentors(selectedMentors);
-    // TODO send to backend
+    for(const mentor of selectedMentors.map(mentor => mentor.id)){
+      if(submissionsByMentor[mentor] === undefined){
+        submissionsByMentor[mentor] = []
+      }
+      submissionsByMentor[mentor].push(submission.submission.id)
+      
+    }
   };
   return (
     <VStack
@@ -528,6 +536,7 @@ const MentorAssignment = () => {
   const [teams, setTeams] = useState([]);
   const [mentors, setMentors] = useState([]);
 
+  const toast = useToast();
   useEffect(() => {
       const getTeams = async () => {
         try {
@@ -568,8 +577,6 @@ const MentorAssignment = () => {
           const response = await axiosApiInstance.get(`/mentors`)
           const mentors = response.data.mentors
           setMentors(prevMentors => [...mentors])
-          console.log("Mentors:")
-          console.log(mentors)
         }
         catch(err){
           console.log(err)
@@ -582,8 +589,29 @@ const MentorAssignment = () => {
     }, []);
 
   const handleSaveChanges = () => {
-    console.log("submissionsByMentor")
-    console.log(submissionsByMentor)
+    const requests=[]
+    for (const mentor in submissionsByMentor) {
+      const request = axiosApiInstance.put(`/mentors/${mentor}/submissions`, {
+        submissions: submissionsByMentor[mentor]
+      })
+    
+      requests.push(request);
+    }
+    
+    Promise.all(requests)
+      .then(() => {
+        toast({
+          title: "Cambios guardados exitosamente",
+          status: "success",
+          duration: 3000,
+        });
+      })
+      .catch(err => {
+        toast({
+          title: "Error guardando cambios",
+          status: "error",
+          duration: 3000,
+        })});
   }
 
   return (
