@@ -211,34 +211,36 @@ const InscriptionSection = ({ ...extendedProps }) => {
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Paul Detry",
+      imgSrc: "/images/juries/PaulDetry.jpeg",
+      details: "CTO en Balanz",
+      revelead: true,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Mariano Daniel Vazquez",
+      imgSrc: "/images/juries/MarianoDanielVazquez.jpeg",
+      details: "Co Founder y CTO de Bondly, previamente CTO en MODO",
+      revelead: true,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Martin Sciarrillo",
+      imgSrc: "/images/juries/MartinSciarrillo.jpeg",
+      details:
+        "Director Data & AI for Hispanic South America en Microsoft, previamente CTO en Microsoft Argentina",
+      revelead: true,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Paula Bonomini",
+      imgSrc: "/images/juries/PaulaBonomini.jpeg",
+      details:
+        "Directora de la carrera de Bioingeniería en ITBA, investigadora adjunta de CONICET",
+      revelead: true,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Alejandra Weill",
+      imgSrc: "/images/juries/AlejandraWeill.jpeg",
+      details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
+      revelead: true,
     },
   ];
   return (
