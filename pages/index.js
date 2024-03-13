@@ -242,13 +242,6 @@ const JurySection = ({ ...extendedProps }) => {
       details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
       revelead: true,
     },
-    // {
-    //   name: "Juan Martin Sotuyo Dodero",
-    //   imgSrc: "/images/juries/TODO.jpg",
-    //   details:
-    //     "CTO en PedidosYa, previamente VP of Engineering en Salesforce y Director of Product Development en Mercado Libre",
-    //   revelead: false,
-    // },
   ];
   return (
     <VStack width="full" {...extendedProps}>
