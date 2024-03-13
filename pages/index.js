@@ -214,33 +214,33 @@ const JurySection = ({ ...extendedProps }) => {
       name: "Paul Detry",
       imgSrc: "/images/juries/PaulDetry.jpeg",
       details: "CTO en Balanz",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Mariano Daniel Vazquez",
       imgSrc: "/images/juries/MarianoDanielVazquez.jpeg",
       details: "Co Founder y CTO de Bondly, previamente CTO en MODO",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Martin Sciarrillo",
       imgSrc: "/images/juries/MartinSciarrillo.jpeg",
       details:
         "Director Data & AI for Hispanic South America en Microsoft, previamente CTO en Microsoft Argentina",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Paula Bonomini",
       imgSrc: "/images/juries/PaulaBonomini.jpeg",
       details:
         "Directora de la carrera de Bioingeniería en ITBA, investigadora adjunta de CONICET",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Alejandra Weill",
       imgSrc: "/images/juries/AlejandraWeill.jpeg",
       details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
-      revelead: true,
+      revealed: true,
     },
   ];
   return (
@@ -272,50 +272,50 @@ const MentorsSection = ({ ...extendedProps }) => {
       imgSrc: "/images/mentors/JoséAbuchaem.jpeg",
       details:
         "Software Engineer en Podcast App, Mentor en OZOM Builders, Advisor en SimpleState, Co-founder y previamente CFO y CMO en Tienda Nube",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Juan Catalano",
       imgSrc: "/images/mentors/JuanCatalano2.jpeg",
       details: "Founder y CPO en Podcast App",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Marisabel Rodriguez",
       imgSrc: "/images/mentors/MarisabelRodriguez.jpeg",
       details: "Cloud Delivery Center Manager en Google",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Federico Viarnés",
       imgSrc: "/images/mentors/FedericoViarnes.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-      revelead: false,
+      revealed: false,
     },
     {
       name: "Javier Roberts",
       imgSrc: "/images/mentors/MarianoVazquez.jpeg",
       details: "TODO",
-      revelead: false,
+      revealed: false,
     },
     {
       name: "Luqui Diaz",
       imgSrc: "/images/mentors/TODO.jpg",
       details: "Co-founder y COO en Mudafy",
-      revelead: false,
+      revealed: false,
     },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
       details: "Cofounder y CEO en TiendaCrypto",
-      revelead: false,
+      revealed: false,
     },
     {
       name: "Matías Podrojsky",
       imgSrc: "/images/mentors/TODO.jpg",
       details: "Co-founder y CHRO en Wirsolut",
-      revelead: false,
+      revealed: false,
     },
   ];
   return (
