@@ -238,17 +238,17 @@ const JurySection = ({ ...extendedProps }) => {
     },
     {
       name: "Alejandra Weill",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "Argentina IT Lead en ExxonMobil",
-      revelead: false,
+      imgSrc: "/images/juries/AlejandraWeill.jpeg",
+      details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
+      revelead: true,
     },
-    {
-      name: "Juan Martin Sotuyo Dodero",
-      imgSrc: "/images/juries/TODO.jpg",
-      details:
-        "CTO en PedidosYa, previamente VP of Engineering en Salesforce y Director of Product Development en Mercado Libre",
-      revelead: false,
-    },
+    // {
+    //   name: "Juan Martin Sotuyo Dodero",
+    //   imgSrc: "/images/juries/TODO.jpg",
+    //   details:
+    //     "CTO en PedidosYa, previamente VP of Engineering en Salesforce y Director of Product Development en Mercado Libre",
+    //   revelead: false,
+    // },
   ];
   return (
     <VStack width="full" {...extendedProps}>
