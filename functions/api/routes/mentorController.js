@@ -7,6 +7,7 @@ const {
     getMentorSubmissions,
     getAllMentors,
 } = require("../services/mentorService");
+const { sendMentorEmail } = require("../services/emailService");
 
 const { getSingleSubmission } = require("../services/submissionsService");
 const { mentor } = require("../model/mentor");
@@ -22,18 +23,22 @@ router.post(
     // authMiddleware - Depende como querramos implementar el crear un mentor... se hace desde un admin?,
     async (req, res) => {
         try {
+            const email = req.body.email;
+            const password = req.body.password;
+            const name = req.body.name;
 
-            const email = req.body.email
-            const password = req.body.password
-            const data = await createMentor(email, password);
-            if (data.error) return res.status(400).send(error.data);
+            const result = await createMentor(email, password, name);
+
+            if (result.error) return res.status(400).send(result.error);
+
+            await sendMentorEmail(email, password);
+
             return res.status(201).send("Mentor created");
         } catch (error) {
             return res.status(400).send(error);
         }
     }
 );
-
 
 router.put("/:mentorId/submissions", async (req, res) => {
     const mentorId = req.params.mentorId;
@@ -46,7 +51,6 @@ router.put("/:mentorId/submissions", async (req, res) => {
     if (data.error) return res.status(400).send(data.error);
     return res.status(201).send("Submissions assigned to mentor");
 });
-
 
 router.post("/:mentorId/votes", async (req, res) => {
     const mentorId = req.params.mentorId;

@@ -7,11 +7,11 @@ const {setUserInfo} = require("./userService");
 const { collection, query, where, getDocs } =  require("firebase/firestore");
 
 //Method that recieves a user and assigns him the mentor role. Also creates the mentor doc in de db.
-module.exports.createMentor = async function createMentor(email, password) {
+module.exports.createMentor = async function createMentor(email, password, name) {
     //crear usuario como se cree en el register y darle los claims de mentor directo aca.
     const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
     await setRoleToMentor(createdUser.user.uid)
-    const data =  await setUserInfo(createdUser.user.uid, {submissions: [], mentor:true, email: email, voted:[]})
+    const data =  await setUserInfo(createdUser.user.uid, {submissions: [], mentor:true, email: email, name: name, voted:[]})
     if(data.error) throw data.error
     console.log(createdUser.user.uid + " <- Created")
     return { message: "Success" };
