@@ -45,10 +45,7 @@ import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import styled from "@emotion/styled";
 import { MultiSelect } from 'primereact/multiselect';
-import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
-
-const submissionsByMentor = {};
-        
+import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";        
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -460,19 +457,22 @@ const MentorRegistration = () => {
 
 }
 
-const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
+const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
   const handleSelectedMentorsChange = (selectedMentors) => {
     setSelectedMentors(selectedMentors);
-    for(const mentor of selectedMentors.map(mentor => mentor.id)){
-      if(submissionsByMentor[mentor] === undefined){
-        submissionsByMentor[mentor] = []
+
+    for (const mentor of mentors) {
+      mentor.submissions = mentor.submissions.filter(sub => sub !== submission.submission.id)
+
+      if (selectedMentors.map(mentor => mentor.id).includes(mentor.id)) {
+        mentor.submissions.push(submission.submission.id);
       }
-      submissionsByMentor[mentor].push(submission.submission.id)
-      
     }
+
+    setMentors(mentors)
   };
   return (
     <VStack
@@ -598,11 +598,11 @@ const MentorAssignment = () => {
       getMentors().then(mentors => getTeams(mentors));
     }, []);
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (mentors) => {
     const requests=[]
-    for (const mentor in submissionsByMentor) {
-      const request = axiosApiInstance.put(`/mentors/${mentor}/submissions`, {
-        submissions: submissionsByMentor[mentor]
+    for (const mentor of mentors) {
+      const request = axiosApiInstance.put(`/mentors/${mentor.id}/submissions`, {
+        submissions: mentor.submissions
       })
     
       requests.push(request);
@@ -653,13 +653,14 @@ const MentorAssignment = () => {
                 width={["100%", "80%", "45%", "40%", "25%"]}
                 submission={{ number: index + 1, ...submission }}
                 mentors={mentors}
+                setMentors={setMentors}
                 ></SubmissionCard>
                 );
               })}
           </Flex>
         )}
       </VStack>
-      <Button mt={2} mr={2} onClick={handleSaveChanges}>
+      <Button mt={2} mr={2} onClick={() => handleSaveChanges(mentors)}>
         Guardar Cambios
       </Button>
                       
