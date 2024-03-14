@@ -272,8 +272,8 @@ const TeamRating = ({ token }) => {
               name: teamData.name,
               email: teamData.email,
               teamDescription: teamData.teamDescription,
-              githubLink: submissionObj.githubLink,
-              youtubeLink: submissionObj.youtubeLink,
+              githubLink: submissionObj.repo,
+              youtubeLink: submissionObj.video,
               submission: sub
             }
 
