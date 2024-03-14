@@ -356,16 +356,20 @@ const MentorRegistration = () => {
 
   const registerMentor = async (name, email, password) => {
     setIsLoading(true);
-    try {
-      // TODO call API
-    } catch (err) {
+    axiosApiInstance.post(
+      "/mentors", 
+      {
+        email: email,
+        password: password,
+        name: name,
+      }
+    ).catch(() => {
       setErorrMessage(
         "Ocurrio un error, revisa el que el nombre, el email y la contraseña sean correctos"
       );
-    }
+    })
     setIsLoading(false);
   };
-
 
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
