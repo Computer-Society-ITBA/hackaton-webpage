@@ -39,14 +39,13 @@ import {
   Input,
   InputRightElement,
   Box,
+  useToast
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import styled from "@emotion/styled";
 import { MultiSelect } from 'primereact/multiselect';
-import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
-
-        
+import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";        
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -458,13 +457,22 @@ const MentorRegistration = () => {
 
 }
 
-const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
+const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
-  const handleSelectedMentorsChange = (mentors) => {
-    setSelectedMentors(mentors);
-    // TODO send to backend
+  const handleSelectedMentorsChange = (selectedMentors) => {
+    setSelectedMentors(selectedMentors);
+
+    for (const mentor of mentors) {
+      mentor.submissions = mentor.submissions.filter(sub => sub !== submission.submission.id)
+
+      if (selectedMentors.map(mentor => mentor.id).includes(mentor.id)) {
+        mentor.submissions.push(submission.submission.id);
+      }
+    }
+
+    setMentors(mentors)
   };
   return (
     <VStack
@@ -525,82 +533,138 @@ const SubmissionCard = ({ submission, mentors, ...extendedProps }) => {
 
 const MentorAssignment = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [submissions, setSubmissions] = useState([
-    {
-      number: 1,
-      name: "Primer Equipo",
-      email: "equipo1@email.com",
-      mentors: [
-        {
-          name: "Mentor 1",
-          email: "mentor1@email.com"
+  const [teams, setTeams] = useState([]);
+  const [mentors, setMentors] = useState([]);
+
+  const toast = useToast();
+  useEffect(() => {
+      const getTeams = async (mentors) => {
+        try {
+          const response = await axiosApiInstance.get(`/submissions`);
+          const submissions = response.data;
+          const updatedTeams = [];
+          for (const sub of submissions) {
+            try {
+              const submissionReq = await axiosApiInstance.get(`/submissions/${sub.id}`)
+              const submissionObj = submissionReq.data
+              const team = await axiosApiInstance.get(`/users/${submissionObj.userId}`)
+              const teamData = team.data
+
+              const submissionMentors = [];
+
+              for (const mentor of mentors) {
+                if (mentor.submissions.includes(sub.id)) {
+                  submissionMentors.push(mentor);
+                }
+              }
+
+              const teamObj = {
+                name: teamData.name,
+                email: teamData.email,
+                teamDescription: teamData.teamDescription,
+                githubLink: submissionObj.githubLink,
+                youtubeLink: submissionObj.youtubeLink,
+                submission: sub,
+                mentors: submissionMentors,
+              }
+  
+              updatedTeams.push(teamObj);
+  
+            } catch (error) {
+              console.log(error)
+            }
+          }
+  
+          setTeams(prevTeams => [...updatedTeams]);
+  
+        } catch (err) {
+          console.log(err);
         }
-      ]
-    },
-    {
-      number: 2,
-      name: "Segundo Equipo",
-      email: "equipo2@email.com",
-      mentors: [
-        {
-          name: "Mentor 2",
-          email: "mentor2@email.com"
+      }
+      
+      const getMentors = async () => {
+        try{
+          const response = await axiosApiInstance.get(`/mentors`)
+          const mentors = response.data.mentors
+          setMentors(prevMentors => [...mentors])
+
+          return mentors;
         }
-      ]
+        catch(err){
+          console.log(err)
+        }
+      }
+
+      getMentors().then(mentors => getTeams(mentors));
+    }, []);
+
+  const handleSaveChanges = (mentors) => {
+    const requests=[]
+    for (const mentor of mentors) {
+      const request = axiosApiInstance.put(`/mentors/${mentor.id}/submissions`, {
+        submissions: mentor.submissions
+      })
+    
+      requests.push(request);
     }
-  ]);
-  const [mentors, setMentors] = useState([
-    {
-      name: "Mentor 1",
-      email: "mentor1@email.com"
-    },
-    {
-      name: "Mentor 2",
-      email: "mentor2@email.com"
-    },
-    {
-      name: "Mentor 3",
-      email: "mentor3@email.com"
-    },
-    {
-      name: "Mentor 4",
-      email: "mentor4@email.com"
-    }
-  ]);
+    
+    Promise.all(requests)
+      .then(() => {
+        toast({
+          title: "Cambios guardados exitosamente",
+          status: "success",
+          duration: 3000,
+        });
+      })
+      .catch(err => {
+        toast({
+          title: "Error guardando cambios",
+          status: "error",
+          duration: 3000,
+        })});
+  }
+
   return (
-    <VStack align="start" width="full">
-    {isLoading ? (
+    <HStack width="full" align="start" justifyContent="start">
+      <VStack align="start" width="full">
+      {isLoading ? (
         <Center width="full">
-          <CircularProgress
-            isIndeterminate
-            color="CSOrange"
-            size="40%"
-          ></CircularProgress>
-        </Center>
-      ) : (
-        <Flex
+            <CircularProgress
+              isIndeterminate
+              color="CSOrange"
+              size="40%"
+              ></CircularProgress>
+          </Center>
+        ) : (
+          <Flex
           width="full"
           direction="row"
           flexWrap="wrap"
           justifyContent="start"
           alignItems="start"
           verticalAlign="top"
-        >
-          {submissions.map((submission, index) => {
-            return (
-              <SubmissionCard
+          >
+            {teams.map((submission, index) => {
+              return (
+                <SubmissionCard
                 key={index}
                 mx="2%"
                 my="1%"
                 width={["100%", "80%", "45%", "40%", "25%"]}
                 submission={{ number: index + 1, ...submission }}
                 mentors={mentors}
-              ></SubmissionCard>
-            );
-          })}
-        </Flex>
-      )}
-    </VStack>
+                setMentors={setMentors}
+                ></SubmissionCard>
+                );
+              })}
+          </Flex>
+        )}
+      </VStack>
+      <Button mt={2} mr={2} onClick={() => handleSaveChanges(mentors)}>
+        Guardar Cambios
+      </Button>
+                      
+    </HStack>
   );
 };
 
