@@ -538,7 +538,7 @@ const MentorAssignment = () => {
 
   const toast = useToast();
   useEffect(() => {
-      const getTeams = async () => {
+      const getTeams = async (mentors) => {
         try {
           const response = await axiosApiInstance.get(`/submissions`);
           const submissions = response.data;
@@ -549,13 +549,23 @@ const MentorAssignment = () => {
               const submissionObj = submissionReq.data
               const team = await axiosApiInstance.get(`/users/${submissionObj.userId}`)
               const teamData = team.data
+
+              const submissionMentors = [];
+
+              for (const mentor of mentors) {
+                if (mentor.submissions.includes(sub.id)) {
+                  submissionMentors.push(mentor);
+                }
+              }
+
               const teamObj = {
                 name: teamData.name,
                 email: teamData.email,
                 teamDescription: teamData.teamDescription,
                 githubLink: submissionObj.githubLink,
                 youtubeLink: submissionObj.youtubeLink,
-                submission: sub
+                submission: sub,
+                mentors: submissionMentors,
               }
   
               updatedTeams.push(teamObj);
@@ -577,15 +587,15 @@ const MentorAssignment = () => {
           const response = await axiosApiInstance.get(`/mentors`)
           const mentors = response.data.mentors
           setMentors(prevMentors => [...mentors])
+
+          return mentors;
         }
         catch(err){
           console.log(err)
         }
       }
 
-      getTeams();
-      getMentors();
-  
+      getMentors().then(mentors => getTeams(mentors));
     }, []);
 
   const handleSaveChanges = () => {
