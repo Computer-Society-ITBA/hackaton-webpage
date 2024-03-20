@@ -452,14 +452,19 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.emilabs.ai/es",
         },
         {
+          name: "Wúru",
+          logo: "/images/logos/wuru.png",
+          link: "https://wuru.ai/",
+        },
+        {
           name: "TangoID",
           logo: "/images/logos/tangoid.png",
           link: "https://www.tangoid.com.ar/",
         },
         {
-          name: "Wúru",
-          logo: "/images/logos/wuru.png",
-          link: "https://wuru.ai/",
+          name: "Extrimian",
+          logo: "/images/logos/extrimian.png",
+          link: "https://extrimian.io/academy/",
         },
         {
           name: "Proios S.A.",
@@ -517,7 +522,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
           let columns;
           switch (category.name) {
             case "Standard":
-              columns = "repeat(3, 1fr)";
+              columns = "repeat(4, 1fr)";
               break;
             case "Black":
               columns = "repeat(2, 1fr)";
