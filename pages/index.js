@@ -239,7 +239,8 @@ const JurySection = ({ ...extendedProps }) => {
     {
       name: "Alejandra Weill",
       imgSrc: "/images/juries/AlejandraWeill.jpeg",
-      details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
+      details:
+        "Orchestration and developer services Sr. Product Manager en ExxonMobil",
       revealed: true,
     },
   ];
@@ -287,34 +288,47 @@ const MentorsSection = ({ ...extendedProps }) => {
       revealed: true,
     },
     {
+      name: "Luqui Diaz",
+      imgSrc: "/images/mentors/LucasDiaz.jpeg",
+      details: "Co-founder y COO en Mudafy",
+      revealed: true,
+    },
+    {
       name: "Federico Viarnés",
-      imgSrc: "/images/mentors/FedericoViarnes.jpeg",
+      imgSrc: "/images/mentors/FedericoViarnes2.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-      revealed: false,
+      revealed: true,
+    },
+    {
+      name: "Matías Podrojsky",
+      imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
+      details: "Co-founder y CHRO en Wirsolut",
+      revealed: true,
     },
     {
       name: "Javier Roberts",
-      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
+      imgSrc: "/images/mentors/JavierRoberts.jpeg",
       details: "TODO",
-      revealed: false,
-    },
-    {
-      name: "Luqui Diaz",
-      imgSrc: "/images/mentors/TODO.jpg",
-      details: "Co-founder y COO en Mudafy",
       revealed: false,
     },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details: "Cofounder y CEO en TiendaCrypto",
+      details:
+        "Co-founder en Manteca, Co-founder en TiendaCrypto, Co-founder en Tienda Dolar",
       revealed: false,
     },
     {
-      name: "Matías Podrojsky",
-      imgSrc: "/images/mentors/TODO.jpg",
-      details: "Co-founder y CHRO en Wirsolut",
+      name: "Juan Manuel Amorós",
+      imgSrc: "/images/mentors/TODO.jpeg",
+      details: "TODO",
+      revealed: false,
+    },
+    {
+      name: "Marcelo Turrin",
+      imgSrc: "/images/mentors/TODO.jpeg",
+      details: "TODO",
       revealed: false,
     },
   ];
@@ -334,6 +348,7 @@ const MentorsSection = ({ ...extendedProps }) => {
           "repeat(3, 1fr)",
           "repeat(4, 1fr)",
           "repeat(4, 1fr)",
+          "repeat(5, 1fr)",
         ]}
         justifyItems="center"
         width="full"
