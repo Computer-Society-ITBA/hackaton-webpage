@@ -304,7 +304,7 @@ const MentorsSection = ({ ...extendedProps }) => {
       name: "Matías Podrojsky",
       imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
       details: "Co-founder y CHRO en Wirsolut",
-      revealed: true,
+      revealed: false,
     },
     {
       name: "Javier Roberts",
