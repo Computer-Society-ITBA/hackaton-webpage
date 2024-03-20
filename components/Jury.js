@@ -10,7 +10,7 @@ import {
 import styles from "./juryStyle.module.css";
 const TextSize = ["8px", "10px", "12px", "16px", "16px"];
 const Jury = ({ jury, ...extendedProps }) => {
-  const revealed = jury.revelead === undefined ? true : jury.revelead;
+  const revealed = jury.revealed === undefined ? true : jury.revealed;
 
   return (
     <>
