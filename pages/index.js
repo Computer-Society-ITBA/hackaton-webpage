@@ -214,33 +214,34 @@ const JurySection = ({ ...extendedProps }) => {
       name: "Paul Detry",
       imgSrc: "/images/juries/PaulDetry.jpeg",
       details: "CTO en Balanz",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Mariano Daniel Vazquez",
       imgSrc: "/images/juries/MarianoDanielVazquez.jpeg",
       details: "Co Founder y CTO de Bondly, previamente CTO en MODO",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Martin Sciarrillo",
       imgSrc: "/images/juries/MartinSciarrillo.jpeg",
       details:
         "Director Data & AI for Hispanic South America en Microsoft, previamente CTO en Microsoft Argentina",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Paula Bonomini",
       imgSrc: "/images/juries/PaulaBonomini.jpeg",
       details:
         "Directora de la carrera de Bioingeniería en ITBA, investigadora adjunta de CONICET",
-      revelead: true,
+      revealed: true,
     },
     {
       name: "Alejandra Weill",
       imgSrc: "/images/juries/AlejandraWeill.jpeg",
-      details: "Orchestration and developer services Sr. Product Manager en ExxonMobil",
-      revelead: true,
+      details:
+        "Orchestration and developer services Sr. Product Manager en ExxonMobil",
+      revealed: true,
     },
   ];
   return (
@@ -268,53 +269,67 @@ const JurySection = ({ ...extendedProps }) => {
 const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
     {
-      name: "Nicolas D'Onofrio",
-      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details: "Cofounder y CEO en TiendaCrypto",
-      revelead: false,
-    },
-    {
-      name: "Marisabel Rodriguez",
-      imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
-      details: "Cloud Delivery Center Manager en Google",
-      revelead: false,
-    },
-    {
-      name: "Mariano Vazquez",
-      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
-      details: "CTO en Modo, con mas de 15 años como desarrollador.",
-      revelead: false,
+      name: "José Abuchaem",
+      imgSrc: "/images/mentors/JoséAbuchaem.jpeg",
+      details:
+        "Software Engineer en Podcast App, Mentor en OZOM Builders, Advisor en SimpleState, Co-founder y previamente CFO y CMO en Tienda Nube",
+      revealed: true,
     },
     {
       name: "Juan Catalano",
-      imgSrc: "/images/mentors/JuanCatalano.jpeg",
+      imgSrc: "/images/mentors/JuanCatalano2.jpeg",
       details: "Founder y CPO en Podcast App",
-      revelead: false,
+      revealed: true,
+    },
+    {
+      name: "Marisabel Rodriguez",
+      imgSrc: "/images/mentors/MarisabelRodriguez.jpeg",
+      details: "Cloud Delivery Center Manager en Google",
+      revealed: true,
+    },
+    {
+      name: "Luqui Diaz",
+      imgSrc: "/images/mentors/LucasDiaz.jpeg",
+      details: "Co-founder y COO en Mudafy",
+      revealed: true,
     },
     {
       name: "Federico Viarnés",
-      imgSrc: "/images/mentors/FedericoViarnes.jpeg",
+      imgSrc: "/images/mentors/FedericoViarnes2.jpeg",
       details:
         "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-      revelead: false,
+      revealed: true,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
-      details: "TODO",
-      revelead: false,
+      name: "Matías Podrojsky",
+      imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
+      details: "Co-founder y CHRO en Wirsolut",
+      revealed: false,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
+      name: "Javier Roberts",
+      imgSrc: "/images/mentors/JavierRoberts.jpeg",
       details: "TODO",
-      revelead: false,
+      revealed: false,
     },
     {
-      name: "TODO",
-      imgSrc: "/images/juries/TODO.jpg",
+      name: "Nicolas D'Onofrio",
+      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
+      details:
+        "Co-founder en Manteca, Co-founder en TiendaCrypto, Co-founder en Tienda Dolar",
+      revealed: false,
+    },
+    {
+      name: "Juan Manuel Amorós",
+      imgSrc: "/images/mentors/TODO.jpeg",
       details: "TODO",
-      revelead: false,
+      revealed: false,
+    },
+    {
+      name: "Marcelo Turrin",
+      imgSrc: "/images/mentors/TODO.jpeg",
+      details: "TODO",
+      revealed: false,
     },
   ];
   return (
@@ -333,6 +348,7 @@ const MentorsSection = ({ ...extendedProps }) => {
           "repeat(3, 1fr)",
           "repeat(4, 1fr)",
           "repeat(4, 1fr)",
+          "repeat(5, 1fr)",
         ]}
         justifyItems="center"
         width="full"
