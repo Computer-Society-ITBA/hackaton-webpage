@@ -241,7 +241,7 @@ const JurySection = ({ ...extendedProps }) => {
       imgSrc: "/images/juries/AlejandraWeill.jpeg",
       details:
         "Orchestration and developer services Sr. Product Manager en ExxonMobil",
-      revealed: true,
+      revelead: true,
     },
   ];
   return (
@@ -450,7 +450,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
         },
         {
           name: "IADT",
-          logo: "/images/logos/iadt2.png",
+          logo: "/images/logos/iadt.png",
           link: "https://www.iadt.com/",
         },
       ],
@@ -467,19 +467,34 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.emilabs.ai/es",
         },
         {
-          name: "TangoID",
-          logo: "/images/logos/tangoid.png",
-          link: "https://www.tangoid.com.ar/",
-        },
-        {
           name: "Wúru",
           logo: "/images/logos/wuru.png",
           link: "https://wuru.ai/",
         },
         {
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
+        },
+        {
+          name: "Extrimian",
+          logo: "/images/logos/extrimian.png",
+          link: "https://extrimian.io/academy/",
+        },
+        {
           name: "Proios S.A.",
           logo: "/images/logos/proios.png",
           link: "https://www.proios.com/",
+        },
+        {
+          name: "Emprelatam",
+          logo: "/images/logos/emprelatam.png",
+          link: "https://emprelatam.com/",
+        },
+        {
+          name: "Zennon",
+          logo: "/images/logos/zennon.png",
+          link: "https://zennonbi.com/",
         },
       ],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
@@ -518,24 +533,32 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {sponsors.map((cateogry) => {
+        {sponsors.map((category) => {
+          let columns;
+          switch (category.name) {
+            case "Standard":
+              columns = "repeat(4, 1fr)";
+              break;
+            case "Black":
+              columns = "repeat(2, 1fr)";
+              break;
+            default:
+              columns = `repeat(${category.items.length},1fr)`;
+          }
+
           return (
-            <Box key={cateogry.name} align="center" pt="1%" width="100%">
+            <Box key={category.name} align="center" pt="1%" width="100%">
               <Heading textAlign="center" size={TextSize}>
-                {cateogry.name}
+                {category.name}
               </Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
-              <Grid
-                paddingX="6%"
-                templateColumns={`repeat(${cateogry.items.length},1fr)`}
-                w="full"
-              >
-                {cateogry.items.map((sponsor) => {
+              <Grid paddingX="6%" templateColumns={columns} w="full">
+                {category.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
                       <SponsorLogo
-                        height={cateogry.dimensions}
-                        width={cateogry.dimensions}
+                        height={category.dimensions}
+                        width={category.dimensions}
                         link={sponsor.link}
                         logo={sponsor.logo}
                         name={sponsor.name}
