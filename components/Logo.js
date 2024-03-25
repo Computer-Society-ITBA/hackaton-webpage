@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heading, Img } from "@chakra-ui/react";
+import { Img } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 
 const LogoBox = styled.span`
@@ -24,15 +24,6 @@ const Logo = () => {
     <Link href="/" passHref={true}>
       <LogoBox>
         <Img src={csImage} height="90%" alt="logo" />
-        {/* <Heading
-          letterSpacing={0}
-          marginLeft="13px"
-          color="#A5ABB6"
-          size="md"
-          fontWeight={500}
-        >
-          HackIT-BA!
-        </Heading> */}
       </LogoBox>
     </Link>
   );
