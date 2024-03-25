@@ -690,7 +690,7 @@ const MentorAssignment = () => {
         Guardar Cambios
       </Button>
       <Button mt={2} mr={2} onClick={getVotingReport}>
-        Generate Report
+        Generar Reporte
       </Button>
     </HStack>
   );
