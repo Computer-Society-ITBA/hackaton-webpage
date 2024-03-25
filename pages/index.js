@@ -453,6 +453,11 @@ const SponsorsSection = ({ ...extendedProps }) => {
           logo: "/images/logos/iadt.png",
           link: "https://www.iadt.com/",
         },
+        {
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
+        },
       ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
       // NOTE: Original
@@ -471,11 +476,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
           logo: "/images/logos/wuru.png",
           link: "https://wuru.ai/",
         },
-        {
-          name: "TangoID",
-          logo: "/images/logos/tangoid.png",
-          link: "https://www.tangoid.com.ar/",
-        },
+
         {
           name: "Extrimian",
           logo: "/images/logos/extrimian.png",
@@ -496,22 +497,16 @@ const SponsorsSection = ({ ...extendedProps }) => {
           logo: "/images/logos/zennon.png",
           link: "https://zennonbi.com/",
         },
+        {
+          name: "Buenos Aires Ciudad",
+          logo: "/images/logos/BuenosAiresCiudad2.png",
+          link: "https://buenosaires.gob.ar/inicio/",
+        },
       ],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
       // NOTE: Original
       // dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
-    // {
-    //   name: "Colaboradores",
-    //   items: [
-    //     {
-    //       name: "Buenos Aires Ciudad",
-    //       logo: "/images/logos/BuenosAiresCiudad.png",
-    //       link: "https://buenosaires.gob.ar/inicio/",
-    //     }
-    //   ],
-    //   dimensions: ["76%", "70%", "66%", "61%", "54%"],
-    // }
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -540,7 +535,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
               columns = "repeat(4, 1fr)";
               break;
             case "Black":
-              columns = "repeat(2, 1fr)";
+              columns = "repeat(3, 1fr)";
               break;
             default:
               columns = `repeat(${category.items.length},1fr)`;
