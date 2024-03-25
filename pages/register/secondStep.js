@@ -1,20 +1,8 @@
-import { Step, Steps, useSteps } from "chakra-ui-steps";
-import { useEffect } from "react";
+// NOTE: Deprecated, not in use in the app
 import {
-  Heading,
-  Flex,
-  Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  GridItem,
-  Spacer,
   VStack,
-  Divider,
-  Input,
   HStack,
   Breadcrumb,
   BreadcrumbItem,
@@ -67,6 +55,7 @@ const SecondStep = ({ nextStep, prevStep }) => {
           src={"/images/backup.svg"}
           borderRadius={"full"}
           boxSize={["150px", "250px"]}
+          alt="image"
         ></Image>
       </div>
       <Center paddingTop="2%">
