@@ -450,8 +450,13 @@ const SponsorsSection = ({ ...extendedProps }) => {
         },
         {
           name: "IADT",
-          logo: "/images/logos/iadt2.png",
+          logo: "/images/logos/iadt.png",
           link: "https://www.iadt.com/",
+        },
+        {
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
         },
       ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
@@ -467,36 +472,41 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.emilabs.ai/es",
         },
         {
-          name: "TangoID",
-          logo: "/images/logos/tangoid.png",
-          link: "https://www.tangoid.com.ar/",
-        },
-        {
           name: "Wúru",
           logo: "/images/logos/wuru.png",
           link: "https://wuru.ai/",
+        },
+
+        {
+          name: "Extrimian",
+          logo: "/images/logos/extrimian.png",
+          link: "https://extrimian.io/academy/",
         },
         {
           name: "Proios S.A.",
           logo: "/images/logos/proios.png",
           link: "https://www.proios.com/",
         },
+        {
+          name: "Emprelatam",
+          logo: "/images/logos/emprelatam.png",
+          link: "https://emprelatam.com/",
+        },
+        {
+          name: "Zennon",
+          logo: "/images/logos/zennon.png",
+          link: "https://zennonbi.com/",
+        },
+        {
+          name: "Buenos Aires Ciudad",
+          logo: "/images/logos/BuenosAiresCiudad2.png",
+          link: "https://buenosaires.gob.ar/inicio/",
+        },
       ],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
       // NOTE: Original
       // dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
-    // {
-    //   name: "Colaboradores",
-    //   items: [
-    //     {
-    //       name: "Buenos Aires Ciudad",
-    //       logo: "/images/logos/BuenosAiresCiudad.png",
-    //       link: "https://buenosaires.gob.ar/inicio/",
-    //     }
-    //   ],
-    //   dimensions: ["76%", "70%", "66%", "61%", "54%"],
-    // }
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -518,24 +528,32 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {sponsors.map((cateogry) => {
+        {sponsors.map((category) => {
+          let columns;
+          switch (category.name) {
+            case "Standard":
+              columns = "repeat(4, 1fr)";
+              break;
+            case "Black":
+              columns = "repeat(3, 1fr)";
+              break;
+            default:
+              columns = `repeat(${category.items.length},1fr)`;
+          }
+
           return (
-            <Box key={cateogry.name} align="center" pt="1%" width="100%">
+            <Box key={category.name} align="center" pt="1%" width="100%">
               <Heading textAlign="center" size={TextSize}>
-                {cateogry.name}
+                {category.name}
               </Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
-              <Grid
-                paddingX="6%"
-                templateColumns={`repeat(${cateogry.items.length},1fr)`}
-                w="full"
-              >
-                {cateogry.items.map((sponsor) => {
+              <Grid paddingX="6%" templateColumns={columns} w="full">
+                {category.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
                       <SponsorLogo
-                        height={cateogry.dimensions}
-                        width={cateogry.dimensions}
+                        height={category.dimensions}
+                        width={category.dimensions}
                         link={sponsor.link}
                         logo={sponsor.logo}
                         name={sponsor.name}
