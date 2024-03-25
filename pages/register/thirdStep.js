@@ -1,24 +1,12 @@
-import { Step, Steps, useSteps } from "chakra-ui-steps";
 import { useState } from "react";
 import {
-  Heading,
-  Flex,
-  Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  GridItem,
-  Spacer,
   VStack,
-  Divider,
   Input,
   HStack,
   Breadcrumb,
   BreadcrumbItem,
-  Image,
   Center,
 } from "@chakra-ui/react";
 
@@ -104,8 +92,7 @@ const ThirdStep = ({
           color="#03caa1"
           fontSize={["2xl", "3xl", "4xl"]}
         >
-          {" "}
-          EMAIL{" "}
+          EMAIL
         </Text>
       </b>
       <Input
@@ -125,9 +112,8 @@ const ThirdStep = ({
           color="#03caa1"
           fontSize={["2xl", "3xl", "4xl"]}
         >
-          {" "}
-          CONTRASEÑA{" "}
-        </Text>{" "}
+          CONTRASEÑA
+        </Text>
       </b>
       <Input
         borderWidth="1.5px"
@@ -147,9 +133,8 @@ const ThirdStep = ({
           color="#03caa1"
           fontSize={["2xl", "3xl", "4xl"]}
         >
-          {" "}
-          REPETIR CONTRASEÑA{" "}
-        </Text>{" "}
+          REPETIR CONTRASEÑA
+        </Text>
       </b>
       <Input
         borderWidth="1.5px"
@@ -166,7 +151,6 @@ const ThirdStep = ({
       <Text align={"center"} fontSize={["sm", "lg", "xl"]} paddingTop={"1%"}>
         Recordá que estos datos son para{" "}
         <Text as="span" color="#03caa1">
-          {" "}
           iniciar sesión
         </Text>
       </Text>
@@ -209,10 +193,12 @@ const ThirdStep = ({
             variant="solid"
             bgColor="orange"
             isDisabled={
-              localEmail === "" ||
+              !localEmail ||
               invalidEmail ||
+              !localPassword ||
               localPassword !== localPassword2 ||
-              localPassword === ""
+              invalidPassword1 ||
+              invalidPassword2
             }
           >
             Siguiente
@@ -222,5 +208,5 @@ const ThirdStep = ({
     </VStack>
   );
 };
-//size={['sm','md','lg','xl','2xl']
+
 export default ThirdStep;
