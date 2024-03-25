@@ -628,6 +628,28 @@ const MentorAssignment = () => {
         })});
   }
 
+  const getVotingReport = () => {
+    axiosApiInstance
+      .get("/votes/report", { responseType: "arraybuffer" })
+      .then((response) => {
+        const url = window.URL.createObjectURL(
+          new Blob([response.data], { type: "application/octet-stream" })
+        );
+
+        const link = document.createElement("a");
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.href = url;
+        link.setAttribute("download", "report.xlsx");
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(() => {
+        alert("Error! Could not download file");
+      });
+  };
+
   return (
     <HStack width="full" align="start" justifyContent="start">
       <VStack align="start" width="full">
@@ -667,7 +689,9 @@ const MentorAssignment = () => {
       <Button mt={2} mr={2} onClick={() => handleSaveChanges(mentors)}>
         Guardar Cambios
       </Button>
-                      
+      <Button mt={2} mr={2} onClick={getVotingReport}>
+        Generate Report
+      </Button>
     </HStack>
   );
 };
