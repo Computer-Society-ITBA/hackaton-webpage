@@ -241,7 +241,7 @@ const JurySection = ({ ...extendedProps }) => {
       imgSrc: "/images/juries/AlejandraWeill.jpeg",
       details:
         "Orchestration and developer services Sr. Product Manager en ExxonMobil",
-      revelead: true,
+      revealed: true,
     },
   ];
   return (
@@ -304,32 +304,32 @@ const MentorsSection = ({ ...extendedProps }) => {
       name: "Matías Podrojsky",
       imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
       details: "Co-founder y CHRO en Wirsolut",
-      revealed: false,
+      revealed: true,
     },
     {
       name: "Javier Roberts",
       imgSrc: "/images/mentors/JavierRoberts.jpeg",
-      details: "TODO",
-      revealed: false,
+      details: "CTO en Wúru",
+      revealed: true,
     },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
       details:
         "Co-founder en Manteca, Co-founder en TiendaCrypto, Co-founder en Tienda Dolar",
-      revealed: false,
+      revealed: true,
     },
     {
       name: "Juan Manuel Amorós",
-      imgSrc: "/images/mentors/TODO.jpeg",
-      details: "TODO",
-      revealed: false,
+      imgSrc: "/images/mentors/JuanAmoros.png",
+      details: "Founder & CEO en Emprelatam",
+      revealed: true,
     },
     {
       name: "Marcelo Turrin",
-      imgSrc: "/images/mentors/TODO.jpeg",
-      details: "TODO",
-      revealed: false,
+      imgSrc: "/images/mentors/MarceloTurrin.jpeg",
+      details: "Software Engineer en Blue Alba, Profesor en ITBA",
+      revealed: true,
     },
   ];
   return (
