@@ -3,7 +3,6 @@ const {
     SUBMISSION_COLLECTION,
     USER_COLLECTION,
 } = require("../firebaseConfig");
-const { schema } = require("../model/submission");
 
 module.exports.createSubmission = async function createSubmission(submission) {
     try {

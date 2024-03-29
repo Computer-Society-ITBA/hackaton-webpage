@@ -57,7 +57,7 @@ router.get(
     "/",
     authMiddleware,
     roleMiddleware(ROLE_ADMIN),
-    async (req, res) => {
+    async (_, res) => {
         try {
             const submissions = await getSubmissions();
             if (submissions.length === 0)

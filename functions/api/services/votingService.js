@@ -1,10 +1,4 @@
-const { error } = require("../model/error");
-const { db, VOTE_COLLECTION, USER_COLLECTION, SUBMISSION_COLLECTION } = require("../firebaseConfig");
-const { adminAuth, clientAuth, createUserWithEmailAndPassword } = require("../firebaseConfig");
-const { ROLE_MENTOR } = require("../middleware/roleMiddleware");
-const {setRoleToMentor, setRoleToUser} = require("./authService");
-const {setUserInfo} = require("./userService");
-const { collection, query, where, getDocs } =  require("firebase/firestore");
+const { db, VOTE_COLLECTION } = require("../firebaseConfig");
 
 module.exports.getVote = async function getVote(submissionId, mentorId) {
     var voteQuery = db.collection(`${VOTE_COLLECTION}`);
@@ -21,7 +15,7 @@ module.exports.getVote = async function getVote(submissionId, mentorId) {
 
     // Handle existing vote scenario
     if (!voteSnapshot.empty) {
-        const votes = voteSnapshot.docs.map(doc => doc.data());
+        const votes = voteSnapshot.docs.map((doc) => doc.data());
         return votes;
     }
     return []; // Return empty array if no votes found

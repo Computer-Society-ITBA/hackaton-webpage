@@ -90,13 +90,12 @@ async function getUsers() {
                 //     })
                 // })
 
-                if (user)
-                return await getAllUserInfo(user);
+                if (user) return await getAllUserInfo(user);
             })
         );
 
         // Agrego el filter pq tenemos usuarios creados sin equipo
-        return users.filter((user) => user && user.name != null);
+        return users.filter((user) => user && user.name !== null);
     } catch (err) {
         return error(err.code, err.message);
     }
