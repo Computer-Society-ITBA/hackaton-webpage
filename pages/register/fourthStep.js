@@ -1,24 +1,15 @@
-import { Step, Steps, useSteps } from "chakra-ui-steps";
 import { useState } from "react";
 import {
   Heading,
   Flex,
-  Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  GridItem,
   Spacer,
   VStack,
-  Divider,
   Input,
   HStack,
   Breadcrumb,
   BreadcrumbItem,
-  Image,
   Center,
   Modal,
   ModalOverlay,
@@ -28,10 +19,8 @@ import {
   useDisclosure,
   IconButton,
   Card,
-  CardHeader,
   CardBody,
   Avatar,
-  Show,
   Stack,
 } from "@chakra-ui/react";
 import {
@@ -46,10 +35,6 @@ import joi from "joi";
 const ModalSize = ["sm", "md", "lg", "xl", "2xl"];
 const HeadingSize = ["sm", "sm", "md", "lg", "xl"];
 const AvatarSize = ["md", "md", "lg", "xl", "xl"];
-const TextSize = ["xs", "sm", "md", "lg", "xl"];
-const MemberModal = ({ isOpen, onClose }) => {
-  return;
-};
 
 const schema = joi.object({
   name: joi.string().min(1),
@@ -219,19 +204,6 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
         </BreadcrumbItem>
       </Breadcrumb>
       <VStack w={"full"} align={"center"}>
-        {/* <Text fontSize={["md", "lg", "xl"]}>Ingresa nombre y apellido del <Text as="span" color="#386af6"> participante 1</Text></Text>
-          <Input value={p1} onChange={handleP1} textColor={"black"} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]} w={["350px", "500px", "800px"]}></Input>
-
-          <Text paddingTop={"2%"}   fontSize={["md", "lg", "xl"]}>Ingresa nombre y apellido del <Text as="span" color="#386af6"> participante 2</Text> </Text> 
-          <Input value={p2} onChange={handleP2} textColor={"black"} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]} w={["350px", "500px", "800px"]}></Input>
-
-          <Text paddingTop={"2%"}  fontSize={["md", "lg", "xl"]}>Ingresa nombre y apellido del <Text as="span" color="#386af6"> participante 3</Text></Text>
-          <Input value={p3} onChange={handleP3} textColor={"black"} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]} w={["350px", "500px", "800px"]}></Input>
-
-          <Text paddingTop={"2%"} fontSize={["md", "lg", "xl"]}>Ingresa nombre y apellido del <Text as="span" color="#386af6"> participante 4</Text></Text>
-          <Input value={p4} onChange={handleP4} textColor={"black"} bg="white" focusBorderColor='white' h={["30px", "40px", "50px" ]} w={["350px", "500px", "800px"]}></Input>
-          <Text fontSize={["sm", "md", "lg"]}>{p1==="" || p2==="" || p3 === "" || p4 === "" ? "Debes completar todos los participantes":""}</Text>
-          <Text paddingTop="2%" align={"center"} fontSize={["sm", "md", "lg"]}>Recordá que todas las identidades serán corroboradas con foto del DNI</Text> */}
         <VStack width={["90%", "80%", "60%", "50%", "50%"]} mb="4%" gap="8px">
           {localParticipants &&
             localParticipants.map((participant, index) => {

@@ -12,6 +12,7 @@ async function addMember(
     memberAge
 ) {
     const data = {
+        // eslint-disable-next-line camelcase
         full_name: memberFullName,
         dni: memberDNI,
         email: memberEmail,
@@ -36,6 +37,7 @@ async function editMember(
     memberAge
 ) {
     const aux = {
+        // eslint-disable-next-line camelcase
         full_name: memberFullName,
         dni: memberDNI,
         email: memberEmail,
@@ -101,6 +103,7 @@ async function getUserInfo(uid) {
         return error(err.code, err.message);
     }
 }
+
 async function setUserInfo(uid, data) {
     try {
         await db.doc(`/${USER_COLLECTION}/${uid}`).set(data, { merge: true });

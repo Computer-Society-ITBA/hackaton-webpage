@@ -1,24 +1,11 @@
-import { Step, Steps, useSteps } from "chakra-ui-steps";
 import { useState } from "react";
 import {
-  Heading,
-  Flex,
-  Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  GridItem,
-  Spacer,
   VStack,
-  Divider,
-  Input,
   HStack,
   Breadcrumb,
   BreadcrumbItem,
-  Image,
   Textarea,
   Center,
 } from "@chakra-ui/react";
@@ -50,8 +37,6 @@ const FifthStep = ({
 
   const moveForward = async () => {
     //Hacerlo aca no funciona, por eso se hace cada vez que se cambie
-    // setDesc1("Hello")
-    // setDesc2("World!")
     setIsLoading(true);
     await nextStep();
     setIsLoading(false);
@@ -99,6 +84,8 @@ const FifthStep = ({
         ></Textarea>
         <Text align={"center"} paddingTop={"3%"} fontSize={["sm", "lg", "xl"]}>
           ¿Por qué les interesa participar en HackITBA?
+          <br></br>
+          ¿En qué categoría prefieren participar?
         </Text>
         <Textarea
           isInvalid={invalidD2}
@@ -169,5 +156,5 @@ const FifthStep = ({
     </VStack>
   );
 };
-//size={['sm','md','lg','xl','2xl']
+
 export default FifthStep;

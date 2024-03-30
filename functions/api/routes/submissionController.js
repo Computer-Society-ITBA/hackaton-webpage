@@ -3,6 +3,7 @@ const {
     createSubmission,
     getSubmission,
     getSubmissions,
+    getSingleSubmission,
 } = require("../services/submissionsService");
 const { schema } = require("../model/submission");
 const { getUserInfo } = require("../services/userService");
@@ -56,7 +57,7 @@ router.get(
     "/",
     authMiddleware,
     roleMiddleware(ROLE_ADMIN),
-    async (req, res) => {
+    async (_, res) => {
         try {
             const submissions = await getSubmissions();
             if (submissions.length === 0)
@@ -69,5 +70,15 @@ router.get(
         }
     }
 );
+
+router.get("/:submissionId", async (req, res) => {
+    const submissionId = req.params.submissionId;
+    try {
+        const data = await getSingleSubmission(submissionId);
+        return res.status(200).send(data);
+    } catch {
+        return res.status(400).send("Invalid submission ID");
+    }
+});
 
 module.exports = router;
