@@ -382,6 +382,7 @@ const MentorRegistration = () => {
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleNameChange = (event) => setName(event.target.value);
   const [errorMessage, setErorrMessage] = useState("");
+  const toast = useToast();
 
   const registerMentor = async (name, email, password) => {
     setIsLoading(true);
@@ -392,7 +393,20 @@ const MentorRegistration = () => {
         password: password,
         name: name,
       }
-    ).catch(() => {
+    )
+    .then(() => {
+      toast({
+        title: "Mentor registrado correctamente",
+        status: "success",
+        duration: 3000,
+      });
+    })
+    .catch(() => {
+      toast({
+        title: "Error registrando mentor",
+        status: "error",
+        duration: 3000,
+      });
       setErorrMessage(
         "Ocurrio un error, revisa el que el nombre, el email y la contraseña sean correctos"
       );
