@@ -1,4 +1,4 @@
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { AddIcon, MinusIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Heading,
   Tabs,
@@ -25,6 +25,13 @@ import {
   CircularProgress,
   Input,
   useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  OrderedList,
+  ListItem
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
@@ -34,6 +41,7 @@ import useStore from "../../config/storeConfig";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
+const ModalSize = ["sm", "md", "lg", "xl", "2xl"];
 
 const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
   return (
@@ -247,7 +255,7 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
 const TeamRating = () => {
   const userInfo = useStore((state) => state.userInfo);
   const [teams, setTeams] = useState([]);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const getTeams = async () => {
       setIsLoading(true);
@@ -289,6 +297,8 @@ const TeamRating = () => {
 
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
       setIsLoading(false);
     };
@@ -299,6 +309,7 @@ const TeamRating = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
+    <>
     <VStack align="start" width="full">
       {isLoading ? (
         <Center width="full">
@@ -306,32 +317,211 @@ const TeamRating = () => {
             isIndeterminate
             color="CSOrange"
             size="40%"
-          ></CircularProgress>
+            ></CircularProgress>
         </Center>
       ) : (
         <Flex
-          width="full"
-          direction="row"
-          flexWrap="wrap"
-          justifyContent="start"
-          alignItems="start"
-          verticalAlign="top"
+        width="full"
+        direction="row"
+        flexWrap="wrap"
+        justifyContent="start"
+        alignItems="start"
+        verticalAlign="top"
         >
           {teams &&
             teams.map((team, index) => {
               return (
                 <RateTeamCard
-                  key={index}
-                  mx="2%"
-                  my="1%"
-                  width={["100%", "80%", "45%", "40%", "25%"]}
-                  team={{ number: index + 1, ...team }}
+                key={index}
+                mx="2%"
+                my="1%"
+                width={["100%", "80%", "45%", "40%", "25%"]}
+                team={{ number: index + 1, ...team }}
                 ></RateTeamCard>
               );
             })}
         </Flex>
       )}
     </VStack>
+    <Button onClick={onOpen}  mt={2} style={{ position: 'absolute', top: '50px', right: '50px' }}>
+                Información de los criterios
+    </Button>
+    <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        scrollBehavior="inside"
+        size={ModalSize}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent
+          backgroundColor="#1C1C1C"
+          borderWidth="2px"
+          borderColor="CSGreen"
+        >
+          <ModalHeader>
+            <HStack>
+              <Heading fontSize={HeadingSize}>Criterios de puntuación</Heading>
+              <Spacer></Spacer>
+              <IconButton
+                onClick={onClose}
+                icon={<CloseIcon />}
+              ></IconButton>
+            </HStack>
+          </ModalHeader>
+          <ModalBody>
+            <VStack align="start" width="full">
+              <Text fontSize={TextSize} textAlign="start">
+                A continuación se detalla qué significa cada puntuación para cada categoría
+                </Text>
+              <Accordion width="full" defaultIndex={[]} allowMultiple>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Problemática</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>No se menciona el problema que se quiere resolver.</ListItem>
+                        <ListItem>Se mencionan algunos ejemplos del problema, sin explicar el problema en general.</ListItem>
+                        <ListItem>Se explica el problema, pero sin ejemplos concretos del mismo.</ListItem>
+                        <ListItem>Se explica la problemática y se utilizan ejemplos, pero estos no se relacionan con la problemática definida.</ListItem>
+                        <ListItem>Se explica la problemática y se utilizan ejemplos claros sobre su presencia.  </ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Innovación y oportunidad</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">     
+                        <ListItem>La idea ya es implementada completamente por una empresa, y el público ya la utiliza.</ListItem>
+                        <ListItem>La idea ya es implementada completamente por una empresa, pero esta tiene público reducido.</ListItem>
+                        <ListItem>La idea ya es parcialmente implementada por una empresa, pero lo propuesto es un incremento sobre esta.</ListItem>
+                        <ListItem>La idea es semejante a la implementada por otras empresas, pero ofrece un enfoque distinto para implementar la solución.</ListItem>
+                        <ListItem>La idea es disruptiva y no es implementada por otra empresa.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Impacto</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>El proyecto no es aplicable a los usuarios con la problemática en el futuro.</ListItem>
+                        <ListItem>El proyecto no es aplicable actualmente a los usuarios con la problemática, pero podía serlo en un futuro (por ejemplo, por el desarrollo de una tecnología complementaria).</ListItem>
+                        <ListItem>El proyecto es aplicable actualmente a los usuarios con la problemática, pero su uso se verá limitado por factores ajenos a lo económico.</ListItem>
+                        <ListItem>El proyecto es aplicable actualmente a los usuarios con la problemática, pero su uso se verá limitado por factores económicos (por ejemplo, por el costo asociado al usuario).</ListItem>
+                        <ListItem>El proyecto es aplicable actualmente a los usuarios con la problemática, y su adopción no será limitada por factores económicos.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Interfaz de usuario</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>La interfaz no permite las acciones mencionadas en la solución (por ejemplo, se tienen que subir archivos pero no se puede hacer mediante la aplicación).</ListItem>
+                        <ListItem>La interfaz permite la mayoría de las acciones, pero muchas de ellas no informan lo sucedido al usuario.</ListItem>
+                        <ListItem>La interfaz permite la mayoría de las acciones y proveen feedback claro, pero su acceso es poco intuitivo.</ListItem>
+                        <ListItem>La interfaz permite la mayoría de las acciones con acceso intuitivo y feedback claro, pero no es consistente a lo largo de la aplicación.</ListItem>
+                        <ListItem>La interfaz permite la mayoría de las acciones con acceso intuitivo y feedback claro, manteniendo consistencia en toda la aplicación.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Calidad del MVP</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>El MVP no ofrece gran parte de la funcionalidad propuesta para resolver la problemática.</ListItem>
+                        <ListItem>El MVP ofrece gran parte de la funcionalidad propuesta para resolver la problemática, pero lo hace con notables problemas que no son reconocidos por el equipo.</ListItem>
+                        <ListItem>El MVP ofrece gran parte de la funcionalidad propuesta para resolver la problemática, tiene notables problemas pero la mayoría de estos son reconocidos por el equipo como punto de mejora.</ListItem>
+                        <ListItem>El MVP ofrece gran parte de la funcionalidad propuesta para resolver la problemática, y tiene problemas mínimos para resolver.</ListItem>
+                        <ListItem>El MVP implementa toda la funcionalidad propuesta para resolver la problemática, y podría comenzar a utilizarse con cambios mínimos.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Relación con la temática</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>El proyecto no se relaciona con la temática bajo ningún enfoque.</ListItem>
+                        <ListItem>El proyecto se relaciona con la temática pero bajo un enfoque rebuscado.</ListItem>
+                        <ListItem>El proyecto se relaciona con la temática de manera clara.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}>Presentación (video)</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start">
+                        <ListItem>La presentación es difícil de seguir, no hay un hilo conductor claro sobre el proyecto desarrollado.</ListItem>
+                        <ListItem>La presentación tiene un hilo conductor, pero el video o el audio son poco útiles para demostrar la solución.</ListItem>
+                        <ListItem>La presentación tiene un hilo conductor, con video y audio que muestran claramente el funcionamiento de la solución.</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+                  <AccordionItem>
+                    <h2>
+                      <AccordionButton>
+                        <Text fontSize={TextSize}> Facilidad de ejecución</Text>
+                        <Spacer></Spacer>
+                        <AccordionIcon />
+                      </AccordionButton>
+                    </h2>
+                    <AccordionPanel>
+                      <OrderedList textAlign="start" start={0}>
+                        <ListItem>El proyecto no puede ejecutarse (por errores de compilación o ejecución): descalificado.</ListItem>
+                        <ListItem>El proyecto no incluye instrucciones para ejecutarlo, o incluye instrucciones poco claras (por ejemplo: levantar una testnet).</ListItem>
+                        <ListItem>El proyecto incluye instrucciones concretas para ejecutarlo, pero estas no son exhaustivas (por ejemplo, hay pasos intermedios que no se especifican) o contienen comandos erróneos.</ListItem>
+                        <ListItem>El proyecto incluye instrucciones concretas y exhaustivas para ejecutarlo, pero omite versiones, entornos o configuración necesaria.</ListItem>
+                        <ListItem>El proyecto incluye instrucciones concretas y exhaustivas con versiones, entornos y configuración especificados, pero el evaluador necesita ejecutar distintos servicios de manera independiente (por ejemplo: levantar una BD y luego ejecutar el servidor).</ListItem>
+                        <ListItem>El proyecto puede probarse directamente desde la web, o puede ejecutarse utilizando un único script o herramienta de contenedores (ej: Docker).</ListItem>
+                      </OrderedList>
+                    </AccordionPanel>
+                  </AccordionItem>
+              </Accordion>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
