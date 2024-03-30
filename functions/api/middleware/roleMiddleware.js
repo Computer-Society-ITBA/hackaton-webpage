@@ -1,4 +1,3 @@
-const auth = require("../firebaseConfig");
 const { error } = require("../model/error");
 //se debe ubicar DESPUES del middleware de auth
 //ya que este pasa el uid (asi no tenemos que verificar el token otra vez)
@@ -15,6 +14,7 @@ function roleMiddleware(allowed) {
         }
     };
 }
+
 const ROLE_ADMIN = "admin";
 const ROLE_JURY = "jury";
 const ROLE_MENTOR = "mentor";

@@ -30,7 +30,7 @@ async function getAllUserInfo(user) {
         role: user?.customClaims?.role,
         name: userInfo?.data?.name,
         qualified: userInfo?.data?.qualified,
-        teamDescription: userInfo?.data?.name,
+        teamDescription: userInfo?.data?.teamDescription,
         motivation: userInfo?.data?.motivation,
         participants: userParticipants?.map((participant) => {
             return {
@@ -89,12 +89,13 @@ async function getUsers() {
                 //         return({name:participant?.data?.full_name, DNI: participant?.data?.dni, email:participant?.data?.email})
                 //     })
                 // })
-                return await getAllUserInfo(user);
+
+                if (user) return await getAllUserInfo(user);
             })
         );
 
         // Agrego el filter pq tenemos usuarios creados sin equipo
-        return users.filter((user) => user && user.name != null);
+        return users.filter((user) => user && user.name !== null);
     } catch (err) {
         return error(err.code, err.message);
     }

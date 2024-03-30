@@ -47,6 +47,7 @@ const storage = getStorage(clientApp);
 
 const SUBMISSION_COLLECTION = "2024_submissions";
 const USER_COLLECTION = "2024_users";
+const VOTE_COLLECTION = "2024_votes";
 
 module.exports = {
     adminAuth,
@@ -58,4 +59,5 @@ module.exports = {
     createUserWithEmailAndPassword,
     SUBMISSION_COLLECTION,
     USER_COLLECTION,
+    VOTE_COLLECTION,
 };

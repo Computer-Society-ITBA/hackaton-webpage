@@ -23,8 +23,6 @@ const {
 } = require("../firebaseConfig");
 const {
     addMember,
-    editMember,
-    deleteMember,
     getMembers,
     editQualification,
     saveDocument,
@@ -43,6 +41,7 @@ const { getSubmission } = require("../services/submissionsService");
 const {
     inscriptionsOpenMiddleware,
 } = require("../middleware/configMiddleware");
+const { getUsersReport } = require("../services/userReport");
 
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
@@ -54,7 +53,7 @@ router.post("/team", inscriptionsOpenMiddleware, async (req, res) => {
     //Validad datos de usuario
     try {
         await schema.validateAsync({
-            full_name: name,
+            name: name,
             email,
             password,
             teamDescription,
@@ -68,7 +67,7 @@ router.post("/team", inscriptionsOpenMiddleware, async (req, res) => {
     for (const participant of participants) {
         try {
             await schema.validateAsync({
-                full_name: participant.name,
+                name: participant.name,
                 dni: participant.dni,
                 email: participant.email,
                 age: participant.age,
@@ -120,9 +119,6 @@ router.post("/team", inscriptionsOpenMiddleware, async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    // SOLO algunos roles deberían poder acceder
-    //lista todos los usuarios
-
     const { email, password } = req.body;
     try {
         await schema.validateAsync({ email: email, password: password });
@@ -138,6 +134,33 @@ router.post("/login", async (req, res) => {
         res.status(401).send(error(3, "Incorrect email or password"));
     }
 });
+
+router.get(
+    "/report",
+    authMiddleware,
+    roleMiddleware([ROLE_ADMIN]),
+    async (req, res) => {
+        const qualifiedOnly =
+            (req.query.qualifiedOnly?.toLowerCase() ?? "false") !== "false";
+
+        try {
+            const file = await getUsersReport(qualifiedOnly);
+
+            res.setHeader(
+                "Content-Disposition",
+                "attachment; filename=voteReport.xlsx"
+            );
+            res.setHeader(
+                "Content-Type",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            );
+
+            res.status(200).send(file);
+        } catch (_) {
+            res.status(500).send(error(2, "Error producing report"));
+        }
+    }
+);
 
 // router.post('/', async (req, res) => {
 //     // SOLO algunos roles deberían poder acceder
@@ -183,7 +206,7 @@ router.get("/:userId", authMiddleware, async (req, res) => {
         //busca la informacion de su usuario
         const ans = await getUser(uid);
 
-        if (ans == null || ans.error) {
+        if (ans === null || ans.error) {
             return res.status(404).send(ans);
         }
         return res.status(200).send(ans);
@@ -235,17 +258,25 @@ router.put(
         }
         const user = await getUser(req.params.userId);
         if (user.error) {
-            return res.status(400).send(ans);
+            return res.status(400).send(user);
         }
+
+        const emails = user.participants.map((p) => p.email);
+
+        if (!emails.includes(user.email)) {
+            emails.push(user.email);
+        }
+
         const ans = await editQualification(req.params.userId, qualifiedValue);
         if (ans.error) {
             return res.status(400).send(ans);
         }
+
         try {
             if (qualifiedValue) {
-                await sendConfirmationEmail(user.email);
+                await sendConfirmationEmail(emails);
             } else {
-                await sendRejectionEmail(user.email);
+                await sendRejectionEmail(emails);
             }
         } catch (err) {
             return res.status(400).send(error(1, "Error sending email"));
@@ -262,7 +293,7 @@ router.get(
         const uid = req.params.userId;
         try {
             const ans = await getSubmission(uid);
-            if (ans == null || ans.error) {
+            if (ans === null || ans.error) {
                 return res.status(404).send(ans);
             }
 
