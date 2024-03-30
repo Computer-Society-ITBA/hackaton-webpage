@@ -497,25 +497,6 @@ const TeamRating = () => {
                       </OrderedList>
                     </AccordionPanel>
                   </AccordionItem>
-                  <AccordionItem>
-                    <h2>
-                      <AccordionButton>
-                        <Text fontSize={TextSize}> Facilidad de ejecución</Text>
-                        <Spacer></Spacer>
-                        <AccordionIcon />
-                      </AccordionButton>
-                    </h2>
-                    <AccordionPanel>
-                      <OrderedList textAlign="start" start={0}>
-                        <ListItem>El proyecto no puede ejecutarse (por errores de compilación o ejecución): descalificado.</ListItem>
-                        <ListItem>El proyecto no incluye instrucciones para ejecutarlo, o incluye instrucciones poco claras (por ejemplo: levantar una testnet).</ListItem>
-                        <ListItem>El proyecto incluye instrucciones concretas para ejecutarlo, pero estas no son exhaustivas (por ejemplo, hay pasos intermedios que no se especifican) o contienen comandos erróneos.</ListItem>
-                        <ListItem>El proyecto incluye instrucciones concretas y exhaustivas para ejecutarlo, pero omite versiones, entornos o configuración necesaria.</ListItem>
-                        <ListItem>El proyecto incluye instrucciones concretas y exhaustivas con versiones, entornos y configuración especificados, pero el evaluador necesita ejecutar distintos servicios de manera independiente (por ejemplo: levantar una BD y luego ejecutar el servidor).</ListItem>
-                        <ListItem>El proyecto puede probarse directamente desde la web, o puede ejecutarse utilizando un único script o herramienta de contenedores (ej: Docker).</ListItem>
-                      </OrderedList>
-                    </AccordionPanel>
-                  </AccordionItem>
               </Accordion>
             </VStack>
           </ModalBody>
