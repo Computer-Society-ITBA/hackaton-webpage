@@ -1,33 +1,14 @@
-import { Step, Steps, useSteps } from "chakra-ui-steps";
-import { extendTheme } from "@chakra-ui/react";
 import {
-  Heading,
-  Flex,
-  Box,
   Text,
-  useColorModeValue,
-  useBreakpointValue,
   Button,
-  Link,
-  Grid,
-  GridItem,
-  Spacer,
   VStack,
-  Divider,
   Input,
-  HStack,
   Breadcrumb,
   BreadcrumbItem,
   Center,
 } from "@chakra-ui/react";
 import { useState } from "react";
 const TextSize = ["md", "lg", "xl", "2xl", "3xl"];
-const theme = extendTheme({
-  sm: "320px",
-  md: "768px",
-  lg: "960px",
-  xl: "1200px",
-});
 
 const FirstStep = ({ setName, name, nextStep }) => {
   const [value, setValue] = useState(name);
@@ -103,5 +84,5 @@ const FirstStep = ({ setName, name, nextStep }) => {
     </VStack>
   );
 };
-//size={['sm','md','lg','xl','2xl']
+
 export default FirstStep;

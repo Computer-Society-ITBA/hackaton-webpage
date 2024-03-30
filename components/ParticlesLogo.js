@@ -4,7 +4,7 @@ import particlesConfig from "../config/configParticles";
 import { loadFull } from "tsparticles";
 import { useCallback, useState, useEffect } from "react";
 
-const ParticlesLogo = () => {
+const ParticlesLogo = ({ date }) => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const ParticlesLogo = () => {
             size={["xs", "sm", "md", "lg", "xl"]}
             color="white"
           >
-            31 de marzo, 1 y 2 de abril{" "}
+            {date + " "}
           </Heading>
         </Box>
       </VStack>

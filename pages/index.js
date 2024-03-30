@@ -26,9 +26,6 @@ import styled from "@emotion/styled";
 import ParticlesLogo from "../components/ParticlesLogo";
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
-import AutomationLogo from "../components/AutomationLogo";
-import EconomyLogo from "../components/EconomyLogo";
-import { m } from "framer-motion";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
@@ -114,18 +111,20 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Economía y Descentralización",
+      name: "Economía y Finanzas",
       description:
-        "Crear formas innovadoras para inclusión financiera, validación de identidad y nuevas herramientas de la Web 3.0.",
+        "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: EconomyLogo,
+      logo: "/images/categories/econ.png",
+      logoSvg: false,
     },
     {
-      name: "Automatización Inteligente",
+      name: "Salud y bienestar",
       description:
-        "Solucionar problemas de automatización creando herramientas para aumentar la productividad general.",
+        "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
       scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: AutomationLogo,
+      logo: "/images/categories/salud.png",
+      logoSvg: false,
     },
   ];
   return (
@@ -156,6 +155,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       direction="row"
       width="100%"
       alignItems="center"
+      justifyContent="space-between"
       height="20%"
       {...extendedProps}
     >
@@ -181,7 +181,8 @@ const InscriptionSection = ({ ...extendedProps }) => {
           INSCRIBITE AQUI
         </PrimaryButton>
       </VStack>
-      <Spacer />
+      {/* TODO: Turn on for next event? */}
+      {/* <Spacer />
       <VStack justify="center" width={vstackWidth}>
         <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
           Convertite en Sponsor/Jurado
@@ -198,7 +199,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         >
           CONTACTANOS AQUI
         </PrimaryButton>
-      </VStack>
+      </VStack> */}
       <Img
         src="/images/Inscribite_2.svg"
         alt="Decoration"
@@ -210,51 +211,37 @@ const InscriptionSection = ({ ...extendedProps }) => {
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
     {
-      name: "Gabriela Macagni",
-      imgSrc: "/images/juries/GabrielaMacagni.jpg",
-      details:
-        "Co-fundadora Matterscale Ventures y ex directora ejecutiva de Endeavor Argentina",
+      name: "Paul Detry",
+      imgSrc: "/images/juries/PaulDetry.jpeg",
+      details: "CTO en Balanz",
+      revealed: true,
     },
     {
-      name: "Guillermo Rodriguez",
-      imgSrc: "/images/juries/Guillermo-Rodriguez.jpg",
-      details:
-        "Director de Carrera Ingeniería Informática ITBA, Investigador adjunto del CONICET especializado en machine learning",
+      name: "Mariano Daniel Vazquez",
+      imgSrc: "/images/juries/MarianoDanielVazquez.jpeg",
+      details: "Co Founder y CTO de Bondly, previamente CTO en MODO",
+      revealed: true,
     },
     {
-      name: "Gabriel Gruber",
-      imgSrc: "/images/juries/GabrielGruber.png",
+      name: "Martin Sciarrillo",
+      imgSrc: "/images/juries/MartinSciarrillo.jpeg",
       details:
-        "Co-Founder y CEO en Exactly Finance, previamente Co-founder y CEO de Properati",
+        "Director Data & AI for Hispanic South America en Microsoft, previamente CTO en Microsoft Argentina",
+      revealed: true,
     },
     {
-      name: "Pablo Sabbatella",
-      imgSrc: "/images/juries/PabloSabbatella.jpeg",
+      name: "Paula Bonomini",
+      imgSrc: "/images/juries/PaulaBonomini.jpeg",
       details:
-        "Founder y director de Defy Education, reconocido inversor e investigador en el ecosistema crypto",
+        "Directora de la carrera de Bioingeniería en ITBA, investigadora adjunta de CONICET",
+      revealed: true,
     },
     {
-      name: "Mariano Di Pietrantonio",
-      imgSrc: "/images/juries/MarianoDiPietrantonio.jpeg",
+      name: "Alejandra Weill",
+      imgSrc: "/images/juries/AlejandraWeill.jpeg",
       details:
-        "Co-Founder y Head Of Strategy de Maker Growth, con más de 15 años como Product Manager en diversas empresas",
-    },
-    {
-      name: "Manuel Beaudroit",
-      imgSrc: "/images/juries/ManuelBeaudroit.jpg",
-      details: "Co-Founder y CEO de Belo, también Co-Founder de Bitex",
-    },
-    {
-      name: "Diego Fernandez",
-      imgSrc: "/images/juries/DiegoFernandez.jpg",
-      details:
-        "Secretario de innovación y transformación digital del Gobierno de la Ciudad de Buenos Aires",
-    },
-    {
-      name: "Matias Eisbruch",
-      imgSrc: "/images/juries/MatiasEisbruch.jpeg",
-      details:
-        "Head of digital products en Accenture, previamente formó parte de Wolox. Además, es profesor de la Universidad de Buenos Aires.",
+        "Orchestration and developer services Sr. Product Manager en ExxonMobil",
+      revealed: true,
     },
   ];
   return (
@@ -263,15 +250,6 @@ const JurySection = ({ ...extendedProps }) => {
         Jurados
       </Heading>
       <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
-      {/* <Grid paddingX='4%' paddingY='4%' pt='4%' templateColumns={['repeat(2, 1fr)','repeat(3, 1fr)','repeat(3, 1fr)','repeat(4, 1fr)','repeat(4, 1fr)']} justifyItems='center' width='full' gap={1} rowGap={6}>
-        {juries.map((jury,index)=>{
-          return(
-          <GridItem key={index}>
-            <Jury jury={jury}></Jury>
-          </GridItem>
-          )
-        })}
-      </Grid> */}
       <Flex
         width="full"
         direction="row"
@@ -291,50 +269,67 @@ const JurySection = ({ ...extendedProps }) => {
 const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
     {
-      name: "Tomas Giovanetti",
-      imgSrc: "/images/mentors/TomasGiovanetti.jpeg",
-      details: "Founder y CEO en TGA",
+      name: "José Abuchaem",
+      imgSrc: "/images/mentors/JoséAbuchaem.jpeg",
+      details:
+        "Software Engineer en Podcast App, Mentor en OZOM Builders, Advisor en SimpleState, Co-founder y previamente CFO y CMO en Tienda Nube",
+      revealed: true,
+    },
+    {
+      name: "Juan Catalano",
+      imgSrc: "/images/mentors/JuanCatalano2.jpeg",
+      details: "Founder y CPO en Podcast App",
+      revealed: true,
+    },
+    {
+      name: "Marisabel Rodriguez",
+      imgSrc: "/images/mentors/MarisabelRodriguez.jpeg",
+      details: "Cloud Delivery Center Manager en Google",
+      revealed: true,
+    },
+    {
+      name: "Luqui Diaz",
+      imgSrc: "/images/mentors/LucasDiaz.jpeg",
+      details: "Co-founder y COO en Mudafy",
+      revealed: true,
+    },
+    {
+      name: "Federico Viarnés",
+      imgSrc: "/images/mentors/FedericoViarnes2.jpeg",
+      details:
+        "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
+      revealed: true,
+    },
+    {
+      name: "Matías Podrojsky",
+      imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
+      details: "Co-founder y CHRO en Wirsolut",
+      revealed: true,
+    },
+    {
+      name: "Javier Roberts",
+      imgSrc: "/images/mentors/JavierRoberts.jpeg",
+      details: "CTO en Wúru",
+      revealed: true,
     },
     {
       name: "Nicolas D'Onofrio",
       imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details: "Cofounder y CEO en TiendaCrypto",
-    },
-    {
-      name: "Martin Furst",
-      imgSrc: "/images/mentors/MartinFurst.jpg",
-      details: "Cofounder y CEO en Fantastic",
-    },
-    {
-      name: "Marisabel Rodriguez",
-      imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
-      details: "Cloud Delivery Center Manager en Google",
-    },
-    {
-      name: "Mariano Vazquez",
-      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
-      details: "CTO en Modo, con mas de 15 años como desarrollador.",
-    },
-    {
-      name: "Juan Catalano",
-      imgSrc: "/images/mentors/JuanCatalano.jpeg",
-      details: "Founder y CPO en Podcast App",
-    },
-    {
-      name: "Gonzalo Otálora",
-      imgSrc: "/images/mentors/GonzaloOtalora.jpg",
-      details: "Founder y Director en Go!",
-    },
-    {
-      name: "Juan Gallo",
-      imgSrc: "/images/mentors/JuanGallo.jpeg",
-      details: "Cofounder y CEO en Cafecito y CourseIt",
-    },
-    {
-      name: "Federico Viarnés",
-      imgSrc: "/images/mentors/FedericoViarnes.jpeg",
       details:
-        "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
+        "Co-founder en Manteca, Co-founder en TiendaCrypto, Co-founder en Tienda Dolar",
+      revealed: true,
+    },
+    {
+      name: "Juan Manuel Amorós",
+      imgSrc: "/images/mentors/JuanAmoros.png",
+      details: "Founder & CEO en Emprelatam",
+      revealed: true,
+    },
+    {
+      name: "Marcelo Turrin",
+      imgSrc: "/images/mentors/MarceloTurrin.jpeg",
+      details: "Software Engineer en Blue Alba, Profesor en ITBA",
+      revealed: true,
     },
   ];
   return (
@@ -353,6 +348,7 @@ const MentorsSection = ({ ...extendedProps }) => {
           "repeat(3, 1fr)",
           "repeat(4, 1fr)",
           "repeat(4, 1fr)",
+          "repeat(5, 1fr)",
         ]}
         justifyItems="center"
         width="full"
@@ -429,41 +425,23 @@ const WorkshopsSection = ({ ...extendedProps }) => {
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
-    {
-      name: "Platinum",
-      items: [
-        {
-          name: "Nestle",
-          logo: "/images/logos/Nestle.png",
-          link: "https://www.nestle.com.ar",
-        },
-        {
-          name: "Accenture",
-          logo: "/images/logos/Accenture.png",
-          link: "https://www.accenture.com/ar-es",
-        },
-      ],
-      dimensions: ["83%", "83%", "73%", "68%", "63%"],
-    },
+    // {
+    //   name: "Platinum",
+    //   items: [],
+    //   dimensions: ["83%", "83%", "73%", "68%", "63%"],
+    // },
     {
       name: "Black",
       items: [
         {
-          name: "MetLife",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          name: "Chevron",
+          logo: "/images/logos/chevron.png",
+          link: "https://www.chevron.com/",
         },
-      ],
-      // dimensions:['80%','80%','70%','65%','60%'],
-      dimensions: ["65%", "68", "63%", "60%", "55%"],
-    },
-    {
-      name: "Standard",
-      items: [
         {
-          name: "Emilabs",
-          logo: "/images/logos/Emi.png",
-          link: "https://www.emilabs.ai",
+          name: "Le Wagon",
+          logo: "/images/logos/lewagon.png",
+          link: "https://www.lewagon.com/es",
         },
         {
           name: "BBVA",
@@ -471,33 +449,63 @@ const SponsorsSection = ({ ...extendedProps }) => {
           link: "https://www.bbva.com.ar/",
         },
         {
-          name: "MODO",
-          logo: "/images/logos/modo.png",
-          link: "https://www.modo.com.ar/",
+          name: "IADT",
+          logo: "/images/logos/iadt.png",
+          link: "https://www.iadt.com/",
         },
         {
-          name: "PAE",
-          logo: "/images/logos/PAE.png",
-          link: "https://www.pan-energy.com",
+          name: "TangoID",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/",
         },
       ],
-      dimensions: ["78%", "78%", "68%", "53%", "58%"],
+      dimensions: ["83%", "83%", "73%", "68%", "63%"],
+      // NOTE: Original
+      // dimensions: ["65%", "68", "63%", "60%", "55%"],
     },
     {
-      name: "Colaboradores",
+      name: "Standard",
       items: [
         {
-          name: "Buenos Aires Ciudad",
-          logo: "/images/logos/BuenosAiresCiudad.png",
-          link: "https://buenosaires.gob.ar/inicio/",
+          name: "Emilabs",
+          logo: "/images/logos/Emi.png",
+          link: "https://www.emilabs.ai/es",
         },
         {
-          name: "Defy Education",
-          logo: "/images/logos/Defy.png",
-          link: "https://www.defyeducation.com",
+          name: "Wúru",
+          logo: "/images/logos/wuru.png",
+          link: "https://wuru.ai/",
+        },
+
+        {
+          name: "Extrimian",
+          logo: "/images/logos/extrimian.png",
+          link: "https://extrimian.io/academy/",
+        },
+        {
+          name: "Proios S.A.",
+          logo: "/images/logos/proios.png",
+          link: "https://www.proios.com/",
+        },
+        {
+          name: "Emprelatam",
+          logo: "/images/logos/emprelatam.png",
+          link: "https://emprelatam.com/",
+        },
+        {
+          name: "Zennon",
+          logo: "/images/logos/zennon.png",
+          link: "https://zennonbi.com/",
+        },
+        {
+          name: "Buenos Aires Ciudad",
+          logo: "/images/logos/BuenosAiresCiudad2.png",
+          link: "https://buenosaires.gob.ar/inicio/",
         },
       ],
-      dimensions: ["76%", "70%", "66%", "61%", "54%"],
+      dimensions: ["65%", "68", "63%", "60%", "55%"],
+      // NOTE: Original
+      // dimensions: ["78%", "78%", "68%", "53%", "58%"],
     },
   ];
   return (
@@ -510,7 +518,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
       ></Img>
       <VStack top="-1">
         <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2023
+          Sponsors 2024
         </Heading>
         <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
@@ -520,24 +528,32 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {sponsors.map((cateogry) => {
+        {sponsors.map((category) => {
+          let columns;
+          switch (category.name) {
+            case "Standard":
+              columns = "repeat(4, 1fr)";
+              break;
+            case "Black":
+              columns = "repeat(3, 1fr)";
+              break;
+            default:
+              columns = `repeat(${category.items.length},1fr)`;
+          }
+
           return (
-            <Box key={cateogry.name} align="center" pt="1%" width="100%">
+            <Box key={category.name} align="center" pt="1%" width="100%">
               <Heading textAlign="center" size={TextSize}>
-                {cateogry.name}
+                {category.name}
               </Heading>
               {/* Lo dejamos como para que sea una fila por categoría */}
-              <Grid
-                paddingX="6%"
-                templateColumns={`repeat(${cateogry.items.length},1fr)`}
-                w="full"
-              >
-                {cateogry.items.map((sponsor) => {
+              <Grid paddingX="6%" templateColumns={columns} w="full">
+                {category.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
                       <SponsorLogo
-                        height={cateogry.dimensions}
-                        width={cateogry.dimensions}
+                        height={category.dimensions}
+                        width={category.dimensions}
                         link={sponsor.link}
                         logo={sponsor.logo}
                         name={sponsor.name}
@@ -819,7 +835,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <ParticlesLogo />
+      <ParticlesLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}

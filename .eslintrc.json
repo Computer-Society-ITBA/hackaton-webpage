@@ -23,7 +23,7 @@
     "no-eval": "warn",
     "no-extend-native": "warn",
     "camelcase": "warn",
-    "no-useless-escape": "warn"
+    "no-useless-escape": "off"
   },
   "settings": {
     "react": {
