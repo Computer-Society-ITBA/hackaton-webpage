@@ -7,6 +7,8 @@ const {
 
 const xlsx = require("xlsx");
 
+// TODO: Merge with userReport.js
+
 function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -41,6 +41,7 @@ const { getSubmission } = require("../services/submissionsService");
 const {
     inscriptionsOpenMiddleware,
 } = require("../middleware/configMiddleware");
+const { getUsersReport } = require("../services/userReport");
 
 // Todos los endpoints necesitan autenticacion (se require en el nivel de api.js)
 // /user endpoints
@@ -133,6 +134,33 @@ router.post("/login", async (req, res) => {
         res.status(401).send(error(3, "Incorrect email or password"));
     }
 });
+
+router.get(
+    "/report",
+    authMiddleware,
+    roleMiddleware([ROLE_ADMIN]),
+    async (req, res) => {
+        const qualifiedOnly =
+            (req.query.qualifiedOnly?.toLowerCase() ?? "false") !== "false";
+
+        try {
+            const file = await getUsersReport(qualifiedOnly);
+
+            res.setHeader(
+                "Content-Disposition",
+                "attachment; filename=voteReport.xlsx"
+            );
+            res.setHeader(
+                "Content-Type",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            );
+
+            res.status(200).send(file);
+        } catch (_) {
+            res.status(500).send(error(2, "Error producing report"));
+        }
+    }
+);
 
 // router.post('/', async (req, res) => {
 //     // SOLO algunos roles deberían poder acceder
