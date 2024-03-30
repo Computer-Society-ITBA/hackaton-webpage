@@ -239,6 +239,7 @@ const TeamCard = ({
 const TeamSelection = ({ token }) => {
   const [teams, setTeams] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  
   const modifyTeamQualification = (index, uid, qualification) => {
     return async () => {
       try {
@@ -254,6 +255,32 @@ const TeamSelection = ({ token }) => {
       }
     };
   };
+
+  const getUsersReport = (qualifiedOnly) => {
+    axiosApiInstance
+      .get("/users/report", {
+        params: { qualifiedOnly },
+        responseType: "arraybuffer",
+      })
+      .then((response) => {
+        const url = window.URL.createObjectURL(
+          new Blob([response.data], { type: "application/octet-stream" })
+        );
+
+        const link = document.createElement("a");
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.href = url;
+        link.setAttribute("download", "users_report.xlsx");
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(() => {
+        alert("Error! Could not download file");
+      });
+  };
+
   useEffect(() => {
     async function getUsersFromApi() {
       setIsLoading(true);
@@ -269,20 +296,22 @@ const TeamSelection = ({ token }) => {
     }
     getUsersFromApi();
   }, []);
+
   return (
     <VStack align="start" width="full">
-      <Heading textAlign="start">{`Equipos aceptados: ${
-        teams.filter((team) => team.qualified).length
-      }`}</Heading>
-      {/* <Grid width='full' templateColumns={['repeat(1,1fr)','repeat(1,1fr)','repeat(2,1fr)','repeat(2,1fr)','repeat(2,1fr)']}>
-                {teams.map((team,index)=>{
-                    return(
-                        <GridItem key={index} mx={['2%','2%','4%','6%','8%']} align='center' py='2%'>
-                            <TeamCard team={team} key={index}></TeamCard>
-                        </GridItem>
-                    )
-                })}
-            </Grid> */}
+      <HStack align="start" width="full" >
+        <Heading textAlign="">
+          {`Equipos aceptados: ${teams.filter((team) => team.qualified).length}`}
+        </Heading>
+        <Spacer/>
+        <Button mt={2} mr={2} onClick={() => getUsersReport(false)}>
+          Reporte Todos
+        </Button>
+        <Button mt={2} mr={2} onClick={() => getUsersReport(true)}>
+          Reporte Aceptados
+        </Button>
+      </HStack>
+      
       {isLoading ? (
         <Center width="full">
           <CircularProgress
@@ -628,6 +657,28 @@ const MentorAssignment = () => {
         })});
   }
 
+  const getVotingReport = () => {
+    axiosApiInstance
+      .get("/votes/report", { responseType: "arraybuffer" })
+      .then((response) => {
+        const url = window.URL.createObjectURL(
+          new Blob([response.data], { type: "application/octet-stream" })
+        );
+
+        const link = document.createElement("a");
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.href = url;
+        link.setAttribute("download", "report.xlsx");
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(() => {
+        alert("Error! Could not download file");
+      });
+  };
+
   return (
     <HStack width="full" align="start" justifyContent="start">
       <VStack align="start" width="full">
@@ -667,7 +718,9 @@ const MentorAssignment = () => {
       <Button mt={2} mr={2} onClick={() => handleSaveChanges(mentors)}>
         Guardar Cambios
       </Button>
-                      
+      <Button mt={2} mr={2} onClick={getVotingReport}>
+        Generar Reporte
+      </Button>
     </HStack>
   );
 };
