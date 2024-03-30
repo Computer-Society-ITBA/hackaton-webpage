@@ -1,79 +1,66 @@
-const { error } = require("../model/error");
-const { db, VOTE_COLLECTION, USER_COLLECTION, SUBMISSION_COLLECTION } = require("../firebaseConfig");
-const { adminAuth, clientAuth, createUserWithEmailAndPassword } = require("../firebaseConfig");
-const { ROLE_MENTOR } = require("../middleware/roleMiddleware");
-const {setRoleToMentor, setRoleToUser} = require("./authService");
-const {setUserInfo} = require("./userService");
-const { collection, query, where, getDocs } =  require("firebase/firestore");
+const {
+    db,
+    VOTE_COLLECTION,
+    USER_COLLECTION,
+    SUBMISSION_COLLECTION,
+} = require("../firebaseConfig");
+const {
+    clientAuth,
+    createUserWithEmailAndPassword,
+} = require("../firebaseConfig");
+const { setRoleToMentor } = require("./authService");
+const { setUserInfo } = require("./userService");
 
 //Method that recieves a user and assigns him the mentor role. Also creates the mentor doc in de db.
-module.exports.createMentor = async function createMentor(email, password, name) {
+async function createMentor(email, password, name) {
     //crear usuario como se cree en el register y darle los claims de mentor directo aca.
-    const createdUser = await createUserWithEmailAndPassword(clientAuth, email, password)
-    await setRoleToMentor(createdUser.user.uid)
-    const data =  await setUserInfo(createdUser.user.uid, {submissions: [], mentor:true, email: email, name: name, voted:[]})
-    if(data.error) throw data.error
-    console.log(createdUser.user.uid + " <- Created")
+    const createdUser = await createUserWithEmailAndPassword(
+        clientAuth,
+        email,
+        password
+    );
+    await setRoleToMentor(createdUser.user.uid);
+    const data = await setUserInfo(createdUser.user.uid, {
+        submissions: [],
+        mentor: true,
+        email: email,
+        name: name,
+    });
+    if (data.error) throw data.error;
+    console.log(createdUser.user.uid + " <- Created");
     return { message: "Success" };
-};
+}
 
-module.exports.checkIfMentor = async function checkIfMentor(uid) {
-    console.log("Checking if user is a mentor.");
+async function assignSubmissionToMentor(mentorId, submissions) {
     try {
-        const userDoc = db.doc(`/${USER_COLLECTION}/${uid}`);
+        const userDoc = db.doc(`/${USER_COLLECTION}/${mentorId}`);
         const userDocSnapshot = await userDoc.get();
         if (!userDocSnapshot.exists) {
-            console.log("User doesnt exist.");
-            return false;
+            return { error: "Mentor not found." };
         }
-        const userRecord = await adminAuth.getUser(uid);
-        const userClaims = userRecord.customClaims;
-        if (userClaims && userClaims.role === "mentor") {
-            return true;
-        } 
-            console.log("No tiene el rol.")
-            return false;
-        
+
+        //delete duplicates from submissions
+        const uniqueArray = new Set([...submissions]);
+        for (const submission of uniqueArray) {
+            const submissionDoc = db.doc(
+                `/${SUBMISSION_COLLECTION}/${submission}`
+            );
+            const submissionDocSnapshot = await submissionDoc.get();
+            if (!submissionDocSnapshot.exists) {
+                return { error: "Submission: " + submission + " not found." };
+            }
+        }
+
+        const newSubmissions = uniqueArray ? [...uniqueArray] : [];
+        await userDoc.update({ submissions: newSubmissions });
+        return { message: "Success" };
     } catch (error) {
         console.error(error);
-        return false;
+        return { error: error.message };
     }
-};
+}
 
-module.exports.assignSubmissionToMentor =
-    async function assignSubmissionToMentor(mentorId, submissions) {
-        try {
-            const userDoc = db.doc(`/${USER_COLLECTION}/${mentorId}`);
-            const userDocSnapshot = await userDoc.get();
-            if (!userDocSnapshot.exists) {
-                return { error: "Mentor not found." };
-            }
-
-            //delete duplicates from submissions
-            const uniqueArray = new Set([...submissions])
-            console.log("entrando")
-            for (const submission of uniqueArray) {
-                console.log("Entreeeee", submission)
-                const submissionDoc = db.doc(`/${SUBMISSION_COLLECTION}/${submission}`);
-                const submissionDocSnapshot = await submissionDoc.get();
-                if (!submissionDocSnapshot.exists) {
-                    return { error: "Submission: " + submission +  " not found." };
-                }
-            }
-
-
-            const newSubmissions = uniqueArray ? [...uniqueArray] : [];
-            await userDoc.update({ submissions: newSubmissions});
-            return { message: "Success" };
-        } catch (error) {
-            console.error(error);
-            return { error: error.message };
-        }
-    };
-
-module.exports.getMentorSubmissions = async function getMentorSubmissions(
-    mentorId
-) {
+async function getMentorSubmissions(mentorId) {
     try {
         const mentorDocRef = db.doc(`/${USER_COLLECTION}/${mentorId}`);
         const mentorDocSnapshot = await mentorDocRef.get();
@@ -82,9 +69,9 @@ module.exports.getMentorSubmissions = async function getMentorSubmissions(
         console.error(error);
         return { error: error.message };
     }
-};
+}
 
-module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
+async function mentorVoteSubmission(
     mentorId,
     submissionId,
     relevancia,
@@ -99,12 +86,13 @@ module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
             return { error: "Mentor not found." };
         }
 
-        const submissionDocRed = db.doc(`/${SUBMISSION_COLLECTION}/${submissionId}`)
-        const submissionDocSnapshot = await submissionDocRed.get()
+        const submissionDocRed = db.doc(
+            `/${SUBMISSION_COLLECTION}/${submissionId}`
+        );
+        const submissionDocSnapshot = await submissionDocRed.get();
         if (!submissionDocSnapshot.exists)
-            return {error: "Submission not found."}
+            return { error: "Submission not found." };
 
-        
         // Check for existing vote by mentor for this submission
         const voteQuery = db
             .collection(`${VOTE_COLLECTION}`)
@@ -117,8 +105,6 @@ module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
             return { error: "User has already voted for this submission." };
         }
 
-
-
         const data = {
             userId: mentorId,
             submissionId: submissionId,
@@ -128,16 +114,16 @@ module.exports.mentorVoteSubmission = async function mentorVoteSubmission(
             descripcion: descripcion,
         };
 
-        const ans = db.collection(`/${VOTE_COLLECTION}`).add(data);
+        await db.collection(`/${VOTE_COLLECTION}`).add(data);
 
         return { message: "Success" };
     } catch (error) {
         console.error(error);
         return { error: error.message };
     }
-};
+}
 
-module.exports.getAllMentors = async function getAllMentors() {
+async function getAllMentors() {
     try {
         const mentors = [];
         const mentorsSnapshot = await db
@@ -155,4 +141,12 @@ module.exports.getAllMentors = async function getAllMentors() {
         console.error(error);
         return { error: error.message };
     }
+}
+
+module.exports = {
+    createMentor,
+    assignSubmissionToMentor,
+    getMentorSubmissions,
+    mentorVoteSubmission,
+    getAllMentors,
 };

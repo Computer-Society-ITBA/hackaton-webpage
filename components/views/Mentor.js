@@ -83,7 +83,7 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
     };
 
     getVote();
-  }, [team.submission, userInfo.uid]);
+  }, [team.submission, userInfo]);
 
   const RELEVANCIA = 0;
   const CREATIVIDAD = 1;
@@ -287,10 +287,10 @@ const TeamRating = () => {
 
         setTeams(() => [...updatedTeams]);
 
-        setIsLoading(false);
       } catch (err) {
         console.log(err);
       }
+      setIsLoading(false);
     };
 
     getTeams();

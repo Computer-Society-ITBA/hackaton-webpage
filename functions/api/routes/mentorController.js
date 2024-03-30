@@ -3,29 +3,40 @@ const {
     mentorVoteSubmission,
     assignSubmissionToMentor,
     createMentor,
-    checkIfMentor,
     getMentorSubmissions,
     getAllMentors,
 } = require("../services/mentorService");
 const { sendMentorEmail } = require("../services/emailService");
 
-const { getSingleSubmission } = require("../services/submissionsService");
 const { mentor } = require("../model/mentor");
-const vote = require("../model/vote");
+const { vote } = require("../model/vote");
 const authMiddleware = require("../middleware/authMiddleware");
-const bodySelfMiddleware = require("../middleware/bodySelfMiddleware");
-const { roleMiddleware, ROLE_ADMIN } = require("../middleware/roleMiddleware");
+
+const {
+    roleMiddleware,
+    ROLE_ADMIN,
+    ROLE_MENTOR,
+} = require("../middleware/roleMiddleware");
+const { error } = require("../model/error");
+const selfMiddleware = require("../middleware/selfMiddleware");
 
 const router = express.Router();
 
 router.post(
     "/",
-    // authMiddleware - Depende como querramos implementar el crear un mentor... se hace desde un admin?,
+    authMiddleware,
+    roleMiddleware(ROLE_ADMIN),
     async (req, res) => {
         try {
-            const email = req.body.email;
-            const password = req.body.password;
-            const name = req.body.name;
+            const { email, password, name } = req.body;
+            try {
+                await mentor.validateAsync({ email, password, name });
+            } catch (err) {
+                console.log(err);
+                return res
+                    .status(400)
+                    .json(error(1, "Missing or invalid information"));
+            }
 
             const result = await createMentor(email, password, name);
 
@@ -40,54 +51,79 @@ router.post(
     }
 );
 
-router.put("/:mentorId/submissions", async (req, res) => {
-    const mentorId = req.params.mentorId;
-    console.log(mentorId);
-    const isMentor = await checkIfMentor(mentorId);
-    if (!isMentor) return res.status(400).send("User is not a mentor");
+router.put(
+    "/:userId/submissions",
+    authMiddleware,
+    roleMiddleware(ROLE_ADMIN),
+    async (req, res) => {
+        const mentorId = req.params.userId;
 
-    const { submissions } = req.body;
-    const data = await assignSubmissionToMentor(mentorId, submissions);
-    if (data.error) return res.status(400).send(data.error);
-    return res.status(201).send("Submissions assigned to mentor");
-});
+        const { submissions } = req.body;
+        const data = await assignSubmissionToMentor(mentorId, submissions);
+        if (data.error) return res.status(400).send(data.error);
+        return res.status(201).send("Submissions assigned to mentor");
+    }
+);
 
-router.post("/:mentorId/votes", async (req, res) => {
-    const mentorId = req.params.mentorId;
-    const isMentor = await checkIfMentor(mentorId);
+router.post(
+    "/:userId/votes",
+    authMiddleware,
+    roleMiddleware(ROLE_MENTOR),
+    selfMiddleware,
+    async (req, res) => {
+        const mentorId = req.params.userId;
 
-    //Deberia ser middleware?? dudas porque no siempre mismo comportamiento
-    if (!isMentor) return res.status(400).send("User is not a mentor");
+        const {
+            submissionId,
+            relevancia,
+            creatividad,
+            presentacion,
+            descripcion,
+        } = req.body;
 
-    const { submissionId, relevancia, creatividad, presentacion, descripcion } =
-        req.body;
+        try {
+            await vote.validateAsync({
+                relevancia,
+                creatividad,
+                presentacion,
+                descripcion,
+            });
+        } catch (err) {
+            console.log(err);
+            return res
+                .status(400)
+                .json(error(1, "Missing or invalid information"));
+        }
 
-    const data = await mentorVoteSubmission(
-        mentorId,
-        submissionId,
-        relevancia,
-        creatividad,
-        presentacion,
-        descripcion
-    );
+        const data = await mentorVoteSubmission(
+            mentorId,
+            submissionId,
+            relevancia,
+            creatividad,
+            presentacion,
+            descripcion
+        );
 
-    if (data.error) return res.status(400).send(data.error);
-    return res.status(201).send("Vote registered");
-});
+        if (data.error) return res.status(400).send(data.error);
+        return res.status(201).send("Vote registered");
+    }
+);
 
-router.get("/:mentorId/submissions", async (req, res) => {
-    const mentorId = req.params.mentorId;
-    const isMentor = await checkIfMentor(mentorId);
+router.get(
+    "/:userId/submissions",
+    authMiddleware,
+    roleMiddleware(ROLE_MENTOR),
+    selfMiddleware,
+    async (req, res) => {
+        const mentorId = req.params.userId;
 
-    //Deberia ser middleware??
-    if (!isMentor) return res.status(400).send("User is not a mentor");
+        const data = await getMentorSubmissions(mentorId);
+        if (data.error) return res.status(400).send(data.error);
+        return res.status(200).send(data);
+    }
+);
 
-    const data = await getMentorSubmissions(mentorId);
-    if (data.error) return res.status(400).send(data.error);
-    return res.status(200).send(data);
-});
-
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, roleMiddleware(ROLE_ADMIN), async (_, res) => {
     const data = await getAllMentors();
     if (data.error) return res.status(400).send(data.error);
     return res.status(200).send(data);

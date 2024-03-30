@@ -47,7 +47,6 @@ const storage = getStorage(clientApp);
 
 const SUBMISSION_COLLECTION = "2024_submissions";
 const USER_COLLECTION = "2024_users";
-const MENTOR_COLLECTION = "2024_mentors";
 const VOTE_COLLECTION = "2024_votes";
 
 module.exports = {

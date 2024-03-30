@@ -12,6 +12,7 @@ async function addMember(
     memberAge
 ) {
     const data = {
+        // eslint-disable-next-line camelcase
         full_name: memberFullName,
         dni: memberDNI,
         email: memberEmail,
@@ -36,6 +37,7 @@ async function editMember(
     memberAge
 ) {
     const aux = {
+        // eslint-disable-next-line camelcase
         full_name: memberFullName,
         dni: memberDNI,
         email: memberEmail,
@@ -111,7 +113,6 @@ async function setUserInfo(uid, data) {
         return error(err.code, err.message);
     }
 }
-
 
 // const DOCUMENTS_COLLECTION = "documents";
 // async function saveDocument(userId, memberId, file) {
