@@ -26,9 +26,9 @@ async function sendEmail(
     html = true
 ) {
     let msg = {
-        to: to,
+        to,
         from: "no-reply@hackitba.com.ar", //Mail de nuestro dominio
-        subject: subject,
+        subject,
     };
 
     if (html) {

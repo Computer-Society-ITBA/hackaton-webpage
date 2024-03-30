@@ -258,17 +258,25 @@ router.put(
         }
         const user = await getUser(req.params.userId);
         if (user.error) {
-            return res.status(400).send(ans);
+            return res.status(400).send(user);
         }
+
+        const emails = user.participants.map((p) => p.email);
+
+        if (!emails.includes(user.email)) {
+            emails.push(user.email);
+        }
+
         const ans = await editQualification(req.params.userId, qualifiedValue);
         if (ans.error) {
             return res.status(400).send(ans);
         }
+
         try {
             if (qualifiedValue) {
-                await sendConfirmationEmail(user.email);
+                await sendConfirmationEmail(emails);
             } else {
-                await sendRejectionEmail(user.email);
+                await sendRejectionEmail(emails);
             }
         } catch (err) {
             return res.status(400).send(error(1, "Error sending email"));
