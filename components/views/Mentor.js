@@ -248,53 +248,53 @@ const TeamRating = () => {
   const userInfo = useStore((state) => state.userInfo);
   const [teams, setTeams] = useState([]);
 
-  // useEffect(() => {
-  //   const getTeams = async () => {
-  //     setIsLoading(true);
+  useEffect(() => {
+    const getTeams = async () => {
+      setIsLoading(true);
 
-  //     try {
-  //       const response = await axiosApiInstance.get(
-  //         `/mentors/${userInfo.uid}/submissions`
-  //       );
-  //       const submissions = response.data.submissions;
-  //       const updatedTeams = [];
+      try {
+        const response = await axiosApiInstance.get(
+          `/mentors/${userInfo.uid}/submissions`
+        );
+        const submissions = response.data.submissions;
+        const updatedTeams = [];
 
-  //       for (const sub of submissions) {
-  //         try {
-  //           const submissionReq = await axiosApiInstance.get(
-  //             `/submissions/${sub}`
-  //           );
-  //           const submissionObj = submissionReq.data;
+        for (const sub of submissions) {
+          try {
+            const submissionReq = await axiosApiInstance.get(
+              `/submissions/${sub}`
+            );
+            const submissionObj = submissionReq.data;
 
-  //           const team = await axiosApiInstance.get(
-  //             `/users/${submissionObj.userId}`
-  //           );
-  //           const teamData = team.data;
-  //           const teamObj = {
-  //             name: teamData.name,
-  //             email: teamData.email,
-  //             teamDescription: submissionObj.description,
-  //             githubLink: submissionObj.repo,
-  //             youtubeLink: submissionObj.video,
-  //             submission: sub,
-  //           };
+            const team = await axiosApiInstance.get(
+              `/users/${submissionObj.userId}`
+            );
+            const teamData = team.data;
+            const teamObj = {
+              name: teamData.name,
+              email: teamData.email,
+              teamDescription: submissionObj.description,
+              githubLink: submissionObj.repo,
+              youtubeLink: submissionObj.video,
+              submission: sub,
+            };
 
-  //           updatedTeams.push(teamObj);
-  //         } catch (error) {
-  //           console.log(error);
-  //         }
-  //       }
+            updatedTeams.push(teamObj);
+          } catch (error) {
+            console.log(error);
+          }
+        }
 
-  //       setTeams(() => [...updatedTeams]);
+        setTeams(() => [...updatedTeams]);
 
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //     setIsLoading(false);
-  //   };
+      } catch (err) {
+        console.log(err);
+      }
+      setIsLoading(false);
+    };
 
-  //   getTeams();
-  // }, [userInfo]);
+    getTeams();
+  }, [userInfo]);
 
   const [isLoading, setIsLoading] = useState(false);
 
