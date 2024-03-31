@@ -9,16 +9,27 @@ const xlsx = require("xlsx");
 
 // TODO: Merge with userReport.js
 
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const criteria = ["relevancia", "creatividad", "presentacion"];
-const Criteria = criteria.map(capitalize);
-const processingHeader = [
-    ["", ...Criteria, "Funcionalidad", "Total"],
-    ["Pesos", 0.3, 0.2, 0.2, 0.3],
+const criteria = [
+    "problematica",
+    "innovacion",
+    "impacto",
+    "interfaz",
+    "mvp",
+    "tematica",
+    "video",
 ];
+const Criteria = [
+    "Problemática",
+    "Innovación y oportunidad",
+    "Impacto",
+    "Interfaz de usuario",
+    "Calidad del MVP",
+    "Relación con la temática",
+    "Presentación (video)",
+];
+
+const header = ["Mentor", ...Criteria, "Feedback"];
+const processingHeader = [["", ...Criteria, "Facilidad de ejecución", "Total"]];
 
 async function getVotes() {
     const votesCollection = db.collection(VOTE_COLLECTION);
@@ -65,8 +76,6 @@ function createExcel(votes) {
     const excel = Object.values(votes).reduce((book, teamVotes) => {
         const teamName = teamVotes[0].team;
 
-        const header = ["Mentor", ...Criteria, "Feedback"];
-
         const voteArray = teamVotes.reduce(
             (aoa, vote) => {
                 const votes = Object.values(
@@ -97,30 +106,15 @@ function createExcel(votes) {
             return { f: `AVERAGE(${start}:${end})` };
         });
 
-        xlsx.utils.sheet_add_aoa(sheet, [["Promedio", ...criteriaAverage]], {
-            origin: `A${teamVotes.length + 5}`,
-        });
-
-        const criteriaScaled = [...Array(criteria.length + 1).keys()].map(
-            (i) => {
-                const columnLetter = numToLetter(i + 1);
-
-                const weight = `${columnLetter}${teamVotes.length + 4}`;
-                const average = `${columnLetter}${teamVotes.length + 5}`;
-
-                return { f: `${weight}*${average}` };
-            }
-        );
-
         const total = {
-            f: `SUM(B${teamVotes.length + 6}:${numToLetter(criteria.length + 1)}${teamVotes.length + 6}`,
+            f: `SUM(B${teamVotes.length + 4}:${numToLetter(criteria.length + 1)}${teamVotes.length + 4}`,
         };
 
         xlsx.utils.sheet_add_aoa(
             sheet,
-            [["Escalado", ...criteriaScaled, total]],
+            [["Promedio", ...criteriaAverage, "", total]],
             {
-                origin: `A${teamVotes.length + 6}`,
+                origin: `A${teamVotes.length + 4}`,
             }
         );
 
