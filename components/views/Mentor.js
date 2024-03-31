@@ -23,7 +23,6 @@ import {
   Button,
   Center,
   CircularProgress,
-  Input,
   useToast,
   Modal,
   ModalOverlay,
@@ -32,6 +31,7 @@ import {
   ModalBody,
   OrderedList,
   ListItem,
+  Textarea,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
@@ -43,7 +43,7 @@ const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
 const ModalSize = ["sm", "md", "lg", "xl", "2xl"];
 
-const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
+const RateCategoryCard = ({ name, count, onCategoryRatingChanged }) => {
   return (
     <AccordionItem>
       <h2>
@@ -56,7 +56,7 @@ const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
       <AccordionPanel>
         <VStack align="start" width="full">
           <ReactStars
-            count={5}
+            count={count}
             onChange={onCategoryRatingChanged}
             size={24}
             activeColor="#ffd700"
@@ -66,6 +66,24 @@ const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
     </AccordionItem>
   );
 };
+
+const PROBLEMATICA = 0;
+const INNOVACION = 1;
+const IMPACTO = 2;
+const INTERFAZ = 3;
+const MVP = 4;
+const TEMATICA = 5;
+const VIDEO = 6;
+
+const criteria = [
+  { name: "Problemática", count: 5 },
+  { name: "Innovación y oportunidad", count: 5 },
+  { name: "Impacto", count: 5 },
+  { name: "Interfaz de usuario", count: 5 },
+  { name: "Calidad del MVP", count: 5 },
+  { name: "Relación con la temática", count: 3 },
+  { name: "Presentación (video)", count: 3 },
+];
 
 const RateTeamCard = ({ team, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -93,10 +111,6 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
     getVote();
   }, [team.submission, userInfo]);
 
-  const RELEVANCIA = 0;
-  const CREATIVIDAD = 1;
-  const PRESENTACION = 2;
-
   const handleRatingChange = (index, newRating) => {
     setRatings((prevRatings) => {
       const newRatings = [...prevRatings];
@@ -109,9 +123,13 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
     axiosApiInstance
       .post(`/mentors/${userInfo.uid}/votes`, {
         submissionId: team.submission,
-        relevancia: ratings[RELEVANCIA],
-        creatividad: ratings[CREATIVIDAD],
-        presentacion: ratings[PRESENTACION],
+        problematica: ratings[PROBLEMATICA],
+        innovacion: ratings[INNOVACION],
+        impacto: ratings[IMPACTO],
+        interfaz: ratings[INTERFAZ],
+        mvp: ratings[MVP],
+        tematica: ratings[TEMATICA],
+        video: ratings[VIDEO],
         descripcion: feedback,
       })
       .then(() => {
@@ -220,25 +238,24 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
               Calificar equipo:
             </Text>
             <Accordion width="full" defaultIndex={[]} allowMultiple>
-              {["Relevancia", "Creatividad", "Presentación"].map(
-                (category, index) => (
-                  <RateCategoryCard
-                    key={index}
-                    name={category}
-                    onCategoryRatingChanged={(newRating) =>
-                      handleRatingChange(index, newRating)
-                    }
-                  />
-                )
-              )}
+              {criteria.map((category, index) => (
+                <RateCategoryCard
+                  key={index}
+                  name={category.name}
+                  count={category.count}
+                  onCategoryRatingChanged={(newRating) =>
+                    handleRatingChange(index, newRating)
+                  }
+                />
+              ))}
             </Accordion>
             <VStack width="full" align="end">
               <Spacer></Spacer>
-              <Input
+              <Textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="Feedback"
-              ></Input>
+              ></Textarea>
               <Button onClick={handleSubmit} mt={2}>
                 Enviar
               </Button>
