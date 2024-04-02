@@ -317,7 +317,7 @@ const TeamRating = () => {
           alignItems="start"
           verticalAlign="top"
         >
-          {teams &&
+          {/* {teams &&
             teams.map((team, index) => {
               return (
                 <RateTeamCard
@@ -328,7 +328,23 @@ const TeamRating = () => {
                   team={{ number: index + 1, ...team }}
                 ></RateTeamCard>
               );
-            })}
+            })} */}
+          {teams.length && teams ?
+            teams.map((team, index) => {
+              return (
+                <RateTeamCard
+                  key={index}
+                  mx="2%"
+                  my="1%"
+                  width={["100%", "80%", "45%", "40%", "25%"]}
+                  team={{ number: index + 1, ...team }}
+                ></RateTeamCard>
+              );
+            }) :
+            <VStack w="full">
+              <HStack w="full"><Text>No hay proyectos para corregir.</Text></HStack>
+            </VStack>
+          }
         </Flex>
       )}
     </VStack>
