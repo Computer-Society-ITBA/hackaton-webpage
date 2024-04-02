@@ -307,10 +307,11 @@ const TeamRating = () => {
         }
 
         setTeams(() => [...updatedTeams]);
+      } catch (e) {
+        //
       } finally {
         setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     getTeams();
@@ -318,18 +319,36 @@ const TeamRating = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  if (isLoading) {
+    return (
+      <Center width="full">
+        <CircularProgress
+          isIndeterminate
+          color="CSOrange"
+          size="40%"
+        ></CircularProgress>
+      </Center>
+    );
+  }
+
   return (
     <>
-      <VStack align="start" width="full">
-        {isLoading ? (
-          <Center width="full">
-            <CircularProgress
-              isIndeterminate
-              color="CSOrange"
-              size="40%"
-            ></CircularProgress>
-          </Center>
-        ) : (
+      {!teams || teams.length === 0 ? (
+        <VStack p="4%">
+          <Heading
+            size={HeadingSize}
+            py="2%"
+            textAlign="center"
+            color="CSGreen"
+          >
+            ¡Nos estamos preparando!
+          </Heading>
+          <Text size={TextSize} textAlign="center">
+            Aún no están disponibles los proyectos para corregir
+          </Text>
+        </VStack>
+      ) : (
+        <VStack align="start" width="full">
           <Flex
             width="full"
             direction="row"
@@ -351,8 +370,9 @@ const TeamRating = () => {
                 );
               })}
           </Flex>
-        )}
-      </VStack>
+        </VStack>
+      )}
+
       <Button
         onClick={onOpen}
         mt={2}
