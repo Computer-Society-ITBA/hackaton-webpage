@@ -74,9 +74,13 @@ async function getMentorSubmissions(mentorId) {
 async function mentorVoteSubmission(
     mentorId,
     submissionId,
-    relevancia,
-    creatividad,
-    presentacion,
+    problematica,
+    innovacion,
+    impacto,
+    interfaz,
+    mvp,
+    tematica,
+    video,
     descripcion
 ) {
     try {
@@ -107,11 +111,15 @@ async function mentorVoteSubmission(
 
         const data = {
             userId: mentorId,
-            submissionId: submissionId,
-            relevancia: relevancia,
-            creatividad: creatividad,
-            presentacion: presentacion,
-            descripcion: descripcion,
+            submissionId,
+            problematica,
+            innovacion,
+            impacto,
+            interfaz,
+            mvp,
+            tematica,
+            video,
+            descripcion,
         };
 
         await db.collection(`/${VOTE_COLLECTION}`).add(data);
