@@ -53,23 +53,18 @@ router.post(
     }
 );
 
-router.get(
-    "/",
-    authMiddleware,
-    roleMiddleware(ROLE_ADMIN),
-    async (_, res) => {
-        try {
-            const submissions = await getSubmissions();
-            if (submissions.length === 0)
-                return res.status(204).send("No submissions found");
+router.get("/", authMiddleware, roleMiddleware(ROLE_ADMIN), async (_, res) => {
+    try {
+        const submissions = await getSubmissions();
+        if (submissions.length === 0)
+            return res.status(204).send("No submissions found");
 
-            res.status(200).send(submissions);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send(err);
-        }
+        res.status(200).send(submissions);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err);
     }
-);
+});
 
 router.get("/:submissionId", async (req, res) => {
     const submissionId = req.params.submissionId;
