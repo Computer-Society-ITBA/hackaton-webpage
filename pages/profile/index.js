@@ -47,8 +47,8 @@ const Home = () => {
         setView(<UserView userInfo={userInfo} />);
         break;
       case "mentor":
-        setView(<MentorView token={userToken}/>);
-        break
+        setView(<MentorView token={userToken} />);
+        break;
       default:
         // SET TO PROFILE VIEW
         setView(<TODOView />);

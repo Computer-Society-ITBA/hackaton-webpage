@@ -1,10 +1,8 @@
 import {
   AddIcon,
-  CheckCircleIcon,
   CheckIcon,
   CloseIcon,
   EmailIcon,
-  Icon,
   LockIcon,
   MinusIcon,
   StarIcon,
@@ -39,13 +37,13 @@ import {
   Input,
   InputRightElement,
   Box,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
 import styled from "@emotion/styled";
-import { MultiSelect } from 'primereact/multiselect';
-import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";        
+import { MultiSelect } from "primereact/multiselect";
+import "primereact/resources/themes/bootstrap4-dark-blue/theme.css";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -239,7 +237,7 @@ const TeamCard = ({
 const TeamSelection = ({ token }) => {
   const [teams, setTeams] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const modifyTeamQualification = (index, uid, qualification) => {
     return async () => {
       try {
@@ -250,8 +248,7 @@ const TeamSelection = ({ token }) => {
         aux[index].qualified = qualification;
         setTeams(aux);
       } catch (err) {
-        console.log(err);
-        throw err;
+        alert("Error in qualification");
       }
     };
   };
@@ -288,7 +285,7 @@ const TeamSelection = ({ token }) => {
         const users = (await axiosApiInstance.get("/users")).data.users;
         setTeams(users.filter((user) => user.role === "user"));
       } catch (err) {
-        console.log(err);
+        alert("Error getting users");
       }
       //dejamos a los participantes solo
 
@@ -299,11 +296,11 @@ const TeamSelection = ({ token }) => {
 
   return (
     <VStack align="start" width="full">
-      <HStack align="start" width="full" >
+      <HStack align="start" width="full">
         <Heading textAlign="">
           {`Equipos aceptados: ${teams.filter((team) => team.qualified).length}`}
         </Heading>
-        <Spacer/>
+        <Spacer />
         <Button mt={2} mr={2} onClick={() => getUsersReport(false)}>
           Reporte Todos
         </Button>
@@ -311,7 +308,7 @@ const TeamSelection = ({ token }) => {
           Reporte Aceptados
         </Button>
       </HStack>
-      
+
       {isLoading ? (
         <Center width="full">
           <CircularProgress
@@ -371,7 +368,6 @@ const RegisterMentorButton = styled(Button)`
   }
 `;
 
-
 const MentorRegistration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -386,31 +382,29 @@ const MentorRegistration = () => {
 
   const registerMentor = async (name, email, password) => {
     setIsLoading(true);
-    axiosApiInstance.post(
-      "/mentors", 
-      {
+    axiosApiInstance
+      .post("/mentors", {
         email: email,
         password: password,
         name: name,
-      }
-    )
-    .then(() => {
-      toast({
-        title: "Mentor registrado correctamente",
-        status: "success",
-        duration: 3000,
+      })
+      .then(() => {
+        toast({
+          title: "Mentor registrado correctamente",
+          status: "success",
+          duration: 3000,
+        });
+      })
+      .catch(() => {
+        toast({
+          title: "Error registrando mentor",
+          status: "error",
+          duration: 3000,
+        });
+        setErorrMessage(
+          "Ocurrio un error, revisa el que el nombre, el email y la contraseña sean correctos"
+        );
       });
-    })
-    .catch(() => {
-      toast({
-        title: "Error registrando mentor",
-        status: "error",
-        duration: 3000,
-      });
-      setErorrMessage(
-        "Ocurrio un error, revisa el que el nombre, el email y la contraseña sean correctos"
-      );
-    })
     setIsLoading(false);
   };
 
@@ -501,10 +495,14 @@ const MentorRegistration = () => {
       </Flex>
     </VStack>
   );
+};
 
-}
-
-const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) => {
+const SubmissionCard = ({
+  submission,
+  mentors,
+  setMentors,
+  ...extendedProps
+}) => {
   const { isOpen, onToggle } = useDisclosure();
 
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
@@ -512,14 +510,16 @@ const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) =
     setSelectedMentors(selectedMentors);
 
     for (const mentor of mentors) {
-      mentor.submissions = mentor.submissions.filter(sub => sub !== submission.submission.id)
+      mentor.submissions = mentor.submissions.filter(
+        (sub) => sub !== submission.submission.id
+      );
 
-      if (selectedMentors.map(mentor => mentor.id).includes(mentor.id)) {
+      if (selectedMentors.map((mentor) => mentor.id).includes(mentor.id)) {
         mentor.submissions.push(submission.submission.id);
       }
     }
 
-    setMentors(mentors)
+    setMentors(mentors);
   };
   return (
     <VStack
@@ -550,7 +550,7 @@ const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) =
           ></IconButton>
         </HStack>
       </Flex>
-      
+
       <Box as={Collapse} in={isOpen} animateOpacity w="100%">
         <VStack width="full" align="start">
           <Text fontSize={TextSize} textAlign="start" color="CSOrange">
@@ -563,20 +563,19 @@ const SubmissionCard = ({ submission, mentors, setMentors, ...extendedProps }) =
             Asignar Mentores:
           </Text>
         </VStack>
-        <MultiSelect 
-            value={selectedMentors} 
-            onChange={(e) => handleSelectedMentorsChange(e.value)} 
-            options={mentors} 
-            optionLabel="name" 
-            placeholder="Seleccione los mentores" 
-            display="chip" 
-            className="w-full md:w-20rem" 
-            />
+        <MultiSelect
+          value={selectedMentors}
+          onChange={(e) => handleSelectedMentorsChange(e.value)}
+          options={mentors}
+          optionLabel="name"
+          placeholder="Seleccione los mentores"
+          display="chip"
+          className="w-full md:w-20rem"
+        />
       </Box>
     </VStack>
   );
-}
-
+};
 
 const MentorAssignment = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -585,76 +584,83 @@ const MentorAssignment = () => {
 
   const toast = useToast();
   useEffect(() => {
-      const getTeams = async (mentors) => {
-        try {
-          const response = await axiosApiInstance.get(`/submissions`);
-          const submissions = response.data;
-          const updatedTeams = [];
-          for (const sub of submissions) {
-            try {
-              const submissionReq = await axiosApiInstance.get(`/submissions/${sub.id}`)
-              const submissionObj = submissionReq.data
-              const team = await axiosApiInstance.get(`/users/${submissionObj.userId}`)
-              const teamData = team.data
+    const getTeams = async (mentors) => {
+      try {
+        const response = await axiosApiInstance.get(`/submissions`);
+        const submissions = response.data;
+        const updatedTeams = [];
+        for (const sub of submissions) {
+          try {
+            const submissionReq = await axiosApiInstance.get(
+              `/submissions/${sub.id}`
+            );
+            const submissionObj = submissionReq.data;
+            const team = await axiosApiInstance.get(
+              `/users/${submissionObj.userId}`
+            );
+            const teamData = team.data;
 
-              const submissionMentors = [];
+            const submissionMentors = [];
 
-              for (const mentor of mentors) {
-                if (mentor.submissions.includes(sub.id)) {
-                  submissionMentors.push(mentor);
-                }
+            for (const mentor of mentors) {
+              if (mentor.submissions.includes(sub.id)) {
+                submissionMentors.push(mentor);
               }
-
-              const teamObj = {
-                name: teamData.name,
-                email: teamData.email,
-                teamDescription: teamData.teamDescription,
-                githubLink: submissionObj.githubLink,
-                youtubeLink: submissionObj.youtubeLink,
-                submission: sub,
-                mentors: submissionMentors,
-              }
-  
-              updatedTeams.push(teamObj);
-  
-            } catch (error) {
-              console.log(error)
             }
+
+            const teamObj = {
+              name: teamData.name,
+              email: teamData.email,
+              teamDescription: teamData.teamDescription,
+              githubLink: submissionObj.githubLink,
+              youtubeLink: submissionObj.youtubeLink,
+              submission: sub,
+              mentors: submissionMentors,
+            };
+
+            updatedTeams.push(teamObj);
+          } catch (error) {
+            alert("Error getting teams");
           }
-  
-          setTeams(prevTeams => [...updatedTeams]);
-  
-        } catch (err) {
-          console.log(err);
         }
-      }
-      
-      const getMentors = async () => {
-        try{
-          const response = await axiosApiInstance.get(`/mentors`)
-          const mentors = response.data.mentors
-          setMentors(prevMentors => [...mentors])
 
-          return mentors;
-        }
-        catch(err){
-          console.log(err)
-        }
+        setTeams((prevTeams) => [...updatedTeams]);
+      } catch (err) {
+        alert("Error getting submissions");
       }
+    };
 
-      getMentors().then(mentors => getTeams(mentors));
-    }, []);
+    const getMentors = async () => {
+      try {
+        const response = await axiosApiInstance.get(`/mentors`);
+        const mentors = response.data.mentors;
+        setMentors((prevMentors) => [...mentors]);
+
+        return mentors;
+      } catch (err) {
+        alert("Error getting mentors");
+      }
+    };
+
+    setIsLoading(true);
+    getMentors().then((mentors) =>
+      getTeams(mentors).finally(() => setIsLoading(false))
+    );
+  }, []);
 
   const handleSaveChanges = (mentors) => {
-    const requests=[]
+    const requests = [];
     for (const mentor of mentors) {
-      const request = axiosApiInstance.put(`/mentors/${mentor.id}/submissions`, {
-        submissions: mentor.submissions
-      })
-    
+      const request = axiosApiInstance.put(
+        `/mentors/${mentor.id}/submissions`,
+        {
+          submissions: mentor.submissions,
+        }
+      );
+
       requests.push(request);
     }
-    
+
     Promise.all(requests)
       .then(() => {
         toast({
@@ -663,13 +669,14 @@ const MentorAssignment = () => {
           duration: 3000,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         toast({
           title: "Error guardando cambios",
           status: "error",
           duration: 3000,
-        })});
-  }
+        });
+      });
+  };
 
   const getVotingReport = () => {
     axiosApiInstance
@@ -696,36 +703,36 @@ const MentorAssignment = () => {
   return (
     <HStack width="full" align="start" justifyContent="start">
       <VStack align="start" width="full">
-      {isLoading ? (
-        <Center width="full">
+        {isLoading ? (
+          <Center width="full">
             <CircularProgress
               isIndeterminate
               color="CSOrange"
               size="40%"
-              ></CircularProgress>
+            ></CircularProgress>
           </Center>
         ) : (
           <Flex
-          width="full"
-          direction="row"
-          flexWrap="wrap"
-          justifyContent="start"
-          alignItems="start"
-          verticalAlign="top"
+            width="full"
+            direction="row"
+            flexWrap="wrap"
+            justifyContent="start"
+            alignItems="start"
+            verticalAlign="top"
           >
             {teams.map((submission, index) => {
               return (
                 <SubmissionCard
-                key={index}
-                mx="2%"
-                my="1%"
-                width={["100%", "80%", "45%", "40%", "25%"]}
-                submission={{ number: index + 1, ...submission }}
-                mentors={mentors}
-                setMentors={setMentors}
+                  key={index}
+                  mx="2%"
+                  my="1%"
+                  width={["100%", "80%", "45%", "40%", "25%"]}
+                  submission={{ number: index + 1, ...submission }}
+                  mentors={mentors}
+                  setMentors={setMentors}
                 ></SubmissionCard>
-                );
-              })}
+              );
+            })}
           </Flex>
         )}
       </VStack>
@@ -738,7 +745,6 @@ const MentorAssignment = () => {
     </HStack>
   );
 };
-
 
 const AdminView = ({ token }) => {
   return (
