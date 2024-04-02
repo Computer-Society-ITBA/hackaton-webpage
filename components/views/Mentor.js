@@ -286,7 +286,6 @@ const TeamRating = () => {
         }
 
         setTeams(() => [...updatedTeams]);
-
       } catch (err) {
         console.log(err);
       }
@@ -298,55 +297,45 @@ const TeamRating = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  return (
+  return isLoading ? (
+    <Center width="full">
+      <CircularProgress
+        isIndeterminate
+        color="CSOrange"
+        size="40%"
+      ></CircularProgress>
+    </Center>
+  ) : teams && teams.length ? (
     <VStack align="start" width="full">
-      {isLoading ? (
-        <Center width="full">
-          <CircularProgress
-            isIndeterminate
-            color="CSOrange"
-            size="40%"
-          ></CircularProgress>
-        </Center>
-      ) : (
-        <Flex
-          width="full"
-          direction="row"
-          flexWrap="wrap"
-          justifyContent="start"
-          alignItems="start"
-          verticalAlign="top"
-        >
-          {/* {teams &&
-            teams.map((team, index) => {
-              return (
-                <RateTeamCard
-                  key={index}
-                  mx="2%"
-                  my="1%"
-                  width={["100%", "80%", "45%", "40%", "25%"]}
-                  team={{ number: index + 1, ...team }}
-                ></RateTeamCard>
-              );
-            })} */}
-          {teams.length && teams ?
-            teams.map((team, index) => {
-              return (
-                <RateTeamCard
-                  key={index}
-                  mx="2%"
-                  my="1%"
-                  width={["100%", "80%", "45%", "40%", "25%"]}
-                  team={{ number: index + 1, ...team }}
-                ></RateTeamCard>
-              );
-            }) :
-            <VStack w="full">
-              <HStack w="full"><Text>No hay proyectos para corregir.</Text></HStack>
-            </VStack>
-          }
-        </Flex>
-      )}
+      <Flex
+        width="full"
+        direction="row"
+        flexWrap="wrap"
+        justifyContent="start"
+        alignItems="start"
+        verticalAlign="top"
+      >
+        {teams.map((team, index) => {
+          return (
+            <RateTeamCard
+              key={index}
+              mx="2%"
+              my="1%"
+              width={["100%", "80%", "45%", "40%", "25%"]}
+              team={{ number: index + 1, ...team }}
+            ></RateTeamCard>
+          );
+        })}
+      </Flex>
+    </VStack>
+  ) : (
+    <VStack p="4%">
+      <Heading size={HeadingSize} py="2%" textAlign="center" color="CSGreen">
+        ¡Nos estamos preparando!
+      </Heading>
+      <Text size={TextSize} textAlign="center">
+        Aún no están disponibles los proyectos para corregir
+      </Text>
     </VStack>
   );
 };
