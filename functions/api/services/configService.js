@@ -9,7 +9,9 @@ async function getDateConfig(config) {
 
     const now = Date.now();
 
-    return now >= start && now <= end;
+    const enabled = now >= start && now <= end;
+
+    return { start, end, enabled };
 }
 
 async function inscriptionsEnabled() {
