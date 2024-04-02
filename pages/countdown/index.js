@@ -7,21 +7,6 @@ import Countdown from "react-countdown";
 import { loadFull } from "tsparticles";
 import useStore from "../../config/storeConfig";
 
-function fmt(n) {
-  return n.toLocaleString("en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false,
-  });
-}
-
-function renderer({ hours, minutes, seconds, completed }) {
-  return (
-    <span>
-      {fmt(hours)}:{fmt(minutes)}:{fmt(seconds)}
-    </span>
-  );
-}
-
 const Page = () => {
   const [init, setInit] = useState(false);
   const [title, setTitle] = useState();
