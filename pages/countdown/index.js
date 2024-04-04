@@ -34,15 +34,26 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const now = Date.now();
-
-    if (now < submissions?.start) {
+    if (!submissions) {
       setTitle(
         <Text fontSize="8xl" color="#55faa2">
           La competencia comienza en:
         </Text>
       );
-    } else if (now < submissions?.end) {
+      return;
+    }
+
+    const now = new Date();
+    const start = new Date(submissions.start);
+    const end = new Date(submissions.end);
+
+    if (now < start) {
+      setTitle(
+        <Text fontSize="8xl" color="#55faa2">
+          La competencia comienza en:
+        </Text>
+      );
+    } else if (now < end) {
       handleStart();
     } else {
       handleEnd();
