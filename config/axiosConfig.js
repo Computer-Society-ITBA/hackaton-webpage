@@ -37,9 +37,10 @@ axiosApiInstance.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config;
     if (
+      error.response &&
       error.response.status === 401 &&
-      (error.response.data.error.code === "auth/id-token-expired" || 
-      error.response.data.error.code === "auth/argument-error") &&
+      (error.response.data.error.code === "auth/id-token-expired" ||
+        error.response.data.error.code === "auth/argument-error") &&
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
@@ -59,6 +60,7 @@ axiosApiInstance.interceptors.response.use(
   },
   async function (error) {
     if (
+      error.response &&
       error.response.status === 403 &&
       error.response.data.error.code === "config"
     ) {

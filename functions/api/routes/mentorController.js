@@ -75,17 +75,25 @@ router.post(
 
         const {
             submissionId,
-            relevancia,
-            creatividad,
-            presentacion,
+            problematica,
+            innovacion,
+            impacto,
+            interfaz,
+            mvp,
+            tematica,
+            video,
             descripcion,
         } = req.body;
 
         try {
             await vote.validateAsync({
-                relevancia,
-                creatividad,
-                presentacion,
+                problematica,
+                innovacion,
+                impacto,
+                interfaz,
+                mvp,
+                tematica,
+                video,
                 descripcion,
             });
         } catch (err) {
@@ -98,9 +106,13 @@ router.post(
         const data = await mentorVoteSubmission(
             mentorId,
             submissionId,
-            relevancia,
-            creatividad,
-            presentacion,
+            problematica,
+            innovacion,
+            impacto,
+            interfaz,
+            mvp,
+            tematica,
+            video,
             descripcion
         );
 

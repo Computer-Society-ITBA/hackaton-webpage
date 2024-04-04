@@ -1,4 +1,4 @@
-import { Flex, Text, Heading, Image, Link, Grid } from "@chakra-ui/react";
+import { Flex, Heading, Image, Link } from "@chakra-ui/react";
 
 import styled from "@emotion/styled";
 

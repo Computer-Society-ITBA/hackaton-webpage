@@ -1,12 +1,4 @@
-import {
-  Img,
-  VStack,
-  Text,
-  AspectRatio,
-  Flex,
-  Container,
-  Box,
-} from "@chakra-ui/react";
+import { Img, VStack, Text, AspectRatio, Box } from "@chakra-ui/react";
 import styles from "./juryStyle.module.css";
 const TextSize = ["8px", "10px", "12px", "16px", "16px"];
 const Jury = ({ jury, ...extendedProps }) => {

@@ -125,7 +125,7 @@ const Forms = ({ ...extendedProps }) => {
       setBodyError(false);
       setTimeout(() => router.push("/"), 1000);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toastIdRef.current = toast({
         title: "¡Solicitud enviada!",
         status: "success",

@@ -1,4 +1,4 @@
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
+import { AddIcon, MinusIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Heading,
   Tabs,
@@ -23,8 +23,15 @@ import {
   Button,
   Center,
   CircularProgress,
-  Input,
   useToast,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  OrderedList,
+  ListItem,
+  Textarea,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { axiosApiInstance } from "../../config/axiosConfig";
@@ -34,8 +41,9 @@ import useStore from "../../config/storeConfig";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
+const ModalSize = ["sm", "md", "lg", "xl", "2xl"];
 
-const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
+const RateCategoryCard = ({ name, count, onCategoryRatingChanged }) => {
   return (
     <AccordionItem>
       <h2>
@@ -48,7 +56,7 @@ const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
       <AccordionPanel>
         <VStack align="start" width="full">
           <ReactStars
-            count={5}
+            count={count}
             onChange={onCategoryRatingChanged}
             size={24}
             activeColor="#ffd700"
@@ -58,6 +66,24 @@ const RateCategoryCard = ({ name, onCategoryRatingChanged }) => {
     </AccordionItem>
   );
 };
+
+const PROBLEMATICA = 0;
+const INNOVACION = 1;
+const IMPACTO = 2;
+const INTERFAZ = 3;
+const MVP = 4;
+const TEMATICA = 5;
+const VIDEO = 6;
+
+const criteria = [
+  { name: "Problemática", count: 5 },
+  { name: "Innovación y oportunidad", count: 5 },
+  { name: "Impacto", count: 5 },
+  { name: "Interfaz de usuario", count: 5 },
+  { name: "Calidad del MVP", count: 5 },
+  { name: "Relación con la temática", count: 3 },
+  { name: "Presentación (video)", count: 3 },
+];
 
 const RateTeamCard = ({ team, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -85,10 +111,6 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
     getVote();
   }, [team.submission, userInfo]);
 
-  const RELEVANCIA = 0;
-  const CREATIVIDAD = 1;
-  const PRESENTACION = 2;
-
   const handleRatingChange = (index, newRating) => {
     setRatings((prevRatings) => {
       const newRatings = [...prevRatings];
@@ -101,9 +123,13 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
     axiosApiInstance
       .post(`/mentors/${userInfo.uid}/votes`, {
         submissionId: team.submission,
-        relevancia: ratings[RELEVANCIA],
-        creatividad: ratings[CREATIVIDAD],
-        presentacion: ratings[PRESENTACION],
+        problematica: ratings[PROBLEMATICA],
+        innovacion: ratings[INNOVACION],
+        impacto: ratings[IMPACTO],
+        interfaz: ratings[INTERFAZ],
+        mvp: ratings[MVP],
+        tematica: ratings[TEMATICA],
+        video: ratings[VIDEO],
         descripcion: feedback,
       })
       .then(() => {
@@ -212,25 +238,24 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
               Calificar equipo:
             </Text>
             <Accordion width="full" defaultIndex={[]} allowMultiple>
-              {["Relevancia", "Creatividad", "Presentación"].map(
-                (category, index) => (
-                  <RateCategoryCard
-                    key={index}
-                    name={category}
-                    onCategoryRatingChanged={(newRating) =>
-                      handleRatingChange(index, newRating)
-                    }
-                  />
-                )
-              )}
+              {criteria.map((category, index) => (
+                <RateCategoryCard
+                  key={index}
+                  name={category.name}
+                  count={category.count}
+                  onCategoryRatingChanged={(newRating) =>
+                    handleRatingChange(index, newRating)
+                  }
+                />
+              ))}
             </Accordion>
             <VStack width="full" align="end">
               <Spacer></Spacer>
-              <Input
+              <Textarea
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 placeholder="Feedback"
-              ></Input>
+              ></Textarea>
               <Button onClick={handleSubmit} mt={2}>
                 Enviar
               </Button>
@@ -247,7 +272,7 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
 const TeamRating = () => {
   const userInfo = useStore((state) => state.userInfo);
   const [teams, setTeams] = useState([]);
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     const getTeams = async () => {
       setIsLoading(true);
@@ -260,37 +285,33 @@ const TeamRating = () => {
         const updatedTeams = [];
 
         for (const sub of submissions) {
-          try {
-            const submissionReq = await axiosApiInstance.get(
-              `/submissions/${sub}`
-            );
-            const submissionObj = submissionReq.data;
+          const submissionReq = await axiosApiInstance.get(
+            `/submissions/${sub}`
+          );
+          const submissionObj = submissionReq.data;
 
-            const team = await axiosApiInstance.get(
-              `/users/${submissionObj.userId}`
-            );
-            const teamData = team.data;
-            const teamObj = {
-              name: teamData.name,
-              email: teamData.email,
-              teamDescription: submissionObj.description,
-              githubLink: submissionObj.repo,
-              youtubeLink: submissionObj.video,
-              submission: sub,
-            };
+          const team = await axiosApiInstance.get(
+            `/users/${submissionObj.userId}`
+          );
+          const teamData = team.data;
+          const teamObj = {
+            name: teamData.name,
+            email: teamData.email,
+            teamDescription: submissionObj.description,
+            githubLink: submissionObj.repo,
+            youtubeLink: submissionObj.video,
+            submission: sub,
+          };
 
-            updatedTeams.push(teamObj);
-          } catch (error) {
-            console.log(error);
-          }
+          updatedTeams.push(teamObj);
         }
 
         setTeams(() => [...updatedTeams]);
-
-      } catch (err) {
-        console.log(err);
+      } catch (e) {
+        //
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     getTeams();
@@ -298,40 +319,330 @@ const TeamRating = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  if (isLoading) {
+    return (
+      <Center width="full">
+        <CircularProgress
+          isIndeterminate
+          color="CSOrange"
+          size="40%"
+        ></CircularProgress>
+      </Center>
+    );
+  }
+
   return (
-    <VStack align="start" width="full">
-      {isLoading ? (
-        <Center width="full">
-          <CircularProgress
-            isIndeterminate
-            color="CSOrange"
-            size="40%"
-          ></CircularProgress>
-        </Center>
+    <>
+      {!teams || teams.length === 0 ? (
+        <VStack p="4%">
+          <Heading
+            size={HeadingSize}
+            py="2%"
+            textAlign="center"
+            color="CSGreen"
+          >
+            ¡Nos estamos preparando!
+          </Heading>
+          <Text size={TextSize} textAlign="center">
+            Aún no están disponibles los proyectos para corregir
+          </Text>
+        </VStack>
       ) : (
-        <Flex
-          width="full"
-          direction="row"
-          flexWrap="wrap"
-          justifyContent="start"
-          alignItems="start"
-          verticalAlign="top"
-        >
-          {teams &&
-            teams.map((team, index) => {
-              return (
-                <RateTeamCard
-                  key={index}
-                  mx="2%"
-                  my="1%"
-                  width={["100%", "80%", "45%", "40%", "25%"]}
-                  team={{ number: index + 1, ...team }}
-                ></RateTeamCard>
-              );
-            })}
-        </Flex>
+        <VStack align="start" width="full">
+          <Flex
+            width="full"
+            direction="row"
+            flexWrap="wrap"
+            justifyContent="start"
+            alignItems="start"
+            verticalAlign="top"
+          >
+            {teams &&
+              teams.map((team, index) => {
+                return (
+                  <RateTeamCard
+                    key={index}
+                    mx="2%"
+                    my="1%"
+                    width={["100%", "80%", "45%", "40%", "25%"]}
+                    team={{ number: index + 1, ...team }}
+                  ></RateTeamCard>
+                );
+              })}
+          </Flex>
+        </VStack>
       )}
-    </VStack>
+
+      <Button
+        onClick={onOpen}
+        mt={2}
+        style={{ position: "absolute", top: "50px", right: "50px" }}
+      >
+        Información de los criterios
+      </Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        scrollBehavior="inside"
+        size={ModalSize}
+        isCentered
+      >
+        <ModalOverlay />
+        <ModalContent
+          backgroundColor="#1C1C1C"
+          borderWidth="2px"
+          borderColor="CSGreen"
+        >
+          <ModalHeader>
+            <HStack>
+              <Heading fontSize={HeadingSize}>Criterios de puntuación</Heading>
+              <Spacer></Spacer>
+              <IconButton onClick={onClose} icon={<CloseIcon />}></IconButton>
+            </HStack>
+          </ModalHeader>
+          <ModalBody>
+            <VStack align="start" width="full">
+              <Text fontSize={TextSize} textAlign="start">
+                A continuación se detalla qué significa cada puntuación para
+                cada categoría
+              </Text>
+              <Accordion width="full" defaultIndex={[]} allowMultiple>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Problemática</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        No se menciona el problema que se quiere resolver.
+                      </ListItem>
+                      <ListItem>
+                        Se mencionan algunos ejemplos del problema, sin explicar
+                        el problema en general.
+                      </ListItem>
+                      <ListItem>
+                        Se explica el problema, pero sin ejemplos concretos del
+                        mismo.
+                      </ListItem>
+                      <ListItem>
+                        Se explica la problemática y se utilizan ejemplos, pero
+                        estos no se relacionan con la problemática definida.
+                      </ListItem>
+                      <ListItem>
+                        Se explica la problemática y se utilizan ejemplos claros
+                        sobre su presencia.{" "}
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Innovación y oportunidad</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        La idea ya es implementada completamente por una
+                        empresa, y el público ya la utiliza.
+                      </ListItem>
+                      <ListItem>
+                        La idea ya es implementada completamente por una
+                        empresa, pero esta tiene público reducido.
+                      </ListItem>
+                      <ListItem>
+                        La idea ya es parcialmente implementada por una empresa,
+                        pero lo propuesto es un incremento sobre esta.
+                      </ListItem>
+                      <ListItem>
+                        La idea es semejante a la implementada por otras
+                        empresas, pero ofrece un enfoque distinto para
+                        implementar la solución.
+                      </ListItem>
+                      <ListItem>
+                        La idea es disruptiva y no es implementada por otra
+                        empresa.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Impacto</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        El proyecto no es aplicable a los usuarios con la
+                        problemática en el futuro.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto no es aplicable actualmente a los usuarios
+                        con la problemática, pero podía serlo en un futuro (por
+                        ejemplo, por el desarrollo de una tecnología
+                        complementaria).
+                      </ListItem>
+                      <ListItem>
+                        El proyecto es aplicable actualmente a los usuarios con
+                        la problemática, pero su uso se verá limitado por
+                        factores ajenos a lo económico.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto es aplicable actualmente a los usuarios con
+                        la problemática, pero su uso se verá limitado por
+                        factores económicos (por ejemplo, por el costo asociado
+                        al usuario).
+                      </ListItem>
+                      <ListItem>
+                        El proyecto es aplicable actualmente a los usuarios con
+                        la problemática, y su adopción no será limitada por
+                        factores económicos.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Interfaz de usuario</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        La interfaz no permite las acciones mencionadas en la
+                        solución (por ejemplo, se tienen que subir archivos pero
+                        no se puede hacer mediante la aplicación).
+                      </ListItem>
+                      <ListItem>
+                        La interfaz permite la mayoría de las acciones, pero
+                        muchas de ellas no informan lo sucedido al usuario.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz permite la mayoría de las acciones y proveen
+                        feedback claro, pero su acceso es poco intuitivo.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz permite la mayoría de las acciones con
+                        acceso intuitivo y feedback claro, pero no es
+                        consistente a lo largo de la aplicación.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz permite la mayoría de las acciones con
+                        acceso intuitivo y feedback claro, manteniendo
+                        consistencia en toda la aplicación.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Calidad del MVP</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        El MVP no ofrece gran parte de la funcionalidad
+                        propuesta para resolver la problemática.
+                      </ListItem>
+                      <ListItem>
+                        El MVP ofrece gran parte de la funcionalidad propuesta
+                        para resolver la problemática, pero lo hace con notables
+                        problemas que no son reconocidos por el equipo.
+                      </ListItem>
+                      <ListItem>
+                        El MVP ofrece gran parte de la funcionalidad propuesta
+                        para resolver la problemática, tiene notables problemas
+                        pero la mayoría de estos son reconocidos por el equipo
+                        como punto de mejora.
+                      </ListItem>
+                      <ListItem>
+                        El MVP ofrece gran parte de la funcionalidad propuesta
+                        para resolver la problemática, y tiene problemas mínimos
+                        para resolver.
+                      </ListItem>
+                      <ListItem>
+                        El MVP implementa toda la funcionalidad propuesta para
+                        resolver la problemática, y podría comenzar a utilizarse
+                        con cambios mínimos.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Relación con la temática</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        El proyecto no se relaciona con la temática bajo ningún
+                        enfoque.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto se relaciona con la temática pero bajo un
+                        enfoque rebuscado.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto se relaciona con la temática de manera
+                        clara.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Presentación (video)</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        La presentación es difícil de seguir, no hay un hilo
+                        conductor claro sobre el proyecto desarrollado.
+                      </ListItem>
+                      <ListItem>
+                        La presentación tiene un hilo conductor, pero el video o
+                        el audio son poco útiles para demostrar la solución.
+                      </ListItem>
+                      <ListItem>
+                        La presentación tiene un hilo conductor, con video y
+                        audio que muestran claramente el funcionamiento de la
+                        solución.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
+            </VStack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 

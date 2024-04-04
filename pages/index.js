@@ -15,7 +15,6 @@ import {
   Stack,
   Input,
   Textarea,
-  SimpleGrid,
   StackDivider,
   useToast,
   Box,
@@ -30,28 +29,28 @@ import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
 
-const Subtitle = styled(Text)`
-  font-size: 14px;
-  text-transform: uppercase;
-  color: #b1b7c2;
-`;
+// const Subtitle = styled(Text)`
+//   font-size: 14px;
+//   text-transform: uppercase;
+//   color: #b1b7c2;
+// `;
 
-const Separator = styled.span`
-  border-left: 1px solid #b1b7c2;
-  margin-left: 16px;
-  margin-right: 16px;
-`;
+// const Separator = styled.span`
+//   border-left: 1px solid #b1b7c2;
+//   margin-left: 16px;
+//   margin-right: 16px;
+// `;
 
-const Badge = styled.span`
-  color: #2f323a;
-  background-color: #bdc4cf;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 5px 6px;
-  font-size: 13px;
-  font-weight: 500;
-  margin-right: 8px;
-`;
+// const Badge = styled.span`
+//   color: #2f323a;
+//   background-color: #bdc4cf;
+//   text-transform: uppercase;
+//   border-radius: 4px;
+//   padding: 5px 6px;
+//   font-size: 13px;
+//   font-weight: 500;
+//   margin-right: 8px;
+// `;
 
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
@@ -368,60 +367,60 @@ const MentorsSection = ({ ...extendedProps }) => {
   );
 };
 
-const WorkshopsSection = ({ ...extendedProps }) => {
-  const workshopsPhotos = [
-    "/images/course_example.jpg",
-    "/images/course_example.jpg",
-    "/images/course_example.jpg",
-    "/images/course_example.jpg",
-    "/images/course_example.jpg",
-  ];
-  return (
-    <Stack
-      direction={["column", "column", "row", "row", "row"]}
-      backgroundColor="#24335d"
-      width="full"
-      paddingY="8%"
-      {...extendedProps}
-    >
-      <VStack
-        alignItems="start"
-        width={["100%", "100%", "40%", "40%", "40%"]}
-        pl="6%"
-        spacing="4%"
-      >
-        <Heading color="CSGreen" size={HeadingSize}>
-          Workshops
-        </Heading>
-        <Text fontSize={TextSize} width="80%">
-          Workshops en vivo con .... Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
-        </Text>
-      </VStack>
-      <Grid
-        p="2%"
-        templateColumns={[
-          "repeat(2, 1fr)",
-          "repeat(2, 1fr)",
-          "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(3, 1fr)",
-        ]}
-        gap="4%"
-      >
-        {workshopsPhotos.map((photo, index) => {
-          return (
-            <GridItem key={index}>
-              <Img src={photo} alt="course image"></Img>
-            </GridItem>
-          );
-        })}
-      </Grid>
-    </Stack>
-  );
-};
+// const WorkshopsSection = ({ ...extendedProps }) => {
+//   const workshopsPhotos = [
+//     "/images/course_example.jpg",
+//     "/images/course_example.jpg",
+//     "/images/course_example.jpg",
+//     "/images/course_example.jpg",
+//     "/images/course_example.jpg",
+//   ];
+//   return (
+//     <Stack
+//       direction={["column", "column", "row", "row", "row"]}
+//       backgroundColor="#24335d"
+//       width="full"
+//       paddingY="8%"
+//       {...extendedProps}
+//     >
+//       <VStack
+//         alignItems="start"
+//         width={["100%", "100%", "40%", "40%", "40%"]}
+//         pl="6%"
+//         spacing="4%"
+//       >
+//         <Heading color="CSGreen" size={HeadingSize}>
+//           Workshops
+//         </Heading>
+//         <Text fontSize={TextSize} width="80%">
+//           Workshops en vivo con .... Lorem ipsum dolor sit amet, consectetur
+//           adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+//           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+//           ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
+//         </Text>
+//       </VStack>
+//       <Grid
+//         p="2%"
+//         templateColumns={[
+//           "repeat(2, 1fr)",
+//           "repeat(2, 1fr)",
+//           "repeat(2, 1fr)",
+//           "repeat(3, 1fr)",
+//           "repeat(3, 1fr)",
+//         ]}
+//         gap="4%"
+//       >
+//         {workshopsPhotos.map((photo, index) => {
+//           return (
+//             <GridItem key={index}>
+//               <Img src={photo} alt="course image"></Img>
+//             </GridItem>
+//           );
+//         })}
+//       </Grid>
+//     </Stack>
+//   );
+// };
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
@@ -666,7 +665,6 @@ const Form = ({ ...extendedProps }) => {
       setSubjectError(false);
       setBodyError(false);
     } catch (err) {
-      console.log(err);
       toastIdRef.current = toast({
         title: "¡La inscripción fue registrada!",
         status: "success",
@@ -776,7 +774,7 @@ const Form = ({ ...extendedProps }) => {
   );
 };
 const DoubtSection = ({ ...extendedProps }) => {
-  const CS_img = "/images/IEEE_CS.svg";
+  const CSImg = "/images/IEEE_CS.svg";
   return (
     <Stack
       spacing="4%"
@@ -791,7 +789,7 @@ const DoubtSection = ({ ...extendedProps }) => {
         <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
           ¡Contáctanos!
         </Heading>
-        <Img src={CS_img} alt="ITBA IEEE Computer Society image"></Img>
+        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
       </VStack>
       <Form />
     </Stack>

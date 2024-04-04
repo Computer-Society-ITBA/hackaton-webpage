@@ -1,9 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import { Box, Container, Flex, Spacer, VStack } from "@chakra-ui/react";
+import { Container, Flex, Spacer } from "@chakra-ui/react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-import svg from "../../public/images/economia.svg";
 const Main = ({ children, router }) => {
   return (
     // Es feo usar vh, pero con 100% o full no funciona

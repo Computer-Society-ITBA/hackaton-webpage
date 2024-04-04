@@ -8,6 +8,8 @@ const useStore = create(
       role: undefined,
       userInfo: undefined,
       token: undefined,
+      inscriptions: undefined,
+      submissions: undefined,
       inscriptionsEnabled: undefined,
       submissionsEnabled: undefined,
       setToken: (token) => set((state) => ({ token: token })),
@@ -40,8 +42,10 @@ const useStore = create(
         }
 
         set((state) => ({
-          inscriptionsEnabled: config.inscriptionsEnabled,
-          submissionsEnabled: config.submissionsEnabled,
+          inscriptionsEnabled: config.inscriptions.enabled,
+          submissionsEnabled: config.submissions.enabled,
+          inscriptions: config.inscriptions,
+          submissions: config.submissions,
         }));
       },
     }),
