@@ -146,6 +146,7 @@ const UserView = ({ userInfo }) => {
           label="CONTENIDO ADICIONAL"
           name="additionalContent"
           register={register}
+          InputComponent={Textarea}
           errors={errors}
           required={false}
           errorMsg="El contenido adicional ingresado debe tener al menos 5 caracteres"
