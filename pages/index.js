@@ -820,15 +820,62 @@ const Editions = () => {
   );
 };
 
+const ThankYouMessage = () => {
+  return (
+    <Flex
+      direction="row"
+      width="100%"
+      alignItems="center"
+      justifyContent="space-between"
+      height="20%"
+      pt="4%"
+      zIndex={90}
+    >
+      <Img
+        src="/images/Inscribite_1.svg"
+        alt="Decoration"
+        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+      ></Img>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        flexDirection="column"
+      >
+        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="#ffffff">
+          Muchas gracias por participar
+        </Text>
+        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="#ffffff">
+          ¡Nos vemos el año que viene!
+        </Text>
+      </Box>
+      <Img
+        src="/images/Inscribite_2.svg"
+        alt="Decoration"
+        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+      ></Img>
+    </Flex>
+  );
+};
+
 const Home = () => {
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const submissions = useStore((state) => state.submissions);
   const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
 
   useEffect(() => {
     if (inscriptionsEnabled) {
       setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
+      return;
     }
-  }, [inscriptionsEnabled]);
+    const now = new Date();
+    const submissionsEnd = new Date(submissions?.end);
+
+    if (submissionsEnd < now) {
+      setInscriptionsSection(<ThankYouMessage />);
+    }
+  }, [inscriptionsEnabled, submissions]);
 
   return (
     <VStack>

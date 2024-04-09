@@ -42,8 +42,8 @@ const useStore = create(
         }
 
         set((state) => ({
-          inscriptionsEnabled: config.inscriptions.enabled,
-          submissionsEnabled: config.submissions.enabled,
+          inscriptionsEnabled: config.inscriptions?.enabled,
+          submissionsEnabled: config.submissions?.enabled,
           inscriptions: config.inscriptions,
           submissions: config.submissions,
         }));
