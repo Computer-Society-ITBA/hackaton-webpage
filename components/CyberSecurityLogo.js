@@ -2,14 +2,14 @@ const CyberSecurityLogo = ({
                        color,
                        strokeWidth,
                        stroke,
-                       width = 500,
+                       width = 530,
                        height = 500,
                      }) => {
   return (
 
     <svg    width={width}
             height={height}
-            viewBox="0 0 650 500"
+            viewBox="-5 0 480 480"
             fill="none"
             mlns="http://www.w3.org/2000/svg">
 

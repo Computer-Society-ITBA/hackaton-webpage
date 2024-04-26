@@ -5,7 +5,7 @@ import {
   Grid,
   Img,
   VStack,
-  HStack,
+  Stack,
   GridItem,
   StackDivider,
   Box,
@@ -49,11 +49,14 @@ const Categories = ({ ...extendedProps }) => {
     },
   ];
   return (
-    <HStack
+    <Stack
+      direction={['column', 'row']}
       paddingX="10%"
+      paddingY="10%"
+
       w="full"
       justify="center"
-      spacing="20%"
+      spacing="2rem"
       {...extendedProps}
     >
       {categories.map((category) => {
@@ -61,7 +64,7 @@ const Categories = ({ ...extendedProps }) => {
           <CategoryLogo key={category.name} category={category}></CategoryLogo>
         );
       })}
-    </HStack>
+    </Stack>
   );
 };
 
@@ -265,7 +268,7 @@ const Home = () => {
   return (
     <VStack>
       <ParticlesLogo date="31 de marzo, 1 y 2 de abril" />
-      <Categories pt="4%" zIndex={90} />
+      <Categories pt="4%" pb="4%" zIndex={90} />
       <JurySection pt="4%" zIndex={90} />
       <SponsorsSection zIndex={90} pt="4%" />
     </VStack>
