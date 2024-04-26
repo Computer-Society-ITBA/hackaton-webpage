@@ -131,89 +131,6 @@ const JurySection = ({ ...extendedProps }) => {
   );
 };
 
-const MentorsSection = ({ ...extendedProps }) => {
-  const mentors = [
-    {
-      name: "Tomas Giovanetti",
-      imgSrc: "/images/mentors/TomasGiovanetti.jpeg",
-      details: "Founder y CEO en TGA",
-    },
-    {
-      name: "Nicolas D'Onofrio",
-      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details: "Cofounder y CEO en TiendaCrypto",
-    },
-    {
-      name: "Martin Furst",
-      imgSrc: "/images/mentors/MartinFurst.jpg",
-      details: "Cofounder y CEO en Fantastic",
-    },
-    {
-      name: "Marisabel Rodriguez",
-      imgSrc: "/images/mentors/MarisabelRodriguez.jpg",
-      details: "Cloud Delivery Center Manager en Google",
-    },
-    {
-      name: "Mariano Vazquez",
-      imgSrc: "/images/mentors/MarianoVazquez.jpeg",
-      details: "CTO en Modo, con mas de 15 años como desarrollador.",
-    },
-    {
-      name: "Juan Catalano",
-      imgSrc: "/images/mentors/JuanCatalano.jpeg",
-      details: "Founder y CPO en Podcast App",
-    },
-    {
-      name: "Gonzalo Otálora",
-      imgSrc: "/images/mentors/GonzaloOtalora.jpg",
-      details: "Founder y Director en Go!",
-    },
-    {
-      name: "Juan Gallo",
-      imgSrc: "/images/mentors/JuanGallo.jpeg",
-      details: "Cofounder y CEO en Cafecito y CourseIt",
-    },
-    {
-      name: "Federico Viarnés",
-      imgSrc: "/images/mentors/FedericoViarnes.jpeg",
-      details:
-        "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
-    },
-  ];
-  return (
-    <VStack width="full" {...extendedProps}>
-      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-        Mentores
-      </Heading>
-      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
-      <Grid
-        paddingX="4%"
-        paddingY="4%"
-        pt="4%"
-        templateColumns={[
-          "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(4, 1fr)",
-          "repeat(4, 1fr)",
-        ]}
-        justifyItems="center"
-        width="full"
-        gap={1}
-        rowGap={6}
-      >
-        {mentors.map((mentor, index) => {
-          return (
-            <GridItem key={index}>
-              <Jury jury={mentor}></Jury>{" "}
-            </GridItem>
-          );
-        })}
-      </Grid>
-    </VStack>
-  );
-};
-
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
     {
@@ -221,18 +138,18 @@ const SponsorsSection = ({ ...extendedProps }) => {
       items: [
         {
           name: "Auth0",
-          logo: "/images/logos/Nestle.png",
-          link: "https://www.nestle.com.ar",
+          logo: "/images/logos/auth0.png",
+          link: "https://auth0.com/",
         },
         {
           name: "Extrimian",
-          logo: "/images/logos/Accenture.png",
-          link: "https://www.accenture.com/ar-es",
+          logo: "/images/logos/extrimian.png",
+          link: "https://extrimian.io/es/",
         },
         {
           name: "2PI",
-          logo: "/images/logos/Accenture.png",
-          link: "https://www.accenture.com/ar-es",
+          logo: "/images/logos/2pi.png",
+          link: "https://2pi.network/",
         },
       ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
@@ -242,28 +159,28 @@ const SponsorsSection = ({ ...extendedProps }) => {
       items: [
         {
           name: "Ethereum Foundation",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          logo: "/images/logos/ethereum-foundation.png",
+          link: "https://ethereum.foundation/",
         },
         {
           name: "POAP",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          logo: "/images/logos/POAP.png",
+          link: "https://poap.xyz/",
         },
         {
           name: "Exactly",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          logo: "/images/logos/exactly.svg",
+          link: "https://exact.ly/",
         },
         {
           name: "Flowics",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          logo: "/images/logos/flowics.svg",
+          link: "https://www.flowics.com/",
         },
         {
           name: "OpenZeppelin",
-          logo: "/images/logos/MetLife.png",
-          link: "https://www.metlife.com.ar",
+          logo: "/images/logos/openzeppelin.png",
+          link: "https://www.openzeppelin.com/",
         },
       ],
       dimensions: ["65%", "68", "63%", "60%", "55%"],
@@ -273,13 +190,13 @@ const SponsorsSection = ({ ...extendedProps }) => {
       items: [
         {
           name: "Vercel",
-          logo: "/images/logos/Emi.png",
-          link: "https://www.emilabs.ai",
+          logo: "/images/logos/vercel.png",
+          link: "https://vercel.com/",
         },
         {
           name: "Daffy",
-          logo: "/images/logos/BBVA.png",
-          link: "https://www.bbva.com.ar/",
+          logo: "/images/logos/daffy.svg",
+          link: "https://www.daffy.org/",
         }
       ],
       dimensions: ["78%", "78%", "68%", "53%", "58%"],
