@@ -50,10 +50,9 @@ const Categories = ({ ...extendedProps }) => {
   ];
   return (
     <Stack
-      direction={['column', 'row']}
+      direction={["column", "row"]}
       paddingX="10%"
       paddingY="10%"
-
       w="full"
       justify="center"
       spacing="2rem"
@@ -94,7 +93,7 @@ const JurySection = ({ ...extendedProps }) => {
     {
       name: "Mariano Mayer",
       imgSrc: "/images/juries/MarianoMayer.jpeg",
-      details: "Newtopia VC| Investor"
+      details: "Newtopia VC| Investor",
     },
     {
       name: "Lucas Lain",
@@ -200,10 +199,10 @@ const SponsorsSection = ({ ...extendedProps }) => {
           name: "Daffy",
           logo: "/images/logos/daffy.svg",
           link: "https://www.daffy.org/",
-        }
+        },
       ],
       dimensions: ["78%", "78%", "68%", "53%", "58%"],
-    }
+    },
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
