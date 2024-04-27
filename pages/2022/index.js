@@ -266,7 +266,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
 const Home = () => {
   return (
     <VStack>
-      <ParticlesLogo date="31 de marzo, 1 y 2 de abril" />
+      <ParticlesLogo date="1, 2 y 3 de abril" />
       <Categories pt="4%" pb="4%" zIndex={90} />
       <JurySection pt="4%" zIndex={90} />
       <SponsorsSection zIndex={90} pt="4%" />
