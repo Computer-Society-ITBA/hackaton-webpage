@@ -802,7 +802,7 @@ const Editions = () => {
       <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Ediciones Anteriores
       </Heading>
-      <VStack justify="center" spacing="5%">
+      <HStack justify="center" spacing="5%">
         <PrimaryButton
           height="2%"
           backgroundColor="CSGreen"
@@ -814,8 +814,19 @@ const Editions = () => {
         >
           2023
         </PrimaryButton>
+        <PrimaryButton
+          height="2%"
+          backgroundColor="CSGreen"
+          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
+          size={["xs", "xs", "lg", "lg", "lg"]}
+          onClick={() => {
+            location.href = "/2022";
+          }}
+        >
+          2022
+        </PrimaryButton>
         <Spacer />
-      </VStack>
+      </HStack>
     </VStack>
   );
 };
