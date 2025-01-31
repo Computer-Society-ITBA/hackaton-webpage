@@ -809,6 +809,17 @@ const Editions = () => {
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
+            location.href = "/2024";
+          }}
+        >
+          2024
+        </PrimaryButton>
+        <PrimaryButton
+          height="2%"
+          backgroundColor="CSGreen"
+          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
+          size={["xs", "xs", "lg", "lg", "lg"]}
+          onClick={() => {
             location.href = "/2023";
           }}
         >

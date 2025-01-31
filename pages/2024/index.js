@@ -901,7 +901,6 @@ const Home = () => {
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt="4%" />
-      <Editions />
       <DoubtSection pt="4%" zIndex={90} />
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
