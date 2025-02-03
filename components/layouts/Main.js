@@ -51,7 +51,7 @@ const Main = ({ children, router }) => {
       </Head>
       <NewNavbar />
       <Container maxW="full" paddingX={0} pt={16}>
-        {children}
+        { children }
       </Container>
       <Spacer />
       {/* Por que no funciona el spacer!!! */}

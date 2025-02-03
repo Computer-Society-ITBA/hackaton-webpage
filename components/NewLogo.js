@@ -21,7 +21,7 @@ const NewLogo = ({ date }) => {
 
   const particlesLoaded = useCallback(() => {}, []);
 
-  const csImage = `/images/cs-new-logo.png`;
+  const csImage = `/images/hackitba-new-imagotype.png`;
   return (
     <Flex>
       <Box position="absolute" left={0} right={0} top={0} bottom={0} pt={16}>
@@ -56,7 +56,7 @@ const NewLogo = ({ date }) => {
           <Heading
             display="inline"
             size={["sm", "md", "lg", "xl", "2xl"]}
-            color="CSOrange"
+            color="CSLightOrange"
           >
             Computer Society ITBA
           </Heading>
