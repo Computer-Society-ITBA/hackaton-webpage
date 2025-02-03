@@ -22,7 +22,7 @@ import {
 } from "@chakra-ui/react";
 import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
-import ParticlesLogo from "../components/ParticlesLogo";
+import NewLogo from "../components/NewLogo";
 import CategoryLogo from "../components/CategoryLogo";
 import Jury from "../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
@@ -60,17 +60,17 @@ const PrimaryButton = styled(Button)`
   padding: 4% 8%;
 
   svg path {
-    fill: #1e212a;
+    fill: #AFEFF3;
     transition: all 0.3s ease;
   }
 
   &:hover {
     background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
+    color: #AFEFF3;
+    border: 1px solid #AFEFF3;
 
     svg path {
-      fill: #2fe0b5;
+      fill: #AFEFF3;
     }
   }
 `;
@@ -902,7 +902,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <ParticlesLogo date="5, 6 y 7 de abril" />
+      <NewLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}

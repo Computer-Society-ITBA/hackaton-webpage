@@ -18,7 +18,7 @@ const LogoBox = styled.span`
 `;
 
 const Logo = () => {
-  const csImage = `/images/cs_logo.svg`;
+  const csImage = `/images/hackitba-new-logo.png`;
 
   return (
     <Link href="/" passHref={true}>
