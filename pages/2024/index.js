@@ -20,14 +20,14 @@ import {
   Box,
   CircularProgress,
 } from "@chakra-ui/react";
-import SponsorLogo from "../components/SponsorLogo";
+import SponsorLogo from "../../components/SponsorLogo";
 import styled from "@emotion/styled";
-import NewLogo from "../components/NewLogo";
-import NewCategoryLogo from "../components/NewCategoryLogo";
-import Jury from "../components/Jury";
+import ParticlesLogo from "../../components/ParticlesLogo";
+import CategoryLogo from "../../components/CategoryLogo";
+import Jury from "../../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
-import useStore from "../config/storeConfig";
+import useStore from "../../config/storeConfig";
 
 // const Subtitle = styled(Text)`
 //   font-size: 14px;
@@ -60,17 +60,17 @@ const PrimaryButton = styled(Button)`
   padding: 4% 8%;
 
   svg path {
-    fill: #AFEFF3;
+    fill: #1e212a;
     transition: all 0.3s ease;
   }
 
   &:hover {
     background-color: transparent;
-    color: #AFEFF3;
-    border: 1px solid #AFEFF3;
+    color: #2fe0b5;
+    border: 1px solid #2fe0b5;
 
     svg path {
-      fill: #AFEFF3;
+      fill: #2fe0b5;
     }
   }
 `;
@@ -85,7 +85,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
         as="h1"
         display="inline"
         size={HeadingSize}
-        color="CSLightOrange"
+        color="CSOrange"
         textAlign={"center"}
         paddingY="6px"
       >
@@ -93,7 +93,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
       </Heading>
       <Divider variant="thick"></Divider>
       <Text textAlign="center" fontSize={TextSize}>
-        <Text as="span" color="CSLightBlue">
+        <Text as="span" color="CSGreen">
           HackITBA
         </Text>{" "}
         es una hackathon organizada por y para estudiantes, donde, en grupos de
@@ -110,50 +110,37 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Salud",
+      name: "Economía y Finanzas",
       description:
-        "Soon...",
-      scope: [],
-      logo: "/images/categories/new-salud.png",
+        "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
+      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
+      logo: "/images/categories/econ.png",
       logoSvg: false,
     },
     {
-      name: "Sustentabilidad",
+      name: "Salud y bienestar",
       description:
-        "Soon...",
-      scope: [],
-      logo: "/images/categories/new-sustentabilidad.png",
-      logoSvg: false,
-    },
-    {
-      name: "Educación",
-      description:
-        "Soon...",
-      scope: [],
-      logo: "/images/categories/new-edu.png",
+        "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
+      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
+      logo: "/images/categories/salud.png",
       logoSvg: false,
     },
   ];
   return (
-    <VStack spacing={4} paddingX="5%" paddingY="5%">
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
-        Categorías
-      </Heading>
-      <HStack
-        paddingX="10%"
-        h="100%"
-        justify="center"
-        spacing="15%"
-        {...extendedProps}
-      >
-        {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
-        {categories.map((category) => {
-          return (
-            <NewCategoryLogo key={category.name} category={category}></NewCategoryLogo>
-          );
-        })}
-      </HStack>
-    </VStack>
+    <HStack
+      paddingX="10%"
+      w="full"
+      justify="center"
+      spacing="20%"
+      {...extendedProps}
+    >
+      {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
+      {categories.map((category) => {
+        return (
+          <CategoryLogo key={category.name} category={category}></CategoryLogo>
+        );
+      })}
+    </HStack>
   );
 };
 const InscriptionSection = ({ ...extendedProps }) => {
@@ -258,10 +245,10 @@ const JurySection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Jurados
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros jurados</Text>*/}
+      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
       <Flex
         width="full"
         direction="row"
@@ -270,11 +257,9 @@ const JurySection = ({ ...extendedProps }) => {
         alignItems="start"
         verticalAlign="top"
       >
-        <Text fontSize={TextSize}>Próximamente...</Text>
-        {/* TODO - Cuando estén todos los jurados renovar
-          juries.map((jury, index) => {
+        {juries.map((jury, index) => {
           return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
-        })*/}
+        })}
       </Flex>
     </VStack>
   );
@@ -348,12 +333,10 @@ const MentorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Mentores
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros mentores</Text>*/}
-      <Text fontSize={TextSize}>Próximamente...</Text>
-      {/* TODO - Descomentar cuando se tengan todos los mentors disponibles
+      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
       <Grid
         paddingX="4%"
         paddingY="4%"
@@ -371,15 +354,15 @@ const MentorsSection = ({ ...extendedProps }) => {
         gap={1}
         rowGap={6}
       >
-        mentors.map((mentor, index) => {
+        {mentors.map((mentor, index) => {
           return (
             <GridItem key={index}>
               <Jury jury={mentor}></Jury>{" "}
-              {/* Queda mal el keyword pero creo que el componente sería el mismo * /}
+              {/* Queda mal el keyword pero creo que el componente sería el mismo */}
             </GridItem>
           );
-        })
-      </Grid>*/}
+        })}
+      </Grid>
     </VStack>
   );
 };
@@ -526,18 +509,17 @@ const SponsorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
-      {/*<Img
+      <Img
         src="/images/Sponsor_corner_1.svg"
         alt="decoration image"
         alignSelf="start"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>*/}
+      ></Img>
       <VStack top="-1">
-        <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2025
+        <Heading color="CSOrange" size={HeadingSize} textAlign="center">
+          Sponsors 2024
         </Heading>
-        {/*<Text fontSize={TextSize}>Empresas que nos acompañan</Text>*/}
-        <Text fontSize={TextSize}>Próximamente...</Text>
+        <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
       <VStack
         px="8%"
@@ -545,8 +527,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {/* TODO - Descomentar esto cuando estén todos los sponsors
-        sponsors.map((category) => {
+        {sponsors.map((category) => {
           let columns;
           switch (category.name) {
             case "Standard":
@@ -564,7 +545,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
               <Heading textAlign="center" size={TextSize}>
                 {category.name}
               </Heading>
-              {/* Lo dejamos como para que sea una fila por categoría *\/}
+              {/* Lo dejamos como para que sea una fila por categoría */}
               <Grid paddingX="6%" templateColumns={columns} w="full">
                 {category.items.map((sponsor) => {
                   return (
@@ -582,14 +563,14 @@ const SponsorsSection = ({ ...extendedProps }) => {
               </Grid>
             </Box>
           );
-        })*/}
+        })}
       </VStack>
-      {/*<Img
+      <Img
         src="/images/Sponsor_corner_2.svg"
         alt="decoration image"
         alignSelf="end"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>*/}
+      ></Img>
     </VStack>
   );
 };
@@ -818,26 +799,13 @@ const DoubtSection = ({ ...extendedProps }) => {
 const Editions = () => {
   return (
     <VStack width="full">
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Ediciones Anteriores
       </Heading>
       <HStack justify="center" spacing="5%">
         <PrimaryButton
           height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
-          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-          size={["xs", "xs", "lg", "lg", "lg"]}
-          onClick={() => {
-            location.href = "/2024";
-          }}
-        >
-          2024
-        </PrimaryButton>
-        <PrimaryButton
-          height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
+          backgroundColor="CSGreen"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -848,8 +816,7 @@ const Editions = () => {
         </PrimaryButton>
         <PrimaryButton
           height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
+          backgroundColor="CSGreen"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -924,7 +891,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <NewLogo date="5, 6 y 7 de abril" />
+      <ParticlesLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
@@ -934,7 +901,6 @@ const Home = () => {
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
       {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt="4%" />
-      <Editions />
       <DoubtSection pt="4%" zIndex={90} />
       {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
       {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}

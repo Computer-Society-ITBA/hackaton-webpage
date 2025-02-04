@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 const LogoBox = styled.span`
   font-weight: bold;
   font-size: 18px;
-  display: inline-flex;
+  //display: inline-flex;
   align-items: center;
   height: 60px;
   line-height: 20px;
@@ -18,7 +18,7 @@ const LogoBox = styled.span`
 `;
 
 const Logo = () => {
-  const csImage = `/images/cs_logo.svg`;
+  const csImage = `/images/hackitba-new-isologo.png`;
 
   return (
     <Link href="/" passHref={true}>

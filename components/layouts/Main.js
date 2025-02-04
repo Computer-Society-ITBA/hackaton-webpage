@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import { Container, Flex, Spacer } from "@chakra-ui/react";
-import Navbar from "../Navbar";
+import NewNavbar from "../NewNavbar";
 import Footer from "../Footer";
 const Main = ({ children, router }) => {
   return (
@@ -10,14 +10,14 @@ const Main = ({ children, router }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Juan Pablo Oriana" />
-        <title>HackIT-BA! by Computer Society ITBA</title>
+        <title>HackITBA</title>
         <meta name="title" content="HackIT-BA! by Computer Society ITBA" />
         <meta
           name="description"
           content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://hackitba.vercel.app" />
+        <meta property="og:url" content="https://hackitba.com.ar" />
         <meta
           property="og:title"
           content="HackIT-BA! by Computer Society ITBA"
@@ -49,9 +49,9 @@ const Main = ({ children, router }) => {
           content="https://hackitba.vercel.app/images/flyer.jpg"
         />
       </Head>
-      <Navbar />
+      <NewNavbar />
       <Container maxW="full" paddingX={0} pt={16}>
-        {children}
+        { children }
       </Container>
       <Spacer />
       {/* Por que no funciona el spacer!!! */}
