@@ -258,10 +258,10 @@ const JurySection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Jurados
       </Heading>
-      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
+      {/*<Text fontSize={TextSize}>Conocé a nuestros jurados</Text>*/}
       <Flex
         width="full"
         direction="row"
@@ -270,9 +270,11 @@ const JurySection = ({ ...extendedProps }) => {
         alignItems="start"
         verticalAlign="top"
       >
-        {juries.map((jury, index) => {
+        <Text fontSize={TextSize}>Próximamente...</Text>
+        {/* TODO - Cuando estén todos los jurados renovar
+          juries.map((jury, index) => {
           return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
-        })}
+        })*/}
       </Flex>
     </VStack>
   );
@@ -346,10 +348,12 @@ const MentorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Mentores
       </Heading>
-      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
+      {/*<Text fontSize={TextSize}>Conocé a nuestros mentores</Text>*/}
+      <Text fontSize={TextSize}>Próximamente...</Text>
+      {/* TODO - Descomentar cuando se tengan todos los mentors disponibles
       <Grid
         paddingX="4%"
         paddingY="4%"
@@ -367,15 +371,15 @@ const MentorsSection = ({ ...extendedProps }) => {
         gap={1}
         rowGap={6}
       >
-        {mentors.map((mentor, index) => {
+        mentors.map((mentor, index) => {
           return (
             <GridItem key={index}>
               <Jury jury={mentor}></Jury>{" "}
-              {/* Queda mal el keyword pero creo que el componente sería el mismo */}
+              {/* Queda mal el keyword pero creo que el componente sería el mismo * /}
             </GridItem>
           );
-        })}
-      </Grid>
+        })
+      </Grid>*/}
     </VStack>
   );
 };
@@ -522,17 +526,18 @@ const SponsorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
-      <Img
+      {/*<Img
         src="/images/Sponsor_corner_1.svg"
         alt="decoration image"
         alignSelf="start"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>
+      ></Img>*/}
       <VStack top="-1">
-        <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2024
+        <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+          Sponsors 2025
         </Heading>
-        <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
+        {/*<Text fontSize={TextSize}>Empresas que nos acompañan</Text>*/}
+        <Text fontSize={TextSize}>Próximamente...</Text>
       </VStack>
       <VStack
         px="8%"
@@ -540,7 +545,8 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {sponsors.map((category) => {
+        {/* TODO - Descomentar esto cuando estén todos los sponsors
+        sponsors.map((category) => {
           let columns;
           switch (category.name) {
             case "Standard":
@@ -558,7 +564,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
               <Heading textAlign="center" size={TextSize}>
                 {category.name}
               </Heading>
-              {/* Lo dejamos como para que sea una fila por categoría */}
+              {/* Lo dejamos como para que sea una fila por categoría *\/}
               <Grid paddingX="6%" templateColumns={columns} w="full">
                 {category.items.map((sponsor) => {
                   return (
@@ -576,14 +582,14 @@ const SponsorsSection = ({ ...extendedProps }) => {
               </Grid>
             </Box>
           );
-        })}
+        })*/}
       </VStack>
-      <Img
+      {/*<Img
         src="/images/Sponsor_corner_2.svg"
         alt="decoration image"
         alignSelf="end"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>
+      ></Img>*/}
     </VStack>
   );
 };
@@ -812,13 +818,14 @@ const DoubtSection = ({ ...extendedProps }) => {
 const Editions = () => {
   return (
     <VStack width="full">
-      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Ediciones Anteriores
       </Heading>
       <HStack justify="center" spacing="5%">
         <PrimaryButton
           height="2%"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="#14192D"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -829,7 +836,8 @@ const Editions = () => {
         </PrimaryButton>
         <PrimaryButton
           height="2%"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="#14192D"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -840,7 +848,8 @@ const Editions = () => {
         </PrimaryButton>
         <PrimaryButton
           height="2%"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="#14192D"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {

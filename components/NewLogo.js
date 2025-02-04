@@ -56,7 +56,7 @@ const NewLogo = ({ date }) => {
           <Heading
             display="inline"
             size={["sm", "md", "lg", "xl", "2xl"]}
-            color="CSMidOrange"
+            color="CSOrange"
           >
             Computer Society ITBA
           </Heading>
