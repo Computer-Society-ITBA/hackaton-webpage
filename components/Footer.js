@@ -1,16 +1,16 @@
-import { Text, VStack, HStack, Img } from "@chakra-ui/react";
+import { Text, VStack, HStack, Img, Spacer } from "@chakra-ui/react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const HackITBAImage = "/images/hackitba_negro.svg";
-  const CSImage = "/images/IEEE_CS_footer.svg";
+  const HackITBAImage = "/images/hackitba-new-logo.png";
+  const CSImage = "/images/IEEE_CS.svg";
   return (
     <VStack mt="10" w="full">
       <Text fontSize={["xs", "sm", "md", "lg", "lg"]}>
         &copy; {currentYear} Computer Society ITBA. Todos los derechos
         reservados.
       </Text>
-      <HStack w="full" backgroundColor="white" justify="end">
+      <HStack w="full" justify="end">
         <Img
           src={HackITBAImage}
           alt="HackITBA image"

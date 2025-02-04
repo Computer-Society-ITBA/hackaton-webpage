@@ -32,7 +32,7 @@ const particlesConfig = {
       },
     },
     size: {
-      value: 10,
+      value: 7,
       random: true,
       anim: {
         enable: true,

@@ -23,7 +23,7 @@ import {
 import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
 import NewLogo from "../components/NewLogo";
-import CategoryLogo from "../components/CategoryLogo";
+import NewCategoryLogo from "../components/NewCategoryLogo";
 import Jury from "../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
@@ -85,7 +85,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
         as="h1"
         display="inline"
         size={HeadingSize}
-        color="CSOrange"
+        color="CSLightOrange"
         textAlign={"center"}
         paddingY="6px"
       >
@@ -93,7 +93,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
       </Heading>
       <Divider variant="thick"></Divider>
       <Text textAlign="center" fontSize={TextSize}>
-        <Text as="span" color="CSGreen">
+        <Text as="span" color="CSLightBlue">
           HackITBA
         </Text>{" "}
         es una hackathon organizada por y para estudiantes, donde, en grupos de
@@ -110,37 +110,50 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Economía y Finanzas",
+      name: "Salud",
       description:
-        "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
-      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: "/images/categories/econ.png",
+        "Soon...",
+      scope: [],
+      logo: "/images/categories/new-salud.png",
       logoSvg: false,
     },
     {
-      name: "Salud y bienestar",
+      name: "Sustentabilidad",
       description:
-        "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
-      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
-      logo: "/images/categories/salud.png",
+        "Soon...",
+      scope: [],
+      logo: "/images/categories/new-sustentabilidad.png",
+      logoSvg: false,
+    },
+    {
+      name: "Educación",
+      description:
+        "Soon...",
+      scope: [],
+      logo: "/images/categories/new-edu.png",
       logoSvg: false,
     },
   ];
   return (
-    <HStack
-      paddingX="10%"
-      w="full"
-      justify="center"
-      spacing="20%"
-      {...extendedProps}
-    >
-      {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
-      {categories.map((category) => {
-        return (
-          <CategoryLogo key={category.name} category={category}></CategoryLogo>
-        );
-      })}
-    </HStack>
+    <VStack spacing={4} paddingX="5%" paddingY="5%">
+      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+        Categorías
+      </Heading>
+      <HStack
+        paddingX="10%"
+        h="100%"
+        justify="center"
+        spacing="15%"
+        {...extendedProps}
+      >
+        {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
+        {categories.map((category) => {
+          return (
+            <NewCategoryLogo key={category.name} category={category}></NewCategoryLogo>
+          );
+        })}
+      </HStack>
+    </VStack>
   );
 };
 const InscriptionSection = ({ ...extendedProps }) => {

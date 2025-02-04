@@ -43,7 +43,7 @@ const NewLogo = ({ date }) => {
         justify={"center"}
       >
         <Box height="80%">
-          <Img src={csImage} m="auto" height="100%" alt="logo" paddingX="0%" />
+          <Img src={csImage} m="auto" objectFit="contain" height="100%" alt="logo" paddingX="0%" />
         </Box>
         <Box alignSelf="end" pr="10%">
           <Heading
@@ -56,7 +56,7 @@ const NewLogo = ({ date }) => {
           <Heading
             display="inline"
             size={["sm", "md", "lg", "xl", "2xl"]}
-            color="CSLightOrange"
+            color="CSMidOrange"
           >
             Computer Society ITBA
           </Heading>

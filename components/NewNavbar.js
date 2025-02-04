@@ -152,7 +152,7 @@ const NewNavbar = (props) => {
       bg={useColorModeValue("#14192D", "#14192D")} // sin esto es transparente (tipo vidrio), no se si lo queremos asi
       //Saco lo del navbar transparente porque no funciona en safari
       style={{ backdropFilter: "blur(10px)" }}
-      borderBottom="1px solid #676C74"
+      //borderBottom="1px solid #676C74"
       height="72px"
       zIndex={99}
       {...props}
