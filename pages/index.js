@@ -602,7 +602,7 @@ const LocalInput = ({ ...extendedProps }) => (
     errorBorderColor="red.500"
     focusBorderColor="white"
     borderRadius="4px"
-    backgroundColor="CSOrange"
+    backgroundColor="CSAltField"
     color="white"
     _placeholder={{ color: "white" }}
     {...extendedProps}
@@ -718,7 +718,7 @@ const Form = ({ ...extendedProps }) => {
     setIsLoading(false);
   };
   return (
-    <VStack w={["100%", "100%", "100%", "50%", "50%"]} {...extendedProps}>
+    <VStack w={["100%", "100%", "100%", "50%", "40%"]} {...extendedProps}>
       <LocalInput
         onClick={() => setEmailError(!validateEmail(email))}
         onChange={(event) => {
@@ -747,10 +747,10 @@ const Form = ({ ...extendedProps }) => {
           setBody(event.target.value);
           setBodyError(event.target.value === "");
         }}
-        height={["4em", "6em", "8em", "10em", "12em"]}
+        height={["4em", "6em", "8em", "10em", "10em"]}
         focusBorderColor="white"
         borderRadius="4px"
-        backgroundColor="CSOrange"
+        backgroundColor="CSAltField"
         borderWidth="1.5px"
         errorBorderColor="red.500"
         color="white"
