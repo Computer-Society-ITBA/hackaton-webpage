@@ -3,7 +3,7 @@ import { Text, VStack, HStack, Img, Spacer } from "@chakra-ui/react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const HackITBAImage = "/images/hackitba-new-logo.png";
-  const CSImage = "/images/IEEE_CS.svg";
+  const CSImage = "/images/IEEE_CS.png";
   return (
     <VStack mt="10" w="full">
       <Text fontSize={["xs", "sm", "md", "lg", "lg"]}>

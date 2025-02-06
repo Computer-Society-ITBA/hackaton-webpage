@@ -793,7 +793,7 @@ const Form = ({ ...extendedProps }) => {
   );
 };
 const DoubtSection = ({ ...extendedProps }) => {
-  const CSImg = "/images/IEEE_CS.svg";
+  const CSImg = "/images/IEEE_CS.png";
   return (
     <Stack
       spacing="4%"
@@ -808,7 +808,12 @@ const DoubtSection = ({ ...extendedProps }) => {
         <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
           ¡Contáctanos!
         </Heading>
-        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
+        <Img
+          paddingY="2%"
+          src={CSImg}
+          alt="ITBA IEEE Computer Society image"
+          width={["200px", "250px", "300px", "450px", "500px"]} // Adjust sizes as needed
+        />
       </VStack>
       <Form />
     </Stack>
@@ -924,7 +929,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <NewLogo date="5, 6 y 7 de abril" />
+      <NewLogo date="28, 29 y 30 de marzo" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
