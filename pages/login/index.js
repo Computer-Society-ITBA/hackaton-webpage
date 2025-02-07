@@ -30,6 +30,7 @@ const IngresarButton = styled(Button)`
   border-width: 1px;
   transition: all 0.3s ease;
   padding: 4% 8%;
+  color: #14192D;
 
   svg path {
     fill: #1e212a;
@@ -38,11 +39,11 @@ const IngresarButton = styled(Button)`
 
   &:hover {
     background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
+    color: #AFEFF3;
+    border: 1px solid #AFEFF3;
 
     svg path {
-      fill: #2fe0b5;
+      fill: #AFEFF3;
     }
   }
 `;
@@ -133,7 +134,8 @@ const Home = () => {
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
       <Img
-        src="/images/Sponsor_corner_1.svg"
+        paddingTop="2%"
+        src="/images/chars-corner-left.png"
         alt="decoration image"
         alignSelf="start"
         w={["18%", "15%", "12%", "10%", "8%"]}
@@ -193,7 +195,7 @@ const Home = () => {
           <Text
             fontSize={TextSize}
             cursor="pointer"
-            _hover={{ color: "CSGreen" }}
+            _hover={{ color: "CSLightBlue" }}
           >
             ¿Olvidaste tu contraseña?
           </Text>
@@ -205,7 +207,7 @@ const Home = () => {
           isLoading={isLoading}
           disabled={email === "" || password === ""}
           onClick={() => signIn(email, password)}
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
           width="full"
         >
           Ingresar

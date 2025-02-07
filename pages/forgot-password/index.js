@@ -33,11 +33,11 @@ const InscribirseButton = styled(Button)`
 
   &:hover {
     background-color: transparent;
-    color: #ffa300;
-    border: 1px solid #ffa300;
+    color: #FAD399;
+    border: 1px solid #FAD399;
 
     svg path {
-      fill: #2fe0b5;
+      fill: #FAD399;
     }
   }
 `;
@@ -70,9 +70,10 @@ function Home() {
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
       <Img
-        src="/images/Sponsor_corner_1.svg"
+        src="/images/chars-left.png"
         alt="decoration image"
         alignSelf="start"
+        paddingTop="2%"
         w={["18%", "15%", "12%", "10%", "8%"]}
       ></Img>
       <Flex
@@ -108,7 +109,8 @@ function Home() {
         <InscribirseButton
           isLoading={isLoading}
           onClick={() => handleSendResetEmail(email)}
-          backgroundColor="CSOrange"
+          color="CSDarkBlue"
+          backgroundColor="CSLightOrange"
           width="full"
         >
           Enviar

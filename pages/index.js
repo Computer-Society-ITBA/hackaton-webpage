@@ -157,7 +157,7 @@ const Categories = ({ ...extendedProps }) => {
   );
 };
 const InscriptionSection = ({ ...extendedProps }) => {
-  const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
+  const imageWidth = ["25%", "28%", "25%", "28%"];
   const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
   const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
   const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
@@ -172,7 +172,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       {...extendedProps}
     >
       <Img
-        src="/images/Inscribite_1.svg"
+        src="/images/chars-left.png"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -183,7 +183,8 @@ const InscriptionSection = ({ ...extendedProps }) => {
         <PrimaryButton
           mt={pbMT}
           height="2%"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="CSDarkBlue"
           fontSize={pbFontSize}
           size={pbSize}
           onClick={() => {
@@ -213,7 +214,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         </PrimaryButton>
       </VStack> */}
       <Img
-        src="/images/Inscribite_2.svg"
+        src="/images/chars-right.png"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -602,7 +603,7 @@ const LocalInput = ({ ...extendedProps }) => (
     errorBorderColor="red.500"
     focusBorderColor="white"
     borderRadius="4px"
-    backgroundColor="CSOrange"
+    backgroundColor="CSAltField"
     color="white"
     _placeholder={{ color: "white" }}
     {...extendedProps}
@@ -718,7 +719,7 @@ const Form = ({ ...extendedProps }) => {
     setIsLoading(false);
   };
   return (
-    <VStack w={["100%", "100%", "100%", "50%", "50%"]} {...extendedProps}>
+    <VStack w={["100%", "100%", "100%", "50%", "40%"]} {...extendedProps}>
       <LocalInput
         onClick={() => setEmailError(!validateEmail(email))}
         onChange={(event) => {
@@ -747,10 +748,10 @@ const Form = ({ ...extendedProps }) => {
           setBody(event.target.value);
           setBodyError(event.target.value === "");
         }}
-        height={["4em", "6em", "8em", "10em", "12em"]}
+        height={["4em", "6em", "8em", "10em", "10em"]}
         focusBorderColor="white"
         borderRadius="4px"
-        backgroundColor="CSOrange"
+        backgroundColor="CSAltField"
         borderWidth="1.5px"
         errorBorderColor="red.500"
         color="white"
@@ -793,7 +794,7 @@ const Form = ({ ...extendedProps }) => {
   );
 };
 const DoubtSection = ({ ...extendedProps }) => {
-  const CSImg = "/images/IEEE_CS.svg";
+  const CSImg = "/images/IEEE_CS.png";
   return (
     <Stack
       spacing="4%"
@@ -808,7 +809,12 @@ const DoubtSection = ({ ...extendedProps }) => {
         <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
           ¡Contáctanos!
         </Heading>
-        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
+        <Img
+          paddingY="2%"
+          src={CSImg}
+          alt="ITBA IEEE Computer Society image"
+          width={["200px", "250px", "300px", "450px", "500px"]} // Adjust sizes as needed
+        />
       </VStack>
       <Form />
     </Stack>
@@ -876,9 +882,9 @@ const ThankYouMessage = () => {
       zIndex={90}
     >
       <Img
-        src="/images/Inscribite_1.svg"
+        src="/images/chars-left.png"
         alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+        width="20%"
       ></Img>
       <Box
         display="flex"
@@ -895,9 +901,9 @@ const ThankYouMessage = () => {
         </Text>
       </Box>
       <Img
-        src="/images/Inscribite_2.svg"
+        src="/images/chars-right.png"
         alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+        width="20%"
       ></Img>
     </Flex>
   );
@@ -924,7 +930,7 @@ const Home = () => {
   return (
     <VStack>
       {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <NewLogo date="5, 6 y 7 de abril" />
+      <NewLogo date="28, 29 y 30 de marzo" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}

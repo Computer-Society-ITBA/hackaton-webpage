@@ -30,7 +30,7 @@ const FirstStep = ({ setName, name, nextStep }) => {
           <Text fontSize={["xl", "2xl", "3xl"]}>Inscripción</Text>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Text color={"orange"} fontSize={["xl", "2xl", "3xl"]}>
+          <Text color={"CSLightOrange"} fontSize={["xl", "2xl", "3xl"]}>
             Datos equipo
           </Text>
         </BreadcrumbItem>
@@ -38,7 +38,7 @@ const FirstStep = ({ setName, name, nextStep }) => {
       <VStack px="4%" paddingTop="5%">
         <Text fontSize={TextSize} paddingBottom="5%">
           Ingresá acá el{" "}
-          <Text as="span" color="orange">
+          <Text as="span" color="CSLightOrange">
             {" "}
             nombre de tu equipo:
           </Text>
@@ -57,7 +57,7 @@ const FirstStep = ({ setName, name, nextStep }) => {
           {invalidValue ? "El nombre no puede estar vacio" : ""}
         </Text>
         <Text textAlign="center" fontSize={TextSize}>
-          <Text as="span" color="orange">
+          <Text as="span" color="CSLightOrange">
             {" "}
             Recordá
           </Text>
@@ -68,14 +68,19 @@ const FirstStep = ({ setName, name, nextStep }) => {
       <Center paddingTop="2%">
         <Button
           onClick={moveForward}
-          colorScheme="orange"
+          colorScheme="CSLightOrange"
           size={["sm", "lg"]}
           height="48px"
           width="200px"
           border="5px"
           color="black"
           variant="solid"
-          bgColor="orange"
+          bgColor="CSLightOrange"
+          _hover={{
+            backgroundColor: "CSDarkBlue",
+            color: "CSLightOrange",
+            border: "1px solid #FAD399" //  #FAD399 === CSLightOrange
+          }}
           isDisabled={invalidValue || value === ""}
         >
           Siguiente
