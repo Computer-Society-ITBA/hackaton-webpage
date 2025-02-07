@@ -53,8 +53,8 @@ const NavButton = ({ text, href }) => {
       <NextLink href={href}>
         <PrimaryButton
           backgroundColor="CSLightBlue"
-          fontSize={["xs", "sm", "md", "xl", "xl"]}
-          size={["xs", "sm", "sm", "md", "md"]}
+          fontSize={["3xs","2xs","xs", "sm", "md", "xl", "xl"]}
+          size={["3xs","2xs","xs", "sm", "sm", "md", "md"]}
         >
           {text}
         </PrimaryButton>
@@ -203,7 +203,7 @@ const NewNavbar = (props) => {
         align="center"
         justify="space-between"
       >
-        <Flex align="center" mr={20} flexShrink={0}>
+        <Flex align="center" mr="auto" flexShrink={0}>
           <Heading as="h1" size="lg" letterSpacing={"tighter"}>
             <Logo />
           </Heading>
@@ -220,7 +220,7 @@ const NewNavbar = (props) => {
           align="right"
           justifyContent="space-between"
           alignItems="center"
-          ml={20}
+          ml="auto"
           display="flex"
         >
           { navButton }
