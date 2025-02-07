@@ -871,39 +871,15 @@ const ThankYouMessage = () => {
 };
 
 const Home = () => {
-  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
-  const submissions = useStore((state) => state.submissions);
-  const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
-
-  useEffect(() => {
-    if (inscriptionsEnabled) {
-      setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
-      return;
-    }
-    const now = new Date();
-    const submissionsEnd = new Date(submissions?.end);
-
-    if (submissionsEnd < now) {
-      setInscriptionsSection(<ThankYouMessage />);
-    }
-  }, [inscriptionsEnabled, submissions]);
-
   return (
     <VStack>
-      {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
       <ParticlesLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
-      {/* Seccion inscribirse */}
-      {inscriptionsSection}
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
-      {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
-      {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt="4%" />
       <DoubtSection pt="4%" zIndex={90} />
-      {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
-      {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
   );
 };
