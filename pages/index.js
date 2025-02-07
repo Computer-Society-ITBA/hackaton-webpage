@@ -24,7 +24,6 @@ import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
 import NewLogo from "../components/NewLogo";
 import NewCategoryLogo from "../components/NewCategoryLogo";
-import Timer from "../components/Timer";
 import Jury from "../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
@@ -956,17 +955,14 @@ const Home = () => {
   const isLoggedIn = useStore((state) => state.isLoggedIn);
   const submissions = useStore((state) => state.submissions);
   const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
-  const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
 
   useEffect(() => {
     if (inscriptionsEnabled) {
       if(isLoggedIn) {
         setInscriptionsSection(<RegisteredSection />);
-        setTimeLeftSection(<Timer/>);
         return;
       }
       setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
-      setTimeLeftSection(<Timer/>);
       return;
     }
 
@@ -986,7 +982,6 @@ const Home = () => {
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
       { inscriptionsSection }
-      { timeLeftSection }
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
