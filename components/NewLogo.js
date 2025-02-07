@@ -64,7 +64,7 @@ const NewLogo = ({ date }) => {
             size={["sm", "md", "lg", "xl", "2xl"]}
             color="CSOrange"
           >
-            Computer Society ITBA
+           IEEE Computer Society
           </Heading>
         </Box>
         <Box alignSelf="end" pr="8%">
@@ -73,7 +73,7 @@ const NewLogo = ({ date }) => {
             size={["sm", "md", "lg", "xl", "2xl"]}
             color="CSOrange"
           >
-            Student Chapter
+          ITBA Student Chapter
           </Heading>
         </Box>
         <Box alignSelf="end" pr="7%">
