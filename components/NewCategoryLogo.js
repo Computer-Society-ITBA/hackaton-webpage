@@ -95,7 +95,8 @@ const NewCategoryLogo = (props) => {
               <HStack w="full" align="start">
                 <Img
                   alignSelf="end"
-                  src="/images/Category_decoration.svg"
+                  src="/images/chars-left.png"
+                  width={"20%"}
                   alt="decoration"
                 />
                 {/* Alcance de la categoria */}
