@@ -60,7 +60,7 @@ const FifthStep = ({
           <Text fontSize={["3xs", "xs", "lg", "2xl"]}>Mail y Contraseña</Text>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Text color={"#386af6"} fontSize={["3xs", "xs", "lg", "2xl"]}>
+          <Text color="CSLightOrange" fontSize={["3xs", "xs", "lg", "2xl"]}>
             Datos del Equipo
           </Text>
         </BreadcrumbItem>
@@ -123,29 +123,38 @@ const FifthStep = ({
         <HStack>
           <Button
             onClick={moveBackwards}
-            colorScheme="orange"
+            colorScheme="CSLightBlue"
             size={["sm", "lg"]}
             height="48px"
             width="200px"
             border="5px"
             color="black"
             variant="solid"
-            bgColor="CSGreen"
-            _hover={{ backgroundColor: "#05eda7" }}
+            bgColor="CSLightBlue"
+            _hover={{
+              backgroundColor: "CSDarkBlue",
+              color: "CSLightBlue",
+              border: "1px solid #AFEFF3" //  #AFEFF3 === CSLightBlue
+            }}
             isLoading={isLoading}
           >
             Volver
           </Button>
           <Button
             onClick={moveForward}
-            colorScheme="orange"
+            colorScheme="CSLightOrange"
             size={["sm", "lg"]}
             height="48px"
             width="200px"
             border="5px"
             color="black"
             variant="solid"
-            bgColor="orange"
+            bgColor="CSLightOrange"
+            _hover={{
+              backgroundColor: "CSDarkBlue",
+              color: "CSLightOrange",
+              border: "1px solid #FAD399" //  #FAD399 === CSLightOrange
+            }}
             isDisabled={d1 === "" || d2 === ""}
             isLoading={isLoading}
           >

@@ -81,7 +81,7 @@ const ThirdStep = ({
           <Text fontSize={["xs", "sm", "2xl"]}>Datos equipo</Text>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Text color={"#03caa1"} fontSize={["xs", "sm", "2xl"]}>
+          <Text color="CSLightOrange" fontSize={["xs", "sm", "2xl"]}>
             Mail y contraseña
           </Text>
         </BreadcrumbItem>
@@ -89,7 +89,7 @@ const ThirdStep = ({
       <b>
         <Text
           paddingTop={"5%"}
-          color="#03caa1"
+          color="CSLightOrange"
           fontSize={["2xl", "3xl", "4xl"]}
         >
           EMAIL
@@ -109,7 +109,7 @@ const ThirdStep = ({
       <b>
         <Text
           paddingTop={"10%"}
-          color="#03caa1"
+          color="CSLightOrange"
           fontSize={["2xl", "3xl", "4xl"]}
         >
           CONTRASEÑA
@@ -130,7 +130,7 @@ const ThirdStep = ({
       <b>
         <Text
           paddingTop={"10%"}
-          color="#03caa1"
+          color="CSLightOrange"
           fontSize={["2xl", "3xl", "4xl"]}
         >
           REPETIR CONTRASEÑA
@@ -150,7 +150,7 @@ const ThirdStep = ({
       />
       <Text align={"center"} fontSize={["sm", "lg", "xl"]} paddingTop={"1%"}>
         Recordá que estos datos son para{" "}
-        <Text as="span" color="#03caa1">
+        <Text as="span" color="CSLightBlue">
           iniciar sesión
         </Text>
       </Text>
@@ -177,21 +177,30 @@ const ThirdStep = ({
             border="5px"
             color="black"
             variant="solid"
-            bgColor="CSGreen"
-            _hover={{ backgroundColor: "#05eda7" }}
+            bgColor="CSLightBlue"
+            _hover={{
+              backgroundColor: "CSDarkBlue",
+              color: "CSLightBlue",
+              border: "1px solid #AFEFF3" //  #AFEFF3 === CSLightBlue
+            }}
           >
             Volver
           </Button>
           <Button
             onClick={moveForward}
-            colorScheme="orange"
+            colorScheme="CSLightOrange"
             size={["sm", "lg"]}
             height="48px"
             width="200px"
             border="5px"
             color="black"
             variant="solid"
-            bgColor="orange"
+            bgColor="CSLightOrange"
+            _hover={{
+              backgroundColor: "CSDarkBlue",
+              color: "CSLightOrange",
+              border: "1px solid #FAD399" //  #FAD399 === CSLightOrange
+            }}
             isDisabled={
               !localEmail ||
               invalidEmail ||

@@ -6,7 +6,10 @@ const Footer = () => {
   const CSImage = "/images/IEEE_CS.png";
   return (
     <VStack mt="10" w="full">
-      <Text fontSize={["xs", "sm", "md", "lg", "lg"]}>
+      <Text
+        align="center"
+        fontSize={["xs", "sm", "md", "lg", "lg"]}
+      >
         &copy; {currentYear} Computer Society ITBA Student Branch. Todos los derechos
         reservados.
       </Text>

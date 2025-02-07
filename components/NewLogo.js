@@ -42,8 +42,14 @@ const NewLogo = ({ date }) => {
         spacing="1%"
         justify={"center"}
       >
-        <Box height="80%">
-          <Img src={csImage} m="auto" objectFit="contain" height="100%" alt="logo" paddingX="0%" />
+        <Box height="70%">
+          <Img
+            src={csImage}
+            m="auto"
+            objectFit="contain"
+            height="100%"
+            alt="logo"
+            paddingTop="3%" />
         </Box>
         <Box alignSelf="end" pr="10%">
           <Heading

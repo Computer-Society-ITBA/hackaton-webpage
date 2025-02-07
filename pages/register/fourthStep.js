@@ -45,7 +45,7 @@ const schema = joi.object({
 
 const ParticipantCard = ({ participant, onEdit, onDelete }) => {
   return (
-    <Card width="full" pt="2%" borderWidth="4px" borderColor="CSBlue">
+    <Card width="full" pt="2%" borderWidth="4px" bgColor="CSDarkBlue" borderColor="CSLightBlue">
       <CardBody>
         <Flex align="center" direction="row" width="full">
           <Avatar
@@ -198,7 +198,7 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
           <Text fontSize={["3xs", "xs", "lg", "2xl"]}>Mail y Contraseña</Text>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Text color={"#386af6"} fontSize={["3xs", "xs", "lg", "2xl"]}>
+          <Text color="CSLightOrange" fontSize={["3xs", "xs", "lg", "2xl"]}>
             Datos del Equipo
           </Text>
         </BreadcrumbItem>
@@ -241,7 +241,7 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
           >
             <ModalOverlay />
             <ModalContent
-              backgroundColor="#1C1C1C"
+              backgroundColor="CSDarkBlue"
               borderWidth="2px"
               borderColor="CSBlue"
             >
@@ -331,8 +331,12 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
                     border="5px"
                     color="black"
                     variant="solid"
-                    bgColor="CSGreen"
-                    _hover={{ backgroundColor: "#05eda7" }}
+                    bgColor="CSLightOrange"
+                    _hover={{
+                      backgroundColor: "CSDarkBlue",
+                      color: "CSLightOrange",
+                      border: "1px solid #FAD399" //  #FAD399 === CSLightOrange
+                    }}
                     my="4%"
                     leftIcon={<CheckIcon />}
                     isDisabled={
@@ -367,21 +371,30 @@ const FourthStep = ({ participants, setParticipants, nextStep, prevStep }) => {
               border="5px"
               color="black"
               variant="solid"
-              bgColor="CSGreen"
-              _hover={{ backgroundColor: "#05eda7" }}
+              bgColor="CSLightBlue"
+              _hover={{
+                backgroundColor: "CSDarkBlue",
+                color: "CSLightBlue",
+                border: "1px solid #AFEFF3" //  #AFEFF3 === CSLightBlue
+              }}
             >
               Volver
             </Button>
             <Button
               onClick={moveForward}
-              colorScheme="orange"
+              colorScheme="CSLightOrange"
               size={["sm", "lg"]}
               height="48px"
               width="200px"
               border="5px"
               color="black"
               variant="solid"
-              bgColor="orange"
+              bgColor="CSLightOrange"
+              _hover={{
+                backgroundColor: "CSDarkBlue",
+                color: "CSLightOrange",
+                border: "1px solid #FAD399" //  #FAD399 === CSLightOrange
+              }}
               isDisabled={localParticipants.length < 1}
             >
               Siguiente

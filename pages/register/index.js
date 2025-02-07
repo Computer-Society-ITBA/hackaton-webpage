@@ -116,7 +116,7 @@ const Register = () => {
       duration: 5000,
       render: () => {
         return (
-          <Box backgroundColor="green" borderRadius="4px" p="4%" w="full">
+          <Box backgroundColor="CSDarkBlue" borderRadius="4px" p="4%" w="full">
             <VStack>
               <HStack w="full">
                 <CheckCircleIcon />
@@ -188,7 +188,7 @@ const Register = () => {
         >
           <Box
             borderRadius="2px"
-            backgroundColor="CSBlue"
+            backgroundColor="CSLightOrange"
             height="6px"
             width={`${((activeStep + 1) * 100.0) / steps.length}%`}
             transition="1s ease"

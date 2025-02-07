@@ -157,7 +157,7 @@ const Categories = ({ ...extendedProps }) => {
   );
 };
 const InscriptionSection = ({ ...extendedProps }) => {
-  const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
+  const imageWidth = ["25%", "28%", "25%", "28%"];
   const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
   const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
   const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
@@ -172,7 +172,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       {...extendedProps}
     >
       <Img
-        src="/images/Inscribite_1.svg"
+        src="/images/chars-left.png"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -183,7 +183,8 @@ const InscriptionSection = ({ ...extendedProps }) => {
         <PrimaryButton
           mt={pbMT}
           height="2%"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="CSDarkBlue"
           fontSize={pbFontSize}
           size={pbSize}
           onClick={() => {
@@ -213,7 +214,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         </PrimaryButton>
       </VStack> */}
       <Img
-        src="/images/Inscribite_2.svg"
+        src="/images/chars-right.png"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -883,7 +884,7 @@ const ThankYouMessage = () => {
       <Img
         src="/images/chars-left.png"
         alt="Decoration"
-        width={["3%", "5%", "10%", "15%", "20%", "20%"]}
+        width="20%"
       ></Img>
       <Box
         display="flex"
@@ -902,7 +903,7 @@ const ThankYouMessage = () => {
       <Img
         src="/images/chars-right.png"
         alt="Decoration"
-        width={["3%", "5%", "10%", "15%", "20%", "20%"]}
+        width="20%"
       ></Img>
     </Flex>
   );
