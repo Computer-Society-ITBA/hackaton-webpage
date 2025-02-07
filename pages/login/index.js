@@ -82,6 +82,12 @@ const Home = () => {
   const [errorMessage, setErorrMessage] = useState("");
   const handleEmailChange = (event) => setEmail(event.target.value.trim());
   const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handlePasswordKeyPress = async (event) => {
+    if (event.key === 'Enter') {
+      await signIn(email, password);
+    }
+  }
+
 
   const [registerSection, setRegisterSection] = useState();
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
@@ -173,6 +179,7 @@ const Home = () => {
           <Input
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handlePasswordKeyPress}
             type={showPassword ? "text" : "password"}
             minH="3.5em"
             placeholder="Ingresá tu contraseña"

@@ -75,7 +75,7 @@ const LoggedOutButton = () => {
     } else if (inscriptionsEnabled) {
       setNavButtons(
         <>
-          <NavButton text="Inscribite Aquí!" href="/register" />
+          <NavButton text="¡Inscribite Acá!" href="/register" />
           <NavButton text="Iniciar Sesión" href="/login" />
         </>
       );

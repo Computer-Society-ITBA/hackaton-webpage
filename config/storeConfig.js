@@ -12,7 +12,8 @@ const useStore = create(
       submissions: undefined,
       inscriptionsEnabled: undefined,
       submissionsEnabled: undefined,
-      setToken: (token) => set((state) => ({ token: token })),
+      setToken: (token) => set((_) => ({ token: token })),
+      setUserInfo: (userInfo) => set((_) => ({userInfo: userInfo})),
       signIn: (userInfo, token) =>
         set((state) => ({
           isLoggedIn: true,
