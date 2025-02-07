@@ -17,7 +17,12 @@ const TextSize = ["xs", "sm", "md", "lg", "xl"];
 const TODOView = () => {
   return (
     <VStack p="4%">
-      <Heading size={HeadingSize} py="2%" textAlign="center" color="CSGreen">
+      <Heading
+        size={HeadingSize}
+        py="2%"
+        textAlign="center"
+        color="CSLightBlue"
+      >
         ¡Nos estamos preparando!
       </Heading>
       <Text size={TextSize} textAlign="center">
@@ -33,7 +38,7 @@ const Home = () => {
     <Flex pt="8%" justifyContent="center" alignItems="center" align="center">
       <CircularProgress
         isIndeterminate
-        color="CSOrange"
+        color="CSLightOrange"
         size="40%"
       ></CircularProgress>
     </Flex>
