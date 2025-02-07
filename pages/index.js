@@ -881,9 +881,9 @@ const ThankYouMessage = () => {
       zIndex={90}
     >
       <Img
-        src="/images/Inscribite_1.svg"
+        src="/images/chars-left.png"
         alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+        width={["3%", "5%", "10%", "15%", "20%", "20%"]}
       ></Img>
       <Box
         display="flex"
@@ -900,9 +900,9 @@ const ThankYouMessage = () => {
         </Text>
       </Box>
       <Img
-        src="/images/Inscribite_2.svg"
+        src="/images/chars-right.png"
         alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
+        width={["3%", "5%", "10%", "15%", "20%", "20%"]}
       ></Img>
     </Flex>
   );

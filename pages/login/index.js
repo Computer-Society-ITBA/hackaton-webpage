@@ -134,7 +134,8 @@ const Home = () => {
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
       <Img
-        src="/images/Sponsor_corner_1.svg"
+        paddingTop="2%"
+        src="/images/chars-corner-left.png"
         alt="decoration image"
         alignSelf="start"
         w={["18%", "15%", "12%", "10%", "8%"]}
