@@ -21,6 +21,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import useStore from "../config/storeConfig";
+import Timer from "../components/Timer";
 
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
@@ -165,14 +166,20 @@ const NewNavbar = (props) => {
   const [navButton, setNavButton] = useState(
     <LoggedOutButton/>
   );
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
 
   useEffect(() => {
+    if(inscriptionsEnabled){
+      setTimeLeftSection(<Timer/>);
+    }
+
     if (isLoggedIn) {
       setNavButton(<LoggedInButton />);
     } else {
       setNavButton(<LoggedOutButton />);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, inscriptionsEnabled]);
 
   return (
     <Box
@@ -196,17 +203,24 @@ const NewNavbar = (props) => {
         align="center"
         justify="space-between"
       >
-        <Flex align="center" mr={5}>
+        <Flex align="center" mr={20} flexShrink={0}>
           <Heading as="h1" size="lg" letterSpacing={"tighter"}>
             <Logo />
           </Heading>
         </Flex>
-
+        <Flex align="center"
+          alignItems="center"
+          marginLeft="auto"
+          marginRight="auto"
+          whiteSpace="nowrap"
+          >
+          { timeLeftSection }
+        </Flex>
         <Box
           align="right"
           justifyContent="space-between"
           alignItems="center"
-          marginLeft="auto"
+          ml={20}
           display="flex"
         >
           { navButton }

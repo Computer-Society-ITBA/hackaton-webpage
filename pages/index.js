@@ -24,7 +24,6 @@ import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
 import NewLogo from "../components/NewLogo";
 import NewCategoryLogo from "../components/NewCategoryLogo";
-import Timer from "../components/Timer";
 import Jury from "../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
@@ -112,27 +111,48 @@ const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
       name: "Salud",
-      description:
-        "Soon...",
+      description:`La categoría de **Salud y Bienestar** busca soluciones innovadoras para mejorar la calidad de vida y el acceso a servicios de salud. Considera temas como:
+-   **Acceso a información y servicios de salud.**
+-   **Apoyo en rehabilitación y movilidad.**
+-   **Innovación en comercio de salud.**
+\nLos proyectos pueden enfocarse en promover la salud en cualquier área, facilitando el bienestar físico y mental en diversos entornos.`,
       scope: [],
       logo: "/images/categories/new-salud.png",
       logoSvg: false,
+      logoSmall: "/images/categories/codySaludSmall.png",
+      color: "CSRed",
     },
     {
       name: "Sustentabilidad",
-      description:
-        "Soon...",
+      description:`La categoría de **Sustentabilidad** busca soluciones creativas y aplicables para promover un equilibrio entre el desarrollo económico, social y ambiental. Considera temas como:
+
+-   **Reducción de la huella ecológica.**
+-   **Optimización del uso de recursos naturales.**
+-   **Economía circular y reciclaje.**
+-   **Energías renovables y eficiencia energética.**
+-   **Gestión y mitigación de residuos.**
+-   **Conservación de biodiversidad y ecosistemas.**
+
+\nLos proyectos pueden enfocarse en mejorar la sostenibilidad en cualquier área, desde la vida cotidiana hasta las operaciones industriales y comerciales.`,
       scope: [],
       logo: "/images/categories/new-sustentabilidad.png",
+      logoSmall: "/images/categories/codySustentableSmall.png",
       logoSvg: false,
+      color: "CSGreen",
     },
     {
       name: "Educación",
-      description:
-        "Soon...",
+      description:`La categoría de **Educación** busca soluciones prácticas e innovadoras que mejoren el aprendizaje y preparen a las personas con habilidades clave para enfrentar los desafíos actuales, desde la educación financiera hasta el acceso digital y el desarrollo profesional.
+      
+-   **Educación financiera práctica**: Proyectos que enseñen el manejo del dinero desde conceptos básicos hasta inversiones, ahorro, presupuesto personal y planificación financiera.
+-   **Acceso universal a la educación digital**.
+-   **Apoyo a docentes y facilitadores**.
+-   **Inclusión y equidad educativa**.`,
       scope: [],
       logo: "/images/categories/new-edu.png",
+      logoSmall: "/images/categories/codyEducativoSmall.png",
       logoSvg: false,
+      color: "CSBlue",
     },
   ];
   return (
@@ -956,17 +976,14 @@ const Home = () => {
   const isLoggedIn = useStore((state) => state.isLoggedIn);
   const submissions = useStore((state) => state.submissions);
   const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
-  const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
 
   useEffect(() => {
     if (inscriptionsEnabled) {
       if(isLoggedIn) {
         setInscriptionsSection(<RegisteredSection />);
-        setTimeLeftSection(<Timer/>);
         return;
       }
       setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
-      setTimeLeftSection(<Timer/>);
       return;
     }
 
@@ -986,7 +1003,6 @@ const Home = () => {
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
       { inscriptionsSection }
-      { timeLeftSection }
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}

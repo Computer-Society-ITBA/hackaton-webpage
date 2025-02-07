@@ -1,4 +1,6 @@
 import { CloseIcon } from "@chakra-ui/icons";
+import ReactMarkdown from 'react-markdown';
+
 import {
   Box,
   Heading,
@@ -64,7 +66,7 @@ const NewCategoryLogo = (props) => {
         <ModalContent
           backgroundColor="#14192D"
           borderWidth="2px"
-          borderColor="CSGreen"
+          borderColor={category.color}
         >
           <ModalHeader>
             <HStack>
@@ -79,8 +81,21 @@ const NewCategoryLogo = (props) => {
           <ModalBody p={0}>
             <VStack>
               <HStack p="4%">
-                <Text fontSize={TextSize} pr="6%" align="center">
-                  {category.description}
+                <Text fontSize={TextSize} pr="6%" align="justify">
+                  <ReactMarkdown
+                    components={{//Esto es feo pero es la unica forma de forzarle margen a los bullets en mkdown
+                      ul: ({ children }) => (
+                        <ul style={{ marginTop: "20px", paddingLeft: "20px" }}>
+                          {children}
+                        </ul>
+                      ),
+                      li: ({ children }) => (
+                        <li style={{ marginTop: "10px" }}>{children}</li>
+                      ),
+                    }}
+                  >
+                    {category.description}
+                  </ReactMarkdown>
                 </Text>
                 {category.logoSvg ? (
                   <category.logo
@@ -92,12 +107,12 @@ const NewCategoryLogo = (props) => {
                   />
                 ) : null}
               </HStack>
-              <HStack w="full" align="start">
+              <HStack w="full" align="center" justify="center">
                 <Img
-                  alignSelf="end"
-                  src="/images/chars-left.png"
+                  src={category.logoSmall}
                   width={"20%"}
                   alt="decoration"
+                  marginBottom={"5%"}
                 />
                 {/* Alcance de la categoria */}
                 {/* <VStack p='4%'>
