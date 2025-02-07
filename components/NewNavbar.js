@@ -75,7 +75,7 @@ const LoggedOutButton = () => {
     } else if (inscriptionsEnabled) {
       setNavButtons(
         <>
-          <NavButton text="Inscribite Aquí!" href="/register" />
+          <NavButton text="¡Inscribite Acá!" href="/register" />
           <NavButton text="Iniciar Sesión" href="/login" />
         </>
       );
@@ -106,14 +106,21 @@ const LoggedInButton = () => {
       <MenuButton
         backgroundColor="transparent"
         height="120%"
-        _hover={{ backgroundColor: "CSBlue" }}
+        _hover={{
+          backgroundColor: "CSLightBlue",
+          color: "CSDarkBlue"
+        }}
+        _active={{
+          backgroundColor: "CSLightBlue",
+          color: "CSDarkBlue"
+        }}
         as={Button}
         rightIcon={<ChevronDownIcon />}
       >
         <HStack>
           <Avatar
-            color="white"
-            backgroundColor="gray"
+            color="CSDarkBlue"
+            backgroundColor="CSLightOrange"
             name={userInfo?.name}
           ></Avatar>
           <VStack p="2" align="start">
@@ -122,9 +129,32 @@ const LoggedInButton = () => {
           </VStack>
         </HStack>
       </MenuButton>
-      <MenuList>
-        <MenuItem onClick={goToProfile}>Mi perfil</MenuItem>
-        <MenuItem onClick={logOut}>Cerrar sesión</MenuItem>
+      <MenuList
+        backgroundColor="CSLightBlue"
+        color="CSDarkBlue"
+      >
+        <MenuItem
+          onClick={goToProfile}
+          backgroundColor="CSLightBlue"
+          color="CSDarkBlue"
+          _hover={{
+            backgroundColor: "CSDarkBlue",
+            color: "CSLightBlue"
+          }}
+        >
+          Mi perfil
+        </MenuItem>
+        <MenuItem
+          onClick={logOut}
+          backgroundColor="CSLightBlue"
+          color="CSDarkBlue"
+          _hover={{
+            backgroundColor: "CSDarkBlue",
+            color: "CSLightBlue"
+          }}
+        >
+          Cerrar sesión
+        </MenuItem>
       </MenuList>
     </Menu>
   );
@@ -133,7 +163,7 @@ const LoggedInButton = () => {
 const NewNavbar = (props) => {
   const isLoggedIn = useStore((state) => state.isLoggedIn);
   const [navButton, setNavButton] = useState(
-    <LoggedOutButton></LoggedOutButton>
+    <LoggedOutButton/>
   );
 
   useEffect(() => {

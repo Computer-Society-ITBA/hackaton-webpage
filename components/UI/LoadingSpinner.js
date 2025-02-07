@@ -9,7 +9,7 @@ const LoadingSpinner = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Spinner size="xl" color="#55faa2" />
+      <Spinner size="xl" color="#CSLightBlue" />
     </Box>
   );
 };

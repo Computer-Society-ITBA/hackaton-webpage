@@ -24,6 +24,7 @@ import SponsorLogo from "../components/SponsorLogo";
 import styled from "@emotion/styled";
 import NewLogo from "../components/NewLogo";
 import NewCategoryLogo from "../components/NewCategoryLogo";
+import Timer from "../components/Timer";
 import Jury from "../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
@@ -191,7 +192,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
             location.href = "/register";
           }}
         >
-          INSCRIBITE AQUI
+          INSCRIBITE ACÁ
         </PrimaryButton>
       </VStack>
       {/* TODO: Turn on for next event? */}
@@ -909,23 +910,73 @@ const ThankYouMessage = () => {
   );
 };
 
+const RegisteredSection = () => {
+  return (
+    <Flex
+      direction="row"
+      width="100%"
+      alignItems="center"
+      justifyContent="space-between"
+      pt="8%"
+      zIndex={90}
+    >
+      <Img
+        src="/images/chars-left.png"
+        alt="Decoration"
+        width={["12%"]}
+      ></Img>
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexWrap="wrap"
+        flexDirection="column"
+      >
+        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
+          ¡Muchas gracias por inscribirte!
+        </Text>
+        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
+          Nos estaremos comunicando con vos una vez que cierren las inscripciones.
+        </Text>
+        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
+          ¡No te olvides de revisar tu mail!
+        </Text>
+      </Box>
+      <Img
+        src="/images/chars-right.png"
+        alt="Decoration"
+        width={["12%"]}
+      ></Img>
+    </Flex>
+  );
+};
+
 const Home = () => {
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const isLoggedIn = useStore((state) => state.isLoggedIn);
   const submissions = useStore((state) => state.submissions);
   const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
+  const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
 
   useEffect(() => {
     if (inscriptionsEnabled) {
+      if(isLoggedIn) {
+        setInscriptionsSection(<RegisteredSection />);
+        setTimeLeftSection(<Timer/>);
+        return;
+      }
       setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
+      setTimeLeftSection(<Timer/>);
       return;
     }
+
     const now = new Date();
     const submissionsEnd = new Date(submissions?.end);
 
     if (submissionsEnd < now) {
       setInscriptionsSection(<ThankYouMessage />);
     }
-  }, [inscriptionsEnabled, submissions]);
+  }, [inscriptionsEnabled, submissions, isLoggedIn]);
 
   return (
     <VStack>
@@ -934,7 +985,8 @@ const Home = () => {
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
       {/* Seccion inscribirse */}
-      {inscriptionsSection}
+      { inscriptionsSection }
+      { timeLeftSection }
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
