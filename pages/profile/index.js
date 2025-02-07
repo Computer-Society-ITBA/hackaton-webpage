@@ -10,7 +10,6 @@ import useStore from "../../config/storeConfig";
 import AdminView from "../../components/views/Admin";
 import UserView from "../../components/views/User";
 import MentorView from "../../components/views/Mentor";
-import { setConfig } from "next/config";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -34,8 +33,8 @@ const TODOView = () => {
 };
 const Home = () => {
   const userInfo = useStore((state) => state.userInfo);
-  const setUserInfo = useStore((state) => state.setUserInfo);
   const userToken = useStore((state) => state.token);
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
   const [view, setView] = useState(
     <Flex pt="8%" justifyContent="center" alignItems="center" align="center">
       <CircularProgress
@@ -46,10 +45,10 @@ const Home = () => {
     </Flex>
   );
   useEffect(() => {
-    if (userInfo === undefined) {
-      setUserInfo();
+    if(inscriptionsEnabled) {
+      setView(<TODOView/>);
+      return;
     }
-    console.log(userInfo);
     switch (userInfo?.role) {
       case "admin":
         setView(<AdminView token={userToken} />);

@@ -17,7 +17,7 @@ const CenteredMessage = (title, subtitle) => {
       flexWrap="wrap"
       flexDirection="column"
     >
-      <Text fontSize="4xl" color="#55faa2">
+      <Text fontSize="4xl" color="CSLightBlue">
         {title}
       </Text>
       <Text fontSize="2xl" color="white">
