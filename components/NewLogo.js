@@ -61,13 +61,13 @@ const NewLogo = ({ date }) => {
             Computer Society ITBA
           </Heading>
         </Box>
-        <Box alignSelf="end" pr="9%">
+        <Box alignSelf="end" pr="8%">
           <Heading
             display="inline"
             size={["sm", "md", "lg", "xl", "2xl"]}
             color="CSOrange"
           >
-            Student Branch
+            Student Chapter
           </Heading>
         </Box>
         <Box alignSelf="end" pr="7%">
