@@ -23,7 +23,7 @@ const Logo = () => {
   return (
     <Link href="/" passHref={true}>
       <LogoBox>
-        <Img src={csImage} height="90%" alt="logo" />
+        <Img src={csImage} height={["50%","60%","70%","80%","90%"]} alt="logo" />
       </LogoBox>
     </Link>
   );
