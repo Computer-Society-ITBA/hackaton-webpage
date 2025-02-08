@@ -1,20 +1,15 @@
 import useStore from "../config/storeConfig";
 import React, { useEffect, useState } from "react";
-import { useBreakpointValue } from "@chakra-ui/react";
 import { Box, HStack, Text, VStack } from "@chakra-ui/react";
 
 function Timer () {
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
   const inscriptions = useStore((state) => state.inscriptions);
-  const fontSize = useBreakpointValue({
-    base: "6px",
-    xs: "8px",
-    sm: "3xs",
-    md: "2xs",
-    lg: "xs",
-    xl: "sm",
-    xxl: "md",
-  });
+  const [isPC, setIsPC] = useState(false);
+
+  useEffect(() => {
+    setIsPC(window.innerWidth > 820);
+  }, [isPC]);
 
   const calculateTimeLeft = () => {
     if(!inscriptionsEnabled) return null;
@@ -38,7 +33,6 @@ function Timer () {
   }
 
   const [ timeLeft, setTimeLeft ] = useState(calculateTimeLeft());
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
@@ -56,8 +50,8 @@ function Timer () {
       <HStack 
       alignContent="center"
       justifyContent="center"
-      flexWrap={["wrap"]}>
-        <Text fontSize={fontSize} textAlign="center" color="#ffffff">
+      flexWrap={isPC ? "nowrap" : "wrap"}>
+        <Text fontSize={["2xs","xs","md","lg"]} textAlign="center" color="#ffffff">
           { timeLeft ? "Las inscripciones finalizan en:" : "Las inscripciones terminaron. ¡Nos vemos el año que viene!"}
         </Text>
         { timeLeft && (
@@ -69,10 +63,10 @@ function Timer () {
               //{ label: timeLeft && timeLeft.seconds === 1 ? "Segundo" : "Segundos", value: timeLeft?.seconds },
             ].map(({ label, value }) => (
               <Box key={label} px={[0.5,1,2]}>
-                <Text fontSize={fontSize} textAlign="center" color="CSLightOrange">
+                <Text fontSize={["2xs","xs","md","lg"]} textAlign="center" color="CSLightOrange">
                   {value}
                 </Text>
-                <Text fontSize={fontSize} textAlign="center" color="CSLightBlue">
+                <Text fontSize={["2xs","xs","md","lg"]} textAlign="center" color="CSLightBlue">
                   {label}
                 </Text>
               </Box>

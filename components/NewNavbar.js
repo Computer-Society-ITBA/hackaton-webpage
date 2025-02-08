@@ -53,8 +53,8 @@ const NavButton = ({ text, href }) => {
       <NextLink href={href}>
         <PrimaryButton
           backgroundColor="CSLightBlue"
-          fontSize={["3xs","2xs","xs", "sm", "md", "xl", "xl"]}
-          size={["3xs","2xs","xs", "sm", "sm", "md", "md"]}
+          fontSize={["2xs","xs", "sm", "md", "xl", "xl"]}
+          size={["2xs","xs", "sm", "sm", "md", "md"]}
         >
           {text}
         </PrimaryButton>
@@ -168,8 +168,11 @@ const NewNavbar = (props) => {
   );
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
   const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
+  const [isPC, setIsPC] = useState(false);
 
   useEffect(() => {
+    setIsPC(window.innerWidth > 768);
+
     if(inscriptionsEnabled){
       setTimeLeftSection(<Timer/>);
     }
@@ -202,6 +205,8 @@ const NewNavbar = (props) => {
         wrap="wrap"
         align="center"
         justify="space-between"
+        paddingTop="2%"
+        paddingBottom="1%"
       >
         <Flex align="center" mr="auto" flexShrink={0}>
           <Heading as="h1" size="lg" letterSpacing={"tighter"}>
@@ -216,7 +221,7 @@ const NewNavbar = (props) => {
           >
           { timeLeftSection }
         </Flex>
-        <Box
+        {isPC ? (<Box
           align="right"
           justifyContent="space-between"
           alignItems="center"
@@ -224,7 +229,15 @@ const NewNavbar = (props) => {
           display="flex"
         >
           { navButton }
-        </Box>
+        </Box>) : (<VStack
+          align="right"
+          justifyContent="space-between"
+          alignItems="center"
+          ml="auto"
+          display="flex"
+        >
+          { navButton }
+        </VStack>)}
       </Container>
     </Box>
   );
