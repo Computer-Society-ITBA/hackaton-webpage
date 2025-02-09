@@ -773,28 +773,6 @@ const Form = ({ ...extendedProps }) => {
     </VStack>
   );
 };
-const DoubtSection = ({ ...extendedProps }) => {
-  const CSImg = "/images/IEEE_CS.svg";
-  return (
-    <Stack
-      spacing="4%"
-      direction={["column", "column", "row", "row", "row"]}
-      width="full"
-      justify="center"
-      px="4%"
-      {...extendedProps}
-    >
-      <VStack spacing="4%">
-        <Heading size={["md", "lg", "xl", "2xl", "3xl"]}>¿Tenés dudas?</Heading>
-        <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
-          ¡Contáctanos!
-        </Heading>
-        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
-      </VStack>
-      <Form />
-    </Stack>
-  );
-};
 
 const Editions = () => {
   return (
@@ -879,7 +857,6 @@ const Home = () => {
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       <SponsorsSection zIndex={90} pt="4%" />
-      <DoubtSection pt="4%" zIndex={90} />
     </VStack>
   );
 };
