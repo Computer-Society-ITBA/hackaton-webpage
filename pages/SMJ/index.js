@@ -32,17 +32,17 @@ const EnviarButton = styled(Button)`
   padding: 4% 8%;
 
   svg path {
-    fill: #1e212a;
+    fill: #AFEFF3;
     transition: all 0.3s ease;
   }
 
   &:hover {
     background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
+    color: #AFEFF3;
+    border: 1px solid #AFEFF3;
 
     svg path {
-      fill: #2fe0b5;
+      fill: #AFEFF3;
     }
   }
 `;
@@ -167,10 +167,11 @@ const Forms = ({ ...extendedProps }) => {
       {...extendedProps}
     >
       <Img
-        src="/images/Sponsor_corner_1.svg"
+        src="/images/chars-left.png"
+        paddingTop="3%"
         alt="decoration image"
         alignSelf="start"
-        w={["18%", "15%", "12%", "10%", "8%"]}
+        w={["15%", "13%", "12%", "11%", "10%"]}
       ></Img>
       <Flex
         gap="2em"
@@ -255,20 +256,20 @@ const Forms = ({ ...extendedProps }) => {
         ></Textarea>
         <EnviarButton
           width="full"
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
+          color="CSDarkBlue"
           _disabled={{
             borderRadius: "4px",
-            opacity: 0.4,
             fontWeight: 500,
-            borderWidth: "1px",
+            borderWidth: "2px",
             transition: "all 0.3s ease",
             padding: "4% 8%",
             "&:hover": {
-              backgroundColor: "#FFFFFF",
-              color: "#FFFFFF",
+              backgroundColor: "CSDarkBlue",
+              color: "CSLightBlue",
               borderRadius: "4px",
               borderWidth: "1px",
-              borderColor: "var(--chakra-colors-chakra-border-color)",
+              borderColor: "CSLightBlue",
               "svg path": {},
             },
           }}

@@ -17,7 +17,7 @@ const CenteredMessage = (title, subtitle) => {
       flexWrap="wrap"
       flexDirection="column"
     >
-      <Text fontSize="4xl" color="#55faa2">
+      <Text fontSize="4xl" color="CSLightBlue">
         {title}
       </Text>
       <Text fontSize="2xl" color="white">
@@ -27,7 +27,7 @@ const CenteredMessage = (title, subtitle) => {
   );
 };
 
-const HasSubmitedView = () => {
+const HasSubmittedView = () => {
   return CenteredMessage(
     "Ya hemos recibido tu proyecto!",
     "Pronto nos pondremos en contacto contigo"
@@ -62,7 +62,7 @@ const UserView = ({ userInfo }) => {
           status: "success",
           duration: 3000,
           onCloseComplete: () => {
-            setHasSubmited(true);
+            setHasSubmitted(true);
           },
         });
       } catch (err) {
@@ -81,7 +81,7 @@ const UserView = ({ userInfo }) => {
     [userInfo, toast]
   );
 
-  const userHasSubmited = useCallback(async () => {
+  const userHasSubmitted = useCallback(async () => {
     try {
       const response = await axiosApiInstance.get(
         `/users/${userInfo.uid}/submission`
@@ -92,15 +92,15 @@ const UserView = ({ userInfo }) => {
     }
   }, [userInfo]);
 
-  const [hasSubmited, setHasSubmited] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [ hasSubmitted, setHasSubmitted ] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(true);
 
   useEffect(() => {
-    userHasSubmited().then((hasSubmited) => {
-      setHasSubmited(hasSubmited);
+    userHasSubmitted().then((hasSubmitted) => {
+      setHasSubmitted(hasSubmitted);
       setIsLoading(false);
     });
-  }, [userHasSubmited]);
+  }, [userHasSubmitted]);
 
   const submissionsEnabled = useStore((state) => state.submissionsEnabled);
 
@@ -108,8 +108,8 @@ const UserView = ({ userInfo }) => {
     <LoadingSpinner />
   ) : !submissionsEnabled ? (
     <SubmissionsClosedView />
-  ) : hasSubmited ? (
-    <HasSubmitedView />
+  ) : hasSubmitted ? (
+    <HasSubmittedView />
   ) : (
     <Box mt={3} px="15%">
       <Text fontSize="4xl">Entrega de Proyecto</Text>

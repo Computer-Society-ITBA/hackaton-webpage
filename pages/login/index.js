@@ -30,6 +30,7 @@ const IngresarButton = styled(Button)`
   border-width: 1px;
   transition: all 0.3s ease;
   padding: 4% 8%;
+  color: #14192D;
 
   svg path {
     fill: #1e212a;
@@ -38,11 +39,11 @@ const IngresarButton = styled(Button)`
 
   &:hover {
     background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
+    color: #AFEFF3;
+    border: 1px solid #AFEFF3;
 
     svg path {
-      fill: #2fe0b5;
+      fill: #AFEFF3;
     }
   }
 `;
@@ -53,6 +54,7 @@ const InscribirseButton = styled(Button)`
   border-width: 1px;
   transition: all 0.3s ease;
   padding: 4% 8%;
+  color: #14192D;
 
   svg path {
     fill: #1e212a;
@@ -61,8 +63,8 @@ const InscribirseButton = styled(Button)`
 
   &:hover {
     background-color: transparent;
-    color: #ffa300;
-    border: 1px solid #ffa300;
+    color: #FAD399;
+    border: 1px solid #FAD399;
 
     svg path {
       fill: #2fe0b5;
@@ -80,6 +82,12 @@ const Home = () => {
   const [errorMessage, setErorrMessage] = useState("");
   const handleEmailChange = (event) => setEmail(event.target.value.trim());
   const handlePasswordChange = (event) => setPassword(event.target.value);
+  const handlePasswordKeyPress = async (event) => {
+    if (event.key === 'Enter') {
+      await signIn(email, password);
+    }
+  }
+
 
   const [registerSection, setRegisterSection] = useState();
   const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
@@ -93,7 +101,7 @@ const Home = () => {
           </Text>
           <InscribirseButton
             isLoading={isLoading}
-            backgroundColor="CSOrange"
+            backgroundColor="CSLightOrange"
             width="full"
             onClick={() => {
               location.href = "/register";
@@ -133,7 +141,8 @@ const Home = () => {
   return (
     <VStack width="full" direction="column" justifyContent="space-between">
       <Img
-        src="/images/Sponsor_corner_1.svg"
+        paddingTop="2%"
+        src="/images/chars-corner-left.png"
         alt="decoration image"
         alignSelf="start"
         w={["18%", "15%", "12%", "10%", "8%"]}
@@ -170,6 +179,7 @@ const Home = () => {
           <Input
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handlePasswordKeyPress}
             type={showPassword ? "text" : "password"}
             minH="3.5em"
             placeholder="Ingresá tu contraseña"
@@ -193,7 +203,7 @@ const Home = () => {
           <Text
             fontSize={TextSize}
             cursor="pointer"
-            _hover={{ color: "CSGreen" }}
+            _hover={{ color: "CSLightBlue" }}
           >
             ¿Olvidaste tu contraseña?
           </Text>
@@ -205,7 +215,7 @@ const Home = () => {
           isLoading={isLoading}
           disabled={email === "" || password === ""}
           onClick={() => signIn(email, password)}
-          backgroundColor="CSGreen"
+          backgroundColor="CSLightBlue"
           width="full"
         >
           Ingresar

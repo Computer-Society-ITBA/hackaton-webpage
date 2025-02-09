@@ -17,7 +17,12 @@ const TextSize = ["xs", "sm", "md", "lg", "xl"];
 const TODOView = () => {
   return (
     <VStack p="4%">
-      <Heading size={HeadingSize} py="2%" textAlign="center" color="CSGreen">
+      <Heading
+        size={HeadingSize}
+        py="2%"
+        textAlign="center"
+        color="CSLightBlue"
+      >
         ¡Nos estamos preparando!
       </Heading>
       <Text size={TextSize} textAlign="center">
@@ -29,16 +34,21 @@ const TODOView = () => {
 const Home = () => {
   const userInfo = useStore((state) => state.userInfo);
   const userToken = useStore((state) => state.token);
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
   const [view, setView] = useState(
     <Flex pt="8%" justifyContent="center" alignItems="center" align="center">
       <CircularProgress
         isIndeterminate
-        color="CSOrange"
+        color="CSLightOrange"
         size="40%"
       ></CircularProgress>
     </Flex>
   );
   useEffect(() => {
+    if(inscriptionsEnabled && userInfo?.role !== "admin") {
+      setView(<TODOView/>);
+      return;
+    }
     switch (userInfo?.role) {
       case "admin":
         setView(<AdminView token={userToken} />);

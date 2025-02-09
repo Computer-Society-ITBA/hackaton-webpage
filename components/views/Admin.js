@@ -749,7 +749,7 @@ const MentorAssignment = () => {
 const AdminView = ({ token }) => {
   return (
     <Tabs variant="enclosed">
-      <TabList>
+      <TabList  paddingY="5%">
         <Tab>Selección de equipos</Tab>
         <Tab>Registro de mentores</Tab>
         <Tab>Asignación de mentores a equipos</Tab>

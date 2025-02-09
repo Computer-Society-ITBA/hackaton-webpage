@@ -20,14 +20,14 @@ import {
   Box,
   CircularProgress,
 } from "@chakra-ui/react";
-import SponsorLogo from "../components/SponsorLogo";
+import SponsorLogo from "../../components/SponsorLogo";
 import styled from "@emotion/styled";
-import NewLogo from "../components/NewLogo";
-import NewCategoryLogo from "../components/NewCategoryLogo";
-import Jury from "../components/Jury";
+import ParticlesLogo from "../../components/ParticlesLogo";
+import CategoryLogo from "../../components/CategoryLogo";
+import Jury from "../../components/Jury";
 import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
-import useStore from "../config/storeConfig";
+import useStore from "../../config/storeConfig";
 
 // const Subtitle = styled(Text)`
 //   font-size: 14px;
@@ -60,17 +60,17 @@ const PrimaryButton = styled(Button)`
   padding: 4% 8%;
 
   svg path {
-    fill: #AFEFF3;
+    fill: #1e212a;
     transition: all 0.3s ease;
   }
 
   &:hover {
     background-color: transparent;
-    color: #AFEFF3;
-    border: 1px solid #AFEFF3;
+    color: #2fe0b5;
+    border: 1px solid #2fe0b5;
 
     svg path {
-      fill: #AFEFF3;
+      fill: #2fe0b5;
     }
   }
 `;
@@ -85,7 +85,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
         as="h1"
         display="inline"
         size={HeadingSize}
-        color="CSLightOrange"
+        color="CSOrange"
         textAlign={"center"}
         paddingY="6px"
       >
@@ -93,7 +93,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
       </Heading>
       <Divider variant="thick"></Divider>
       <Text textAlign="center" fontSize={TextSize}>
-        <Text as="span" color="CSLightBlue">
+        <Text as="span" color="CSGreen">
           HackITBA
         </Text>{" "}
         es una hackathon organizada por y para estudiantes, donde, en grupos de
@@ -110,75 +110,41 @@ const GeneralInfo = ({ ...extendedProps }) => {
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
-      name: "Salud",
-      description:`La categoría de **Salud y Bienestar** busca soluciones innovadoras para mejorar la calidad de vida y el acceso a servicios de salud. Considera temas como:
--   **Acceso a información y servicios de salud.**
--   **Apoyo en rehabilitación y movilidad.**
--   **Innovación en comercio de salud.**
-\nLos proyectos pueden enfocarse en promover la salud en cualquier área, facilitando el bienestar físico y mental en diversos entornos.`,
-      scope: [],
-      logo: "/images/categories/new-salud.png",
+      name: "Economía y Finanzas",
+      description:
+        "La categoría de Economía y Finanzas busca soluciones vanguardistas para impulsar el crecimiento económico y el manejo financiero en todas sus escalas. Abarca temas como: Finanzas personales, Inclusión financiera, Validación de identidad y avance de proyectos, Acceso a la información, y Supply chain",
+      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
+      logo: "/images/categories/econ.png",
       logoSvg: false,
-      logoSmall: "/images/categories/codySaludSmall.png",
-      color: "CSRed",
     },
     {
-      name: "Sustentabilidad",
-      description:`La categoría de **Sustentabilidad** busca soluciones creativas y aplicables para promover un equilibrio entre el desarrollo económico, social y ambiental. Considera temas como:
-
--   **Reducción de la huella ecológica.**
--   **Optimización del uso de recursos naturales.**
--   **Economía circular y reciclaje.**
--   **Energías renovables y eficiencia energética.**
--   **Gestión y mitigación de residuos.**
--   **Conservación de biodiversidad y ecosistemas.**
-
-\nLos proyectos pueden enfocarse en mejorar la sostenibilidad en cualquier área, desde la vida cotidiana hasta las operaciones industriales y comerciales.`,
-      scope: [],
-      logo: "/images/categories/new-sustentabilidad.png",
-      logoSmall: "/images/categories/codySustentableSmall.png",
+      name: "Salud y bienestar",
+      description:
+        "La categoría de Salud y Bienestar busca soluciones innovadoras para mejorar la calidad de vida de las personas. Considera temas como: Prevención y diagnóstico de enfermedades, Nutrición, Acceso a atención e información, Seguimiento de comportamiento, y Salud Mental",
+      scope: ["billetera Web 3.0", "Juegos en Web 3.0"],
+      logo: "/images/categories/salud.png",
       logoSvg: false,
-      color: "CSGreen",
-    },
-    {
-      name: "Educación",
-      description:`La categoría de **Educación** busca soluciones prácticas e innovadoras que mejoren el aprendizaje y preparen a las personas con habilidades clave para enfrentar los desafíos actuales, desde la educación financiera hasta el acceso digital y el desarrollo profesional.
-      
--   **Educación financiera práctica**: Proyectos que enseñen el manejo del dinero desde conceptos básicos hasta inversiones, ahorro, presupuesto personal y planificación financiera.
--   **Acceso universal a la educación digital**.
--   **Apoyo a docentes y facilitadores**.
--   **Inclusión y equidad educativa**.`,
-      scope: [],
-      logo: "/images/categories/new-edu.png",
-      logoSmall: "/images/categories/codyEducativoSmall.png",
-      logoSvg: false,
-      color: "CSBlue",
     },
   ];
   return (
-    <VStack spacing={4} paddingX="5%" paddingY="5%">
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
-        Categorías
-      </Heading>
-      <HStack
-        paddingX="10%"
-        h="100%"
-        justify="center"
-        spacing="15%"
-        {...extendedProps}
-      >
-        {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
-        {categories.map((category) => {
-          return (
-            <NewCategoryLogo key={category.name} category={category}></NewCategoryLogo>
-          );
-        })}
-      </HStack>
-    </VStack>
+    <HStack
+      paddingX="10%"
+      w="full"
+      justify="center"
+      spacing="20%"
+      {...extendedProps}
+    >
+      {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
+      {categories.map((category) => {
+        return (
+          <CategoryLogo key={category.name} category={category}></CategoryLogo>
+        );
+      })}
+    </HStack>
   );
 };
 const InscriptionSection = ({ ...extendedProps }) => {
-  const imageWidth = ["25%", "28%", "25%", "28%"];
+  const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
   const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
   const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
   const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
@@ -193,7 +159,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
       {...extendedProps}
     >
       <Img
-        src="/images/chars-left.png"
+        src="/images/Inscribite_1.svg"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -204,15 +170,14 @@ const InscriptionSection = ({ ...extendedProps }) => {
         <PrimaryButton
           mt={pbMT}
           height="2%"
-          backgroundColor="CSLightBlue"
-          color="CSDarkBlue"
+          backgroundColor="CSGreen"
           fontSize={pbFontSize}
           size={pbSize}
           onClick={() => {
             location.href = "/register";
           }}
         >
-          INSCRIBITE ACÁ
+          INSCRIBITE AQUI
         </PrimaryButton>
       </VStack>
       {/* TODO: Turn on for next event? */}
@@ -235,7 +200,7 @@ const InscriptionSection = ({ ...extendedProps }) => {
         </PrimaryButton>
       </VStack> */}
       <Img
-        src="/images/chars-right.png"
+        src="/images/Inscribite_2.svg"
         alt="Decoration"
         width={imageWidth}
       ></Img>
@@ -280,10 +245,10 @@ const JurySection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Jurados
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros jurados</Text>*/}
+      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
       <Flex
         width="full"
         direction="row"
@@ -292,11 +257,9 @@ const JurySection = ({ ...extendedProps }) => {
         alignItems="start"
         verticalAlign="top"
       >
-        <Text fontSize={TextSize}>Próximamente...</Text>
-        {/* TODO - Cuando estén todos los jurados renovar
-          juries.map((jury, index) => {
+        {juries.map((jury, index) => {
           return <Jury key={index} jury={jury} my="2%" mx="4%"></Jury>;
-        })*/}
+        })}
       </Flex>
     </VStack>
   );
@@ -370,12 +333,10 @@ const MentorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack width="full" {...extendedProps}>
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Mentores
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros mentores</Text>*/}
-      <Text fontSize={TextSize}>Próximamente...</Text>
-      {/* TODO - Descomentar cuando se tengan todos los mentors disponibles
+      <Text fontSize={TextSize}>Conocé a nuestros mentores</Text>
       <Grid
         paddingX="4%"
         paddingY="4%"
@@ -393,15 +354,15 @@ const MentorsSection = ({ ...extendedProps }) => {
         gap={1}
         rowGap={6}
       >
-        mentors.map((mentor, index) => {
+        {mentors.map((mentor, index) => {
           return (
             <GridItem key={index}>
               <Jury jury={mentor}></Jury>{" "}
-              {/* Queda mal el keyword pero creo que el componente sería el mismo * /}
+              {/* Queda mal el keyword pero creo que el componente sería el mismo */}
             </GridItem>
           );
-        })
-      </Grid>*/}
+        })}
+      </Grid>
     </VStack>
   );
 };
@@ -548,18 +509,17 @@ const SponsorsSection = ({ ...extendedProps }) => {
   ];
   return (
     <VStack w="full" mt={0} {...extendedProps}>
-      {/*<Img
+      <Img
         src="/images/Sponsor_corner_1.svg"
         alt="decoration image"
         alignSelf="start"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>*/}
+      ></Img>
       <VStack top="-1">
-        <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
-          Sponsors 2025
+        <Heading color="CSOrange" size={HeadingSize} textAlign="center">
+          Sponsors 2024
         </Heading>
-        {/*<Text fontSize={TextSize}>Empresas que nos acompañan</Text>*/}
-        <Text fontSize={TextSize}>Próximamente...</Text>
+        <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
       </VStack>
       <VStack
         px="8%"
@@ -567,8 +527,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
         divider={<StackDivider variant="thick"></StackDivider>}
         w="full"
       >
-        {/* TODO - Descomentar esto cuando estén todos los sponsors
-        sponsors.map((category) => {
+        {sponsors.map((category) => {
           let columns;
           switch (category.name) {
             case "Standard":
@@ -586,7 +545,7 @@ const SponsorsSection = ({ ...extendedProps }) => {
               <Heading textAlign="center" size={TextSize}>
                 {category.name}
               </Heading>
-              {/* Lo dejamos como para que sea una fila por categoría *\/}
+              {/* Lo dejamos como para que sea una fila por categoría */}
               <Grid paddingX="6%" templateColumns={columns} w="full">
                 {category.items.map((sponsor) => {
                   return (
@@ -604,14 +563,14 @@ const SponsorsSection = ({ ...extendedProps }) => {
               </Grid>
             </Box>
           );
-        })*/}
+        })}
       </VStack>
-      {/*<Img
+      <Img
         src="/images/Sponsor_corner_2.svg"
         alt="decoration image"
         alignSelf="end"
         w={["20%", "18%", "15%", "12%", "10%"]}
-      ></Img>*/}
+      ></Img>
     </VStack>
   );
 };
@@ -624,7 +583,7 @@ const LocalInput = ({ ...extendedProps }) => (
     errorBorderColor="red.500"
     focusBorderColor="white"
     borderRadius="4px"
-    backgroundColor="CSAltField"
+    backgroundColor="CSOrange"
     color="white"
     _placeholder={{ color: "white" }}
     {...extendedProps}
@@ -740,7 +699,7 @@ const Form = ({ ...extendedProps }) => {
     setIsLoading(false);
   };
   return (
-    <VStack w={["100%", "100%", "100%", "50%", "40%"]} {...extendedProps}>
+    <VStack w={["100%", "100%", "100%", "50%", "50%"]} {...extendedProps}>
       <LocalInput
         onClick={() => setEmailError(!validateEmail(email))}
         onChange={(event) => {
@@ -769,10 +728,10 @@ const Form = ({ ...extendedProps }) => {
           setBody(event.target.value);
           setBodyError(event.target.value === "");
         }}
-        height={["4em", "6em", "8em", "10em", "10em"]}
+        height={["4em", "6em", "8em", "10em", "12em"]}
         focusBorderColor="white"
         borderRadius="4px"
-        backgroundColor="CSAltField"
+        backgroundColor="CSOrange"
         borderWidth="1.5px"
         errorBorderColor="red.500"
         color="white"
@@ -815,7 +774,7 @@ const Form = ({ ...extendedProps }) => {
   );
 };
 const DoubtSection = ({ ...extendedProps }) => {
-  const CSImg = "/images/IEEE_CS.png";
+  const CSImg = "/images/IEEE_CS.svg";
   return (
     <Stack
       spacing="4%"
@@ -830,12 +789,7 @@ const DoubtSection = ({ ...extendedProps }) => {
         <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
           ¡Contáctanos!
         </Heading>
-        <Img
-          paddingY="2%"
-          src={CSImg}
-          alt="ITBA IEEE Computer Society image"
-          width={["200px", "250px", "300px", "450px", "500px"]} // Adjust sizes as needed
-        />
+        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
       </VStack>
       <Form />
     </Stack>
@@ -845,26 +799,13 @@ const DoubtSection = ({ ...extendedProps }) => {
 const Editions = () => {
   return (
     <VStack width="full">
-      <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
+      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
         Ediciones Anteriores
       </Heading>
       <HStack justify="center" spacing="5%">
         <PrimaryButton
           height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
-          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-          size={["xs", "xs", "lg", "lg", "lg"]}
-          onClick={() => {
-            location.href = "/2024";
-          }}
-        >
-          2024
-        </PrimaryButton>
-        <PrimaryButton
-          height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
+          backgroundColor="CSGreen"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -875,8 +816,7 @@ const Editions = () => {
         </PrimaryButton>
         <PrimaryButton
           height="2%"
-          backgroundColor="CSLightBlue"
-          color="#14192D"
+          backgroundColor="CSGreen"
           fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
           size={["xs", "xs", "lg", "lg", "lg"]}
           onClick={() => {
@@ -903,9 +843,9 @@ const ThankYouMessage = () => {
       zIndex={90}
     >
       <Img
-        src="/images/chars-left.png"
+        src="/images/Inscribite_1.svg"
         alt="Decoration"
-        width="20%"
+        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
       ></Img>
       <Box
         display="flex"
@@ -922,96 +862,24 @@ const ThankYouMessage = () => {
         </Text>
       </Box>
       <Img
-        src="/images/chars-right.png"
+        src="/images/Inscribite_2.svg"
         alt="Decoration"
-        width="20%"
-      ></Img>
-    </Flex>
-  );
-};
-
-const RegisteredSection = () => {
-  return (
-    <Flex
-      direction="row"
-      width="100%"
-      alignItems="center"
-      justifyContent="space-between"
-      pt="8%"
-      zIndex={90}
-    >
-      <Img
-        src="/images/chars-left.png"
-        alt="Decoration"
-        width={["12%"]}
-      ></Img>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-        flexDirection="column"
-      >
-        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
-          ¡Muchas gracias por inscribirte!
-        </Text>
-        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
-          Nos estaremos comunicando con vos una vez que cierren las inscripciones.
-        </Text>
-        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} textAlign="center" color="#ffffff">
-          ¡No te olvides de revisar tu mail!
-        </Text>
-      </Box>
-      <Img
-        src="/images/chars-right.png"
-        alt="Decoration"
-        width={["12%"]}
+        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
       ></Img>
     </Flex>
   );
 };
 
 const Home = () => {
-  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
-  const isLoggedIn = useStore((state) => state.isLoggedIn);
-  const submissions = useStore((state) => state.submissions);
-  const [inscriptionsSection, setInscriptionsSection] = useState(<></>);
-
-  useEffect(() => {
-    if (inscriptionsEnabled) {
-      if(isLoggedIn) {
-        setInscriptionsSection(<RegisteredSection />);
-        return;
-      }
-      setInscriptionsSection(<InscriptionSection pt="4%" zIndex={90} />);
-      return;
-    }
-
-    const now = new Date();
-    const submissionsEnd = new Date(submissions?.end);
-
-    if (submissionsEnd < now) {
-      setInscriptionsSection(<ThankYouMessage />);
-    }
-  }, [inscriptionsEnabled, submissions, isLoggedIn]);
-
   return (
     <VStack>
-      {/* Le paso a todos el padding y no lo pongo en gap porque entre workshops y sponsors no tiene que haber espacio */}
-      <NewLogo date="28, 29 y 30 de marzo" />
+      <ParticlesLogo date="5, 6 y 7 de abril" />
       <GeneralInfo pt="4%" zIndex={90} />
       <Categories pt="4%" zIndex={90} />
-      {/* Seccion inscribirse */}
-      { inscriptionsSection }
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
-      {/* <WorkshopsSection pt='4%' zIndex={90}/> */}
-      {/* TODO: sacar pt='4%' cuando vuelvan los workshops */}
       <SponsorsSection zIndex={90} pt="4%" />
-      <Editions />
       <DoubtSection pt="4%" zIndex={90} />
-      {/* TODO: revisar por que con las particulas no funcionan las animaciones de los logos de sponsors */}
-      {/* Lo solucione con zindex, si no creo que toma como que estan atras del canvas que tiene a las particulas */}
     </VStack>
   );
 };
