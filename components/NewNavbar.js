@@ -21,6 +21,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import styled from "@emotion/styled";
 import Logo from "./Logo";
 import useStore from "../config/storeConfig";
+import Timer from "../components/Timer";
 
 const PrimaryButton = styled(Button)`
   border-radius: 4px;
@@ -52,8 +53,8 @@ const NavButton = ({ text, href }) => {
       <NextLink href={href}>
         <PrimaryButton
           backgroundColor="CSLightBlue"
-          fontSize={["xs", "sm", "md", "xl", "xl"]}
-          size={["xs", "sm", "sm", "md", "md"]}
+          fontSize={["2xs","xs", "sm", "md", "xl", "xl"]}
+          size={["2xs","xs", "sm", "sm", "md", "md"]}
         >
           {text}
         </PrimaryButton>
@@ -165,14 +166,23 @@ const NewNavbar = (props) => {
   const [navButton, setNavButton] = useState(
     <LoggedOutButton/>
   );
+  const inscriptionsEnabled = useStore((state) => state.inscriptionsEnabled);
+  const [ timeLeftSection, setTimeLeftSection ] = useState(<></>);
+  const [isPC, setIsPC] = useState(false);
 
   useEffect(() => {
+    setIsPC(window.innerWidth > 768);
+
+    if(inscriptionsEnabled){
+      setTimeLeftSection(<Timer/>);
+    }
+
     if (isLoggedIn) {
       setNavButton(<LoggedInButton />);
     } else {
       setNavButton(<LoggedOutButton />);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, inscriptionsEnabled]);
 
   return (
     <Box
@@ -195,22 +205,39 @@ const NewNavbar = (props) => {
         wrap="wrap"
         align="center"
         justify="space-between"
+        paddingTop="2%"
+        paddingBottom="1%"
       >
-        <Flex align="center" mr={5}>
+        <Flex align="center" mr="auto" flexShrink={0}>
           <Heading as="h1" size="lg" letterSpacing={"tighter"}>
             <Logo />
           </Heading>
         </Flex>
-
-        <Box
+        <Flex align="center"
+          alignItems="center"
+          marginLeft="auto"
+          marginRight="auto"
+          whiteSpace="nowrap"
+          >
+          { timeLeftSection }
+        </Flex>
+        {isPC ? (<Box
           align="right"
           justifyContent="space-between"
           alignItems="center"
-          marginLeft="auto"
+          ml="auto"
           display="flex"
         >
           { navButton }
-        </Box>
+        </Box>) : (<VStack
+          align="right"
+          justifyContent="space-between"
+          alignItems="center"
+          ml="auto"
+          display="flex"
+        >
+          { navButton }
+        </VStack>)}
       </Container>
     </Box>
   );
