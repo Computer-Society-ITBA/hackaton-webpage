@@ -107,6 +107,7 @@ const LoggedInButton = () => {
       <MenuButton
         backgroundColor="transparent"
         height="120%"
+        paddingY="15%"
         _hover={{
           backgroundColor: "CSLightBlue",
           color: "CSDarkBlue"
@@ -213,14 +214,17 @@ const NewNavbar = (props) => {
             <Logo />
           </Heading>
         </Flex>
-        <Flex align="center"
-          alignItems="center"
-          marginLeft="auto"
-          marginRight="auto"
-          whiteSpace="nowrap"
+        {!isLoggedIn && (
+          <Flex align="center"
+                alignItems="center"
+                marginLeft="auto"
+                marginRight="auto"
+                whiteSpace="nowrap"
           >
-          { timeLeftSection }
-        </Flex>
+            { timeLeftSection }
+          </Flex>
+          )
+        }
         {isPC ? (<Box
           align="right"
           justifyContent="space-between"
