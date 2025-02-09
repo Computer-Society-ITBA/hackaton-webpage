@@ -45,7 +45,7 @@ const Home = () => {
     </Flex>
   );
   useEffect(() => {
-    if(inscriptionsEnabled) {
+    if(inscriptionsEnabled && userInfo?.role !== "admin") {
       setView(<TODOView/>);
       return;
     }
