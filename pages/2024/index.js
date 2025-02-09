@@ -1,79 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Heading,
   Flex,
   Text,
-  Button,
   Grid,
   Img,
   VStack,
   Divider,
-  Spacer,
   HStack,
   GridItem,
-  Stack,
-  Input,
-  Textarea,
   StackDivider,
-  useToast,
   Box,
-  CircularProgress,
 } from "@chakra-ui/react";
 import SponsorLogo from "../../components/SponsorLogo";
-import styled from "@emotion/styled";
 import ParticlesLogo from "../../components/ParticlesLogo";
 import CategoryLogo from "../../components/CategoryLogo";
 import Jury from "../../components/Jury";
-import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
-import joi from "joi";
-import useStore from "../../config/storeConfig";
-
-// const Subtitle = styled(Text)`
-//   font-size: 14px;
-//   text-transform: uppercase;
-//   color: #b1b7c2;
-// `;
-
-// const Separator = styled.span`
-//   border-left: 1px solid #b1b7c2;
-//   margin-left: 16px;
-//   margin-right: 16px;
-// `;
-
-// const Badge = styled.span`
-//   color: #2f323a;
-//   background-color: #bdc4cf;
-//   text-transform: uppercase;
-//   border-radius: 4px;
-//   padding: 5px 6px;
-//   font-size: 13px;
-//   font-weight: 500;
-//   margin-right: 8px;
-// `;
-
-const PrimaryButton = styled(Button)`
-  border-radius: 4px;
-  font-weight: 500;
-  border-width: 1px;
-  transition: all 0.3s ease;
-  padding: 4% 8%;
-
-  svg path {
-    fill: #1e212a;
-    transition: all 0.3s ease;
-  }
-
-  &:hover {
-    background-color: transparent;
-    color: #2fe0b5;
-    border: 1px solid #2fe0b5;
-
-    svg path {
-      fill: #2fe0b5;
-    }
-  }
-`;
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -107,6 +50,7 @@ const GeneralInfo = ({ ...extendedProps }) => {
     </VStack>
   );
 };
+
 const Categories = ({ ...extendedProps }) => {
   const categories = [
     {
@@ -143,70 +87,7 @@ const Categories = ({ ...extendedProps }) => {
     </HStack>
   );
 };
-const InscriptionSection = ({ ...extendedProps }) => {
-  const imageWidth = ["13%", "20%", "25%", "28%", "25%", "28%"];
-  const vstackWidth = ["40%", "100%", "50%", "21%", "25%", "22%"];
-  const pbFontSize = ["2xs", "xs", "sm", "lg", "xl", "3xl"];
-  const pbSize = ["2xs", "xs", "sm", "md", "2xl", "xl"];
-  const pbMT = [3, 5, 5, 7, 9, 20];
-  return (
-    <Flex
-      direction="row"
-      width="100%"
-      alignItems="center"
-      justifyContent="space-between"
-      height="20%"
-      {...extendedProps}
-    >
-      <Img
-        src="/images/Inscribite_1.svg"
-        alt="Decoration"
-        width={imageWidth}
-      ></Img>
-      <VStack justify="center" width={vstackWidth}>
-        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
-          Inscripción por equipos
-        </Heading>
-        <PrimaryButton
-          mt={pbMT}
-          height="2%"
-          backgroundColor="CSGreen"
-          fontSize={pbFontSize}
-          size={pbSize}
-          onClick={() => {
-            location.href = "/register";
-          }}
-        >
-          INSCRIBITE AQUI
-        </PrimaryButton>
-      </VStack>
-      {/* TODO: Turn on for next event? */}
-      {/* <Spacer />
-      <VStack justify="center" width={vstackWidth}>
-        <Heading size={["xs", "sm", "md", "md", "xl", "xl"]} textAlign="center">
-          Convertite en Sponsor/Jurado
-        </Heading>
-        <PrimaryButton
-          mt={pbMT}
-          height="2%"
-          backgroundColor="CSGreen"
-          fontSize={pbFontSize}
-          size={pbSize}
-          onClick={() => {
-            location.href = "/SMJ";
-          }}
-        >
-          CONTACTANOS AQUI
-        </PrimaryButton>
-      </VStack> */}
-      <Img
-        src="/images/Inscribite_2.svg"
-        alt="Decoration"
-        width={imageWidth}
-      ></Img>
-    </Flex>
-  );
-};
+
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
     {
@@ -367,61 +248,6 @@ const MentorsSection = ({ ...extendedProps }) => {
   );
 };
 
-// const WorkshopsSection = ({ ...extendedProps }) => {
-//   const workshopsPhotos = [
-//     "/images/course_example.jpg",
-//     "/images/course_example.jpg",
-//     "/images/course_example.jpg",
-//     "/images/course_example.jpg",
-//     "/images/course_example.jpg",
-//   ];
-//   return (
-//     <Stack
-//       direction={["column", "column", "row", "row", "row"]}
-//       backgroundColor="#24335d"
-//       width="full"
-//       paddingY="8%"
-//       {...extendedProps}
-//     >
-//       <VStack
-//         alignItems="start"
-//         width={["100%", "100%", "40%", "40%", "40%"]}
-//         pl="6%"
-//         spacing="4%"
-//       >
-//         <Heading color="CSGreen" size={HeadingSize}>
-//           Workshops
-//         </Heading>
-//         <Text fontSize={TextSize} width="80%">
-//           Workshops en vivo con .... Lorem ipsum dolor sit amet, consectetur
-//           adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-//           magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-//           ullamco laboris nisi ut aliquip ex ea commodo consequat.{" "}
-//         </Text>
-//       </VStack>
-//       <Grid
-//         p="2%"
-//         templateColumns={[
-//           "repeat(2, 1fr)",
-//           "repeat(2, 1fr)",
-//           "repeat(2, 1fr)",
-//           "repeat(3, 1fr)",
-//           "repeat(3, 1fr)",
-//         ]}
-//         gap="4%"
-//       >
-//         {workshopsPhotos.map((photo, index) => {
-//           return (
-//             <GridItem key={index}>
-//               <Img src={photo} alt="course image"></Img>
-//             </GridItem>
-//           );
-//         })}
-//       </Grid>
-//     </Stack>
-//   );
-// };
-
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
     // {
@@ -575,301 +401,6 @@ const SponsorsSection = ({ ...extendedProps }) => {
   );
 };
 
-//Tiene que estar definido aca, si no pierde focus cada vez que se agrega una tecla
-//https://github.com/final-form/react-final-form/issues/730
-const LocalInput = ({ ...extendedProps }) => (
-  <Input
-    borderWidth="1.5px"
-    errorBorderColor="red.500"
-    focusBorderColor="white"
-    borderRadius="4px"
-    backgroundColor="CSOrange"
-    color="white"
-    _placeholder={{ color: "white" }}
-    {...extendedProps}
-  ></Input>
-);
-const Form = ({ ...extendedProps }) => {
-  const toast = useToast();
-  const toastIdRef = React.useRef();
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [body, setBody] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  //Estos errores estan para que de entrada no este como error, pero que si cuando empiece a completar y deje ese
-  const [subjectError, setSubjectError] = useState(false);
-  const [bodyError, setBodyError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const validateEmail = (email) => {
-    return (
-      joi
-        .string()
-        .email({ tlds: { allow: false } })
-        .validate(email).error === undefined
-    );
-  };
-  const sendEmail = async () => {
-    const msg = {
-      email: email,
-      subject: subject,
-      body: body,
-    };
-    const fetchOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Authorization': 'Bearer ' + process.env.NEXT_PUBLIC_WEBPAGE_TOKEN ,
-      },
-      body: JSON.stringify(msg),
-    };
-    setIsLoading(true);
-    try {
-      await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/mail/send`,
-        fetchOptions
-      );
-      toastIdRef.current = toast({
-        title: "¡La inscripción fue registrada!",
-        status: "success",
-        isClosable: true,
-        duration: 5000,
-        render: () => {
-          return (
-            <Box backgroundColor="green" borderRadius="4px" p="4%" w="full">
-              <VStack>
-                <HStack w="full">
-                  <CheckCircleIcon />
-                  <Heading fontSize={HeadingSize}>¡Consulta enviada!</Heading>
-                  <Spacer />
-                  <Button onClick={() => toast.close(toastIdRef.current)}>
-                    Cerrar
-                  </Button>
-                </HStack>
-                <HStack>
-                  <Text>Nos comunicaremos por email brevemente</Text>
-                  <CircularProgress
-                    isIndeterminate
-                    color="grey"
-                    value={20}
-                  ></CircularProgress>
-                </HStack>
-              </VStack>
-            </Box>
-          );
-        },
-      });
-      setEmail("");
-      setSubject("");
-      setBody("");
-      setEmailError(false);
-      setSubjectError(false);
-      setBodyError(false);
-    } catch (err) {
-      toastIdRef.current = toast({
-        title: "¡La inscripción fue registrada!",
-        status: "success",
-        isClosable: true,
-        duration: 5000,
-        render: () => {
-          return (
-            <Box backgroundColor="red.500" borderRadius="4px" p="4%" w="full">
-              <VStack>
-                <HStack w="full">
-                  <CloseIcon />
-                  <Heading fontSize={HeadingSize}>¡Ocurrió un error!</Heading>
-                  <Spacer />
-                  <Button onClick={() => toast.close(toastIdRef.current)}>
-                    Cerrar
-                  </Button>
-                </HStack>
-                <HStack>
-                  <Text>Por favor, intenta nuevamente en un momento</Text>
-                  <CircularProgress
-                    isIndeterminate
-                    color="grey"
-                    value={20}
-                  ></CircularProgress>
-                </HStack>
-              </VStack>
-            </Box>
-          );
-        },
-      });
-    }
-    setIsLoading(false);
-  };
-  return (
-    <VStack w={["100%", "100%", "100%", "50%", "50%"]} {...extendedProps}>
-      <LocalInput
-        onClick={() => setEmailError(!validateEmail(email))}
-        onChange={(event) => {
-          setEmail(event.target.value);
-          setEmailError(!validateEmail(event.target.value));
-        }}
-        placeholder="Email"
-        value={email}
-        isInvalid={emailError}
-      ></LocalInput>
-      <LocalInput
-        onClick={() => setSubjectError(subject.length === 0)}
-        onChange={(event) => {
-          setSubject(event.target.value);
-          setSubjectError(event.target.value === "");
-        }}
-        placeholder="Asunto"
-        value={subject}
-        isInvalid={subjectError}
-      ></LocalInput>
-      <Textarea
-        onClick={() => setBodyError(body.length === 0)}
-        isInvalid={bodyError}
-        value={body}
-        onChange={(event) => {
-          setBody(event.target.value);
-          setBodyError(event.target.value === "");
-        }}
-        height={["4em", "6em", "8em", "10em", "12em"]}
-        focusBorderColor="white"
-        borderRadius="4px"
-        backgroundColor="CSOrange"
-        borderWidth="1.5px"
-        errorBorderColor="red.500"
-        color="white"
-        _placeholder={{ color: "white" }}
-        placeholder="Mensaje"
-      ></Textarea>
-      <PrimaryButton
-        mt={10}
-        width="full"
-        _disabled={{
-          borderRadius: "4px",
-          opacity: 0.4,
-          fontWeight: 500,
-          borderWidth: "1px",
-          transition: "all 0.3s ease",
-          padding: "4% 8%",
-          "&:hover": {
-            backgroundColor: "black",
-            color: "#FFFFFF",
-            borderRadius: "4px",
-            borderWidth: "1px",
-            borderColor: "var(--chakra-colors-chakra-border-color)",
-            "svg path": {},
-          },
-        }}
-        isDisabled={
-          emailError ||
-          subjectError ||
-          bodyError ||
-          email === "" ||
-          subject === "" ||
-          body === ""
-        }
-        isLoading={isLoading}
-        onClick={sendEmail}
-      >
-        Enviar
-      </PrimaryButton>
-    </VStack>
-  );
-};
-const DoubtSection = ({ ...extendedProps }) => {
-  const CSImg = "/images/IEEE_CS.svg";
-  return (
-    <Stack
-      spacing="4%"
-      direction={["column", "column", "row", "row", "row"]}
-      width="full"
-      justify="center"
-      px="4%"
-      {...extendedProps}
-    >
-      <VStack spacing="4%">
-        <Heading size={["md", "lg", "xl", "2xl", "3xl"]}>¿Tenés dudas?</Heading>
-        <Heading size={["md", "lg", "xl", "2xl", "3xl"]} color="CSOrange">
-          ¡Contáctanos!
-        </Heading>
-        <Img src={CSImg} alt="ITBA IEEE Computer Society image"></Img>
-      </VStack>
-      <Form />
-    </Stack>
-  );
-};
-
-const Editions = () => {
-  return (
-    <VStack width="full">
-      <Heading color="CSOrange" size={HeadingSize} textAlign="center">
-        Ediciones Anteriores
-      </Heading>
-      <HStack justify="center" spacing="5%">
-        <PrimaryButton
-          height="2%"
-          backgroundColor="CSGreen"
-          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-          size={["xs", "xs", "lg", "lg", "lg"]}
-          onClick={() => {
-            location.href = "/2023";
-          }}
-        >
-          2023
-        </PrimaryButton>
-        <PrimaryButton
-          height="2%"
-          backgroundColor="CSGreen"
-          fontSize={["xs", "sm", "xl", "2xl", "3xl"]}
-          size={["xs", "xs", "lg", "lg", "lg"]}
-          onClick={() => {
-            location.href = "/2022";
-          }}
-        >
-          2022
-        </PrimaryButton>
-        <Spacer />
-      </HStack>
-    </VStack>
-  );
-};
-
-const ThankYouMessage = () => {
-  return (
-    <Flex
-      direction="row"
-      width="100%"
-      alignItems="center"
-      justifyContent="space-between"
-      height="20%"
-      pt="4%"
-      zIndex={90}
-    >
-      <Img
-        src="/images/Inscribite_1.svg"
-        alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
-      ></Img>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexWrap="wrap"
-        flexDirection="column"
-      >
-        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="#ffffff">
-          Muchas gracias por participar
-        </Text>
-        <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="#ffffff">
-          ¡Nos vemos el año que viene!
-        </Text>
-      </Box>
-      <Img
-        src="/images/Inscribite_2.svg"
-        alt="Decoration"
-        width={["13%", "20%", "25%", "28%", "25%", "28%"]}
-      ></Img>
-    </Flex>
-  );
-};
-
 const Home = () => {
   return (
     <VStack>
@@ -879,7 +410,6 @@ const Home = () => {
       <JurySection pt="4%" zIndex={90} />
       <MentorsSection pt="4%" zIndex={90} />
       <SponsorsSection zIndex={90} pt="4%" />
-      <DoubtSection pt="4%" zIndex={90} />
     </VStack>
   );
 };
