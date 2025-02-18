@@ -28,13 +28,13 @@ const Main = ({ children, router }) => {
         />
         <meta
           property="og:image"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
         <meta
           property="twitter:title"
@@ -46,7 +46,7 @@ const Main = ({ children, router }) => {
         />
         <meta
           property="twitter:image"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
       </Head>
       <NewNavbar />
