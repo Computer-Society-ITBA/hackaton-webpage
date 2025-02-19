@@ -11,42 +11,42 @@ const Main = ({ children, router }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="Juan Pablo Oriana" />
         <title>HackITBA</title>
-        <meta name="title" content="HackIT-BA! by Computer Society ITBA" />
+        <meta name="title" content="HackIT-BA! by Computer Society ITBA, IEEE Student Chapter" />
         <meta
           name="description"
-          content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."
+          content="HackIT-BA es una hackathon de 36hs desde el 28 al 30 marzo, enmarcada en 3 categorías principales: Salud, Sustentabilidad y Educacion."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://hackitba.com.ar" />
         <meta
           property="og:title"
-          content="HackIT-BA! by Computer Society ITBA"
+          content="HackIT-BA! by Computer Society ITBA, IEEE Student Chapter"
         />
         <meta
           property="og:description"
-          content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."
+          content="HackIT-BA es una hackathon de 36hs desde el 28 al 30 marzo, enmarcada en 3 categorías principales: Salud, Sustentabilidad y Educacion."
         />
         <meta
           property="og:image"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta
           property="twitter:url"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
         <meta
           property="twitter:title"
-          content="HackIT-BA! by Computer Society ITBA"
+          content="HackIT-BA! by Computer Society ITBA, IEEE Student Chapter"
         />
         <meta
           property="twitter:description"
-          content="HackIT-BA es una hackathon de 36hs desde el 31 de marzo al 2 de abril, enmarcada en 2 categorías principales: Economia y Desentralización y Automatización Inteligente."
+          content="HackIT-BA es una hackathon de 36hs desde el 28 al 30 marzo, enmarcada en 3 categorías principales: Salud, Sustentabilidad y Educacion."
         />
         <meta
           property="twitter:image"
-          content="https://hackitba.vercel.app/images/flyer.jpg"
+          content="https://hackitba.vercel.app/images/newFlyer.jepg"
         />
       </Head>
       <NewNavbar />
@@ -61,3 +61,4 @@ const Main = ({ children, router }) => {
 };
 
 export default Main;
+
