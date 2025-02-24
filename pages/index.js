@@ -97,12 +97,16 @@ const GeneralInfo = ({ ...extendedProps }) => {
         <Text as="span" color="CSLightBlue">
           HackITBA
         </Text>{" "}
-        es una hackathon organizada por y para estudiantes, donde, en grupos de
+        es una hackathon presencial organizada por y para estudiantes, donde, en grupos de
         4 personas, deben generar un MVP en 36 horas de competencia intensiva.
       </Text>
       <Text textAlign="center" fontSize={TextSize}>
         La competencia tiene como meta promover soluciones creativas a problemas
         actuales en un ambiente desafiante y cooperativo.
+      </Text>
+      <Divider variant="thick"></Divider>
+      <Text textAlign="center" fontSize={TextSize}>
+        La competencia será en el ITBA (Iguazú 341, Parque Patricios, CABA).
       </Text>
       <Divider variant="thick"></Divider>
     </VStack>
