@@ -97,8 +97,9 @@ const GeneralInfo = ({ ...extendedProps }) => {
         <Text as="span" color="CSLightBlue">
           HackITBA
         </Text>{" "}
-        es una hackathon presencial organizada por y para estudiantes, donde, en grupos de
-        4 personas, deben generar un MVP en 36 horas de competencia intensiva.
+        es una hackathon presencial organizada por y para estudiantes, donde, en
+        grupos de 4 personas, deben generar un MVP en 36 horas de competencia
+        intensiva.
       </Text>
       <Text textAlign="center" fontSize={TextSize}>
         La competencia tiene como meta promover soluciones creativas a problemas
@@ -148,7 +149,7 @@ const Categories = ({ ...extendedProps }) => {
     {
       name: "Educación",
       description: `La categoría de **Educación** busca soluciones prácticas e innovadoras que mejoren el aprendizaje y preparen a las personas con habilidades clave para enfrentar los desafíos actuales, desde la educación financiera hasta el acceso digital y el desarrollo profesional.
-      
+
 -   **Educación financiera práctica**: Proyectos que enseñen el manejo del dinero desde conceptos básicos hasta inversiones, ahorro, presupuesto personal y planificación financiera.
 -   **Acceso universal a la educación digital**.
 -   **Apoyo a docentes y facilitadores**.
@@ -261,8 +262,11 @@ const JurySection = ({ ...extendedProps }) => {
     {
       name: "Juan Jose Aranguren",
       imgSrc: "/images/juries/JuanJoseAranguren.png",
-      details:
-        ["Ex Presidente @ Shell Argentina", "Ex Ministro de Energía y Minería de la Nación", "Director de la Maestría de Desarrollo Energético Sustentable @ ITBA"],
+      details: [
+        "Ex Presidente @ Shell Argentina",
+        "Ex Ministro de Energía y Minería de la Nación",
+        "Director de la Maestría de Desarrollo Energético Sustentable @ ITBA",
+      ],
       mail: null,
       linkedin: null,
       description:
@@ -280,8 +284,10 @@ const JurySection = ({ ...extendedProps }) => {
     {
       name: "Patricia Jebsen",
       imgSrc: "/images/juries/PatriciaJebsen.png",
-      details:
-        ["Board Member y Business Advisor en empresas de tecnología y e-commerce", "Creadora de contenido"],
+      details: [
+        "Board Member y Business Advisor en empresas de tecnología y e-commerce",
+        "Creadora de contenido",
+      ],
       mail: "jebsenpatricia@gmail.com",
       linkedin: null,
       description:
@@ -307,8 +313,12 @@ const JurySection = ({ ...extendedProps }) => {
     {
       name: "Gaspar Mac",
       imgSrc: "/images/juries/GasparMac.jpg",
-      details:
-        ["Co-Founder & CEO @ nativas.la", "Co-Founder & Chairman @ Warecloud", "Founder & Board Member @ eCloud Agency", "Founder & Board Member @ Smod"],
+      details: [
+        "Co-Founder & CEO @ nativas.la",
+        "Co-Founder & Chairman @ Warecloud",
+        "Founder & Board Member @ eCloud Agency",
+        "Founder & Board Member @ Smod",
+      ],
       mail: "gaspar@nativas.ar",
       linkedin: "https://www.linkedin.com/in/gasparmac/",
       description:
@@ -348,7 +358,15 @@ const JurySection = ({ ...extendedProps }) => {
         verticalAlign="top"
       >
         {juries.map((jury, index) => {
-          return <NewJury key={index} jury={jury} my="2%" mx="4%" />;
+          return (
+            <NewJury
+              key={index}
+              jury={jury}
+              my="2%"
+              mx="4%"
+              width={["90%", "45%", "30%"]}
+            />
+          );
         })}
       </Flex>
     </VStack>
