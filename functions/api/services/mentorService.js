@@ -75,13 +75,14 @@ async function mentorVoteSubmission(
     mentorId,
     submissionId,
     problematica,
+    relacion,
     innovacion,
     impacto,
+    facilidad,
     interfaz,
     mvp,
-    tematica,
     video,
-    descripcion
+    descripcion,
 ) {
     try {
         const mentorDocRef = db.doc(`/${USER_COLLECTION}/${mentorId}`);
@@ -113,11 +114,12 @@ async function mentorVoteSubmission(
             userId: mentorId,
             submissionId,
             problematica,
+            relacion,
             innovacion,
             impacto,
+            facilidad,
             interfaz,
             mvp,
-            tematica,
             video,
             descripcion,
         };
