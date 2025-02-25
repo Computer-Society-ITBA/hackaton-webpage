@@ -11,25 +11,27 @@ const xlsx = require("xlsx");
 
 const criteria = [
     "problematica",
+    "relacion",
     "innovacion",
     "impacto",
+    "facilidad",
     "interfaz",
     "mvp",
-    "tematica",
     "video",
 ];
 const Criteria = [
     "Problemática",
+    "Relación con la Temática",
     "Innovación y oportunidad",
-    "Impacto",
+    "Impacto y Alcance",
+    "Facilidad de Ejecución",
     "Interfaz de usuario",
     "Calidad del MVP",
-    "Relación con la temática",
     "Presentación (video)",
 ];
 
 const header = ["Mentor", ...Criteria, "Feedback"];
-const processingHeader = [["", ...Criteria, "Facilidad de ejecución", "Total"]];
+const processingHeader = [["", ...Criteria, "Total"]];
 
 async function getVotes() {
     const votesCollection = db.collection(VOTE_COLLECTION);
