@@ -53,6 +53,7 @@ const Jury = ({ jury, ...extendedProps }) => {
               _hover={{
                 transform: "scale(1.05)",
                 transition: "ease-in-out 0.2s",
+                cursor: "pointer",
               }}
               _active={{
                 transform: "scale(0.9)",
@@ -85,8 +86,28 @@ const Jury = ({ jury, ...extendedProps }) => {
                   </ModalHeader>
                   <ModalBody p={0}>
                     <VStack>
+                      {jury.details && (
+                        <Box
+                          p="4%"
+                          textAlign="center"
+                          display="flex"
+                          flexDirection="column"
+                        >
+                          {jury.details.map((detail, index) => (
+                            <Text key={index} fontSize={TextSize}>
+                              {detail}
+                            </Text>
+                          ))}
+                        </Box>
+                      )}
                       <HStack p="4%">
-                        <Text fontSize={TextSize} pr="6%" align="justify">
+                        <Text
+                          fontSize={TextSize}
+                          pr="6%"
+                          align="left"
+                          wordBreak="break-word"
+                          whiteSpace="normal"
+                        >
                           <ReactMarkdown
                             components={{
                               //Esto es feo pero es la unica forma de forzarle margen a los bullets en mkdown
@@ -111,10 +132,11 @@ const Jury = ({ jury, ...extendedProps }) => {
                           </ReactMarkdown>
                         </Text>
                       </HStack>
+
                       {jury.linkedin ? (
                         <LinkBox p="5%">
                           <a href={jury.linkedin} target="_blank">
-                            <AiFillLinkedin/>
+                            <AiFillLinkedin size={32} />
                           </a>
                         </LinkBox>
                       ) : null}
@@ -126,10 +148,20 @@ const Jury = ({ jury, ...extendedProps }) => {
                 className={`${styles.overlay} object-contain`}
                 borderRadius="6%"
               >
-                <VStack justifyContent="center" alignItems="center">
+                <VStack
+                  justifyContent="center"
+                  alignItems="center"
+                  height="100%"
+                  p="2"
+                >
                   {jury.details.map((detail, index) => {
                     return (
-                      <Text key={index} textAlign="center">
+                      <Text
+                        key={index}
+                        fontSize={["xs", "xs", "xs", "xs", "sm"]}
+                        lineHeight="short"
+                        textAlign="center"
+                      >
                         {detail}
                       </Text>
                     );
