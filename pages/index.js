@@ -343,7 +343,7 @@ const JurySection = ({ ...extendedProps }) => {
       revealed: true,
     },
     {
-      name: "Conrado Mader Blanco",
+      name: "Juan Manuel Costa",
       imgSrc: "/images/juries/JuanManuelCosta.jpg",
       details: ["CTO @ IOL Inversiones"],
       mail: null,
