@@ -68,20 +68,22 @@ const RateCategoryCard = ({ name, count, onCategoryRatingChanged }) => {
 };
 
 const PROBLEMATICA = 0;
-const INNOVACION = 1;
-const IMPACTO = 2;
-const INTERFAZ = 3;
-const MVP = 4;
-const TEMATICA = 5;
-const VIDEO = 6;
+const RELACION = 1;
+const INNOVACION = 2;
+const IMPACTO = 3;
+const FACILIDAD = 4;
+const INTERFAZ = 5;
+const MVP = 6;
+const VIDEO = 7;
 
 const criteria = [
   { name: "Problemática", count: 5 },
+  { name: "Relación con la Temática", count: 3 },
   { name: "Innovación y oportunidad", count: 5 },
-  { name: "Impacto", count: 5 },
-  { name: "Interfaz de usuario", count: 5 },
-  { name: "Calidad del MVP", count: 5 },
-  { name: "Relación con la temática", count: 3 },
+  { name: "Impacto y Alcance", count: 5 },
+  { name: "Facilidad de Ejecución", count: 3 },
+  { name: "Interfaz de usuario", count: 8 },
+  { name: "Calidad del MVP", count: 10 },
   { name: "Presentación (video)", count: 3 },
 ];
 
@@ -124,11 +126,12 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
       .post(`/mentors/${userInfo.uid}/votes`, {
         submissionId: team.submission,
         problematica: ratings[PROBLEMATICA],
+        relacion: ratings[RELACION],
         innovacion: ratings[INNOVACION],
         impacto: ratings[IMPACTO],
+        facilidad: ratings[FACILIDAD],
         interfaz: ratings[INTERFAZ],
         mvp: ratings[MVP],
-        tematica: ratings[TEMATICA],
         video: ratings[VIDEO],
         descripcion: feedback,
       })
@@ -407,6 +410,13 @@ const TeamRating = () => {
                 cada categoría
               </Text>
               <Accordion width="full" defaultIndex={[]} allowMultiple>
+                <h1>
+                  <AccordionPanel>
+                    <Text fontSize={TextSize}>Idea</Text>
+                    <Spacer></Spacer>
+                    <AccordionIcon />
+                  </AccordionPanel>
+                </h1>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
@@ -418,23 +428,19 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        No se menciona el problema que se quiere resolver.
+                        El problema no está definido o es irrelevante.
                       </ListItem>
                       <ListItem>
-                        Se mencionan algunos ejemplos del problema, sin explicar
-                        el problema en general.
+                        El problema es vago o poco relevante.
                       </ListItem>
                       <ListItem>
-                        Se explica el problema, pero sin ejemplos concretos del
-                        mismo.
+                        El problema es relevante, pero no está bien argumentado.
                       </ListItem>
                       <ListItem>
-                        Se explica la problemática y se utilizan ejemplos, pero
-                        estos no se relacionan con la problemática definida.
+                        El problema es relevante y tiene cierto respaldo.
                       </ListItem>
                       <ListItem>
-                        Se explica la problemática y se utilizan ejemplos claros
-                        sobre su presencia.{" "}
+                        El problema es relevante, bien argumentado y respaldado con evidencia.{" "}
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>
@@ -442,7 +448,7 @@ const TeamRating = () => {
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                      <Text fontSize={TextSize}>Innovación y oportunidad</Text>
+                      <Text fontSize={TextSize}>Relación con la Temática</Text>
                       <Spacer></Spacer>
                       <AccordionIcon />
                     </AccordionButton>
@@ -450,25 +456,13 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        La idea ya es implementada completamente por una
-                        empresa, y el público ya la utiliza.
+                        El proyecto no se relaciona con la temática.
                       </ListItem>
                       <ListItem>
-                        La idea ya es implementada completamente por una
-                        empresa, pero esta tiene público reducido.
+                        El proyecto se relaciona con la temática pero con un enfoque rebuscado.
                       </ListItem>
                       <ListItem>
-                        La idea ya es parcialmente implementada por una empresa,
-                        pero lo propuesto es un incremento sobre esta.
-                      </ListItem>
-                      <ListItem>
-                        La idea es semejante a la implementada por otras
-                        empresas, pero ofrece un enfoque distinto para
-                        implementar la solución.
-                      </ListItem>
-                      <ListItem>
-                        La idea es disruptiva y no es implementada por otra
-                        empresa.
+                        El proyecto se relaciona con la temática de manera clara.
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>
@@ -476,7 +470,7 @@ const TeamRating = () => {
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                      <Text fontSize={TextSize}>Impacto</Text>
+                      <Text fontSize={TextSize}>Innovación y Oportunidad</Text>
                       <Spacer></Spacer>
                       <AccordionIcon />
                     </AccordionButton>
@@ -484,30 +478,19 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        El proyecto no es aplicable a los usuarios con la
-                        problemática en el futuro.
+                        La idea no es innovadora ni presenta diferencias significativas con soluciones existentes. Parece una copia directa de algo ya disponible sin mejoras sustanciales.
                       </ListItem>
                       <ListItem>
-                        El proyecto no es aplicable actualmente a los usuarios
-                        con la problemática, pero podía serlo en un futuro (por
-                        ejemplo, por el desarrollo de una tecnología
-                        complementaria).
+                        Tiene un pequeño grado de innovación, pero no aporta mejoras claras o diferenciadoras respecto a soluciones existentes.
                       </ListItem>
                       <ListItem>
-                        El proyecto es aplicable actualmente a los usuarios con
-                        la problemática, pero su uso se verá limitado por
-                        factores ajenos a lo económico.
+                        La idea es creativa y muestra una diferencia clara respecto a lo que ya existe, aportando un valor añadido relevante.
                       </ListItem>
                       <ListItem>
-                        El proyecto es aplicable actualmente a los usuarios con
-                        la problemática, pero su uso se verá limitado por
-                        factores económicos (por ejemplo, por el costo asociado
-                        al usuario).
+                        La idea es original, aporta valor significativo y mejora lo existente. Tiene potencial para generar un impacto positivo, pero no cambia radicalmente el enfoque del problema.
                       </ListItem>
                       <ListItem>
-                        El proyecto es aplicable actualmente a los usuarios con
-                        la problemática, y su adopción no será limitada por
-                        factores económicos.
+                        Es altamente innovadora, con un enfoque único y una ventaja competitiva clara. La solución podría cambiar significativamente la forma en que se resuelve el problema.
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>
@@ -515,7 +498,7 @@ const TeamRating = () => {
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                      <Text fontSize={TextSize}>Interfaz de usuario</Text>
+                      <Text fontSize={TextSize}>Impacto y Alcance</Text>
                       <Spacer></Spacer>
                       <AccordionIcon />
                     </AccordionButton>
@@ -523,27 +506,85 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        La interfaz no permite las acciones mencionadas en la
-                        solución (por ejemplo, se tienen que subir archivos pero
-                        no se puede hacer mediante la aplicación).
+                        El impacto es mínimo o inexistente. La idea resuelve un problema irrelevante o de nicho con poco valor para la sociedad o el mercado.
                       </ListItem>
                       <ListItem>
-                        La interfaz permite la mayoría de las acciones, pero
-                        muchas de ellas no informan lo sucedido al usuario.
+                        Tiene un impacto bajo o solo beneficia a un grupo reducido de personas sin posibilidades claras de crecimiento o expansión.
                       </ListItem>
                       <ListItem>
-                        La interfaz permite la mayoría de las acciones y proveen
-                        feedback claro, pero su acceso es poco intuitivo.
+                        La idea tiene impacto en un sector específico, pero su alcance está limitado por barreras de mercado, tecnología o adopción.
                       </ListItem>
                       <ListItem>
-                        La interfaz permite la mayoría de las acciones con
-                        acceso intuitivo y feedback claro, pero no es
-                        consistente a lo largo de la aplicación.
+                        La solución puede generar un impacto significativo en una comunidad, industria o segmento de mercado, con potencial para expandirse.
                       </ListItem>
                       <ListItem>
-                        La interfaz permite la mayoría de las acciones con
-                        acceso intuitivo y feedback claro, manteniendo
-                        consistencia en toda la aplicación.
+                        La idea tiene un impacto claro y transformador a gran escala, con posibilidad de crecimiento local, nacional o global.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <h1>
+                  <AccordionPanel>
+                    <Text fontSize={TextSize}>MVP</Text>
+                    <Spacer></Spacer>
+                    <AccordionIcon />
+                  </AccordionPanel>
+                </h1>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Facilidad de Ejecución</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        El proyecto no incluye instrucciones de ejecución, o incluye instrucciones poco claras.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto incluye instrucciones concretas, exhaustivas y con versiones, pero el evaluador necesita ejecutar distintos servicios de manera independiente.
+                      </ListItem>
+                      <ListItem>
+                        El proyecto está bien deployado, o puede ejecutarse utilizando un único script o mediante un contenedor.
+                      </ListItem>
+                    </OrderedList>
+                  </AccordionPanel>
+                </AccordionItem>
+                <AccordionItem>
+                  <h2>
+                    <AccordionButton>
+                      <Text fontSize={TextSize}>Interfaz de Usuario</Text>
+                      <Spacer></Spacer>
+                      <AccordionIcon />
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel>
+                    <OrderedList textAlign="start">
+                      <ListItem>
+                        La interfaz es poco intuitiva, confusa o inexistente. No hay consistencia en los elementos visuales y la experiencia del usuario es deficiente.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz tiene una estructura básica, pero el diseño es desordenado o poco atractivo. Falta coherencia en los elementos visuales.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz es funcional y medianamente atractiva. Se entiende la navegación, pero hay margen de mejora en diseño y experiencia de usuario.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz está bien diseñada, con una experiencia de usuario clara y agradable. La navegación es fluida.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz es intuitiva y bien estructurada, con una experiencia de usuario cómoda y eficiente.
+                      </ListItem>
+                      <ListItem>
+                        El diseño es atractivo y profesional, con atención a la tipografía, colores y usabilidad.
+                      </ListItem>
+                      <ListItem>
+                        La interfaz está refinada y bien ejecutada, con una experiencia de usuario fluida y detallada.
+                      </ListItem>
+                      <ListItem>
+                        Diseño excelente, intuitivo y con altos estándares de usabilidad y estética.
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>
@@ -559,37 +600,49 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        El MVP no ofrece gran parte de la funcionalidad
-                        propuesta para resolver la problemática.
+                        El MVP no resuelve de manera significativa la problemática planteada.
                       </ListItem>
                       <ListItem>
-                        El MVP ofrece gran parte de la funcionalidad propuesta
-                        para resolver la problemática, pero lo hace con notables
-                        problemas que no son reconocidos por el equipo.
+                        El MVP aborda la problemática, pero de manera muy limitada y con fallas graves.
                       </ListItem>
                       <ListItem>
-                        El MVP ofrece gran parte de la funcionalidad propuesta
-                        para resolver la problemática, tiene notables problemas
-                        pero la mayoría de estos son reconocidos por el equipo
-                        como punto de mejora.
+                        El MVP intenta abordar la problemática, pero lo hace de manera parcial con deficiencias importantes.
                       </ListItem>
                       <ListItem>
-                        El MVP ofrece gran parte de la funcionalidad propuesta
-                        para resolver la problemática, y tiene problemas mínimos
-                        para resolver.
+                        El MVP es funcional, pero con errores o limitaciones que afectan su efectividad.
                       </ListItem>
                       <ListItem>
-                        El MVP implementa toda la funcionalidad propuesta para
-                        resolver la problemática, y podría comenzar a utilizarse
-                        con cambios mínimos.
+                        El MVP ofrece una solución funcional, aunque con deficiencias que limitan su efectividad.
+                      </ListItem>
+                      <ListItem>
+                        El MVP resuelve la problemática, pero podría mejorarse en estabilidad y usabilidad.
+                      </ListItem>
+                      <ListItem>
+                        El MVP resuelve bien la problemática y cumple con la mayoría de los objetivos definidos.
+                      </ListItem>
+                      <ListItem>
+                        El MVP está bien implementado, con mínimos detalles a mejorar.
+                      </ListItem>
+                      <ListItem>
+                        El MVP es sólido, con muy pocos errores y alta funcionalidad.
+                      </ListItem>
+                      <ListItem>
+                        El MVP aborda completamente la problemática y proporciona una solución efectiva y bien implementada.
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>
                 </AccordionItem>
+                <h1>
+                  <AccordionPanel>
+                    <Text fontSize={TextSize}>Presentación</Text>
+                    <Spacer></Spacer>
+                    <AccordionIcon />
+                  </AccordionPanel>
+                </h1>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
-                      <Text fontSize={TextSize}>Relación con la temática</Text>
+                      <Text fontSize={TextSize}>Video</Text>
                       <Spacer></Spacer>
                       <AccordionIcon />
                     </AccordionButton>
@@ -597,42 +650,13 @@ const TeamRating = () => {
                   <AccordionPanel>
                     <OrderedList textAlign="start">
                       <ListItem>
-                        El proyecto no se relaciona con la temática bajo ningún
-                        enfoque.
+                        El video es confuso, incompleto o difícil de entender. No explica bien la problemática ni el MVP.
                       </ListItem>
                       <ListItem>
-                        El proyecto se relaciona con la temática pero bajo un
-                        enfoque rebuscado.
+                        Presenta la problemática y el MVP de manera clara, aunque podría mejorar en estructura o presentación.
                       </ListItem>
                       <ListItem>
-                        El proyecto se relaciona con la temática de manera
-                        clara.
-                      </ListItem>
-                    </OrderedList>
-                  </AccordionPanel>
-                </AccordionItem>
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Text fontSize={TextSize}>Presentación (video)</Text>
-                      <Spacer></Spacer>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel>
-                    <OrderedList textAlign="start">
-                      <ListItem>
-                        La presentación es difícil de seguir, no hay un hilo
-                        conductor claro sobre el proyecto desarrollado.
-                      </ListItem>
-                      <ListItem>
-                        La presentación tiene un hilo conductor, pero el video o
-                        el audio son poco útiles para demostrar la solución.
-                      </ListItem>
-                      <ListItem>
-                        La presentación tiene un hilo conductor, con video y
-                        audio que muestran claramente el funcionamiento de la
-                        solución.
+                        Explicación clara, bien estructurada y atractiva. Presenta la problemática, la solución y el MVP de forma convincente.
                       </ListItem>
                     </OrderedList>
                   </AccordionPanel>

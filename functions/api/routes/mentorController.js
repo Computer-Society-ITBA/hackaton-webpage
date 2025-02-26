@@ -76,11 +76,12 @@ router.post(
         const {
             submissionId,
             problematica,
+            relacion,
             innovacion,
             impacto,
+            facilidad,
             interfaz,
             mvp,
-            tematica,
             video,
             descripcion,
         } = req.body;
@@ -88,11 +89,12 @@ router.post(
         try {
             await vote.validateAsync({
                 problematica,
+                relacion,
                 innovacion,
                 impacto,
+                facilidad,
                 interfaz,
                 mvp,
-                tematica,
                 video,
                 descripcion,
             });
@@ -107,11 +109,12 @@ router.post(
             mentorId,
             submissionId,
             problematica,
+            relacion,
             innovacion,
             impacto,
+            facilidad,
             interfaz,
             mvp,
-            tematica,
             video,
             descripcion
         );
