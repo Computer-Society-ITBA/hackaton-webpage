@@ -317,7 +317,7 @@ const JurySection = ({ ...extendedProps }) => {
       revealed: true,
     },
     {
-      name: "Juan Jose Aranguren",
+      name: "Juan José Aranguren",
       imgSrc: "/images/juries/JuanJoseAranguren.png",
       details: [
         "Ex Presidente @ Shell Argentina",
@@ -386,6 +386,7 @@ const JurySection = ({ ...extendedProps }) => {
               jury={jury}
               my="2%"
               mx="4%"
+              minWidth="100px"
               width={["20%"]}
             />
           );
