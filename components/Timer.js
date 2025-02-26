@@ -47,12 +47,12 @@ function Timer () {
       borderRadius="md"
       width="100%"
     >
-      <HStack 
+      <HStack
       alignContent="center"
       justifyContent="center"
       flexWrap={isPC ? "nowrap" : "wrap"}>
         <Text fontSize={["2xs","xs","md","lg"]} textAlign="center" color="#ffffff">
-          { timeLeft ? "Las inscripciones finalizan en:" : "Las inscripciones terminaron. ¡Nos vemos el año que viene!"}
+          { timeLeft ? "Las inscripciones finalizan en:" :<>{ "Las inscripciones terminaron."} <br/> {"¡Nos vemos el año que viene!"}</> }
         </Text>
         { timeLeft && (
           <HStack spacing={[1,2]} alignContent="center">
