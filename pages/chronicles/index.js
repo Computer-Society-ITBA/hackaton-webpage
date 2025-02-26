@@ -3,12 +3,15 @@ import { FaLinkedin } from "react-icons/fa";
 const Chronicles = () => {
   return (
     <VStack my="5%">
-      <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="CSLightOrange">
+      <Text
+        fontSize={["sm", "md", "lg", "xl", "2xl", "3xl"]}
+        color="CSLightOrange"
+      >
         Codificación bajo presión: el desafío <a href="2024">HackITBA 2024</a>
       </Text>
       <Box
-        width="45%"
-        fontSize={["sm", "md", "lg"]}
+        mx="10%"
+        fontSize={["xs", "sm", "md", "lg"]}
         my="1%"
         textAlign="justify"
         alignItems="center"
