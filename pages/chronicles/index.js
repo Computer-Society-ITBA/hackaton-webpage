@@ -235,7 +235,7 @@ const Chronicles = () => {
         </Text>
       </Box>
       <VStack my="2%" alignItems="left" textAlign="justify">
-        <HStack alignItems="center">
+        <HStack alignItems="center" mx={["8%","8%","10%","18%"]}>
           <Text fontSize={["md", "lg", "xl"]} textColor="CSLightOrange">
             Por: Ana Victoria Dominguez
           </Text>
@@ -257,7 +257,7 @@ const Chronicles = () => {
             }
           />
         </HStack>
-        <Text fontSize={["xs", "sm"]} width="30%">
+        <Text fontSize={["xs", "sm"]} mx={["8%","8%","10%","18%"]}>
           Licenciada en Relaciones Internacionales por la Universidad Torcuato
           Ditella y periodista freelance para medios como DrilledMedia,
           FairPlanet, Tierra Viva, entre otros.
