@@ -166,18 +166,20 @@ const Categories = ({ ...extendedProps }) => {
       <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Categorías
       </Heading>
-      <HStack
-        paddingX="10%"
-        h="100%"
-        justify="center"
-        spacing="15%"
+      <Flex
+        width="full"
+        direction="row"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="start"
+        verticalAlign="top"
         {...extendedProps}
       >
         {/* Es feo pasar el array, pero es lo que se me ocurrio para que se muestre bien con distintas formas  */}
         {categories.map((category) => {
           return <NewCategoryLogo key={category.name} category={category} />;
         })}
-      </HStack>
+      </Flex>
     </VStack>
   );
 };
@@ -249,36 +251,15 @@ const InscriptionSection = ({ ...extendedProps }) => {
 const JurySection = ({ ...extendedProps }) => {
   const juries = [
     {
-      name: "Luciano Muratore",
-      imgSrc: "/images/juries/LucianoMuratore.png",
-      details: ["Co-Founder, Board Member & VP of Customer Relations @ Wúru"],
-      mail: "luciano.muratore@wuru.ai",
-      linkedin: "https://www.linkedin.com/in/luciano-muratore/",
-      description:
-        "Co-Founder, Board Member and VP of Customer Relations en Wúru.\n\n" +
-        "Después de 15 años liderando negocios de salud en Latinoamérica, decidí llevar a la industria una capa de automatización con inteligencia artificial. Wúru lleva 5 años quitando tareas administrativas a profesionales de la salud en Latinoamérica y España y devolviéndoles tiempo de calidad con sus pacientes.",
-      revealed: true,
-    },
-    {
-      name: "Juan Jose Aranguren",
-      imgSrc: "/images/juries/JuanJoseAranguren.png",
-      details: [
-        "Ex Presidente @ Shell Argentina",
-        "Ex Ministro de Energía y Minería de la Nación",
-        "Director de la Maestría de Desarrollo Energético Sustentable @ ITBA",
-      ],
+      name: "Juan Manuel Costa",
+      imgSrc: "/images/juries/JuanManuelCosta.jpg",
+      details: ["CTO @ IOL Inversiones"],
       mail: null,
-      linkedin: null,
+      linkedin: "https://www.linkedin.com/in/jcosta",
       description:
-        "Trabajó 37 años en el grupo Shell, en Australia, Inglaterra y Argentina. Fue presidente de Shell Argentina " +
-        "de 2003 a 2015 y de la Cámara del Petróleo de 2001 a 2005. Recibió el premio KONEX de platino como " +
-        "lider de la industria en 2008.\n\n" +
-        "En 2009, la Asociacion de Dirigentes de Empresa le otorgó el premio al líder " +
-        "en el sector Industrial. En 2013 fue nominado el CEO del año por una encuesta de PW&C, El Cronista " +
-        "y la revista Apertura. En 2014 fue elegido el CEO del año según una encuesta de Ernst&Young. Fue Ministro de Energía y Minería " +
-        "de Diciembre 2015 a Junio 2018.\n\n" +
-        "Actualmente dirige la consultora ENERGY Consilium y es Director de la Maestría en Desarrollo Energético Sustentable del ITBA. Es Ingeniero " +
-        "Químico y Licenciado en Ingeniería de Sistemas de la UBA.",
+        "✅ CTO de IOL con experiencia en el desarrollo e implementación de soluciones tecnológicas en distintas idustrias, incluida fintech.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Se especializa en abordar desafíos complejos y en diseñar soluciones eficientes que impulsan el crecimiento de IOL.",
       revealed: true,
     },
     {
@@ -291,23 +272,25 @@ const JurySection = ({ ...extendedProps }) => {
       mail: "jebsenpatricia@gmail.com",
       linkedin: null,
       description:
-        "Patricia Jebsen es Licenciada en Relaciones Públicas (UADE) y cuenta con una maestría en Marketing y Administración de empresas (European Business School) en Alemania y otra en Comunicación Corporativa y Prensa (UCES). Además realizó el EICOM Digital Transformation and Innovation Executive Program en la University of Cambridge, entre otros\n\n" +
-        "A lo largo de su trayectoria profesional, se desempeñó en diferentes compañías pero específicamente en comercio electrónico fue gerente Regional de Omnicanalidad en Cencosud, gerente de Comercio Electrónico en Falabella, gerente de comercio electrónico en CMD (Grupo Clarín) y Supply Manager en Mercado Libre, entre otros. Así mismo lideró las operaciones Beat en Argentina y Chile como gerente general y de Rappi en Argentina y Uruguay.\n\n" +
-        "Cuenta con una amplia experiencia en la industria del eCommerce y ha impulsado su desarrollo asumiendo diferentes roles como Vicepresidenta, Presidenta y Presidenta Honoraria en la Cámara de Comercio Electrónico en Argentina (CACE). Durante su presidencia se lanzaron en Argentina el primer Cyber Monday y Hotsale así como los primeros estudios de Comercio Electrónico del país.\n\n" +
-        "Docente y oradora en la Universidad de Buenos Aires (UBA), Universidad de San Andrés (UDESA), Universidad del Salvador (USAL) y Directora del Programa de Negocios Digitales en la Universidad Torcuato Di Tella (UTDT).\n\n" +
-        "Actualmente se desempeña como miembro de directorio en empresas de tecnología  y Retail y es consultora especializada en temas de Comercio Electrónico y Omnicanalidad.",
+        "✅ Miembro de directorios en empresas de tecnología y retail, y consultora en eCommerce y omnicanalidad.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Directora del Programa de Negocios Digitales (UTDT) y docente en UBA, UDESA y USAL.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Como Presidenta de CACE, lanzó el primer Cyber Monday y Hot Sale en Argentina.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex ejecutiva en Rappi, Beat, Mercado Libre, Falabella y Cencosud, liderando estrategias digitales y omnicanalidad.",
       revealed: true,
     },
     {
-      name: "Nahuel Lema",
-      imgSrc: "/images/juries/NahuelLema.png",
-      details: ["Cofunder @ Coderhouse", "Startup Mentor @ Emprelatam"],
-      mail: "nahuel@coderhouse.com",
-      linkedin: "https://www.linkedin.com/in/nahuellema/",
+      name: "Conrado Mader Blanco",
+      imgSrc: "/images/juries/ConradoMaderBlanco.jpg",
+      details: ["CTO @ CUX", "Ex CTO @ Coderhouse", "Exited Founder @ Wolox"],
+      mail: "cmaderblanco@gmail.com",
+      linkedin: "https://www.linkedin.com/in/conrado-mader-blanco/",
       description:
-        "Nahue es un apasionado de la educación, cree que la formación continua es la palanca que impulsa a las sociedades a tener mas y mejores oportunidades!\n\n" +
-        "Por eso se sumó a Coderhouse. Donde mediante su trayectoria como desarrollador logró crear las bases tecnológicas que llevaron a Coderhouse a posicionarse como la plataforma de educación online en VIVO mas grande de Latinoamérica!\n\n" +
-        "Actualmente trabaja construyendo puentes entre organizaciones, empresas y gobiernos con Coderhouse para que puedan formar a sus colaboradores en las habilidades digitales que el mercado demanda.",
+        "✅ CTO de Cux, app que usa IA para mejorar la salud mental y asistir a sus usuarios en momentos clave.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Co-fundador de Wolox, un innovation studio que creció por toda Latam y fue adquirido por Accenture.",
       revealed: true,
     },
     {
@@ -322,35 +305,63 @@ const JurySection = ({ ...extendedProps }) => {
       mail: "gaspar@nativas.ar",
       linkedin: "https://www.linkedin.com/in/gasparmac/",
       description:
-        "Estudió Ingeniería en Sistemas y se especializó en gestión de empresas digitales.\n\n" +
-        "Fundó @ecloud.agency hace más de 15 años y descubrió los modelos de negocio de triple impacto, aquellos que no solo buscan beneficios económicos, sino también generar un impacto positivo en las personas y el planeta.\n\n" +
-        "Fundó @warecloud.ar con el objetivo de invertir y crear empresas que operen de manera diferente. Fue parte de la creación de @smod.io, una empresa que está revolucionando la movilidad sustentable en Latam.\n\n" +
-        'Junto con sus hermanos y socios, fundó @enlabodeguita, donde crearon el mejor "carlitos" de la ciudad. Desarrolló Bauhoff y está creando una red de Condo Hoteles para conectar con el turismo y la naturaleza.\n\n' +
-        "Lideró a más de 200 colaboradores, y su empresa fue reconocida por GPTW (@gptw_arg) como una de las 40 Mejores Empresas para Trabajar en Latam y la #5 en Argentina.\n\n" +
-        "Fue miembro de Vistage durante 5 años, profesionalizó empresas y decidió dedicar su vida a @nativas.la, donde se encuentra actualmente y planea desarrollarse durante, al menos, los próximos 10 años de su vida.",
+        "✅ Co-fundador y director ejecutivo de @nativas.la.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Co-fundador de @warecloud.ar, para crear empresas que buscan hacer negocios de manera diferente.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Fundador y director general de @smod.io, que revolucina la movilidad sustentable en Latam.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Desarrollador de Bauhoff y trabja en la creación de una red de Condo Hoteles.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Fundador y CEO de @ecloud.agency, de innovación y desarrollo de software que diseña productos digitales con foco en triple impacto.",
       revealed: true,
     },
     {
-      name: "Conrado Mader Blanco",
-      imgSrc: "/images/juries/ConradoMaderBlanco.jpg",
-      details: ["CTO @ CUX", "Ex CTO @ Coderhouse", "Exited Founder @ Wolox"],
-      mail: "cmaderblanco@gmail.com",
-      linkedin: "https://www.linkedin.com/in/conrado-mader-blanco/",
-      description:
-        "Conrado es ingeniero informatico del ITBA, promoción 2014.\n\n" +
-        "Mientras estudiaba fue late cofounder de Wolox, un innovation studio que fundaron entre estudiantes del ITBA y que vendieron a Accenture tras 10 años de trabajo y expansión en todo el continente.\n\n" +
-        "Actualmente es el CTO de Cux, una app que busca mejorar la salud mental y dar asistencia en momentos de necesidad a sus usuarios con la ayuda de la inteligencia artificial.",
-      revealed: true,
-    },
-    {
-      name: "Juan Manuel Costa",
-      imgSrc: "/images/juries/JuanManuelCosta.jpg",
-      details: ["CTO @ IOL Inversiones"],
+      name: "Juan Jose Aranguren",
+      imgSrc: "/images/juries/JuanJoseAranguren.png",
+      details: [
+        "Ex Presidente @ Shell Argentina",
+        "Ex Ministro de Energía y Minería de la Nación",
+        "Director de la Maestría de Desarrollo Energético Sustentable @ ITBA",
+      ],
       mail: null,
-      linkedin: "https://www.linkedin.com/in/jcosta",
+      linkedin: null,
       description:
-        "Juan Manuel Costa, Chief Technology Officer de IOL, es ingeniero en sistemas con amplia experiencia en el desarrollo e implementación de soluciones tecnológicas en distintas idustrias, incluido en fintech.\n\n" +
-        "Se especializa en abordar desafíos complejos y en diseñar soluciones eficientes que impulsan el crecimiento de IOL Inversiones.",
+        "✅ Director de Energy Consilium y de la Maestría en Desarrollo Energético Sustentable en ITBA.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex Ministro de Energía y Minería (2015-2018).\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Reconocido con el Premio Konex de Platino y múltiples distinciones como CEO del año.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex Presidente de Shell Argentina (2003-2015), con 37 años en la compañía.",
+      revealed: true,
+    },
+    {
+      name: "Luciano Muratore",
+      imgSrc: "/images/juries/LucianoMuratore.png",
+      details: ["Co-Founder, Board Member & VP of Customer Relations @ Wúru"],
+      mail: "luciano.muratore@wuru.ai",
+      linkedin: "https://www.linkedin.com/in/luciano-muratore/",
+      description:
+        "✅ Co-Founder, Board Member y VP de Customer Relations en Wúru.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ +15 años liderando negocios de salud en Latam.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Desde Wúru, impulsa la automatización con IA para liberar a profesionales de la salud de tareas administrativas en Latam y España.",
+      revealed: true,
+    },
+    {
+      name: "Nahuel Lema",
+      imgSrc: "/images/juries/NahuelLema.png",
+      details: ["Cofunder @ Coderhouse", "Startup Mentor @ Emprelatam"],
+      mail: "nahuel@coderhouse.com",
+      linkedin: "https://www.linkedin.com/in/nahuellema/",
+      description:
+        "✅ Apasionado por la educación y la formación continua.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Como desarrollador, sentó las bases tecnológicas que hicieron de Coderhouse la plataforma de educación online en vivo más grande de Latam.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Hoy conecta empresas, organizaciones y gobiernos con Coderhouse para impulsar la formación en habilidades digitales.",
       revealed: true,
     },
   ];
@@ -359,7 +370,7 @@ const JurySection = ({ ...extendedProps }) => {
       <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Jurados
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros jurados</Text>*/}
+      <Text fontSize={TextSize}>Conocé a nuestros jurados</Text>
       <Flex
         width="full"
         direction="row"
@@ -375,7 +386,7 @@ const JurySection = ({ ...extendedProps }) => {
               jury={jury}
               my="2%"
               mx="4%"
-              width={["90%", "45%", "30%"]}
+              width={["20%"]}
             />
           );
         })}
