@@ -3,12 +3,15 @@ import { FaLinkedin } from "react-icons/fa";
 const Chronicles = () => {
   return (
     <VStack my="5%">
-      <Text fontSize={["md", "lg", "xl", "2xl", "3xl"]} color="CSLightOrange">
+      <Text
+        fontSize={["sm", "md", "lg", "xl", "2xl", "3xl"]}
+        color="CSLightOrange"
+      >
         Codificación bajo presión: el desafío <a href="2024">HackITBA 2024</a>
       </Text>
       <Box
-        width="45%"
-        fontSize={["sm", "md", "lg"]}
+        mx={["10%","10%","12%","20%"]}
+        fontSize={["xs", "sm", "md", "lg"]}
         my="1%"
         textAlign="justify"
         alignItems="center"
@@ -232,7 +235,7 @@ const Chronicles = () => {
         </Text>
       </Box>
       <VStack my="2%" alignItems="left" textAlign="justify">
-        <HStack alignItems="center">
+        <HStack alignItems="center" mx={["8%","8%","10%","18%"]}>
           <Text fontSize={["md", "lg", "xl"]} textColor="CSLightOrange">
             Por: Ana Victoria Dominguez
           </Text>
@@ -254,7 +257,7 @@ const Chronicles = () => {
             }
           />
         </HStack>
-        <Text fontSize={["xs", "sm"]} width="30%">
+        <Text fontSize={["xs", "sm"]} mx={["8%","8%","10%","18%"]}>
           Licenciada en Relaciones Internacionales por la Universidad Torcuato
           Ditella y periodista freelance para medios como DrilledMedia,
           FairPlanet, Tierra Viva, entre otros.
