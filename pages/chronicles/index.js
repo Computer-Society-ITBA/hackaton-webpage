@@ -10,7 +10,7 @@ const Chronicles = () => {
         Codificación bajo presión: el desafío <a href="2024">HackITBA 2024</a>
       </Text>
       <Box
-        mx="10%"
+        mx={["10%","10%","20%"]}
         fontSize={["xs", "sm", "md", "lg"]}
         my="1%"
         textAlign="justify"
