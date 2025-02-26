@@ -342,6 +342,17 @@ const JurySection = ({ ...extendedProps }) => {
         "Actualmente es el CTO de Cux, una app que busca mejorar la salud mental y dar asistencia en momentos de necesidad a sus usuarios con la ayuda de la inteligencia artificial.",
       revealed: true,
     },
+    {
+      name: "Conrado Mader Blanco",
+      imgSrc: "/images/juries/JuanManuelCosta.jpg",
+      details: ["CTO @ IOL Inversiones"],
+      mail: null,
+      linkedin: "https://www.linkedin.com/in/jcosta",
+      description:
+        "Juan Manuel Costa, Chief Technology Officer de IOL, es ingeniero en sistemas con amplia experiencia en el desarrollo e implementación de soluciones tecnológicas en distintas idustrias, incluido en fintech.\n\n" +
+        "Se especializa en abordar desafíos complejos y en diseñar soluciones eficientes que impulsan el crecimiento de IOL Inversiones.",
+      revealed: true,
+    },
   ];
   return (
     <VStack width="full" {...extendedProps}>
