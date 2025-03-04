@@ -609,6 +609,8 @@ const SponsorsSection = ({ ...extendedProps }) => {
                 {theme.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
+                      <Heading size={TextSize} textAlign="center">{sponsor.theme}</Heading>
+                      <Box paddingBottom="4%"></Box>
                       <SponsorLogo
                         height={theme.dimensions}
                         width={theme.dimensions}
