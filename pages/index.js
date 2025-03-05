@@ -557,89 +557,32 @@ const MentorsSection = ({ ...extendedProps }) => {
 
 const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
-    // {
-    //   name: "Platinum",
-    //   items: [],
-    //   dimensions: ["83%", "83%", "73%", "68%", "63%"],
-    // },
     {
-      name: "Black",
-      items: [
-        {
-          name: "Chevron",
-          logo: "/images/logos/chevron.png",
-          link: "https://www.chevron.com/",
-        },
-        {
-          name: "Le Wagon",
-          logo: "/images/logos/lewagon.png",
-          link: "https://www.lewagon.com/es",
-        },
-        {
-          name: "BBVA",
-          logo: "/images/logos/BBVA.png",
-          link: "https://www.bbva.com.ar/",
-        },
-        {
-          name: "IADT",
-          logo: "/images/logos/iadt.png",
-          link: "https://www.iadt.com/",
-        },
-        {
-          name: "TangoID",
-          logo: "/images/logos/tangoid.png",
-          link: "https://www.tangoid.com.ar/",
-        },
-      ],
+      name: "Diamond",
+      items: [{
+        name: "IOL",
+        theme: "Educación",
+        logo: "/images/logos/IOL.png",
+        link: "https://www.invertironline.com/"
+      },
+      {
+        name: "Boston Scientific",
+        theme: "Salud",
+        logo: "/images/logos/BostonScientific.png",
+        link: "https://www.bostonscientific.com/es-ar/home.html"
+      },
+      {
+        name: "Accenture",
+        theme: "Sustentabilidad",
+        logo: "/images/logos/Accenture.png",
+        link: "https://www.accenture.com/ar-es"
+      }],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
-      // NOTE: Original
-      // dimensions: ["65%", "68", "63%", "60%", "55%"],
-    },
-    {
-      name: "Standard",
-      items: [
-        {
-          name: "Emilabs",
-          logo: "/images/logos/Emi.png",
-          link: "https://www.emilabs.ai/es",
-        },
-        {
-          name: "Wúru",
-          logo: "/images/logos/wuru.png",
-          link: "https://wuru.ai/",
-        },
+    }
 
-        {
-          name: "Extrimian",
-          logo: "/images/logos/extrimian.png",
-          link: "https://extrimian.io/academy/",
-        },
-        {
-          name: "Proios S.A.",
-          logo: "/images/logos/proios.png",
-          link: "https://www.proios.com/",
-        },
-        {
-          name: "Emprelatam",
-          logo: "/images/logos/emprelatam.png",
-          link: "https://emprelatam.com/",
-        },
-        {
-          name: "Zennon",
-          logo: "/images/logos/zennon.png",
-          link: "https://zennonbi.com/",
-        },
-        {
-          name: "Buenos Aires Ciudad",
-          logo: "/images/logos/BuenosAiresCiudad2.png",
-          link: "https://buenosaires.gob.ar/inicio/",
-        },
-      ],
-      dimensions: ["65%", "68", "63%", "60%", "55%"],
-      // NOTE: Original
-      // dimensions: ["78%", "78%", "68%", "53%", "58%"],
-    },
   ];
+
+
   return (
     <VStack w="full" mt={0} {...extendedProps}>
       {/*<Img
@@ -652,8 +595,40 @@ const SponsorsSection = ({ ...extendedProps }) => {
         <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
           Sponsors 2025
         </Heading>
-        {/*<Text fontSize={TextSize}>Empresas que nos acompañan</Text>*/}
-        <Text fontSize={TextSize}>Próximamente...</Text>
+        <Text fontSize={TextSize}>Empresas que nos acompañan</Text>
+
+        {/* aca arranca */}
+
+        {sponsors.map((theme) => {
+          return (
+            <Box key={theme.name} align="center" pt="1%" width="100%">
+              <Heading textAlign="center" size={TextSize}>
+                {theme.name}
+              </Heading>
+              <Grid paddingX="6%" templateColumns={`repeat(${theme.items.length},1fr)`} w="full">
+                {theme.items.map((sponsor) => {
+                  return (
+                    <GridItem padding="1%" pt="2%" key={sponsor.name}>
+                      <Heading size={TextSize} textAlign="center">{sponsor.theme}</Heading>
+                      <Box paddingBottom="4%"></Box>
+                      <SponsorLogo
+                        height={theme.dimensions}
+                        width={theme.dimensions}
+                        link={sponsor.link}
+                        logo={sponsor.logo}
+                        name={sponsor.name}
+                      ></SponsorLogo>
+                    </GridItem>
+                  );
+                })}
+              </Grid>
+            </Box>
+          );
+        })}
+
+
+
+        {/* <Text fontSize={TextSize}>Próximamente...</Text> */}
       </VStack>
       <VStack
         px="8%"
