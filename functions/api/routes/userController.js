@@ -261,9 +261,9 @@ router.put(
             return res.status(400).send(user);
         }
 
-        const emails = user.participants.map((p) => p.email);
+        const emails = user.participants.map((p) => p.email.toLowerCase());
 
-        if (!emails.includes(user.email)) {
+        if (!emails.includes(user.email.toLowerCase())) {
             emails.push(user.email);
         }
 
