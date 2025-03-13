@@ -21,5 +21,8 @@ async function inscriptionsEnabled() {
 async function submissionsEnabled() {
     return await getDateConfig("submissions");
 }
+async function videoSubmissionsEnabled() {
+    return await getDateConfig("submissions");
+}
 
-module.exports = { inscriptionsEnabled, submissionsEnabled };
+module.exports = { inscriptionsEnabled, submissionsEnabled, videoSubmissionsEnabled};
