@@ -578,7 +578,67 @@ const SponsorsSection = ({ ...extendedProps }) => {
         link: "https://www.accenture.com/ar-es"
       }],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
-    }
+    },
+    {
+      name: "Gold",
+      items: [{
+        name: "Emprelatam",
+        theme: "",
+        logo: "/images/logos/emprelatam.png",
+        link: "https://emprelatam.com/"
+      },
+        {
+          name: "Tango ID",
+          theme: "",
+          logo: "/images/logos/tangoid.png",
+          link: "https://www.tangoid.com.ar/"
+        },
+        {
+          name: "Droguería Del Sud",
+          theme: "",
+          logo: "/images/logos/DDS.png",
+          link: "https://www.delsud.com.ar"
+        }],
+      dimensions: ["78%", "78%", "68%", "63%", "58%"],
+    },
+    {
+      name: "Platinum",
+      items: [{
+        name: "MultiLED",
+        theme: "",
+        logo: "/images/logos/multiled.png",
+        link: "https://multiled.com.ar/"
+      },
+        {
+          name: "Xtract",
+          theme: "",
+          logo: "/images/logos/xtract.png",
+          link: "https://www.xtract.app/"
+        },
+        {
+          name: "La Anónima",
+          theme: "",
+          logo: "/images/logos/laanonima.png",
+          link: "https://www.laanonima.com.ar/"
+        }],
+      dimensions: ["73%", "73%", "63%", "58%", "53%"],
+    },
+    {
+      name: "Silver",
+      items: [{
+        name: "Deloitte",
+        theme: "",
+        logo: "/images/logos/deloitte.svg",
+        link: "https://www2.deloitte.com/ar"
+      },
+        {
+          name: "Zennon",
+          theme: "",
+          logo: "/images/logos/zennon.png",
+          link: "https://zennonbi.com/"
+        }],
+      dimensions: ["68%", "68%", "58%", "53%", "48%"],
+    },
 
   ];
 
@@ -599,13 +659,13 @@ const SponsorsSection = ({ ...extendedProps }) => {
 
         {/* aca arranca */}
 
-        {sponsors.map((theme) => {
+        {sponsors.map((theme, idx) => {
           return (
-            <Box key={theme.name} align="center" pt="1%" width="100%">
-              <Heading textAlign="center" size={TextSize}>
+            <Box key={theme.name} align="center" pt="1%" pb="2%" width="100%">
+              <Heading textAlign="center" pb="1%" size={TextSize}>
                 {theme.name}
               </Heading>
-              <Grid paddingX="6%" templateColumns={`repeat(${theme.items.length},1fr)`} w="full">
+              <Grid paddingX={`${idx*3 + 6}%`} templateColumns={`repeat(${theme.items.length},1fr)`} w="full">
                 {theme.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
