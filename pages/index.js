@@ -559,89 +559,95 @@ const SponsorsSection = ({ ...extendedProps }) => {
   const sponsors = [
     {
       name: "Diamond",
-      items: [{
-        name: "IOL",
-        theme: "Educación",
-        logo: "/images/logos/IOL.png",
-        link: "https://www.invertironline.com/"
-      },
-      {
-        name: "Boston Scientific",
-        theme: "Salud",
-        logo: "/images/logos/BostonScientific.png",
-        link: "https://www.bostonscientific.com/es-ar/home.html"
-      },
-      {
-        name: "Accenture",
-        theme: "Sustentabilidad",
-        logo: "/images/logos/Accenture.png",
-        link: "https://www.accenture.com/ar-es"
-      }],
+      items: [
+        {
+          name: "IOL",
+          theme: "Educación",
+          logo: "/images/logos/IOL.png",
+          link: "https://www.invertironline.com/",
+        },
+        {
+          name: "Boston Scientific",
+          theme: "Salud",
+          logo: "/images/logos/BostonScientific.png",
+          link: "https://www.bostonscientific.com/es-ar/home.html",
+        },
+        {
+          name: "Accenture",
+          theme: "Sustentabilidad",
+          logo: "/images/logos/Accenture.png",
+          link: "https://www.accenture.com/ar-es",
+        },
+      ],
       dimensions: ["83%", "83%", "73%", "68%", "63%"],
     },
     {
       name: "Gold",
-      items: [{
-        name: "Emprelatam",
-        theme: "",
-        logo: "/images/logos/emprelatam.png",
-        link: "https://emprelatam.com/"
-      },
+      items: [
+        {
+          name: "Emprelatam",
+          theme: "",
+          logo: "/images/logos/emprelatam.png",
+          link: "https://emprelatam.com/",
+        },
         {
           name: "Tango ID",
           theme: "",
           logo: "/images/logos/tangoid.png",
-          link: "https://www.tangoid.com.ar/"
+          link: "https://www.tangoid.com.ar/",
         },
         {
           name: "Droguería Del Sud",
           theme: "",
           logo: "/images/logos/DDS.png",
-          link: "https://www.delsud.com.ar"
-        }],
+          link: "https://www.delsud.com.ar",
+        },
+      ],
       dimensions: ["78%", "78%", "68%", "63%", "58%"],
     },
     {
       name: "Platinum",
-      items: [{
-        name: "MultiLED",
-        theme: "",
-        logo: "/images/logos/multiled.png",
-        link: "https://multiled.com.ar/"
-      },
+      items: [
+        {
+          name: "MultiLED",
+          theme: "",
+          logo: "/images/logos/multiled.png",
+          link: "https://multiled.com.ar/",
+        },
         {
           name: "Xtract",
           theme: "",
           logo: "/images/logos/xtract.png",
-          link: "https://www.xtract.app/"
+          link: "https://www.xtract.app/",
         },
         {
           name: "La Anónima",
           theme: "",
           logo: "/images/logos/laanonima.png",
-          link: "https://www.laanonima.com.ar/"
-        }],
+          link: "https://www.laanonima.com.ar/",
+        },
+      ],
       dimensions: ["73%", "73%", "63%", "58%", "53%"],
     },
     {
       name: "Silver",
-      items: [{
-        name: "Deloitte",
-        theme: "",
-        logo: "/images/logos/deloitte.svg",
-        link: "https://www2.deloitte.com/ar"
-      },
+      items: [
+        {
+          name: "Deloitte",
+          theme: "",
+          logo: "/images/logos/deloitte.svg",
+          link: "https://www2.deloitte.com/ar",
+        },
         {
           name: "Zennon",
           theme: "",
           logo: "/images/logos/zennon.png",
-          link: "https://zennonbi.com/"
-        }],
+          link: "https://zennonbi.com/",
+        },
+      ],
       dimensions: ["68%", "68%", "58%", "53%", "48%"],
     },
-
   ];
-
 
   return (
     <VStack w="full" mt={0} {...extendedProps}>
@@ -665,11 +671,17 @@ const SponsorsSection = ({ ...extendedProps }) => {
               <Heading textAlign="center" pb="1%" size={TextSize}>
                 {theme.name}
               </Heading>
-              <Grid paddingX={`${idx*3 + 6}%`} templateColumns={`repeat(${theme.items.length},1fr)`} w="full">
+              <Grid
+                paddingX={`${idx * 3 + 6}%`}
+                templateColumns={`repeat(${theme.items.length},1fr)`}
+                w="full"
+              >
                 {theme.items.map((sponsor) => {
                   return (
                     <GridItem padding="1%" pt="2%" key={sponsor.name}>
-                      <Heading size={TextSize} textAlign="center">{sponsor.theme}</Heading>
+                      <Heading size={TextSize} textAlign="center">
+                        {sponsor.theme}
+                      </Heading>
                       <Box paddingBottom="4%"></Box>
                       <SponsorLogo
                         height={theme.dimensions}
@@ -685,8 +697,6 @@ const SponsorsSection = ({ ...extendedProps }) => {
             </Box>
           );
         })}
-
-
 
         {/* <Text fontSize={TextSize}>Próximamente...</Text> */}
       </VStack>
