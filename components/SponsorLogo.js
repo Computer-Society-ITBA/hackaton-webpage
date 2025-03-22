@@ -1,4 +1,4 @@
-import { Img, Link } from "@chakra-ui/react";
+import { Box, Img, Link } from "@chakra-ui/react";
 
 const SponsorLogo = ({ link, logo, name, width, height, style }) => {
   return (
@@ -6,8 +6,10 @@ const SponsorLogo = ({ link, logo, name, width, height, style }) => {
       <Img
         src={logo}
         alt={name}
-        width={width ? width : "auto"}
-        height={height ? height : "auto"}
+        display="inline-flex"
+        justifyContent="center"
+        width={width || "auto"}
+        height={height || "auto"}
         cursor="pointer"
         _hover={{
           transform: "scale(1.1)",
