@@ -29,6 +29,7 @@ import { CheckCircleIcon, CloseIcon } from "@chakra-ui/icons";
 import joi from "joi";
 import useStore from "../config/storeConfig";
 import NewJury from "../components/NewJury";
+import Mentor from "../components/Mentor";
 
 // const Subtitle = styled(Text)`
 //   font-size: 14px;
@@ -400,65 +401,175 @@ const MentorsSection = ({ ...extendedProps }) => {
   const mentors = [
     {
       name: "José Abuchaem",
-      imgSrc: "/images/mentors/JoséAbuchaem.jpeg",
-      details:
-        "Software Engineer en Podcast App, Mentor en OZOM Builders, Advisor en SimpleState, Co-founder y previamente CFO y CMO en Tienda Nube",
+      imgSrc: "/images/mentors/JoseAbuchaem.jpeg",
+      details: ["Software Engineer @ Podcast App | Co-Founder @ Tienda Nube"],
+      mail: "jabuchae@gmail.com",
+      linkedin: "https://www.linkedin.com/in/jabuchae/",
+      description:
+        "✅ Co-Founder y ex CFO/CMO @ Tiendanube.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Software Engineer @ Podcast App.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Mentor @ OZOM Builders y Advisor @ SimpleState.\n\n",
       revealed: true,
     },
     {
-      name: "Juan Catalano",
-      imgSrc: "/images/mentors/JuanCatalano2.jpeg",
-      details: "Founder y CPO en Podcast App",
+      name: "Alejandro Bezdjian",
+      imgSrc: "/images/mentors/AlejandroBezdjian.png",
+      details: ["Sr Software Engineer | Co-Founder @ Xtract"],
+      mail: "alejandro@xtract.app",
+      linkedin: "https://www.linkedin.com/in/alebian",
+      description:
+        "✅ Co-Founder @ Xtract.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Mentor @ Codementor.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex Sr Software Engineer @ Klarna.\n\n",
       revealed: true,
     },
+    {
+      name: "Alejandro Sergio D'Alessandro",
+      imgSrc: "/images/mentors/AlejandroDalessandro.png",
+      details: ["Docente en ITBA | CEO @ EPA Bienestar AI"],
+      mail: "adalessandro@itba.edu.ar",
+      linkedin: "https://www.linkedin.com/in/drdalessandro/",
+      description:
+        "✅ Docente Universitario IT.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Emprendedor @ EPA Bienestar con Datos y Estándares en Salud Digital.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Cardiólogo.\n\n",
+      revealed: true,
+    },
+    {
+      name: "German Gross",
+      imgSrc: "/images/mentors/GermanGross.jpg",
+      details: ["Head of Architecture @ Banco Galicia"],
+      mail: "germangross@gmail.com",
+      linkedin: "https://www.linkedin.com/in/germangross/",
+      description:
+        "✅ Head of Architecture @ Banco Galicia.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex Sr. Director of Engineering @ Wildlife Studios.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex IT Governance Senior Manager @ Mercado Libre.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Egresado de Ingeniería en Informática @ ITBA.\n\n",
+      revealed: true,
+    },
+    {
+      name: "Javier Jafella",
+      imgSrc: "/images/mentors/JavierJafella.jpg",
+      details: ["Jefe de Sustentabilidad @ Laboratorios Andrómaco"],
+      mail: "jjafella@andromaco.com.ar",
+      linkedin: "linkedin.com/in/javier-jafella-41733346",
+      description:
+        "✅ Jefe de Sustentabilidad @ Laboratorios Andrómaco.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ +18 años de experiencia en innovación y desarrollo de productos sustentables.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Especialista en estrategias de sustentabilidad en el sector cosmético y de salud.\n\n",
+      revealed: true,
+    },
+
+    {
+      name: "Pablo Lorenzato",
+      imgSrc: "/images/mentors/PabloLorenzatto.jpg",
+      details: ["CTO & Co-Founder @ MUTT DATA"],
+      mail: "pablo@muttdata.ai",
+      linkedin: "https://www.linkedin.com/in/plorenzatto/",
+      description:
+        "✅ Co-Founder y CTO @ Mutt Data.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Especialista en Data Science, AI y Big Data.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex profesor @ Digital House e ITBA, miembro comité de AI @ UdeSA.\n\n",
+      revealed: true,
+    },
+    {
+      name: "Tomás Marconi",
+      imgSrc: "/images/mentors/TomasMarconi.png",
+      details: ["Co-Founder @ Xtract"],
+      mail: "tomas@xtract.app",
+      linkedin: "https://www.linkedin.com/in/tom%C3%A1s-marconi-024374257/",
+      description:
+        "✅ Co-Founder & CEO @ Xtract.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ingeniero en Sistemas y Administración de Empresas ITBA.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Experiencia en B2B, automatización y fintech.\n\n",
+      revealed: true,
+    },
+    {
+      name: "Ariel Mirra",
+      imgSrc: "/images/mentors/ArielMirra.jpeg",
+      details: [
+        "Sr Software Engineer @ Salesforce | Profesor de emprendedurismo",
+      ],
+      mail: "ariel.mirra@ing.austral.edu.ar",
+      linkedin: "https://www.linkedin.com/in/arielmirra/",
+      description:
+        "✅ Docente de Emprendedurismo en Universidad Austral.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Creador de contenido en tecnología y host del podcast @esporahi.dev.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Mentor de emprendedores tecnológicos, impulsando el desarrollo de startups de alto impacto.\n\n",
+      revealed: true,
+    },
+    {
+      name: "Cristobal Papendieck",
+      imgSrc: "/images/mentors/CristobalPapendieck.webp",
+      details: ["Founder & COO @ DMOdesigncompany"],
+      mail: "cristobal.papendieck@dmo.company",
+      linkedin: "https://www.linkedin.com/in/cristobalpapendieck/",
+      description:
+        "✅ Founder, COO, Head of Design @ DMOdesigncompany.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Co-founder @ Clonify.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Founding member @ Iotly.\n\n",
+      revealed: true,
+    },
+
     {
       name: "Marisabel Rodriguez",
-      imgSrc: "/images/mentors/MarisabelRodriguez.jpeg",
-      details: "Cloud Delivery Center Manager en Google",
+      imgSrc: "/images/mentors/MarisabelRodriguez.png",
+      details: ["AI Services Manager @ Google Cloud | Senior Member IEEE"],
+      mail: "marisabel@ieee.org",
+      linkedin: null,
+      description:
+        "✅ AI Services Manager @ Google Cloud.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex Cloud Delivery Center Manager @ Google.\n\n",
       revealed: true,
     },
-    {
-      name: "Luqui Diaz",
-      imgSrc: "/images/mentors/LucasDiaz.jpeg",
-      details: "Co-founder y COO en Mudafy",
-      revealed: true,
-    },
+
     {
       name: "Federico Viarnés",
-      imgSrc: "/images/mentors/FedericoViarnes2.jpeg",
-      details:
-        "Ex VP de Producto en BuenBit, actualmente desarrollando proyectos en blockchain.",
+      imgSrc: "/images/mentors/FedericoViarnes.jpeg",
+      details: ["CTO & Co-Founder @ volanti.ai"],
+      mail: "fede.viar@gmail.com",
+      linkedin: "https://www.linkedin.com/in/viarnes/",
+      description:
+        "✅ CTO & Co-Founder @ volanti.ai.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex VP of Product @ Buenbit.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Desarrollador de proyectos en Blockchain.\n\n",
       revealed: true,
     },
     {
-      name: "Matías Podrojsky",
-      imgSrc: "/images/mentors/MatiasPodrojsky.jpeg",
-      details: "Co-founder y CHRO en Wirsolut",
-      revealed: true,
-    },
-    {
-      name: "Javier Roberts",
-      imgSrc: "/images/mentors/JavierRoberts.jpeg",
-      details: "CTO en Wúru",
-      revealed: true,
-    },
-    {
-      name: "Nicolas D'Onofrio",
-      imgSrc: "/images/mentors/NicolasDonofrio.jpeg",
-      details:
-        "Co-founder en Manteca, Co-founder en TiendaCrypto, Co-founder en Tienda Dolar",
-      revealed: true,
-    },
-    {
-      name: "Juan Manuel Amorós",
-      imgSrc: "/images/mentors/JuanAmoros.png",
-      details: "Founder & CEO en Emprelatam",
-      revealed: true,
-    },
-    {
-      name: "Marcelo Turrin",
-      imgSrc: "/images/mentors/MarceloTurrin.jpeg",
-      details: "Software Engineer en Blue Alba, Profesor en ITBA",
+      name: "Martin Zahnd",
+      imgSrc: "/images/mentors/MartinZahnd.png",
+      details: ["Ex CTO @ Woocar | Ex CS"],
+      mail: "mzahnd@itba.edu.ar",
+      linkedin: "https://www.linkedin.com/in/martin-e-zahnd/?locale=es_ES",
+      description:
+        "✅ Ex CTO @ Woocar.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ingeniero en Informática ITBA.\n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex miembro de Computer Society.\n\n",
       revealed: true,
     },
   ];
@@ -467,35 +578,30 @@ const MentorsSection = ({ ...extendedProps }) => {
       <Heading color="CSLightOrange" size={HeadingSize} textAlign="center">
         Mentores
       </Heading>
-      {/*<Text fontSize={TextSize}>Conocé a nuestros mentores</Text>*/}
-      <Text fontSize={TextSize}>Próximamente...</Text>
-      {/* TODO - Descomentar cuando se tengan todos los mentors disponibles
-      <Grid
-        paddingX="4%"
-        paddingY="4%"
-        pt="4%"
-        templateColumns={[
-          "repeat(2, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(3, 1fr)",
-          "repeat(4, 1fr)",
-          "repeat(4, 1fr)",
-          "repeat(5, 1fr)",
-        ]}
-        justifyItems="center"
+      <Text fontSize={TextSize}>
+        Mentores expertos en tecnología y negocios
+      </Text>
+      <Flex
         width="full"
-        gap={1}
-        rowGap={6}
+        direction="row"
+        flexWrap="wrap"
+        justifyContent="center"
+        alignItems="start"
+        verticalAlign="top"
       >
-        mentors.map((mentor, index) => {
+        {mentors.map((mentor, index) => {
           return (
-            <GridItem key={index}>
-              <Jury jury={mentor}></Jury>{" "}
-              {/* Queda mal el keyword pero creo que el componente sería el mismo * /}
-            </GridItem>
+            <Mentor
+              key={index}
+              mentor={mentor}
+              my="2%"
+              mx="4%"
+              minWidth="100px"
+              width={["20%"]}
+            />
           );
-        })
-      </Grid>*/}
+        })}
+      </Flex>
     </VStack>
   );
 };
