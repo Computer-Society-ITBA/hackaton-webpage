@@ -7,10 +7,14 @@ const githubRegex =
 
 const schema = joi.object({
     userId: joi.string().min(5).required(),
-    video: joi.string().min(5).pattern(youtubeRegex).required(),
-    repo: joi.string().min(5).pattern(githubRegex).required(),
-    additionalContent: joi.string().min(5).optional(),
     description: joi.string().min(5).optional(),
+    additionalContent: joi.string().min(5).optional(),
+    repo: joi.string().min(5).pattern(githubRegex).required(),
+    branch: joi.string().min(1).optional(),
+    commitHash: joi.string().min(1).optional(),
+    deployLink: joi.string().min(5).optional(),
+    video: joi.string().min(5).pattern(youtubeRegex).optional(),
+    pitch: joi.string().min(5).optional(),
 });
 
 module.exports = { schema };
