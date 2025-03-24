@@ -13,8 +13,11 @@ const schema = joi.object({
     branch: joi.string().min(1).optional(),
     commitHash: joi.string().min(1).optional(),
     deployLink: joi.string().min(5).optional(),
-    video: joi.string().min(5).pattern(youtubeRegex).optional(),
-    pitch: joi.string().min(5).optional(),
 });
 
-module.exports = { schema };
+const videoSchema = joi.object({
+    userId: joi.string().min(5).required(),
+    video: joi.string().min(5).pattern(youtubeRegex).required(),
+    pitch: joi.string().min(5).optional(),
+})
+module.exports = { schema, videoSchema };

@@ -81,15 +81,17 @@ module.exports.getSingleSubmission = async function getSingleSubmission(
 
 module.exports.updateSubmission = async function updateSubmission(submissionId, submission) {
     try {
-        console.log(submission);
         const submissionRef = db.collection(SUBMISSION_COLLECTION).doc(submissionId);
         const doc = await submissionRef.get();
         if (!doc.exists) {
             throw new Error("Submission doesn't exist");
         }
 
-        await submissionRef.update(submission);
-        return { id: submissionId, ...submission };
+        const existingData = doc.data();
+        const updatedData = { ...existingData, ...submission };
+
+        await submissionRef.update(updatedData);
+        return { id: submissionId, ...updatedData };
     } catch (err) {
         throw new Error("Unable to update submission");
     }

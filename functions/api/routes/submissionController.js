@@ -6,7 +6,7 @@ const {
     getSubmissions,
     getSingleSubmission,
 } = require("../services/submissionsService");
-const { schema } = require("../model/submission");
+const { schema, videoSchema } = require("../model/submission");
 const { getUserInfo } = require("../services/userService");
 const authMiddleware = require("../middleware/authMiddleware");
 const bodySelfMiddleware = require("../middleware/bodySelfMiddleware");
@@ -59,7 +59,7 @@ router.patch(
     authMiddleware,
     bodySelfMiddleware,
     async (req, res) => {
-        const { error } = schema.validate();
+        const { error } = videoSchema.validate();
         if (error) {
             return res.status(400).send(error.details[0].message);
         }
