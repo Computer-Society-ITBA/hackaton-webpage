@@ -1,11 +1,12 @@
 const express = require("express");
 const {
     createSubmission,
+    updateSubmission,
     getSubmission,
     getSubmissions,
     getSingleSubmission,
 } = require("../services/submissionsService");
-const { schema } = require("../model/submission");
+const { schema, videoSchema } = require("../model/submission");
 const { getUserInfo } = require("../services/userService");
 const authMiddleware = require("../middleware/authMiddleware");
 const bodySelfMiddleware = require("../middleware/bodySelfMiddleware");
@@ -52,6 +53,36 @@ router.post(
         }
     }
 );
+
+router.patch(
+    "/:submissionId",
+    authMiddleware,
+    bodySelfMiddleware,
+    async (req, res) => {
+        const { error } = videoSchema.validate();
+        if (error) {
+            return res.status(400).send(error.details[0].message);
+        }
+
+        try {
+            const submission = await getSingleSubmission(req.params.submissionId);
+            if (!submission) {
+                return res.status(400).send("Invalid submission ID");
+            }
+        } catch (err) {
+            return res.status(400).send("Invalid submission ID");
+        }
+
+        try {
+            const updatedSubmission = await updateSubmission(req.params.submissionId, req.body);
+            res.status(200).send(updatedSubmission);
+        } catch (err) {
+            console.error(err);
+            res.status(500).send(err);
+        }
+    }
+);
+
 
 router.get("/", authMiddleware, roleMiddleware(ROLE_ADMIN), async (_, res) => {
     try {

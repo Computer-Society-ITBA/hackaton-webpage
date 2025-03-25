@@ -1,6 +1,7 @@
 const {
     inscriptionsEnabled,
     submissionsEnabled,
+    videoSubmissionsEnabled,
 } = require("../services/configService");
 const { error } = require("../model/error");
 
@@ -24,4 +25,14 @@ async function submissionsOpenMiddleware(req, res, next) {
     next();
 }
 
-module.exports = { inscriptionsOpenMiddleware, submissionsOpenMiddleware };
+async function videoSubmissionsOpenMiddleware(req, res, next) {
+    if (!(await videoSubmissionsEnabled())) {
+        return res
+            .status(403)
+            .send(error("config", "Video submissions are not open yet!"));
+    }
+
+    next();
+}
+
+module.exports = { inscriptionsOpenMiddleware, submissionsOpenMiddleware, videoSubmissionsOpenMiddleware };

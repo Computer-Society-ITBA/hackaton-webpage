@@ -12,6 +12,7 @@ const useStore = create(
       submissions: undefined,
       inscriptionsEnabled: undefined,
       submissionsEnabled: undefined,
+      videoSubmissionsEnabled: undefined,
       setToken: (token) => set((_) => ({ token: token })),
       signIn: (userInfo, token) =>
         set((state) => ({
@@ -38,14 +39,17 @@ const useStore = create(
           config = {
             inscriptionsEnabled: false,
             submissionsEnabled: false,
+            videoSubmissionsEnabled: false,
           };
         }
 
         set((state) => ({
           inscriptionsEnabled: config.inscriptions?.enabled,
           submissionsEnabled: config.submissions?.enabled,
+          videoSubmissionsEnabled: config.videoSubmissions?.enabled,
           inscriptions: config.inscriptions,
           submissions: config.submissions,
+          videoSubmissions: config.videoSubmissions,
         }));
       },
     }),
