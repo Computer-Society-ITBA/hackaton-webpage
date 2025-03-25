@@ -410,6 +410,7 @@ const TeamRating = () => {
                 cada categoría
               </Text>
               <Accordion width="full" defaultIndex={[]} allowMultiple>
+                <AccordionItem>
                 <h1>
                   <AccordionPanel>
                     <Text fontSize={TextSize}>Idea</Text>
@@ -417,6 +418,7 @@ const TeamRating = () => {
                     <AccordionIcon />
                   </AccordionPanel>
                 </h1>
+                </AccordionItem>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
@@ -523,6 +525,7 @@ const TeamRating = () => {
                     </OrderedList>
                   </AccordionPanel>
                 </AccordionItem>
+                <AccordionItem>
                 <h1>
                   <AccordionPanel>
                     <Text fontSize={TextSize}>MVP</Text>
@@ -530,6 +533,7 @@ const TeamRating = () => {
                     <AccordionIcon />
                   </AccordionPanel>
                 </h1>
+                </AccordionItem>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
@@ -632,6 +636,7 @@ const TeamRating = () => {
                     </OrderedList>
                   </AccordionPanel>
                 </AccordionItem>
+                <AccordionItem>
                 <h1>
                   <AccordionPanel>
                     <Text fontSize={TextSize}>Presentación</Text>
@@ -639,6 +644,7 @@ const TeamRating = () => {
                     <AccordionIcon />
                   </AccordionPanel>
                 </h1>
+                </AccordionItem>
                 <AccordionItem>
                   <h2>
                     <AccordionButton>
