@@ -406,11 +406,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "jabuchae@gmail.com",
       linkedin: "https://www.linkedin.com/in/jabuchae/",
       description:
-        "✅ Co-Founder y ex CFO/CMO @ Tiendanube.\n\n" +
+        "✅ Co-Founder y ex CFO/CMO @ Tiendanube\n\n" +
         "&nbsp; \n\n" +
-        "✅ Software Engineer @ Podcast App.\n\n" +
+        "✅ Software Engineer @ Podcast App\n\n" +
         "&nbsp; \n\n" +
-        "✅ Mentor @ OZOM Builders y Advisor @ SimpleState.\n\n",
+        "✅ Mentor @ OZOM Builders y Advisor @ SimpleState\n\n",
       revealed: true,
     },
     {
@@ -420,11 +420,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "alejandro@xtract.app",
       linkedin: "https://www.linkedin.com/in/alebian",
       description:
-        "✅ Co-Founder @ Xtract.\n\n" +
+        "✅ Co-Founder @ Xtract\n\n" +
         "&nbsp; \n\n" +
-        "✅ Mentor @ Codementor.\n\n" +
+        "✅ Mentor @ Codementor\n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex Sr Software Engineer @ Klarna.\n\n",
+        "✅ Ex Sr Software Engineer @ Klarna\n\n",
       revealed: true,
     },
     {
@@ -434,11 +434,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "adalessandro@itba.edu.ar",
       linkedin: "https://www.linkedin.com/in/drdalessandro/",
       description:
-        "✅ Docente Universitario IT.\n\n" +
+        "✅ Docente Universitario IT\n\n" +
         "&nbsp; \n\n" +
-        "✅ Emprendedor @ EPA Bienestar con Datos y Estándares en Salud Digital.\n\n" +
+        "✅ Emprendedor @ EPA Bienestar con Datos y Estándares en Salud Digital\n\n" +
         "&nbsp; \n\n" +
-        "✅ Cardiólogo.\n\n",
+        "✅ Cardiólogo\n\n",
       revealed: true,
     },
     {
@@ -448,13 +448,13 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "germangross@gmail.com",
       linkedin: "https://www.linkedin.com/in/germangross/",
       description:
-        "✅ Head of Architecture @ Banco Galicia.\n\n" +
+        "✅ Head of Architecture @ Banco Galicia\n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex Sr. Director of Engineering @ Wildlife Studios.\n\n" +
+        "✅ Ex Sr. Director of Engineering @ Wildlife Studios\n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex IT Governance Senior Manager @ Mercado Libre.\n\n" +
+        "✅ Ex IT Governance Senior Manager @ Mercado Libre\n\n" +
         "&nbsp; \n\n" +
-        "✅ Egresado de Ingeniería en Informática @ ITBA.\n\n",
+        "✅ Egresado de Ingeniería en Informática @ ITBA\n\n",
       revealed: true,
     },
     {
@@ -464,11 +464,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "jjafella@andromaco.com.ar",
       linkedin: "linkedin.com/in/javier-jafella-41733346",
       description:
-        "✅ Jefe de Sustentabilidad @ Laboratorios Andrómaco.\n\n" +
+        "✅ Jefe de Sustentabilidad @ Laboratorios Andrómaco\n\n" +
         "&nbsp; \n\n" +
-        "✅ +18 años de experiencia en innovación y desarrollo de productos sustentables.\n\n" +
+        "✅ +18 años de experiencia en innovación y desarrollo de productos sustentables\n\n" +
         "&nbsp; \n\n" +
-        "✅ Especialista en estrategias de sustentabilidad en el sector cosmético y de salud.\n\n",
+        "✅ Especialista en estrategias de sustentabilidad en el sector cosmético y de salud\n\n",
       revealed: true,
     },
 
@@ -479,11 +479,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "pablo@muttdata.ai",
       linkedin: "https://www.linkedin.com/in/plorenzatto/",
       description:
-        "✅ Co-Founder y CTO @ Mutt Data.\n\n" +
+        "✅ Co-Founder y CTO @ Mutt Data\n\n" +
         "&nbsp; \n\n" +
-        "✅ Especialista en Data Science, AI y Big Data.\n\n" +
+        "✅ Especialista en Data Science, AI y Big Data\n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex profesor @ Digital House e ITBA, miembro comité de AI @ UdeSA.\n\n",
+        "✅ Ex profesor @ Digital House e ITBA, miembro comité de AI @ UdeSA\n\n",
       revealed: true,
     },
     {
@@ -493,11 +493,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "tomas@xtract.app",
       linkedin: "https://www.linkedin.com/in/tom%C3%A1s-marconi-024374257/",
       description:
-        "✅ Co-Founder & CEO @ Xtract.\n\n" +
+        "✅ Co-Founder & CEO @ Xtract\n\n" +
         "&nbsp; \n\n" +
-        "✅ Ingeniero en Sistemas y Administración de Empresas ITBA.\n\n" +
+        "✅ Ingeniero en Sistemas y Administración de Empresas ITBA\n\n" +
         "&nbsp; \n\n" +
-        "✅ Experiencia en B2B, automatización y fintech.\n\n",
+        "✅ Experiencia en B2B, automatización y fintech\n\n",
       revealed: true,
     },
     {
@@ -509,11 +509,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "ariel.mirra@ing.austral.edu.ar",
       linkedin: "https://www.linkedin.com/in/arielmirra/",
       description:
-        "✅ Docente de Emprendedurismo en Universidad Austral.\n\n" +
+        "✅ Docente de Emprendedurismo en Universidad Austral\n\n" +
         "&nbsp; \n\n" +
-        "✅ Creador de contenido en tecnología y host del podcast @esporahi.dev.\n\n" +
+        "✅ Creador de contenido en tecnología y host del podcast @ esporahi.dev\n\n" +
         "&nbsp; \n\n" +
-        "✅ Mentor de emprendedores tecnológicos, impulsando el desarrollo de startups de alto impacto.\n\n",
+        "✅ Mentor de emprendedores tecnológicos, impulsando el desarrollo de startups de alto impacto\n\n",
       revealed: true,
     },
     {
@@ -523,11 +523,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "cristobal.papendieck@dmo.company",
       linkedin: "https://www.linkedin.com/in/cristobalpapendieck/",
       description:
-        "✅ Founder, COO, Head of Design @ DMOdesigncompany.\n\n" +
+        "✅ Founder, COO, Head of Design @ DMOdesigncompany\n\n" +
         "&nbsp; \n\n" +
-        "✅ Co-founder @ Clonify.\n\n" +
+        "✅ Co-founder @ Clonify\n\n" +
         "&nbsp; \n\n" +
-        "✅ Founding member @ Iotly.\n\n",
+        "✅ Founding member @ Iotly\n\n",
       revealed: true,
     },
 
@@ -536,11 +536,13 @@ const MentorsSection = ({ ...extendedProps }) => {
       imgSrc: "/images/mentors/MarisabelRodriguez.png",
       details: ["AI Services Manager @ Google Cloud | Senior Member IEEE"],
       mail: "marisabel@ieee.org",
-      linkedin: null,
+      linkedin: "https://www.linkedin.com/in/marisabelrb/",
       description:
-        "✅ AI Services Manager @ Google Cloud.\n\n" +
+        "✅ AI Services Manager @ Google Cloud \n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex Cloud Delivery Center Manager @ Google.\n\n",
+        "✅ Ex Cloud Delivery Center Manager @ Google \n\n" +
+        "&nbsp; \n\n" +
+        "✅ Senior Member @ IEEE \n\n",
       revealed: true,
     },
 
@@ -551,11 +553,11 @@ const MentorsSection = ({ ...extendedProps }) => {
       mail: "fede.viar@gmail.com",
       linkedin: "https://www.linkedin.com/in/viarnes/",
       description:
-        "✅ CTO & Co-Founder @ volanti.ai.\n\n" +
+        "✅ CTO & Co-Founder @ volanti.ai \n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex VP of Product @ Buenbit.\n\n" +
+        "✅ Ex VP of Product @ Buenbit \n\n" +
         "&nbsp; \n\n" +
-        "✅ Desarrollador de proyectos en Blockchain.\n\n",
+        "✅ Desarrollador de proyectos en Blockchain \n\n",
       revealed: true,
     },
     {
@@ -563,13 +565,50 @@ const MentorsSection = ({ ...extendedProps }) => {
       imgSrc: "/images/mentors/MartinZahnd.png",
       details: ["Ex CTO @ Woocar | Ex CS"],
       mail: "mzahnd@itba.edu.ar",
-      linkedin: "https://www.linkedin.com/in/martin-e-zahnd/?locale=es_ES",
+      linkedin: "https://www.linkedin.com/in/martin-e-zahnd/",
       description:
-        "✅ Ex CTO @ Woocar.\n\n" +
+        "✅ Ex CTO @ Woocar \n\n" +
         "&nbsp; \n\n" +
-        "✅ Ingeniero en Informática ITBA.\n\n" +
+        "✅ Backend Dev Ssr. @ Mendel \n\n" +
         "&nbsp; \n\n" +
-        "✅ Ex miembro de Computer Society.\n\n",
+        "✅ Ingeniero en Informática ITBA \n\n" +
+        "&nbsp; \n\n" +
+        "✅ Ex miembro de Computer Society \n\n",
+      revealed: true,
+    },
+    {
+      name: "Matías Piñero",
+      imgSrc: "/images/mentors/MatiasPiñero.jpg",
+      details: ["Software Engineer @ IOL"],
+      mail: "",
+      linkedin: "https://www.linkedin.com/in/matias-pinero/",
+      description:
+        "✅ Frontend Developer \n\n" +
+        "&nbsp; \n\n" +
+        "✅ Engineering Manager @ IOL \n\n" +
+        "&nbsp; \n\n",
+      revealed: true,
+    },
+    {
+      name: "Pablo Fernandez",
+      imgSrc: "/images/mentors/PabloFernandez.jpg",
+      details: ["Software Engineer @ IOL"],
+      mail: "",
+      linkedin: "https://www.linkedin.com/in/fernandezpablo85/",
+      description:
+        "✅ Software Engineer @ IOL\n\n" +
+        "&nbsp; \n\n",
+      revealed: true,
+    },
+    {
+      name: "Federico Macchi",
+      imgSrc: "/images/mentors/FedericoMacchi.jpg",
+      details: ["Software Engineer @ IOL"],
+      mail: "",
+      linkedin: "https://www.linkedin.com/in/federico-macchi-44a7a182/",
+      description:
+        "✅ Software Engineer @ IOL" +
+        "&nbsp; \n\n",
       revealed: true,
     },
   ];
@@ -589,18 +628,22 @@ const MentorsSection = ({ ...extendedProps }) => {
         alignItems="start"
         verticalAlign="top"
       >
-        {mentors.map((mentor, index) => {
-          return (
-            <Mentor
-              key={index}
-              mentor={mentor}
-              my="2%"
-              mx="4%"
-              minWidth="100px"
-              width={["20%"]}
-            />
-          );
-        })}
+        {mentors
+          .toSorted((m1, m2) =>
+            m1.name.toLowerCase().localeCompare(m2.name.toLowerCase())
+          )
+          .map((mentor, index) => {
+            return (
+              <Mentor
+                key={index}
+                mentor={mentor}
+                my="2%"
+                mx="4%"
+                minWidth="100px"
+                width={["20%"]}
+              />
+            );
+          })}
       </Flex>
     </VStack>
   );
