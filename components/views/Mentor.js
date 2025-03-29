@@ -102,11 +102,13 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
   //Check if already voted to disable the card.
   useEffect(() => {
     const getVote = async () => {
-      const votings = await axiosApiInstance.get(
-        `/votes?mentor=${userInfo.uid}&submission=${team.submission}`
-      );
-      if (votings.data.length > 0) {
-        setVoted(true);
+      if(userInfo !== undefined){
+        const votings = await axiosApiInstance.get(
+          `/votes?mentor=${userInfo.uid}&submission=${team.submission}`
+        );
+        if (votings.data.length > 0) {
+          setVoted(true);
+        }
       }
     };
 
