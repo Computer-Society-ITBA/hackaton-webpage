@@ -37,6 +37,7 @@ import {
   Input,
   InputRightElement,
   Box,
+  Select,
   useToast,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -506,6 +507,16 @@ const SubmissionCard = ({
   const { isOpen, onToggle } = useDisclosure();
 
   const [selectedMentors, setSelectedMentors] = useState(submission.mentors);
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSelectedValueChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+  const handleRejection = () => {
+    console.log("rejected");
+  }; //Rejection endPoint TODO: implement
+
   const handleSelectedMentorsChange = (selectedMentors) => {
     setSelectedMentors(selectedMentors);
 
@@ -559,19 +570,32 @@ const SubmissionCard = ({
           <Text size={TextSize} textAlign="start">
             {submission.email}
           </Text>
-          <Text fontSize={TextSize} textAlign="start" color="CSOrange">
-            Asignar Mentores:
-          </Text>
+
+          <Select my="1%" placeholder="Ejecutabilidad" value={selectedValue} onChange={handleSelectedValueChange}>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </Select>
+          {selectedValue === "" ? null : ( Number(selectedValue) === 0 ? (
+            <Button onClick={() => handleRejection()}>Rechazar</Button>
+          ) : (
+            <div>
+            <Text fontSize={TextSize} textAlign="start" color="CSOrange">
+              Asignar Mentores:
+            </Text>
+            <MultiSelect
+              value={selectedMentors}
+              onChange={(e) => handleSelectedMentorsChange(e.value)}
+              options={mentors}
+              optionLabel="name"
+              placeholder="Seleccione los mentores"
+              display="chip"
+              className="w-full md:w-20rem"
+            />
+            </div>
+        ))}
         </VStack>
-        <MultiSelect
-          value={selectedMentors}
-          onChange={(e) => handleSelectedMentorsChange(e.value)}
-          options={mentors}
-          optionLabel="name"
-          placeholder="Seleccione los mentores"
-          display="chip"
-          className="w-full md:w-20rem"
-        />
       </Box>
     </VStack>
   );
