@@ -65,7 +65,7 @@ router.put(
     }
 );
 
-router.post(
+router.patch(
     "/:userId/votes",
     authMiddleware,
     roleMiddleware(ROLE_MENTOR),
@@ -79,7 +79,6 @@ router.post(
             relacion,
             innovacion,
             impacto,
-            facilidad,
             interfaz,
             mvp,
             video,
@@ -92,7 +91,6 @@ router.post(
                 relacion,
                 innovacion,
                 impacto,
-                facilidad,
                 interfaz,
                 mvp,
                 video,
@@ -112,7 +110,6 @@ router.post(
             relacion,
             innovacion,
             impacto,
-            facilidad,
             interfaz,
             mvp,
             video,

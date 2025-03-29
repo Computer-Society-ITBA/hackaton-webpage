@@ -71,17 +71,15 @@ const PROBLEMATICA = 0;
 const RELACION = 1;
 const INNOVACION = 2;
 const IMPACTO = 3;
-const FACILIDAD = 4;
-const INTERFAZ = 5;
-const MVP = 6;
-const VIDEO = 7;
+const INTERFAZ = 4;
+const MVP = 5;
+const VIDEO = 6;
 
 const criteria = [
   { name: "Problemática", count: 5 },
   { name: "Relación con la Temática", count: 3 },
   { name: "Innovación y oportunidad", count: 5 },
   { name: "Impacto y Alcance", count: 5 },
-  { name: "Facilidad de Ejecución", count: 3 },
   { name: "Interfaz de usuario", count: 8 },
   { name: "Calidad del MVP", count: 10 },
   { name: "Presentación (video)", count: 3 },
@@ -89,7 +87,7 @@ const criteria = [
 
 const RateTeamCard = ({ team, ...extendedProps }) => {
   const { isOpen, onToggle } = useDisclosure();
-  const [errorrMessage, setErrorMessage] = useState("");
+  const [ errorMessage, setErrorMessage ] = useState("");
 
   const [feedback, setFeedback] = useState("");
   const [ratings, setRatings] = useState([]);
@@ -125,13 +123,12 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
 
   const handleSubmit = () => {
     axiosApiInstance
-      .post(`/mentors/${userInfo.uid}/votes`, {
+      .patch(`/mentors/${userInfo.uid}/votes`, {
         submissionId: team.submission,
         problematica: ratings[PROBLEMATICA],
         relacion: ratings[RELACION],
         innovacion: ratings[INNOVACION],
         impacto: ratings[IMPACTO],
-        facilidad: ratings[FACILIDAD],
         interfaz: ratings[INTERFAZ],
         mvp: ratings[MVP],
         video: ratings[VIDEO],
@@ -233,7 +230,7 @@ const RateTeamCard = ({ team, ...extendedProps }) => {
         </VStack>
         <Center>
           <Text fontSize={TextSize} color="red.500">
-            {errorrMessage}
+            {errorMessage}
           </Text>
         </Center>
 
