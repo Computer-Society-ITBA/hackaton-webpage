@@ -78,7 +78,6 @@ async function mentorVoteSubmission(
     relacion,
     innovacion,
     impacto,
-    facilidad,
     interfaz,
     mvp,
     video,
@@ -110,6 +109,14 @@ async function mentorVoteSubmission(
             return { error: "User has already voted for this submission." };
         }
 
+        const toWriteQuery = db
+          .collection(`${VOTE_COLLECTION}`)
+          .where("submissionId", "==", submissionId)
+        const toWriteSnapshot = await toWriteQuery.get();
+        if (toWriteSnapshot.empty) {
+            return { error: "Admin still not submitted a vote for this submission." };
+        }
+
         const data = {
             userId: mentorId,
             submissionId,
@@ -117,7 +124,6 @@ async function mentorVoteSubmission(
             relacion,
             innovacion,
             impacto,
-            facilidad,
             interfaz,
             mvp,
             video,
