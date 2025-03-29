@@ -510,11 +510,11 @@ const SubmissionCard = ({
     setSelectedMentors(selectedMentors);
 
     for (const mentor of mentors) {
-      mentor.submissions = mentor.submissions.filter(
-        (sub) => sub !== submission.submission.id
-      );
-
-      if (selectedMentors.map((mentor) => mentor.id).includes(mentor.id)) {
+      mentor.submissions = Array.isArray(mentor.submissions) 
+        ? mentor.submissions.filter((sub) => sub !== submission.submission.id) 
+        : [];
+    
+      if (selectedMentors.some((m) => m.id === mentor.id)) {
         mentor.submissions.push(submission.submission.id);
       }
     }
@@ -577,7 +577,7 @@ const SubmissionCard = ({
   );
 };
 
-const MentorAssignment = () => {
+const MentorAssignment = ({token}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [teams, setTeams] = useState([]);
   const [mentors, setMentors] = useState([]);
@@ -599,11 +599,10 @@ const MentorAssignment = () => {
               `/users/${submissionObj.userId}`
             );
             const teamData = team.data;
-
             const submissionMentors = [];
 
             for (const mentor of mentors) {
-              if (mentor.submissions.includes(sub.id)) {
+              if (Array.isArray(mentor.submissions) && mentor.submissions.includes(sub.id)) {
                 submissionMentors.push(mentor);
               }
             }
@@ -624,7 +623,7 @@ const MentorAssignment = () => {
           }
         }
 
-        setTeams((prevTeams) => [...updatedTeams]);
+        setTeams([...updatedTeams]);
       } catch (err) {
         alert("Error getting submissions");
       }
@@ -634,7 +633,7 @@ const MentorAssignment = () => {
       try {
         const response = await axiosApiInstance.get(`/mentors`);
         const mentors = response.data.mentors;
-        setMentors((prevMentors) => [...mentors]);
+        setMentors([...mentors]);
 
         return mentors;
       } catch (err) {
@@ -766,7 +765,7 @@ const AdminView = ({ token }) => {
         </TabPanel>
         {/* Asignar mentores a equipos*/}
         <TabPanel>
-          <MentorAssignment />
+          <MentorAssignment token={token}/>
         </TabPanel>
       </TabPanels>
     </Tabs>
