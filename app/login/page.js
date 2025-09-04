@@ -16,12 +16,11 @@ import {
 } from "@chakra-ui/react";
 import styled from "@emotion/styled";
 import Link from "next/link";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import auth from "../../config/firebaseConfig";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import useStore from "../../config/storeConfig";
-import { axiosApiInstance, setAxiosToken } from "../../config/axiosConfig";
 
 const HeadingSize = ["sm", "md", "lg", "xl", "2xl"];
 const TextSize = ["xs", "sm", "md", "lg", "xl"];
@@ -81,7 +80,7 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErorrMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleEmailChange = (event) => setEmail(event.target.value.trim());
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handlePasswordKeyPress = async (event) => {
@@ -116,25 +115,51 @@ const Home = () => {
     }
   }, [inscriptionsEnabled, isLoading]);
 
+
+  async function getUserData(token, uid) {
+    return fetch(`/api/users/${uid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        //console.log(response);
+        if (!response.ok) {
+          throw new Error("Error fetching user data");
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        throw error;
+      });
+
+  }
+
   const signIn = async (email, password) => {
     setIsLoading(true);
     try {
+      
       const credentials = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
+      
       const token = await credentials.user.getIdToken();
-      await setAxiosToken(token);
-      const userInfo = (
-        await axiosApiInstance.get(`/users/${credentials.user.uid}`)
-      ).data;
+      //console.log("token: ", token);
+      
 
+      const userInfo = await getUserData(token, credentials.user.uid);
+      //console.log("userInfo: ", userInfo);
       storeSignIn(userInfo, token);
       router.push("/profile");
+
     } catch (err) {
-      setErorrMessage(
-        "Ocurrio un error, revisa el que el email y la contraseña sean correctos"
+      setErrorMessage(
+        "Ocurrió un error, revisá el que el email y la contraseña sean correctos"
       );
     }
     setIsLoading(false);
